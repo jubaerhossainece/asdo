@@ -1,0 +1,84 @@
+body {
+    color: #797979;
+    background: #f1f2f7;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 13px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+}
+
+.short-detail{
+    padding: 2rem 0 0 1rem;
+}
+
+.profile-image {
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.profile-img{
+    width: 12rem;
+    border-radius: 50%;
+}
+
+.edit-button{
+    padding-top: 2rem;
+    padding-right: 3rem;
+}
+
+.edit-button .edit-profile {
+    border: 1px solid #7636dc;
+    color: #7636dc;
+    padding: 6px 18px;
+    text-align: right;
+    float: right;
+}
+
+.edit-button .edit-profile:hover{
+    background: #7636dc;
+    color: white;
+}
+
+.profile-info{
+    padding: 12px 0;
+}
+
+.profile-info strong{
+    font-size: 16px;
+    color: #3d405c;
+}
+
+
+
+.profile-nav, .profile-info{}
+
+
+@media only screen and (max-width: 600px) {
+  .short-detail{
+    text-align: center;
+    padding: 0;
+}
+
+.profile-image {
+    text-align: center;
+}
+
+.profile-img{
+    width: 12rem;
+    border-radius: 50%;
+}
+
+.edit-button{
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.edit-button .edit-profile {
+    float: none;
+}
+
+}

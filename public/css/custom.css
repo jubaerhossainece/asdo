@@ -1,0 +1,63 @@
+input:focus{
+	box-shadow: none !important;
+	outline: none !important;
+}
+
+/*.form-control{
+	font-size: 16px;
+}*/
+
+.anchor-link{
+	color: #6d78f9;
+	/*padding: 8px 15px;*/
+}
+
+.input-group-text{
+	padding: 10px 12px;
+	font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: 0;
+}
+
+.h5, h5{
+	font-size: inherit !important;
+}
+
+
+/*
+.card-header h4{
+	margin-bottom: 0;
+}*/
+
+
+.btn {
+    padding: 6px 9px;
+    font-size: 15px;
+    margin-bottom: 0px; 
+    margin-right: 0px; 
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    border-radius: 3px;
+  /*  transition: color 0.15s ease 0s, background-color 0.15s ease 0s, 
+    border-color 0.15s ease 0s, box-shadow 0.15s ease 0s;*/
+}
+
+.btn-sm{
+    padding: 0.17rem 0.45rem;
+    font-weight: 300;
+}
+
+.navbar-brand{
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link{
+	display: flex;
+}
+
+.footer-link{
+	color: #186cea;
+}
