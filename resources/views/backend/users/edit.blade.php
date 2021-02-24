@@ -1,187 +1,131 @@
 @extends('layouts.backend.app')
 @section('content')
 @push('css')
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{url('css/profile.css')}}">
+<link rel="stylesheet" href="{{url('vendor/BVSelect/css/bvselect.css')}}">
 @endpush
-<div class="card profile-nav">
-  <div class="row">
-    <div class="col-sm-3 profile-image">
-      <div class="">
-        <img class="profile-img" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-      </div>
-    </div>
-    <div class="col-sm-6 short-detail">
-      <h3><strong> Md. Jubaer Hossain</strong></h3>
-      <h5><label for="">Email-address : </label> <strong> jubaer@example.com</strong></h5>
-      <h5><label for="">Phone :</label> <strong> 01754633041</strong></h5>
-      <h5><label for="">NID : </label><span> 097421309472304</span></h5>
-      <h5><label for="">Address : </label> <span> Mirpur-1, dhaka, bangladesh</span></h5>
-    </div>
-    <div class="col-sm-3 edit-button">
-      <a href="{{route('asdo.users.edit', $user->id)}}" class="btn edit-profile">Edit Profile</a>
-    </div>
+<div class="card">
+  <div class="card-header">
+    <h4>Edit Profile</h4>
   </div>
 </div>
-      
 
-<div class="card" id="personal-details">
+
+<form action="{{route('asdo.users.update', $user->id)}}">
+<div class="card">
   <div class="card-header">
-    <h3>Personal Details</h3>
+    <h4>Personal Information</h4>
   </div>
   <div class="card-body">
-    <div class="row">
-      <div class="col-sm-12 col-xs-12">
-        <div class="row profile-info">
-          <div class="col-sm-6 col-6">
-            <label for="">Name : </label>
-          </div> 
-          <div class="col-sm-6 col-6">
-            <strong> Md. Jubaer Hossain</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Email-address : </label>
-          </div> 
-          <div class="col-6">
-            <strong> jubaer@example.com</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Phone Number :</label>
-          </div> 
-          <div class="col-6">
-            <strong> 01754633041</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for=""> Birth Certificate Number : </label>
-          </div> 
-          <div class="col-6">
-            <strong> 097421309472304</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for=""> NID Number : </label>
-          </div> 
-          <div class="col-6">
-            <strong> 0834698534985</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for=""> Blood Group : </label>
-          </div> 
-          <div class="col-6">
-            <strong> B+</strong>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-12 deivider">
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Member Type : </label>
-          </div> 
-          <div class="col-6">
-            <strong> General Member</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Father/Husband</label>
-          </div> 
-          <div class="col-6">
-            <strong> Jahir Uddin</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Mother : </label>
-          </div> 
-          <div class="col-6">
-            <strong> Rahima Khatun</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Nationality : </label>
-          </div> 
-          <div class="col-6">
-            <strong> Bangladeshi</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for=""> Religion :</label>
-          </div> 
-          <div class="col-6">
-            <strong> Islam</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for=""> Facebook Id :</label>
-          </div> 
-          <div class="col-6">
-            <strong> <a href="./www.facebook.com/jubaer.hossain.7">www.facebook.com/jubaer.hossain.7</a> </strong>
-          </div>
-        </div>
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Name</label>
+      <input type="text" name="name" class="form-control" id="name">
     </div>
+    <div class="form-group col-md-6">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="guardian">Father/Husband</label>
+      <input type="text" name="guardian" class="form-control" id="guardian">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="mother">Mother</label>
+      <input type="text" class="form-control" id="mother">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="phoneNumber">Phone number</label>
+      <input type="text" name="phone" class="form-control" id="phoneNumber">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="nidNumber">NID number</label>
+      <input type="text" name="nid" class="form-control" id="nidNumber">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="phoneNumber">Birth Certificate Number</label>
+      <input type="text" name="number" class="form-control" id="phoneNumber">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="bloodGroup">Blood group</label>
+      <br>
+      <select name="" id="blood-group-select">
+        <option data-separator="true">Select Option</option>
+        <option value="1">A positive (A+)</option>
+        <option value="2">A negative (A-)</option>
+        <option value="3">B positive (B+)</option>
+        <option value="4">B negative (B-)</option>
+        <option value="5">AB positive (AB+)</option>
+        <option value="6">AB negative (AB-)</option>
+        <option value="7">O positive (O+)</option>
+        <option value="8">O negative (O-)</option>
+      </select>
+      <!-- <input type="text" name="blood_group" class="form-control" id="bloodGroup" placeholder="NID number"> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
   </div>
 </div>
 
-  <div class="card" id="personal-details">
-  <div class="card-header">
-    <h3>Address & Education</h3>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-12">
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Education : </label>
-          </div> 
-          <div class="col-6">
-            <strong> BSc Engineering</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Present Address :</label>
-          </div> 
-          <div class="col-6">
-            <strong> Tupipara, Sreepur, Magura</strong>
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-6">
-            <label for="">Permanent Address : </label>
-          </div> 
-          <div class="col-6">
-            <strong> Tupipara, sreepur, magura</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+@push('script')
+<script src="{{url('vendor/BVSelect/js/bvselect.js')}}"></script>
+<script src="{{url('vendor/BVSelect/js/bvselect.polyfill.js')}}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var demo1 = new BVSelect({
+        selector: "#blood-group-select",
+        width: "100%",
+        searchbox: true,
+        offset: true,
+        placeholder: "Select Option",
+        search_placeholder: "Search...",
+        search_autofocus: true,
+        breakpoint: 450
+      });
+});
+</script>
+@endpush
 @endsection

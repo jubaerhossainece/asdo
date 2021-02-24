@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,14 @@ use App\Http\Controllers\Backend\RoleController;
 |
 */
 
+// Routes for dashboard
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+// routes for user management
 Route::resource('/users', UserController::Class);
+
+// routes for role management
 Route::resource('/roles', RoleController::class);
+
+// routes fro admin management
+Route::resource('/admins', AdminController::class);

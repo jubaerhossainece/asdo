@@ -1,7 +1,6 @@
 @extends('layouts.backend.app')
 @section('content')
 @push('css')
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
 @endpush
 <div class="card profile-nav">
@@ -19,7 +18,7 @@
       <h5><label for="">Address : </label> <span> Mirpur-1, dhaka, bangladesh</span></h5>
     </div>
     <div class="col-sm-3 edit-button">
-      <a href="{{route('asdo.users.edit', $user->id)}}" class="btn edit-profile">Edit Profile</a>
+      <a href="{{route('asdo.users.edit', $user->id)}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>
@@ -27,7 +26,7 @@
 
 <div class="card" id="personal-details">
   <div class="card-header">
-    <h3>Personal Details</h3>
+    <h3>Personal Information</h3>
   </div>
   <div class="card-body">
     <div class="row">

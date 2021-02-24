@@ -17,18 +17,16 @@ class UserSeeder extends Seeder
     {
         User::updateOrCreate([
         	'role_id' => Role::where('slug', 'superAdmin')->first()->id,
-        	'name' => 'Bcs Inception',
+        	'name' => 'Md. Jubaer Hossain',
         	'email' => 'superadmin@example.com',
-        	'password' => Hash::make('12345678'),
-            'status' => true
+        	'password' => Hash::make('12345678')
         ]);
 
         User::updateOrCreate([
         	'role_id' => Role::where('slug', 'user')->first()->id,
         	'name' => 'Md. Jubaer Hossain',
         	'email' => 'user@example.com',
-        	'password' => Hash::make('12345678'),
-            'status' => false
+        	'password' => Hash::make('12345678')
         ]);
     }
 }

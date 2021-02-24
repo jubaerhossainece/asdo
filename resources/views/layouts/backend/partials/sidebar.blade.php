@@ -98,7 +98,11 @@
                                         <a class="nav-link" href="{{route('asdo.roles.index')}}"><i class="fas fa-user-cog mr-2"></i><span>Roles</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-user mr-2"></i><span>Users</span></a></a>
+                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Users</span></a></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('asdo.admins.index')}}"><i class="fas fa-users mr-2"></i><span>Admin Panel</span></a></a>
                                     </li>
                                 </ul>
                             </li>

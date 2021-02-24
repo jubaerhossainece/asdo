@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $admins = DB::table('users')->where('role_id', '!=', 4)->get();
+        return view('backend.admins.index', compact('admins'));
     }
 
     /**
@@ -47,8 +48,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('backend.users.show', compact('user'));
+        //
     }
 
     /**
@@ -59,8 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('backend.users.edit' , compact('user'));
+        //
     }
 
     /**
