@@ -5,12 +5,16 @@
 @endpush
 <div class="card">
   <div class="card-header">
-    <h4>Edit Profile</h4>
+    <h4 class="float-left">Edit Profile</h4>
+    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
+    All Users</a>
   </div>
 </div>
 
 
 <form action="{{route('asdo.users.update', $user->id)}}">
+  @csrf
+  @method('PUT')
 <div class="card">
   <div class="card-header">
     <h4>Personal Information</h4>

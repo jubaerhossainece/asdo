@@ -1,11 +1,37 @@
 input:focus{
-	box-shadow: none !important;
+	box-shadow: 0 0 6px 2px rgb(167 176 255) !important;
+    border: 0 !important;
 	outline: none !important;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #353a69;
 }
 
 input{
     border-radius: 3px !important;
     padding: 8px !important;
+}
+
+.form-control::placeholder{
+    color: #afb0b9 !important;
+}
+
+.form-control::-webkit-input-placeholder, input::-webkit-input-placeholder { /* Edge */
+  color: #afb0b9 !important;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #afb0b9 !important;
+}
+
+::placeholder {
+  color: #afb0b9 !important;
 }
 
 .anchor-link{
@@ -21,9 +47,9 @@ h1, h2, h3, h4, h5, h6{
 	margin: 0;
 }
 
-.h5, h5{
+/*.h5, h5{
 	font-size: inherit !important;
-}
+}*/
 
 .card-header.header {
     display: flex;
