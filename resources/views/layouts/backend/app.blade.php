@@ -73,7 +73,6 @@
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
     <script src="{{url('assets/vendor/jquery/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{url('assets/vendor/jquery/jquery-3.3.1.min.js')}}"></script>
     <script src="{{url('assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
     <script src="{{url('assets/vendor/slimscroll/jquery.slimscroll.js')}}"></script>
     <script src="{{url('assets/libs/js/main-js.js"></script>
