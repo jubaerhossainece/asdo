@@ -176,11 +176,12 @@ h6 {
 }
 
 a {
-    color: #71748d;
+    color: #007bff;
+    transition: 0.3s ease-in-out;
 }
 
 a:hover {
-    color: #ff407b;
+    color: #2939d6;
     text-decoration: none;
 }
 

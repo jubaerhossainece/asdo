@@ -141,8 +141,8 @@
         <span class="input-group-text">Upload</span>
       </div>
       <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        <input type="file" name="photo" class="custom-file-input" id="profile-image">
+        <label class="custom-file-label" for="profile-image" id="profile-image-label">Choose file</label>
       </div>
     </div>
 
@@ -211,6 +211,10 @@
       }
     });
 });
+
+document.getElementById("profile-image").onchange = function() {
+  document.getElementById("profile-image-label").innerHTML = this.value;
+};
 
 
 </script>

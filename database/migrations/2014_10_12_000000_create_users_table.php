@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->text('permanent_address')->nullable();
             $table->text('present_address')->nullable();
             $table->string('nid')->nullable();
-            $table->string('birth_certificate_id')->nullable();
+            $table->string('birth_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('blood_group')->nullable();
             $table->string('photo')->nullable();
