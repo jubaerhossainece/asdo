@@ -1543,7 +1543,8 @@ Top Header
 }
 
 .nav-divider {
-    padding: 10px 14px;
+    padding: 1px 12px;
+    padding-top: 1rem;
     line-height: 30px;
     font-weight: 600;
     text-transform: uppercase;
@@ -1642,6 +1643,7 @@ Left Navigation Sidebar
 
 .nav-left-sidebar .navbar-nav {
     width: 100%;
+    padding: 0 0 5rem 0;
 }
 
 .nav-left-sidebar .navbar {
@@ -1668,11 +1670,16 @@ Left Navigation Sidebar
 }
 
 .nav-divider {
-    padding: 10px 14px;
+    padding: 0px 14px;
+    margin-top: 1rem;
     line-height: 30px;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 12px;
+}
+
+.nav-divider:first-child{
+    margin-top: 0px;
 }
 
 .nav-left-sidebar .submenu {
@@ -1774,7 +1781,7 @@ Leftsidebar - dark
 }
 
 .sidebar-dark .nav-divider {
-    color: #a4aadb;
+    color: #e1e3ec;
     font-size: 12px;
     letter-spacing: 1px;
 }

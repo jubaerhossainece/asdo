@@ -10,6 +10,10 @@ body {
     -moz-font-smoothing: antialiased;
 }
 
+label{
+    font-weight: 600 !important;
+}
+
 .short-detail{
     padding: 2rem 0 0 1rem;
 }
@@ -17,21 +21,20 @@ body {
 .profile-image {
     padding-left: 2rem;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2rem;}
+
+.alert.alert-success.alert-dismissible.fade.show {
+    font-size: 17px;
+    text-align: center;
 }
 
-.profile-img{
-    width: 12rem;
-    height: 12rem;
+.circle-cropper {
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: 50%;
     border-radius: 50%;
-    border: 4px solid #9800ff;
-    overflow: hidden;
-}
-
-.profile-img img{
-    height: 100%;
     width: 100%;
+    padding-top: 100%;
 }
 
 .edit-button{
@@ -68,28 +71,19 @@ body {
 
 
 @media only screen and (max-width: 600px) {
-  .short-detail{
-    text-align: center;
-    padding: 0;
-}
 
 .profile-image {
     text-align: center;
 }
 
-.profile-img{
-    width: 8rem;
-    height: 8rem;
-    background-size: cover;
-    border-radius: 50%;
+.profile-image {
+    max-width: 50%;
     margin: 0 auto;
 }
-
-.profile-img img{
-    height: 100%;
-    width: 100%;
+  .short-detail{
+    text-align: center;
+    padding: 0;
 }
-
 
 .edit-button{
     padding: 2rem 0;
@@ -103,10 +97,9 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-    .profile-img{
-        width: 9rem;
-        height: 9rem;
-        border-radius: 50%;
+
+    .profile-image {
+        max-width: 50%;
         margin: 0 auto;
     }
 
@@ -139,10 +132,6 @@ body {
 }
 
 @media only screen and (max-width: 992px) {
-    .profile-img{
-        width: 10rem;
-        height: 10rem;
-    }
 
     .profile-nav .short-detail h5{
         font-size: 16px;

@@ -5,6 +5,16 @@
 
 <div class="row" id="login">
     <div class="col-sm-5">
+        @if(Session::has('alert-success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-box">
+              <strong>Success! </strong> {{ Session::get('alert-success')}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        @endif
+
+
         <div class="card ">
             <div class="card-header text-center"><a href="../index.html"><!-- <img class="logo-img" src="../assets/images/logo.png" alt="logo"> -->ASDO</a><span class="splash-description">Please enter your user information.</span>
             </div>

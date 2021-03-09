@@ -62,14 +62,10 @@
         <label for="bloodGroup">Blood group</label>
         <br>
         <select name="blood_group" id="blood-group-select" style="width: 100%;">
-          <option value="A positive (A+)">A positive (A+)</option>
-          <option value="A negative (A-)">A negative (A-)</option>
-          <option value="B positive (B+)">B positive (B+)</option>
-          <option value="B negative (B-)">B negative (B-)</option>
-          <option value="AB positive (AB+)">AB positive (AB+)</option>
-          <option value="AB negative (AB-)">AB negative (AB-)</option>
-          <option value="O positive (O+)">O positive (O+)</option>
-          <option value="O negative (O-)">O negative (O-)</option>
+          <option value="0"></option>
+          @foreach($blood_groups as $bg)
+            <option value="{{$bg->id}}" {{$user->blood_group == $bg->id ? 'selected' : ''}}>{{$bg->name}}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -82,11 +78,11 @@
       <div class="form-group col-md-6">
         <label>Member Type</label>
         <br>
-        <select name="member_type" id="member-select"  style="width: 100%;">
-          <option value="1">Member</option>
-          <option value="2">Donar</option>
-          <option value="3">Some</option>
-          <option value="4">Other</option>
+        <select name="member_type" id="member-select" style="width: 100%;">
+          <option value="0"></option>
+          @foreach($member_types as $member)
+          <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
+          @endforeach
         </select>
       </div>
     </div>
@@ -99,12 +95,11 @@
       <div class="form-group col-md-6">
         <label>Religion</label>
         <br>
-        <select name="member_type" id="religion-select"  style="width: 100%;">
-          <option value="Islam">Islam</option>
-          <option value="Hinduism">Hinduism</option>
-          <option value="Christianity">Christianity</option>
-          <option value="Buddhism">Buddhism</option>
-          <option value="Other">Other</option>
+        <select name="religion" id="religion-select"  style="width: 100%;">
+          <option value="0"></option>
+          @foreach($religions as $religion)
+            <option value="{{$religion->id}}" {{$user->religion == $religion->id ? 'selected' : ''}}>{{$religion->name}}</option>
+           @endforeach
         </select>
       </div>
     </div>
@@ -113,9 +108,20 @@
 
 <div class="card">
   <div class="card-header">
-    <h4>Address & Education</h4>
+    <h4>Photo & Others</h4>
   </div>
   <div class="card-body">
+    <label for="photo">Profile Image</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Upload</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" name="photo" class="custom-file-input" id="profile-image">
+        <label class="custom-file-label" for="profile-image" id="profile-image-label">{{$user->photo ? $user->photo : 'Choose file'}}</label>
+      </div>
+    </div>
+
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="education">Education</label>
@@ -147,10 +153,9 @@
   $(document).ready(function() {
     $('#blood-group-select').select2({
       dropdownCssClass : 'no-search',
-      placeholder: "Select a option",
       allowClear: true,
       placeholder: {
-        id: '-1', // the value of the option
+        id: '0', // the value of the option
         text: 'Select an option'
       }
     });
@@ -159,10 +164,9 @@
   $(document).ready(function() {
     $('#religion-select').select2({
       dropdownCssClass : 'no-search',
-      placeholder: "Select a option",
       allowClear: true,
       placeholder: {
-        id: '-1', // the value of the option
+        id: '0', // the value of the option
         text: 'Select religion'
       }
     });
@@ -171,14 +175,17 @@
    $(document).ready(function() {
     $('#member-select').select2({
       dropdownCssClass : 'no-search',
-      placeholder: "Select a option",
       allowClear: true,
       placeholder: {
-        id: '-1', // the value of the option
+        id: '0', // the value of the option
         text: 'Select Member Type'
       }
     });
 });
+
+document.getElementById("profile-image").onchange = function() {
+  document.getElementById("profile-image-label").innerHTML = this.value;
+};
 
 
 </script>

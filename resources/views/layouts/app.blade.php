@@ -8,7 +8,7 @@
     <link href="{{url('assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{url('assets/libs/css/style.css')}}">
     <link rel="stylesheet" href="{{url('assets/libs/css/style.css')}}">
-    <link rel="stylesheet" href="{{url('css/custom.css')}}">
+    <link rel="stylesheet" href="{{url('css/frontend/custom.css')}}">
     <style>
     html,
     body {

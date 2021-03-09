@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,9 @@ Route::resource('/users', UserController::Class);
 // routes for role management
 Route::resource('/roles', RoleController::class);
 
-// routes fro admin management
+// routes for admin management
 Route::resource('/admins', AdminController::class);
+
+//routes password change
+Route::get('/password/edit', [PasswordController::class, 'edit'])->name('password.edit');
+Route::put('/password/update', [PasswordController::class, 'update'])->name('password.update');

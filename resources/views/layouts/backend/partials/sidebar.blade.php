@@ -61,34 +61,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/general.html">General</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/carousel.html">Carousel</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/listgroup.html">List Group</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/typography.html">Typography</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/accordions.html">Accordions</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabs.html">Tabs</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                        
                             <li class="nav-divider">
                                 Access Control
                             </li>
@@ -98,14 +71,37 @@
                                         <a class="nav-link" href="{{route('asdo.roles.index')}}"><i class="fas fa-user-cog mr-2"></i><span>Roles</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Users</span></a></a>
+                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Users</span></a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('asdo.admins.index')}}"><i class="fas fa-users mr-2"></i><span>Admin Panel</span></a></a>
+                                        <a class="nav-link" href="{{route('asdo.admins.index')}}"><i class="fas fa-users mr-2"></i><span>Admin Panel</span></a>
                                     </li>
                                 </ul>
                             </li>
+
+                            <li class="nav-divider">
+                                Settings
+                            </li>
+                            <li class="nav-item">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('asdo.users.show', auth()->user()->id)}}"><i class="fas fa-user mr-2"></i><span>My Profile</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('asdo.users.edit', auth()->user()->id)}}"><i class="fas fa-cog mr-2"></i><span>Update Profile</span></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('asdo.password.edit')}}"><i class="fas fa-lock mr-2"></i><span>Change Password</span></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#"><i class="fas fa-camera"></i><span>Change Photo</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+
                         </ul>
                     </div>
                 </nav>

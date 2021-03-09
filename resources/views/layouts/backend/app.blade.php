@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{url('assets/libs/css/style.css')}}">
     
     <!--custom css -->
-    <link rel="stylesheet" href="{{url('css/custom.css')}}">
+    <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
     @stack('css')
     <title>ASDO - Alokito Social Development Organisation</title>
 </head>

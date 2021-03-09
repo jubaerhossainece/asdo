@@ -5,8 +5,8 @@
 @endpush
 
 @if(Session::has('alert-success') || Session::has('alert-danger'))
-<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert">
-  <strong>{{Session::has('alert-success') ? 'Success!' : 'Danger!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
+<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert" id="alert-box">
+  <strong>{{Session::has('alert-success') ? 'Success!' : 'Alert!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -16,8 +16,11 @@
 <div class="card profile-nav">
   <div class="row">
     <div class="col-md-5 col-xl-3 profile-image">
-      <div class=" profile-img">
+      <!-- <div class=" profile-img">
         <img class="" src="{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : url('assets/images/avatar-4.png')}}" alt="">
+      </div> -->
+      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
+        
       </div>
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
@@ -181,7 +184,7 @@
           <div class="col-sm-4">
             <label for=""> Facebook Id :</label>
           </div> 
-          <div class="col-sm-md-8">
+          <div class="col-sm-8">
             @if($user->facebook_id)
              <span><a href="{{$user->facebook_id}}" target="_blank" rel="noopener noreferrer">{{$user->facebook_id}}</a></span>
             @else <span class="text-danger">No facebook id to show</span>
@@ -239,4 +242,9 @@
     </div>
   </div>
 </div>
+@push('script')
+<script>
+  $("#alert-box").delay(6000).fadeOut(1000);
+</script>
+@endpush
 @endsection

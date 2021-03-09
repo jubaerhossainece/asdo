@@ -1,5 +1,5 @@
 input:focus, .custom-file-input:focus~.custom-file-label{
-	box-shadow: 0 0 6px 2px rgb(167 176 255) !important;
+	box-shadow: none !important;
 	outline: none !important;
     transition: box-shadow 0.3s ease-in-out;
 }

@@ -31,7 +31,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+        $blood_groups = DB::table('others')->where('category', 'blood group')->get();
+        $member_types = DB::table('others')->where('category', 'member type')->get();
+        $religions = DB::table('others')->where('category', 'religion')->get();
+
+        return view('backend.users.create', compact('blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -42,6 +46,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email|max:200',
+            'password' => 'required|min:8|string|confirmed',
+            'photo' => 'nullable|image'
+        ]);
+
+        
         if($request->hasFile('photo')){
             $path = 'public/asdo/images';
             $file= $request->file('photo');
@@ -49,35 +61,8 @@ class UserController extends Controller
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
-            $request->file('photo')->storeAs($path, $filename_with_ext);
-            
+            $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
-        // dd($filename_with_ext);
-
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-
-        $user->photo = $filename_with_ext;
-        $result = $user->save();
-
-        if($result){
-            $request->session()->flash('alert-success', 'User was created successfully!');
-            return redirect()->route('asdo.users.show', $user->id);
-        }else{
-            $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.users.create');
-        }
-        return $size;
-
-
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email|max:200',
-            'password' => 'required|min:8|string|confirmed',
-            'image' => 'nullable|image'
-        ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -94,17 +79,11 @@ class UserController extends Controller
             'facebook_id' => $request->facebook_id,
             'religion' => $request->religion,
             'education' => $request->education,
+            'photo' => $filename_with_ext,
             'present_address' => $request->present_address,
             'permanent_address' => $request->permanent_address,
             'password' => Hash::make($request->password)
         ]);
-
-        if($request->hasFile('photo')){
-            $file= $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            
-        }
 
         if($user){
             $request->session()->flash('alert-success', 'User was created successfully!');
@@ -124,10 +103,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $image = $user->photo;
-        // $url = Storage::get($image);
-
-        // return $url;
         return view('backend.users.show', compact('user'));
     }
 
@@ -139,8 +114,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $blood_groups = DB::table('others')->where('category', 'blood group')->get();
+        $member_types = DB::table('others')->where('category', 'member type')->get();
+        $religions = DB::table('others')->where('category', 'religion')->get();
         $user = User::findOrFail($id);
-        return view('backend.users.edit' , compact('user'));
+
+        return view('backend.users.edit' , compact('user', 'blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -152,7 +131,55 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request;
+        $user = User::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string',
+            'email' => ['required', 'email',Rule::unique('users')->ignore($user->id)],
+            'password' => 'sometimes|min:8|string|confirmed',
+            'photo' => 'nullable|image'
+        ]);
+
+        dd($request->photo);
+
+        if($request->hasFile('photo')){
+            $path = 'public/asdo/images';
+            $file= $request->file('photo');
+            $image_name = $file->getClientOriginalName();
+            $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename_with_ext = 'image'.time().'.'.$extension;
+
+            $request->file('photo')->storeAs($path, $filename_with_ext);    
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'role_id' => 4,
+            'email' => $request->email,
+            'guardian' => $request->guardian,
+            'mother' => $request->mother,
+            'phone' => $request->phone,
+            'nid' => $request->nid,
+            'birth_id' => $request->birth_id,
+            'blood_group' => $request->blood_group,
+            'nationality' => $request->nationality,
+            'member_type' => $request->member_type,
+            'facebook_id' => $request->facebook_id,
+            'religion' => $request->religion,
+            'education' => $request->education,
+            'photo' => $filename_with_ext,
+            'present_address' => $request->present_address,
+            'permanent_address' => $request->permanent_address
+        ]);
+
+        if($user){
+            $request->session()->flash('alert-success', 'User was created successfully!');
+            return redirect()->route('asdo.users.show', $id);
+        }else{
+            $request->session()->flash('alert-danger', 'Something went wrong!');
+            return redirect()->route('asdo.users.show', $id);
+        }
     }
 
     /**
