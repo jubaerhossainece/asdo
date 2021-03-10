@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class PasswordController extends Controller
 {
     public function edit(){
-    	return view('backend.password.edit');
+    	return view('user.password.edit');
     }
 
     public function update(Request $request){
@@ -33,9 +33,9 @@ class PasswordController extends Controller
     			$user->update([
     				'password' => Hash::make($request->password)
     			]);
-    				Auth::logout();   
-    				
-    				return redirect('/login')->with('alert-success', 'Password updated successfully! You are logged out. Please login with new password!'); 				
+				Auth::logout();   
+				
+				return redirect('/login')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
     		}
     	}
     	

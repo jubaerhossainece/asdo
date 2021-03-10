@@ -100,9 +100,9 @@
                                     <h5 class="mb-0 text-white nav-user-name">{{auth()->user()->name}} </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="{{route('asdo.users.show', auth()->user()->id)}}"><i class="fas fa-user mr-2"></i>My Profile</a>
-                                <a class="dropdown-item" href="{{route('asdo.users.edit', auth()->user()->id)}}"><i class="fas fa-cog mr-2"></i>Update Profile</a>
-                                <a class="dropdown-item" href="{{route('asdo.password.edit')}}"><i class="fas fa-lock mr-2"></i>Change Password</a>
+                                <a class="dropdown-item" href="{{route('profile.show')}}"><i class="fas fa-user mr-2"></i>My Profile</a>
+                                <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fas fa-cog mr-2"></i>Update Profile</a>
+                                <a class="dropdown-item" href="{{route('password.edit')}}"><i class="fas fa-lock mr-2"></i>Change Password</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

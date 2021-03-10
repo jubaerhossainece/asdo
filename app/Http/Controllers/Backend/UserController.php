@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -53,7 +54,6 @@ class UserController extends Controller
             'photo' => 'nullable|image'
         ]);
 
-        
         if($request->hasFile('photo')){
             $path = 'public/asdo/images';
             $file= $request->file('photo');
@@ -66,7 +66,6 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'role_id' => 4,
             'email' => $request->email,
             'guardian' => $request->guardian,
             'mother' => $request->mother,
@@ -129,33 +128,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        return $request;
-        $user = User::findOrFail($id);
         $request->validate([
             'name' => 'required|string',
-            'email' => ['required', 'email',Rule::unique('users')->ignore($user->id)],
+            'email' => ['required',Rule::unique('users')->ignore($user->id)],
             'password' => 'sometimes|min:8|string|confirmed',
             'photo' => 'nullable|image'
         ]);
 
-        dd($request->photo);
-
         if($request->hasFile('photo')){
+            
             $path = 'public/asdo/images';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
-
-            $request->file('photo')->storeAs($path, $filename_with_ext);    
+            $request->file('photo')->storeAs($path, $filename_with_ext);  
+            Storage::delete('public/asdo/images/'.$user->photo);  
         }
 
-        $user = User::create([
+        $result = $user->update([
             'name' => $request->name,
-            'role_id' => 4,
             'email' => $request->email,
             'guardian' => $request->guardian,
             'mother' => $request->mother,
@@ -168,17 +163,18 @@ class UserController extends Controller
             'facebook_id' => $request->facebook_id,
             'religion' => $request->religion,
             'education' => $request->education,
-            'photo' => $filename_with_ext,
+            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+            'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
             'present_address' => $request->present_address,
             'permanent_address' => $request->permanent_address
         ]);
 
-        if($user){
-            $request->session()->flash('alert-success', 'User was created successfully!');
-            return redirect()->route('asdo.users.show', $id);
+        if($result){
+            $request->session()->flash('alert-success', 'User information updated successfully!');
+            return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.users.show', $id);
+            return redirect()->route('asdo.users.show', $user->id);
         }
     }
 

@@ -17,6 +17,15 @@ input{
     padding: 8px !important;
 }
 
+.alert{
+    font-size: 16px;
+    text-align: center;
+}
+
+.alert p{
+    margin-bottom: 0;
+}
+
 /*active and focus style for input button*/
 .btn-secondary:not(:disabled):not(.disabled).active:focus, 
 .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus{

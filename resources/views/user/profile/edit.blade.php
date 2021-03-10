@@ -13,17 +13,14 @@
 </div>
 @endif
 
-
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Edit User Info</h4>
-    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
-    All Users</a>
+    <h4 class="float-left">Update your Profile</h4>
   </div>
 </div>
 
 
-<form method="POST" action="{{route('asdo.users.update', $user->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('profile.update', auth()->user()->id)}}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="card">
@@ -41,9 +38,10 @@
           </div>
         @enderror
       </div>
+
       <div class="form-group col-md-6">
         <label for="email">Email address</label>
-        <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror" id="email" value="{{$user->email ? $user->email : ''}}">
+        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{$user->email ? $user->email : ''}}">
         @error('email')
           <div class="text-danger">
             <strong>{{$message}}</strong>
@@ -132,7 +130,7 @@
     <h4>Photo & Others</h4>
   </div>
   <div class="card-body">
-    <label for="photo">Profile Photo</label>
+    <label for="photo">Profile Image</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">Upload</span>
@@ -163,9 +161,9 @@
         <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Update Account</button> 
+<button type="submit" class="btn btn-primary">Update Account</button>
   </div>
-</div> 
+</div>  
 </form>
 
 @push('script')
@@ -193,15 +191,15 @@
     });
 });
 
- $(document).ready(function() {
-  $('#member-select').select2({
-    dropdownCssClass : 'no-search',
-    allowClear: true,
-    placeholder: {
-      id: '0', // the value of the option
-      text: 'Select Member Type'
-    }
-  });
+   $(document).ready(function() {
+    $('#member-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Member Type'
+      }
+    });
 });
 
 document.getElementById("profile-image").onchange = function() {

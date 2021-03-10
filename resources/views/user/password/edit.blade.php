@@ -1,19 +1,22 @@
 @extends('layouts.backend.app')
 @section('content')
 <!-- User Information section -->
-<form action="{{route('asdo.password.update')}}" method="POST">
+
+
+		@if(Session::has('alert-success') || Session::has('alert-danger'))
+			<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert" id="alert-box">
+			  <strong>{{Session::has('alert-success') ? 'Success!' : 'Alert!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		@endif
+		
+<form action="{{route('password.update', auth()->user()->id)}}" method="POST">
 	@csrf
 	@method('PUT')
 	<div class="row">
 		<div class="col-md-12">
-			@if(Session::has('alert-success') || Session::has('alert-danger'))
-				<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert" id="alert-box">
-				  <strong>{{Session::has('alert-success') ? 'Success!' : 'Alert!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-			@endif
 			<div class="card">
 				<div class="card-header">
 					<h5 class="card-title">Change Password</h5>

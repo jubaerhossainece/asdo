@@ -52,6 +52,10 @@ class RouteServiceProvider extends ServiceProvider
             ->name('asdo.')
             ->namespace($this->namespace)
             ->group(base_path('routes/backend.php'));
+
+            Route::middleware('web', 'auth')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/user.php'));
         });
     }
 
