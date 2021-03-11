@@ -12,15 +12,6 @@
   </div>
 </div>
 
-@if(Session::has('alert-success') || Session::has('alert-danger'))
-<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert">
-  <strong>{{Session::has('alert-success') ? 'Success!' : 'Danger!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-
 <form method="POST" action="{{route('asdo.users.store')}}" enctype="multipart/form-data">
   @csrf
 <div class="card">

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
+    public function __construct(){ 
+        $this->middleware('preventBackHistory');
+        $this->middleware('auth'); 
+    }
+
+
     public function edit(){
     	return view('user.password.edit');
     }

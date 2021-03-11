@@ -4,16 +4,6 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
-@if(Session::has('alert-success') || Session::has('alert-danger'))
-<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert" id="alert-box">
-  <strong>{{Session::has('alert-success') ? 'Success!' : 'Alert!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-
-
 <div class="card">
   <div class="card-header">
     <h4 class="float-left">Edit User Info</h4>

@@ -17,6 +17,20 @@ input{
     padding: 8px !important;
 }
 
+.footer{
+    position: relative;
+    bottom: 0;
+}
+
+.dashboard-wrapper{
+    min-height: auto !important;
+}
+
+.dashboard-content{
+    position: absolute;
+    padding-bottom: 0;
+}
+
 /*active and focus style for input button*/
 .btn-secondary:not(:disabled):not(.disabled).active:focus, 
 .btn-secondary:not(:disabled):not(.disabled):active:focus, .show>.btn-secondary.dropdown-toggle:focus{
@@ -145,4 +159,54 @@ h1, h2, h3, h4, h5, h6{
 
 span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus{
     width: 100% !important;
+}
+
+
+/*bootstrap toast style*/
+.toast{
+    background-color: rgb(255 255 255);
+    border: 1px solid #2ec55100;
+}
+
+.toast-success .header-success{
+    background-color: #a6f1b5;
+}
+
+.toast-success .header-success small.text-muted{
+    color: #28a745 !important;
+}
+
+.toast-success .body-success {
+    background-color: #e5fdea;
+    color: #2ec551;
+    border-radius: 0 0 4px 4px;
+}
+
+.toast-success .close{
+    color: #115220;
+    font-size: 1.2rem;
+}
+
+.toast-danger .text-danger{
+    color: #d6051a !important;
+}
+
+.toast-danger .header-danger{
+    background-color: #f37f7f;
+    border-bottom: 1px solid rgb(255 42 83 / 36%);
+}
+
+.toast-danger .header-danger small.text-muted{
+    color: #af111e !important;
+}
+
+.toast-danger .body-danger {
+    background-color: #fbcacf;
+    color: #c72d2d;
+    border-radius: 0 0 4px 4px;
+}
+
+.toast-danger .close {
+    color: #770c16;
+    font-size: 1.2rem;
 }

@@ -41,24 +41,21 @@
                 <td>{{$user->permanent_address}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>
-                	<a href="{{route('asdo.users.edit', $user->id)}}" class="btn btn-primary btn-sm">
-										<i class="fas fa-edit"></i>
-										
-									</a>
+                	<a href="{{route('asdo.users.edit', $user->id)}}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit user information" >
+    					<i class="fas fa-edit"></i>
+    				</a>
 
-									<a href="{{route('asdo.users.show', $user->id)}}" class="btn btn-info btn-sm">
-										<i class="fas fa-eye"></i>
-										
-									</a>
+    				<a href="{{route('asdo.users.show', $user->id)}}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="bottom" title="show user information" >
+    					<i class="fas fa-eye"></i>
+    				</a>
 
-										<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm">
-											<i class="fas fa-trash-alt"></i>
-											
-										</button>
-										<form action="{{route('asdo.users.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
-											@csrf
-											@method('DELETE')
-										</form>
+					<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Delete user information" >
+						<i class="fas fa-trash-alt"></i>
+					</button>
+					<form action="{{route('asdo.users.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
+						@csrf
+						@method('DELETE')
+					</form>
                 </td>
             </tr>
             @endforeach
@@ -76,12 +73,18 @@
         </tfoot>
     </table>
 	</div>
-	
+</div>
 
 @push('script')
 <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 <script>
+    // tooltip activation code
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    //datatables initialisation
 	$(document).ready(function() { 
 		$('#usersTable').DataTable(); 
 	});

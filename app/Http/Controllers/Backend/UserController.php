@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
+    public function __construct() 
+    { 
+        $this->middleware('preventBackHistory');
+        $this->middleware('auth'); 
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->where('role_id', '=', '1')->get();
         return view('backend.users.index', compact('users'));
     }
 
@@ -78,7 +85,7 @@ class UserController extends Controller
             'facebook_id' => $request->facebook_id,
             'religion' => $request->religion,
             'education' => $request->education,
-            'photo' => $filename_with_ext,
+            'photo' => isset($filename_with_ext) ? $filename_with_ext : '',
             'present_address' => $request->present_address,
             'permanent_address' => $request->permanent_address,
             'password' => Hash::make($request->password)
@@ -186,6 +193,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        
+        $user->delete();
+
+        return redirect('asdo.users.index')->with('alert-success', "User information removed from database!");
     }
 }

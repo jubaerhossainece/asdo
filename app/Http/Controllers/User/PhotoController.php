@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
+  public function __construct(){ 
+      $this->middleware('preventBackHistory');
+      $this->middleware('auth'); 
+  }
+
+  
 	public function editPhoto(){
 		return view('user.profile.image');
 	}

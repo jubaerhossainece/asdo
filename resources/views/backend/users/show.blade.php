@@ -4,15 +4,6 @@
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
 @endpush
 
-@if(Session::has('alert-success') || Session::has('alert-danger'))
-<div class="alert {{Session::has('alert-success') ? 'alert-success' : 'alert-danger'}} alert-dismissible fade show" role="alert" id="alert-box">
-  <strong>{{Session::has('alert-success') ? 'Success!' : 'Alert!'}}</strong> {{Session::has('alert-success') ? Session::get('alert-success') : Session::get('alert-danger')}}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-@endif
-
 <div class="card profile-nav">
   <div class="row">
     <div class="col-md-5 col-xl-3 profile-image">
@@ -243,8 +234,6 @@
   </div>
 </div>
 @push('script')
-<script>
-  $("#alert-box").delay(6000).fadeOut(1000);
-</script>
+
 @endpush
 @endsection

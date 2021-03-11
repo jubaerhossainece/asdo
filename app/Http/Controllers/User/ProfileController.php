@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    public function __construct(){ 
+        $this->middleware('preventBackHistory');
+        $this->middleware('auth'); 
+    }
+
+    
 	public function show(){
 		$user = Auth::user();
         return view('user.profile.show', compact('user'));
@@ -53,7 +59,6 @@ class ProfileController extends Controller
             Storage::delete('public/asdo/images/'.$user->photo);
         }
 
-        // $user = new User;
         $result = $user->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -73,6 +78,7 @@ class ProfileController extends Controller
             'permanent_address' => $request->permanent_address
         ]);
 
+        // $user = new User;
         // $user->name = $request->name;
         // $user->email = $request->email;
         // $user->guardian = $request->guardian;
