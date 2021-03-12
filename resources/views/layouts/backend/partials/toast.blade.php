@@ -1,7 +1,5 @@
 @if(Session::has('alert-success') || Session::has('alert-danger'))
-<body aria-live="polite" aria-atomic="true" style="position: relative;">
-  <!-- Position it -->
-  <div style="position: absolute; overflow: visible; z-index: 1000; top: 1rem; right: 1rem; min-width: 20rem">
+<div style="position: fixed; overflow: visible; z-index: 1000; top: 5rem; right: 1rem; min-width: 20rem">
 <div class="toast {{Session::has('alert-success') ? 'toast-success' : 'toast-danger'}}" data-autohide="false">
   <div class="toast-header {{Session::has('alert-success') ? 'header-success' : 'header-danger'}}">
     <strong class="mr-auto {{Session::has('alert-success') ? 'text-success' : 'text-danger'}}">{{Session::has('alert-success') ? 'Success message!' : 'Alert message!'}}
@@ -15,6 +13,5 @@
   </div>
 </div>
 </div>
-</body>
 
 @endif

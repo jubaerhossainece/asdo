@@ -195,6 +195,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect('asdo.users.index')->with('alert-success', "User information removed from database!");
+        return redirect()->route('asdo.users.index')->with('alert-success', 'User information removed from database!');
     }
 }

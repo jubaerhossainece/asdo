@@ -17,6 +17,16 @@ input{
     padding: 8px !important;
 }
 
+.role-name{
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.role-name span{
+    font-size: 1.2rem
+}
+
 .footer{
     position: relative;
     bottom: 0;
@@ -163,6 +173,11 @@ span.select2.select2-container.select2-container--default.select2-container--bel
 
 
 /*bootstrap toast style*/
+
+.fade {
+      transition: opacity 1s linear !important;
+}
+
 .toast{
     background-color: rgb(255 255 255);
     border: 1px solid #2ec55100;
@@ -209,4 +224,54 @@ span.select2.select2-container.select2-container--default.select2-container--bel
 .toast-danger .close {
     color: #770c16;
     font-size: 1.2rem;
+}
+
+
+/*alert modal design*/
+#alert-modal .modal-body{
+    padding: 0;
+}
+
+#alert-modal .modal-body img{
+    height: 5.5rem;
+}
+
+#alert-modal .alert-icon {
+    display: flex;
+    font-size: 4rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0 1rem 0rem;
+}
+
+#alert-modal .alert-message .short-message{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+}
+
+#alert-modal .alert-message .long-message{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 0 0;
+}
+
+#alert-modal .alert-message .short-message h2{
+    text-align: center;
+}
+
+#alert-modal .alert-message .long-message p{
+    text-align: center;
+    color: #6f6f73;
+    font-size: 1.2rem;
+}
+
+#alert-modal .modal-footer {
+    display: flex;
+    justify-content: center;
+}
+
+#alert-modal .modal-footer .btn-danger{
+    background-color: #d43545;
+    border: #d43545;
 }

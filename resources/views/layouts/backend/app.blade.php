@@ -30,6 +30,7 @@
         
         <!--sidebar part -->
         @include('layouts.backend.partials.sidebar')
+        
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
@@ -77,9 +78,10 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.5.1 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- <script src="{{url('assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script> -->
+    <script src="{{url('js/app.js')}}"></script>
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+  <!--   <script src="{{url('assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script> -->
     <script src="{{url('assets/vendor/slimscroll/jquery.slimscroll.js')}}"></script>
     <!-- <script src="{{url('assets/libs/js/main-js.js')}}"></script> -->
     <script src="{{url('js/script.js')}}"></script>

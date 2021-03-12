@@ -56,18 +56,18 @@
 
 										<td class="text-center">
 
-											<a href="{{route('asdo.users.edit', $admin->id)}}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Edit information">
+											<a href="{{route('asdo.admins.edit', $admin->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit information">
 												<i class="fas fa-edit"></i>
 											</a>
 
-					    				<a href="{{route('asdo.users.show', $admin->id)}}" class="btn btn-secondary btn-sm" data-toggle="tooltip" data-placement="bottom" title="show user information" >
+					    				<a href="{{route('asdo.admins.show', $admin->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
 					    					<i class="fas fa-eye"></i>
 					    				</a>
 
-											<button data-toggle="tooltip" data-placement="bottom" title="Delete from admin panel" onclick="deleteData({{$admin->id}})" class="btn btn-danger btn-sm">
+											<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$admin->id}}" data-placement="bottom" title="Delete from admin panel" onclick="deleteData({{$admin->id}})" class="btn btn-danger btn-sm">
 												<i class="fas fa-trash-alt"></i>
 											</button>
-											<form action="{{route('asdo.users.destroy', $admin->id)}}" method="POST" style="display: none;" id="submit-delete-{{$admin->id}}">
+											<form action="{{route('asdo.admins.destroy', $admin->id)}}" method="POST" style="display: none;" id="submit-delete-{{$admin->id}}">
 												@csrf
 												@method('DELETE')
 											</form>
@@ -85,10 +85,7 @@
 </div>
 @push('script')
 <script>
-	// tooltip activation code
-	$(function () {
-	  $('[data-toggle="tooltip"]').tooltip()
-	})
+	
 </script>
 @endpush
 

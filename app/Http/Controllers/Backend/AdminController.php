@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -96,7 +98,16 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        foreach($roles as $role){
+            if($role->id == $user->role_id){
+                $roleName = $role->name;
+            }
+        }
+        return view('backend.admins.show', compact('user', 'roleName'));
     }
 
     /**
@@ -107,7 +118,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blood_groups = DB::table('others')->where('category', 'blood group')->get();
+        $member_types = DB::table('others')->where('category', 'member type')->get();
+        $religions = DB::table('others')->where('category', 'religion')->get();
+        $user = User::findOrFail($id);
+
+        return view('backend.admins.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -119,7 +135,53 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string',
+            'email' => ['required',Rule::unique('users')->ignore($user->id)],
+            'password' => 'sometimes|min:8|string|confirmed',
+            'photo' => 'nullable|image'
+        ]);
+
+        if($request->hasFile('photo')){
+            
+            $path = 'public/asdo/images';
+            $file= $request->file('photo');
+            $image_name = $file->getClientOriginalName();
+            $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename_with_ext = 'image'.time().'.'.$extension;
+            $request->file('photo')->storeAs($path, $filename_with_ext);  
+            Storage::delete('public/asdo/images/'.$user->photo);  
+        }
+
+        $result = $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'guardian' => $request->guardian,
+            'mother' => $request->mother,
+            'phone' => $request->phone,
+            'nid' => $request->nid,
+            'birth_id' => $request->birth_id,
+            'blood_group' => $request->blood_group,
+            'nationality' => $request->nationality,
+            'member_type' => $request->member_type,
+            'facebook_id' => $request->facebook_id,
+            'religion' => $request->religion,
+            'education' => $request->education,
+            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+            'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
+            'present_address' => $request->present_address,
+            'permanent_address' => $request->permanent_address
+        ]);
+
+        if($result){
+            $request->session()->flash('alert-success', 'User information updated successfully!');
+            return redirect()->route('asdo.admins.show', $user->id);
+        }else{
+            $request->session()->flash('alert-danger', 'Something went wrong!');
+            return redirect()->route('asdo.admins.show', $user->id);
+        }
     }
 
     /**
@@ -130,6 +192,11 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        Storage::delete('public/asdo/images/'.$user->photo);  
+
+        $user->delete();
+
+        return redirect()->route('asdo.admins.index')->with('alert-success', "Admin information removed from admin panel!");
     }
 }
