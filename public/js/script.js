@@ -20,9 +20,17 @@ Swal.fire({
 $(document).ready(function(){
   $('.toast').toast('show');
 
-// alert box fade automatically after 6seconds
-  $(".toast").delay(6000).fadeOut(800, "linear");
-});
+window.setTimeout(function(){
+  var element = document.querySelector(".toast");
+  element.classList.remove("show");
+
+  //set display none for toast element
+    window.setTimeout(function(){
+    var parent = document.querySelector('#toast-container');
+    parent.style.display = 'none';
+    }, 501);
+  }, 8000);
+  });
 
 
 // tooltip activation code

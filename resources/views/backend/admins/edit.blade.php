@@ -102,7 +102,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="facebookId">Facebook ID</label>
-        <input type="text" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
+        <input type="url" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label>Religion</label>

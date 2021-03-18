@@ -137,6 +137,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $user->fill($request->all());
+
+        if(!$user->isDirty()){
+            $request->session()->flash('alert-danger', 'No data change has been made!');
+            return redirect()->route('asdo.users.edit', $user->id);
+        }
+
         $request->validate([
             'name' => 'required|string',
             'email' => ['required',Rule::unique('users')->ignore($user->id)],

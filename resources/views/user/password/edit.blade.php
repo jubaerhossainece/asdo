@@ -10,7 +10,7 @@
 			<h5 class="card-title">Change Password</h5>
 		</div>
 		<div class="card-body">	
-			<form action="{{route('password.update', auth()->user()->id)}}" method="POST">
+			<form action="{{route('password.update')}}" method="POST">
 				@csrf
 				@method('PUT')
 					<div class="form-group">					

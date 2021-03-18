@@ -136,6 +136,13 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+        $user->fill($request->all());
+
+        if(!$user->isDirty()){
+            $request->session()->flash('alert-danger', 'No data change has been made!');
+            return redirect()->route('asdo.admins.edit', $user->id);
+        }
+
         $request->validate([
             'name' => 'required|string',
             'email' => ['required',Rule::unique('users')->ignore($user->id)],

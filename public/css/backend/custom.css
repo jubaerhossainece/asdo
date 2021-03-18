@@ -17,6 +17,11 @@ input{
     padding: 8px !important;
 }
 
+.custom-file-label{
+    height: 38px;
+    padding: 8px;
+}
+
 .role-name{
     font-size: 2rem;
     display: flex;
@@ -110,6 +115,10 @@ h1, h2, h3, h4, h5, h6{
     margin-bottom: 0;
 }
 
+.btn.edit-profile:focus{
+    box-shadow: 0 0 7px 0px #7636dc;
+}
+
 .btn {
     padding: 6px 9px;
     font-size: 15px;
@@ -140,6 +149,10 @@ h1, h2, h3, h4, h5, h6{
 	color: #186cea;
 }
 
+/*change profile picture page*/
+.profile-image-change{
+    margin: 0 auto;
+}
 
 /*select 2 custom style*/
 .select2-container .select2-selection--single{
@@ -173,9 +186,15 @@ span.select2.select2-container.select2-container--default.select2-container--bel
 
 
 /*bootstrap toast style*/
+.toast.show{
+    transform: translateX(0%);
+    opacity: 1;
+}
 
-.fade {
-      transition: opacity 1s linear !important;
+.toast {
+    transition: 0.5s linear !important;
+    opacity: 0;
+    transform: translateX(110%);
 }
 
 .toast{
@@ -275,3 +294,4 @@ span.select2.select2-container.select2-container--default.select2-container--bel
     background-color: #d43545;
     border: #d43545;
 }
+

@@ -48,14 +48,14 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             Route::middleware('web', 'auth')
-            ->prefix('asdo')
-            ->name('asdo.')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/backend.php'));
+                ->prefix('asdo')
+                ->name('asdo.')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/backend.php'));
 
             Route::middleware('web', 'auth')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/user.php'));
+                ->namespace($this->namespace)
+                ->group(base_path('routes/user.php'));
         });
     }
 

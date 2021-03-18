@@ -17,7 +17,7 @@
     <h4>Personal Information</h4>
   </div>
   <div class="card-body">
-  <form method="POST" action="{{route('profile.update', auth()->user()->id)}}" enctype="multipart/form-data">
+  <form method="POST" action="{{route('profile.update')}}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
     <div class="form-row">
@@ -101,7 +101,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="facebookId">Facebook ID</label>
-        <input type="text" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
+        <input type="url" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label>Religion</label>
@@ -122,7 +122,7 @@
     <h4>Photo & Others</h4>
   </div>
   <div class="card-body">
-    <label for="photo">Profile Image</label>
+    <!-- <label for="photo">Profile Image</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">Upload</span>
@@ -131,7 +131,7 @@
         <input type="file" name="photo" class="custom-file-input" id="profile-image">
         <label class="custom-file-label" for="profile-image" id="profile-image-label">{{$user->photo ? $user->photo : 'Choose file'}}</label>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-row">
       <div class="form-group col-md-12">

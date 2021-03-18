@@ -39,6 +39,13 @@ class ProfileController extends Controller
     public function update(Request $request){
         
         $user = Auth::user();
+
+        $user->fill($request->all());
+
+        if(!$user->isDirty()){
+            $request->session()->flash('alert-danger', 'No data change has been made!');
+            return redirect()->route('profile.edit');
+        }
     
     	$request->validate([
             'name' => 'required|string',
@@ -100,7 +107,7 @@ class ProfileController extends Controller
 
         if($result){
             $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
-            return redirect()->route('profile.show', $user->id);
+            return redirect()->route('profile.show');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->route('profile.edit');
