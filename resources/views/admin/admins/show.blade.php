@@ -1,4 +1,4 @@
-@extends('layouts.backend.app')
+@extends('layouts.admin.app')
 @section('content')
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">

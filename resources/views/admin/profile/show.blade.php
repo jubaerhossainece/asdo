@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
@@ -22,7 +22,7 @@
       <h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5>
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('profile.edit')}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('asdo.profile.edit')}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.admin.app')
 @section('content')
 @push('css')
 <style>
@@ -29,7 +29,7 @@
 		<h3>Update profile image</h3>
 	</div>
 	<div class="card-body">
-		<form action="{{route('photo.update')}}" method="POST" enctype="multipart/form-data">
+		<form action="{{route('asdo.photo.update')}}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 			<div class="col-md-5 col-xl-4 profile-image-change">

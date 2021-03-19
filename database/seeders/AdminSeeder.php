@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
-class UserSeeder extends Seeder
+
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +16,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::updateOrCreate([
-        	// 'role_id' => Role::where('slug', 'user')->first()->id,
+        Admin::updateOrCreate([
+        	'role_id' => Role::where('slug', 'superAdmin')->first()->id,
         	'name' => 'Md. Jubaer Hossain',
-        	'email' => 'user@example.com',
+        	'email' => 'superadmin@example.com',
         	'password' => Hash::make('12345678')
         ]);
     }

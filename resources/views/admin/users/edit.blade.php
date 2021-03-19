@@ -1,4 +1,4 @@
-@extends('layouts.backend.app')
+@extends('layouts.admin.app')
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -7,14 +7,13 @@
 <div class="card">
   <div class="card-header">
     <h4 class="float-left">Edit User Info</h4>
-    <a href="{{route('asdo.admins.index')}}" class="btn btn-secondary float-right">
-    <i class="fas fa-arrow-left"></i>
-    All Admins</a>
+    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
+    All Users</a>
   </div>
 </div>
 
 
-<form method="POST" action="{{route('asdo.admins.update', $user->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('asdo.users.update', $user->id)}}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="card">
@@ -102,7 +101,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="facebookId">Facebook ID</label>
-        <input type="url" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
+        <input type="text" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label>Religion</label>

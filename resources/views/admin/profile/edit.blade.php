@@ -1,26 +1,25 @@
-@extends('layouts.backend.app')
+@extends('layouts.admin.app')
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
+
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Edit User Info</h4>
-    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
-    All Users</a>
+    <h4 class="float-left">Update your profile</h4>
   </div>
 </div>
 
 
-<form method="POST" action="{{route('asdo.users.update', $user->id)}}" enctype="multipart/form-data">
-  @csrf
-  @method('PUT')
 <div class="card">
   <div class="card-header">
     <h4>Personal Information</h4>
   </div>
   <div class="card-body">
+  <form method="POST" action="{{route('asdo.profile.update')}}" enctype="multipart/form-data">
+  @csrf
+  @method('PUT')
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="name">Name</label>
@@ -31,9 +30,10 @@
           </div>
         @enderror
       </div>
+
       <div class="form-group col-md-6">
         <label for="email">Email address</label>
-        <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror" id="email" value="{{$user->email ? $user->email : ''}}">
+        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{$user->email ? $user->email : ''}}">
         @error('email')
           <div class="text-danger">
             <strong>{{$message}}</strong>
@@ -101,7 +101,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="facebookId">Facebook ID</label>
-        <input type="text" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
+        <input type="url" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label>Religion</label>
@@ -122,7 +122,7 @@
     <h4>Photo & Others</h4>
   </div>
   <div class="card-body">
-    <label for="photo">Profile Photo</label>
+    <!-- <label for="photo">Profile Image</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">Upload</span>
@@ -131,7 +131,7 @@
         <input type="file" name="photo" class="custom-file-input" id="profile-image">
         <label class="custom-file-label" for="profile-image" id="profile-image-label">{{$user->photo ? $user->photo : 'Choose file'}}</label>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-row">
       <div class="form-group col-md-12">
@@ -153,9 +153,9 @@
         <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Update Account</button> 
+<button type="submit" class="btn btn-primary">Update Account</button>
   </div>
-</div> 
+</div>  
 </form>
 
 @push('script')
@@ -183,15 +183,15 @@
     });
 });
 
- $(document).ready(function() {
-  $('#member-select').select2({
-    dropdownCssClass : 'no-search',
-    allowClear: true,
-    placeholder: {
-      id: '0', // the value of the option
-      text: 'Select Member Type'
-    }
-  });
+   $(document).ready(function() {
+    $('#member-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Member Type'
+      }
+    });
 });
 
 document.getElementById("profile-image").onchange = function() {

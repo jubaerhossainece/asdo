@@ -8,18 +8,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\Role;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-
     public function __construct() 
     { 
         $this->middleware('preventBackHistory');
         $this->middleware('auth'); 
     }
-
 
     /**
      * Display a listing of the resource.
@@ -29,8 +27,8 @@ class AdminController extends Controller
     public function index()
     {
         $roles = Role::all(); 
-        $admins = DB::table('users')->where('role_id', '!=', 4)->get();
-        return view('backend.admins.index', compact('admins', 'roles'));
+        $admins = DB::table('admins')->get();
+        return view('admin.admins.index', compact('admins', 'roles'));
     }
 
     /**
@@ -42,7 +40,7 @@ class AdminController extends Controller
     {
         $roles = Role::where('name','!=', 'User')->get();
 
-        return view('backend.admins.create', compact('roles'));
+        return view('admin.admins.create', compact('roles'));
     }
 
     /**
@@ -64,7 +62,7 @@ class AdminController extends Controller
             return redirect()->route('asdo.admins.create');
         }
 
-        $user = User::create([
+        $user = Admin::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -99,7 +97,7 @@ class AdminController extends Controller
     public function show($id)
     {
 
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
         $roles = Role::all();
 
         foreach($roles as $role){
@@ -107,7 +105,7 @@ class AdminController extends Controller
                 $roleName = $role->name;
             }
         }
-        return view('backend.admins.show', compact('user', 'roleName'));
+        return view('admin.admins.show', compact('user', 'roleName'));
     }
 
     /**
@@ -121,9 +119,9 @@ class AdminController extends Controller
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $member_types = DB::table('others')->where('category', 'member type')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
 
-        return view('backend.admins.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
+        return view('admin.admins.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -135,7 +133,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
         $user->fill($request->all());
 
         if(!$user->isDirty()){
@@ -199,7 +197,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = Admin::findOrFail($id);
         Storage::delete('public/asdo/images/'.$user->photo);  
 
         $user->delete();

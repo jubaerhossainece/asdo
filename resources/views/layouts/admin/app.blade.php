@@ -26,10 +26,10 @@
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
         <!-- navbar part -->
-        @include('layouts.backend.partials.header')
+        @include('layouts.admin.partials.header')
         
         <!--sidebar part -->
-        @include('layouts.backend.partials.sidebar')
+        @include('layouts.admin.partials.sidebar')
         
         <!-- ============================================================== -->
         <!-- wrapper  -->
@@ -38,7 +38,7 @@
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content ">
             <!-- taost notification blade file added below -->
-            @include('layouts.backend.partials.toast')
+            @include('layouts.admin.partials.toast')
 
                 <!--main content below here -->
                 @yield('content')

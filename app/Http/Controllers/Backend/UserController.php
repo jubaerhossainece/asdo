@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct() 
     { 
         $this->middleware('preventBackHistory');
-        $this->middleware('auth'); 
+        $this->middleware('auth:admin'); 
     }
 
 
@@ -28,8 +28,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->where('role_id', '=', '1')->get();
-        return view('backend.users.index', compact('users'));
+        $users = DB::table('users')->get();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends Controller
         $member_types = DB::table('others')->where('category', 'member type')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
 
-        return view('backend.users.create', compact('blood_groups', 'member_types', 'religions'));
+        return view('admin.users.create', compact('blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -109,7 +109,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('backend.users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -125,7 +125,7 @@ class UserController extends Controller
         $religions = DB::table('others')->where('category', 'religion')->get();
         $user = User::findOrFail($id);
 
-        return view('backend.users.edit' , compact('user', 'blood_groups', 'member_types', 'religions'));
+        return view('admin.users.edit' , compact('user', 'blood_groups', 'member_types', 'religions'));
     }
 
     /**
