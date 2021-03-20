@@ -18,7 +18,6 @@ class AdminPhotoController extends Controller
   
 	public function editPhoto(){
 		$user = Auth::user();
-		
 		return view('admin.profile.image', compact('user'));
 	}
 
@@ -26,7 +25,6 @@ class AdminPhotoController extends Controller
 
   public function updatePhoto(Request $request){
   	$user = Auth::user();
-  	
   	$img = $request->validate([
         'photo' => 'nullable|image'
     ]);

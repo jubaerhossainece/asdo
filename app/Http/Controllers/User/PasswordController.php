@@ -19,8 +19,8 @@ class PasswordController extends Controller
     	return view('user.password.edit');
     }
 
-    public function update(Request $request){
 
+    public function update(Request $request){
     	$this->validate($request, [
     		'current_password' => 'required|min:8',
     		'password' => 'required|confirmed|min:8',
@@ -28,7 +28,6 @@ class PasswordController extends Controller
     	]);
 
     	$user = Auth::user();
-
     	$old_pass = $user->password;
 
     	if(Hash::check($request->current_password, $old_pass)){
@@ -36,10 +35,12 @@ class PasswordController extends Controller
     			$request->session()->flash('alert-danger', 'You entered an old password!');
     			return redirect()->back();
     		}else{
-    			$user->update([
-    				'password' => Hash::make($request->password)
-    			]);  
+    			// $user->update([
+    			// 	'password' => Hash::make($request->password)
+    			// ]);  
 				
+                $user->password = Hash::make($request->password);
+                $user->save();
 				return redirect()->route('userLogout')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
     		}
     	}

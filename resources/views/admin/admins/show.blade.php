@@ -135,7 +135,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->blood_group)
-             <span>{{$user->blood_group}}</span>
+             @foreach($blood_groups as $blood_group)
+             <span>{{$blood_group->name}}</span>
+             @endforeach
              @else <span class="text-danger">No blood group to show</span>
              @endif
           </div>
@@ -150,7 +152,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->member_type)
-             <span>{{$user->member_type}}</span>
+             @foreach($member_types as $member_type)
+             <span>{{$member_type->name}}</span>
+             @endforeach
              @else <span class="text-danger">No member type to show</span>
              @endif
           </div>
@@ -174,7 +178,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->religion)
-             <span>{{$user->religion}}</span>
+             @foreach($religions as $religion)
+             <span>{{$religion->name}}</span>
+             @endforeach
              @else <span class="text-danger">No religion to show</span>
              @endif
           </div>

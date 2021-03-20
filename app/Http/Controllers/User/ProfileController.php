@@ -20,7 +20,11 @@ class ProfileController extends Controller
     
 	public function show(){
 		$user = Auth::user();
-        return view('user.profile.show', compact('user'));
+
+        $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
+        $member_types = DB::table('others')->where('id', $user->member_type)->get();
+        $religions = DB::table('others')->where('id', $user->religion)->get();
+        return view('user.profile.show', compact('user', 'blood_groups', 'member_types', 'religions'));
 	}
 
 
@@ -66,44 +70,43 @@ class ProfileController extends Controller
             Storage::delete('public/asdo/images/'.$user->photo);
         }
 
-        $result = $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'guardian' => $request->guardian,
-            'mother' => $request->mother,
-            'phone' => $request->phone,
-            'nid' => $request->nid,
-            'birth_id' => $request->birth_id,
-            'blood_group' => $request->blood_group,
-            'nationality' => $request->nationality,
-            'member_type' => $request->member_type,
-            'facebook_id' => $request->facebook_id,
-            'religion' => $request->religion,
-            'education' => $request->education,
-            'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
-            'present_address' => $request->present_address,
-            'permanent_address' => $request->permanent_address
-        ]);
+        // $result = $user->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'guardian' => $request->guardian,
+        //     'mother' => $request->mother,
+        //     'phone' => $request->phone,
+        //     'nid' => $request->nid,
+        //     'birth_id' => $request->birth_id,
+        //     'blood_group' => $request->blood_group,
+        //     'nationality' => $request->nationality,
+        //     'member_type' => $request->member_type,
+        //     'facebook_id' => $request->facebook_id,
+        //     'religion' => $request->religion,
+        //     'education' => $request->education,
+        //     'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
+        //     'present_address' => $request->present_address,
+        //     'permanent_address' => $request->permanent_address
+        // ]);
 
-        // $user = new User;
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->guardian = $request->guardian;
-        // $user->mother = $request->mother; 
-        // $user->phone = $request->phone; 
-        // $user->nid = $request->nid;
-        // $user->birth_id = $request->birth_id;
-        // $user->blood_group = $request->blood_group;
-        // $user->nationality = $request->nationality;
-        // $user->member_type = $request->member_type;
-        // $user->facebook_id = $request->facebook_id;
-        // $user->education = $request->education;
-        // $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
-        // $user->present_address = $request->present_address;
-        // $user->permanent_address = $request->permanent_address;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->guardian = $request->guardian;
+        $user->mother = $request->mother; 
+        $user->phone = $request->phone; 
+        $user->nid = $request->nid;
+        $user->birth_id = $request->birth_id;
+        $user->blood_group = $request->blood_group;
+        $user->nationality = $request->nationality;
+        $user->member_type = $request->member_type;
+        $user->facebook_id = $request->facebook_id;
+        $user->education = $request->education;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->present_address = $request->present_address;
+        $user->permanent_address = $request->permanent_address;
         // $user->password = isset($request->password) ? $request->password : $user->password;
 
-        // $result = $user->save();
+        $result = $user->save();
 
         if($result){
             $request->session()->flash('alert-success', 'Your profile has been updated successfully!');

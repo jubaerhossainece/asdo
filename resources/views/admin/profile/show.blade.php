@@ -13,13 +13,22 @@
       <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
         
       </div>
+      <div class="role-name">
+        <span class="mt-2 badge 
+          @if($roleName == 'Admin')
+            badge-primary
+          @elseif($roleName == 'Moderator')
+            badge-warning
+          @else
+            badge-success
+          @endif"
+          >{{$roleName}}</span>
+      </div>
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
       <h3><strong> {{$user->name}} </strong></h3>
-      <h5> {{$user->email}}</h5>
-      <h5><label for="">Phone :</label> <strong> {{$user->phone}}</strong></h5>
-      <h5><label for="">NID : </label><span> {{$user->nid}}</span></h5>
-      <h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5>
+      <h4> {{$user->email}}</h5>
+      <h5>Phone : <strong> {{$user->phone}}</strong></h5></h5>
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
       <a href="{{route('asdo.profile.edit')}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
@@ -126,7 +135,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->blood_group)
-             <span>{{$user->blood_group}}</span>
+            @foreach($blood_groups as $blood_group)
+             <span>{{$blood_group->name}}</span>
+             @endforeach
              @else <span class="text-danger">No blood group to show</span>
              @endif
           </div>
@@ -141,7 +152,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->member_type)
-             <span>{{$user->member_type}}</span>
+             @foreach($member_types as $member_type)
+             <span>{{$member_type->name}}</span>
+             @endforeach
              @else <span class="text-danger">No member type to show</span>
              @endif
           </div>
@@ -165,7 +178,9 @@
           </div> 
           <div class="col-sm-8">
             @if($user->religion)
-             <span>{{$user->religion}}</span>
+             @foreach($religions as $religion)
+             <span>{{$religion->name}}</span>
+             @endforeach
              @else <span class="text-danger">No religion to show</span>
              @endif
           </div>

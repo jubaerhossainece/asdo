@@ -19,7 +19,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $guarded = [
-        'id', 'role_id',
+        'id', 'role_id', 'password'
     ];
 
 

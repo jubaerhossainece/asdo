@@ -62,14 +62,23 @@ class AdminController extends Controller
             return redirect()->route('asdo.admins.create');
         }
 
-        $user = Admin::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'status' => false,
-            'role_id' => $request->role_id,
-            'password' => Hash::make($request->password)
-        ]);
+        // $user = Admin::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,
+        //     'status' => false,
+        //     'role_id' => $request->role_id,
+        //     'password' => Hash::make($request->password)
+        // ]);
+
+        $user = new Admin;
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->role_id = $request->role_id;
+        $user->password = Hash::make($request->password);
+        $result = $user->save();
 
         $roles = Role::all();
 
@@ -79,7 +88,7 @@ class AdminController extends Controller
             }
         }
         
-        if($user){
+        if($result){
             $request->session()->flash('alert-success', 'New '.$newAdmin.' has been added to the admin panel!');
             return redirect()->route('asdo.admins.index');
         }else{
@@ -96,8 +105,12 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-
         $user = Admin::findOrFail($id);
+
+        $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
+        $member_types = DB::table('others')->where('id', $user->member_type)->get();
+        $religions = DB::table('others')->where('id', $user->religion)->get();
+
         $roles = Role::all();
 
         foreach($roles as $role){
@@ -105,7 +118,7 @@ class AdminController extends Controller
                 $roleName = $role->name;
             }
         }
-        return view('admin.admins.show', compact('user', 'roleName'));
+        return view('admin.admins.show', compact('user', 'roleName', 'blood_groups', 'member_types', 'religions'));
     }
 
     /**
@@ -160,26 +173,45 @@ class AdminController extends Controller
             Storage::delete('public/asdo/images/'.$user->photo);  
         }
 
-        $result = $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'guardian' => $request->guardian,
-            'mother' => $request->mother,
-            'phone' => $request->phone,
-            'nid' => $request->nid,
-            'birth_id' => $request->birth_id,
-            'blood_group' => $request->blood_group,
-            'nationality' => $request->nationality,
-            'member_type' => $request->member_type,
-            'facebook_id' => $request->facebook_id,
-            'religion' => $request->religion,
-            'education' => $request->education,
-            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
-            'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
-            'present_address' => $request->present_address,
-            'permanent_address' => $request->permanent_address
-        ]);
+        // $result = $user->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'guardian' => $request->guardian,
+        //     'mother' => $request->mother,
+        //     'phone' => $request->phone,
+        //     'nid' => $request->nid,
+        //     'birth_id' => $request->birth_id,
+        //     'blood_group' => $request->blood_group,
+        //     'nationality' => $request->nationality,
+        //     'member_type' => $request->member_type,
+        //     'facebook_id' => $request->facebook_id,
+        //     'religion' => $request->religion,
+        //     'education' => $request->education,
+        //     'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+        //     'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
+        //     'present_address' => $request->present_address,
+        //     'permanent_address' => $request->permanent_address
+        // ]);
 
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->guardian = $request->guardian;
+        $user->mother = $request->mother; 
+        $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
+        $user->phone = $request->phone; 
+        $user->nid = $request->nid;
+        $user->birth_id = $request->birth_id;
+        $user->blood_group = $request->blood_group;
+        $user->nationality = $request->nationality;
+        $user->member_type = $request->member_type;
+        $user->facebook_id = $request->facebook_id;
+        $user->education = $request->education;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->present_address = $request->present_address;
+        $user->permanent_address = $request->permanent_address;
+        // $user->password = isset($request->password) ? $request->password : $user->password;
+        $result = $user->save();
+        
         if($result){
             $request->session()->flash('alert-success', 'User information updated successfully!');
             return redirect()->route('asdo.admins.show', $user->id);
