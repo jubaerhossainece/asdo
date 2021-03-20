@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\PasswordController;
 use App\Http\Controllers\User\PhotoController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show')
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
+// logout routes for user
+Route::get('/userLogout', [LoginController::class, 'userLogout'])->name('userLogout'); 

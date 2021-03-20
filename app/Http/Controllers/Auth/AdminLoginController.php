@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminLoginController extends Controller
 {
 	public function __construct(){
-		$this->middleware('guest:admin');
+		$this->middleware('guest:admin')->except(['adminLogout']);
 	}
 
   public function showLoginForm(){
@@ -31,5 +31,10 @@ class AdminLoginController extends Controller
 
   	// if unsuccessful, then redirect back to the login with the form data
   	return redirect()->back()->withInput($request->only('email', 'remember'));
+  }
+
+  public function adminLogout(){
+    Auth::guard('admin')->logout();
+    return redirect()->route('asdo.login');
   }
 }

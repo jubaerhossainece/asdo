@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminPasswordController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\AdminPhotoController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,7 @@ Route::put('/password/update', [AdminPasswordController::class, 'update'])->name
 //routes for admin photo update
 Route::get('/photo/edit', [AdminPhotoController::class, 'editPhoto'])->name('photo.edit');
 Route::put('/photo/update', [AdminPhotoController::class, 'updatePhoto'])->name('photo.update');
+
+
+// logout routes for admin panel
+Route::get('/adminLogout', [AdminLoginController::class, 'adminLogout'])->name('adminLogout');

@@ -103,14 +103,14 @@
                                 <a class="dropdown-item" href="{{route('profile.show')}}"><i class="fas fa-user mr-2"></i>My Profile</a>
                                 <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="fas fa-cog mr-2"></i>Update Profile</a>
                                 <a class="dropdown-item" href="{{route('password.edit')}}"><i class="fas fa-lock mr-2"></i>Change Password</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item" href="{{ route('userLogout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt mr-2"></i>
                                     Logout
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('userLogout') }}" method="GET" class="d-none">
                                     @csrf
                                 </form>
                             </div>
