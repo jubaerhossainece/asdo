@@ -39,9 +39,8 @@ class AdminPasswordController extends Controller
     			$user->update([
     				'password' => Hash::make($request->password)
     			]);
-				Auth::logout();   
 				
-				return redirect('/asdo/login')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
+                return redirect()->route('asdo.adminLogout')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!');				
     		}
     	}
     	

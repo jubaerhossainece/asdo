@@ -38,10 +38,9 @@ class PasswordController extends Controller
     		}else{
     			$user->update([
     				'password' => Hash::make($request->password)
-    			]);
-				Auth::logout();   
+    			]);  
 				
-				return redirect('/login')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
+				return redirect()->route('userLogout')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
     		}
     	}
     	

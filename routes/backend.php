@@ -36,7 +36,7 @@ Route::resource('/admins', AdminController::class);
 //admin profile routes
 Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/edit', [AdminProfileController::class, 'edit'])->name('profile.edit');
-Route::get('/profile/update', [AdminProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile/update', [AdminProfileController::class, 'update'])->name('profile.update');
 
 
 //routes password change for admin
