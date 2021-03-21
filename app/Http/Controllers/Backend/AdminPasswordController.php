@@ -11,7 +11,6 @@ class AdminPasswordController extends Controller
 {
     public function __construct(){ 
         $this->middleware('preventBackHistory');
-        $this->middleware('auth'); 
     }
 
 
@@ -19,7 +18,7 @@ class AdminPasswordController extends Controller
     	return view('admin.password.edit');
     }
 
-    public function update(Request $request){
+    public function changePassword(Request $request){
 
     	$this->validate($request, [
     		'current_password' => 'required|min:8',

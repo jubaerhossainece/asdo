@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 //routes password change
 Route::get('/password/edit', [PasswordController::class, 'edit'])->name('password.edit');
-Route::put('/password/update', [PasswordController::class, 'update'])->name('password.update');
+Route::put('/password/change', [PasswordController::class, 'changePassword'])->name('password.change');
  
 
 //routes for user photo update

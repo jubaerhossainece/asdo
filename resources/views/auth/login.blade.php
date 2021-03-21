@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-sm-6">        
                         <div class="card-footer-item card-footer-item-bordered">
-                            @if (Route::has('password.request'))
+                            @if (Route::has('register'))
                             <a href="{{route('register')}}" class="footer-link">Create An Account</a>
                             @endif
                         </div>
@@ -73,7 +73,7 @@
 
                     <div class="col-sm-6">        
                         <div class="card-footer-item card-footer-item-bordered">
-                            @if(Route::has('register'))
+                            @if(Route::has('password.request'))
                             <a href="{{route('password.request')}}" class="footer-link">Forgot Password</a>
                             @endif
                         </div>

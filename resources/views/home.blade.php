@@ -14,6 +14,13 @@
                         </div>
                     @endif
 
+
+
+                    <span class="text-danger">{{$result}}</span>
+                    <br>
+
+
+
                     {{ __('You are logged in!') }}
                 </div>
             </div>

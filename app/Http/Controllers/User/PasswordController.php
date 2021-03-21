@@ -20,7 +20,7 @@ class PasswordController extends Controller
     }
 
 
-    public function update(Request $request){
+    public function changePassword(Request $request){
     	$this->validate($request, [
     		'current_password' => 'required|min:8',
     		'password' => 'required|confirmed|min:8',

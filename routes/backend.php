@@ -41,7 +41,7 @@ Route::put('/profile/update', [AdminProfileController::class, 'update'])->name('
 
 //routes password change for admin
 Route::get('/password/edit', [AdminPasswordController::class, 'edit'])->name('password.edit');
-Route::put('/password/update', [AdminPasswordController::class, 'update'])->name('password.update');
+Route::put('/password/change', [AdminPasswordController::class, 'changePassword'])->name('password.change');
 
 //routes for admin photo update
 Route::get('/photo/edit', [AdminPhotoController::class, 'editPhoto'])->name('photo.edit');

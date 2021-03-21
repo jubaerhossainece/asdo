@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\AdminForgotPasswordController;
+use App\Http\Controllers\Auth\AdminResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/asdo/login', [AdminLoginController::class, 'showLoginForm'])->name('asdo.login');
 Route::post('/asdo/login', [AdminLoginController::class, 'login'])->name('asdo.submit');
+
+
+// admin reset password routes
+Route::get('/asdo/password/reset', [AdminForgotPasswordController::class, 'showLinkRequestForm'])->name('asdo.password.request');
+Route::post('/asdo/password/email', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('asdo.password.email');
+Route::get('/asdo/password/reset/{token}', [AdminResetPasswordController::class, 'showResetForm'])->name('asdo.password.reset');
+Route::post('/asdo/password/reset', [AdminResetPasswordController::class, 'reset'])->name('asdo.password.update');

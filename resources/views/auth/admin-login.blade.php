@@ -65,8 +65,8 @@
                 <div class="row">
                     <div class="col-sm-12">        
                         <div class="card-footer-item card-footer-item-bordered">
-                            @if(Route::has('register'))
-                            <a href="{{route('password.request')}}" class="footer-link">Forgot Password</a>
+                            @if(Route::has('asdo.password.request'))
+                            <a href="{{route('asdo.password.request')}}" class="footer-link">Forgot Password</a>
                             @endif
                         </div>
                     </div>
