@@ -25,13 +25,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::findOrFail($request->id);
-
-        if(Hash::check($request->password, $user->password)){
-            $result = 'result true';
-        } else{
-            $result = 'result false';
-        }
-        return view('home', compact('result'));
+        return view('frontend.home');
     }
+
+
 }

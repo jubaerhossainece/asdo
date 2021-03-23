@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/asdo/login', [AdminLoginController::class, 'showLoginForm'])->name('asdo.login');
 Route::post('/asdo/login', [AdminLoginController::class, 'login'])->name('asdo.submit');
 
