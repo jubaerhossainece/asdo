@@ -403,3 +403,56 @@ div#contacts-footer i{
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
+
+
+/*social button design*/
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}
+
+.btn-fb{
+    background-color:  #1778f2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-google{
+    background-color: #DB4437;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-fb:hover{
+    background-color: #0254bb;
+}
+
+.btn-google:hover{
+    background-color: #B92619;
+}
+
+.btn-fb .fab{
+    font-size: 1.5rem;
+}
+
+.btn-google .fab{
+    font-size: 1.5rem;
+}

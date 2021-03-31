@@ -4,7 +4,7 @@
 <!-- [ auth-signin ] start -->
 
 <div class="row" id="login">
-    <div class="col-sm-5">
+    <div class="col-md-5">
         @if(Session::has('alert-success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-box">
               <p><strong>Success! </strong></p>{{ Session::get('alert-success')}}
