@@ -142,14 +142,21 @@
   </div>
   <div class="card-body">
     <label for="photo">Profile Image</label>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Upload</span>
+    <div class="mb-3">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Upload</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" name="photo" class="custom-file-input" id="profile-image">
+          <label class="custom-file-label" for="profile-image" id="profile-image-label">Choose file</label>
+        </div>
       </div>
-      <div class="custom-file">
-        <input type="file" name="photo" class="custom-file-input" id="profile-image">
-        <label class="custom-file-label" for="profile-image" id="profile-image-label">Choose file</label>
-      </div>
+      @error('photo')
+        <div class="text-danger">
+          <strong>{{$message}}</strong>
+        </div>
+      @enderror
     </div>
 
     <div class="form-row">

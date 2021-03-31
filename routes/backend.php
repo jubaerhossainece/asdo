@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\AdminPasswordController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\AdminPhotoController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Backend\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +49,8 @@ Route::get('/photo/edit', [AdminPhotoController::class, 'editPhoto'])->name('pho
 Route::put('/photo/update', [AdminPhotoController::class, 'updatePhoto'])->name('photo.update');
 
 
-// logout routes for admin panel
+//logout routes for admin panel
 Route::get('/adminLogout', [AdminLoginController::class, 'adminLogout'])->name('adminLogout');
+
+//slider images routes
+Route::resource('sliders', SliderController::class);

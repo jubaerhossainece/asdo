@@ -57,6 +57,7 @@ class UserController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email|max:200',
             'password' => 'required|min:8|string|confirmed',
+            'facebook_id' => 'nullable',
             'photo' => 'nullable|image'
         ]);
 
@@ -224,7 +225,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::findOrFail($id);
         $user->delete();
+        if(isset($user->photo)){
+            Storage::delete('public/asdo/images/'.$user->photo);            
+        }
 
         return redirect()->route('asdo.users.index')->with('alert-success', 'User information removed from database!');
     }

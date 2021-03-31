@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\Permission;
+use App\Models\Module;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
@@ -32,7 +36,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $modules = Module::all();
+        return view('admin.roles.form', compact('modules'));
     }
 
     /**
@@ -43,7 +48,30 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:roles|string',
+            'permissions' => 'required|array',
+            'permissions.*' => 'integer'
+        ]);
+
+        $role = new Role;
+
+        $role->name = $request->name;
+        $role->slug = Str::slug($request->name);
+
+        $result = $role->save();
+
+        $role->permissions()->sync($request->input('permissions', []));
+
+
+        if($result){
+            $request->session()->flash('alert-success', $request->name.' role has been added to admin panel!');
+            return redirect()->route('asdo.roles.index');
+        }else{
+            $request->session()->flash('alert-danger', 'Something went wrong!');
+            return redirect()->route('asdo.roles.create');
+        }
+
     }
 
     /**
@@ -54,7 +82,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -65,7 +93,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $modules = Module::all();
+        return view('admin.roles.form', compact('modules', 'role'));
     }
 
     /**
@@ -77,7 +107,25 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $this->validate($request, [
+            'name' => ['required', Rule::unique('roles')->ignore($role->id), 'string'],
+            'permissions' => 'required|array',
+            'permissions.*' => 'integer'
+        ]);
+
+        $role->name = $request->name;
+        $role->slug = Str::slug($request->name);
+        $role->permissions()->sync($request->input('permissions'));
+
+        $result = $role->save();
+        if($result){
+            $request->session()->flash('alert-success', $request->name.' role has been updated successfully!');
+            return redirect()->route('asdo.roles.index');
+        }else{
+            $request->session()->flash('alert-danger', 'Something went wrong!');
+            return redirect()->route('asdo.roles.create');
+        }
     }
 
     /**
@@ -88,6 +136,13 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $result = $role->delete();
+
+         if($result){
+            return redirect()->route('asdo.roles.index')->with('alert-success', $role->name.' role has been deleted successfully!');
+        }else{
+            return redirect()->route('asdo.roles.create')->with('alert-danger', 'Something went wrong!');
+        }
     }
 }

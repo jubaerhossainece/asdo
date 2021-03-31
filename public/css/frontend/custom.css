@@ -203,10 +203,10 @@ h1, h2, h3, h4, h5, h6{
    /* margin-top: 55px;*/
 }
 .carousel-inner{
-    height: 100vh;
+    height: 80vh;
 }
 .carousel-item{
-    height: 110%;
+    height: 125%;
 }
 
 .carousel-caption{
@@ -222,7 +222,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 ol.carousel-indicators{
-    bottom: 100px;
+    bottom: 30px;
 }
 
 a.carousel-control-next i {
