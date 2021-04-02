@@ -21,7 +21,7 @@
             <div class="card-body">
                 <form action="{{route('asdo.submit')}}" method="post">
                     @csrf
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
