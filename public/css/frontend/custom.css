@@ -210,15 +210,17 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .carousel-caption{
-    bottom: 300px;
+    bottom: 250px;
 }
 
 .carousel-caption h5{
     font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .carousel-caption p{
     font-size: 2rem;
+    line-height: 1.1
 }
 
 ol.carousel-indicators{
@@ -410,7 +412,7 @@ div#contacts-footer i{
     align-items: center;
     color: #ccc;
     display: flex;
-    margin: 25px 0
+    margin: 10px 0
 }
 
 .line-separator {
@@ -441,12 +443,18 @@ div#contacts-footer i{
     align-items: center;
 }
 
+.btn-google:focus, .btn-google:active{
+    box-shadow: 0 0 5px 0px #dc3545;
+ }   
+
 .btn-fb:hover{
     background-color: #0254bb;
+    color: white;
 }
 
 .btn-google:hover{
     background-color: #B92619;
+    color: white;
 }
 
 .btn-fb .fab{

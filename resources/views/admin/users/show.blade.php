@@ -7,13 +7,24 @@
 <div class="card profile-nav">
   <div class="row">
     <div class="col-md-5 col-xl-3 profile-image">
-      <!-- <div class=" profile-img">
-        <img class="" src="{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : url('assets/images/avatar-4.png')}}" alt="">
-      </div> -->
-      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
-        
-      </div>
+      <?php 
+       $reg_url = '/(((http|https|ftp|ftps)\:\/\/)|(www\.))[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\:[0-9]+)?(\/\S*)?/';
+
+       if(preg_match($reg_url, $user->photo, $url)){
+        $url = $url[0];
+        ?>
+          <div class="circle-cropper" style="background-image: url({{$url}})">        
+          </div>
+        <?php  
+         }else{
+        ?>
+          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
+          </div>
+        <?php 
+          }
+        ?>
     </div>
+
     <div class="col-md-7 col-xl-6 short-detail">
       <h3><strong> {{$user->name}} </strong></h3>
       <h5> {{$user->email}}</h5>

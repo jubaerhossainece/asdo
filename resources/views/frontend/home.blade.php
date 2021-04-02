@@ -16,32 +16,22 @@
 
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    
+    @foreach($sliders as $key => $slider)
+    <li data-target="#carouselExampleCaptions" data-slide-to="{{$key}}" class="@if($key == 0)active @endif"></li>
+    @endforeach
   </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src = "{{url('assets/images/carousel/carousel-1.jpg')}}" class="d-block w-100" alt="...">
+    @foreach($sliders as $key => $slider)
+    
+    <div class="carousel-item @if($key == 0)active @endif">
+      <img src = "{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>{{$slider->caption_header}}</h5>
+        <p>{{$slider->caption_text}}</p>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src = "{{url('assets/images/carousel/carousel-2.jpg')}}" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src = "{{url('assets/images/carousel/carousel-3.jpg')}}" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
+    @endforeach
   </div>
   <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
     <span  aria-hidden="true"><i class="fas fa-chevron-left"></i></span>

@@ -19,15 +19,7 @@
             <div class="card-header text-center"><a href="../index.html"><!-- <img class="logo-img" src="../assets/images/logo.png" alt="logo"> -->ASDO</a><span class="splash-description">Please enter your user information.</span>
             </div>
             <div class="card-body">
-                <div class="social-login mb-3">
-                    <button type="submit" class="btn btn-fb btn-lg btn-block"><i class="fab fa-facebook mr-2"></i>Sign in with Facebook</button>
-                    <button type="submit" class="btn btn-google btn-lg btn-block"><i class="fab fa-google-plus mr-2"></i>Sign in with google</button>
-                </div>
-                <div class="or-container">
-                    <div class="line-separator"></div>
-                    <div class="or-label">or</div>
-                    <div class="line-separator"></div>
-                </div>
+                
                 <div class="">
                     <form action="{{route('login')}}" method="post">
                         @csrf
@@ -72,25 +64,37 @@
                     </form>
                     
                 </div>
-            </div>
-            <div class="card-footer bg-white p-0  ">
-                <div class="row">
-                    <div class="col-sm-6">        
-                        <div class="card-footer-item card-footer-item-bordered">
-                            @if (Route::has('register'))
-                            <a href="{{route('register')}}" class="footer-link">Create An Account</a>
-                            @endif
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6">        
-                        <div class="card-footer-item card-footer-item-bordered">
+                <div class="row">
+                    
+                    <div class="col-sm-12">        
+                        <div class=" card-footer-item-bordered">
                             @if(Route::has('password.request'))
-                            <a href="{{route('password.request')}}" class="footer-link">Forgot Password</a>
+                            Forgot your password?<a href="{{route('password.request')}}" class="footer-link"> Click here</a>
                             @endif
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card-footer bg-white pl-4 pr-4 ">
+                <div class="or-container">
+                    <div class="line-separator"></div>
+                    <div class="or-label">or</div>
+                    <div class="line-separator"></div>
+                </div>
+                <div class="social-login mb-3">
+                    <a href="{{route('login.provider', 'facebook')}}" type="submit" class="btn btn-fb btn-lg btn-block"><i class="fab fa-facebook mr-2"></i>Sign in with Facebook</a>
+                    <a href="{{route('login.provider', 'google')}}" type="submit" class="btn btn-google btn-lg btn-block"><i class="fab fa-google-plus mr-2"></i>Sign in with google</a>
+                </div>
+
+                <!-- <div class="col-sm-12">   -->      
+                    <div class="card-footer-item-bordered">
+                        @if (Route::has('register'))
+                        Have no account?<a href="{{route('register')}}" class="footer-link"> Create new account</a>
+                        @endif
+                    </div>
+               <!--  </div> -->
+
             </div>
         </div>
     </div>

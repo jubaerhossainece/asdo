@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('frontend.home');
+        $sliders = Slider::all();
+        $n = count($sliders);
+        return view('frontend.home', compact('sliders', 'n'));
     }
 
 
