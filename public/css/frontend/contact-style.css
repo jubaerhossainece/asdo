@@ -1,0 +1,63 @@
+/***** Contact form*****/
+
+.contact-wrap {
+  padding: 2rem 0;
+  background-color: #fff;
+}
+.form-wrap {
+  padding: 1rem 2rem;
+}
+
+.getin-touch {
+  text-align: center;
+  padding: 2rem 4rem;
+}
+.getin-touch-header{
+  text-align: center;
+}
+
+@media (min-width:  768px){
+  .equal{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+  } 
+}
+
+.getin-touch .address {
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 7%);
+    border-radius: 5px;
+    padding: 20px 10px;
+}
+
+.getin-touch .phone {
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 7%);
+    border-radius: 5px;
+    padding: 20px 10px;
+}
+
+.getin-touch .email {
+    box-shadow: 0px 0px 10px 0px rgb(0 0 0 / 7%);
+    border-radius: 5px;
+    padding: 20px 10px;
+}
+
+.getin-touch p{
+  margin-bottom: 0;
+}
+
+.getin-touch-header h3{
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.getin-touch i {
+  margin-bottom: 1rem;
+}
+.getin-touch i::before {
+  font-size: 2rem;
+}
+
+/*
+** Footer Start ***
+*/

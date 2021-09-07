@@ -1,0 +1,312 @@
+/*******************/
+/*****Content Area *****/
+/*******************/
+
+/***** about Wrap *****/
+.about-wrap {
+  padding: 3rem 0;
+}
+.about-box {
+  color: #ffffff;
+}
+.about-box .about-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.about-box-list {
+  padding: 0;
+  margin-left: 1rem;
+}
+.about-box-list li {
+  padding: 10px 5px;
+  color: var(--text-color);
+}
+.about-box-list li::marker {
+  position: absolute;
+  content: "\f061";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--button-bg-color);
+  left: 1px;
+}
+.about-box-btn {
+  text-decoration: none;
+  background: #00355f;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 18px;
+}
+.about-box-btn:hover {
+  background-color: #004b87;
+  color: #ffffff;
+}
+
+/***************/
+/*hero image*/
+/***************/
+.about-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+}
+
+/***************/
+/*mission accordion*/
+/***************/
+section#mission-section {
+    padding: 2rem 0;
+}
+
+section#mission-section #accordion{
+    justify-content: center;
+}
+
+#mission-section .card{
+  margin-bottom: 10px;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0, 0.2);
+}
+
+#mission-section .card .card-header{
+  border-radius: 5px;
+}
+
+#storyHeading, #missionHeading, #communityHeading{
+  padding: 0;
+  background-color: #fff;
+  border-bottom: 0;
+}
+
+#mission-section #accordion button {
+  padding: 22px 15px;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  text-align: left;
+  font-weight: 600;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 19px;
+  background-color: var(--button-bg-color);
+  box-shadow: none !important;
+}
+
+#mission-section #accordion button[aria-expanded="true"]{
+  background-color: var(--button-bg-color);
+  color: white;
+  border-radius: 5px 5px 0 0;
+}
+
+#mission-section #accordion button:after {
+    content: '\002B';
+    position: absolute;
+    width: ;
+    font-size: 25px;
+    height: 5px;
+    font-weight: 900;
+    right: 15px;
+    top: 16px;
+}
+
+#mission-section #accordion button[aria-expanded="true"]:after{
+    content: '\2212';
+}
+
+#mission-section .card-body .icon {
+    text-align: center;
+    font-size: 5rem;
+    color: var(--button-bg-color);
+}
+
+
+/***** Mission Wrap *****/
+.mission-wrap {
+  background-color: #00355f;
+  padding: 2rem 0;
+}
+.mission-box {
+  padding: 1rem;
+  text-align: center;
+  background-color: #f3f3f3;
+  box-shadow: 0 0.5rem 1rem rgb(243 243 243 / 30%);
+}
+.mission-icon i {
+  font-size: 2rem;
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 2rem;
+  background-color: #ffffff;
+}
+.mission-box h2 {
+  font-weight: 700;
+}
+.mission-number {
+  position: relative;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1em;
+  color: rgba(253, 252, 252, 0.432);
+  font-family: "Montserrat", sans-serif;
+}
+.mission-text {
+  font-size: 14px;
+}
+@media (max-width: 768px){
+  .mission-box{
+    margin-bottom: 1rem;
+  }
+}
+/***** Event section *****/
+.event-wrap {
+  padding: 3rem 0;
+}
+.event-area {
+  display: flex;
+  flex-wrap: wrap;
+}
+.event-box {
+  padding: 1rem;
+}
+.event-date {
+  position: absolute;
+  background-color: #f3f3f3;
+  padding: 10px;
+  opacity: 0.9;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  color: #000000;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
+.event-date span {
+  color: #000000;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.event-img-box img {
+  width: 100%;
+}
+.event-txt-title a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  font-size: 25px;
+}
+.event-txt-title a:hover {
+  color: #004b87;
+}
+.event-txt-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+.event-txt-list li {
+  padding-right: 1rem;
+}
+.event-txt-list li i {
+  padding-right: 10px;
+}
+.event-box p {
+  color: #004b87;
+}
+.event-txt-link {
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+}
+.side-event-title {
+  margin-bottom: 2rem;
+}
+.side-event-title h2 {
+  font-weight: 700;
+  line-height: 1.2em;
+  padding-bottom: 1rem;
+  text-transform: capitalize;
+  border-bottom: 1px solid #000000;
+}
+.side-event-box {
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);
+  padding: 20px 0;
+}
+.side-event-txt h4 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.side-event-box a {
+  padding: 5px;
+  border: 1px solid #004b87;
+  color: #004b87;
+  text-decoration: none;
+}
+.side-event-box a:hover {
+  color: #000000;
+}
+.side-tag {
+  margin-top: 3rem;
+}
+.side-tag-title {
+  font-weight: 700;
+  line-height: 1.2em;
+  padding-bottom: 1rem;
+  text-transform: capitalize;
+  border-bottom: 1px solid #000000;
+}
+.side-tag-box {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.side-tag-btn {
+  text-decoration: none;
+  border: 1px solid #000000;
+  padding: 5px 10px;
+  margin: 0 10px 10px 0;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.side-tag-btn:hover {
+  background-color: #004b87;
+  color: #ffffff;
+}
+
+/***** Volunteer Section*****/
+.aVolunteer-wrap {
+  padding: 1rem 0 2.5rem 0;
+}
+.aVolunteer-row {
+  padding: 2rem 0;
+}
+.aVolunteer-head {
+  font-weight: 700;
+}
+.aVolunteer-txt {
+  font-weight: 700;
+}
+
+.aVolunteer-social-box h1 {
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .aVolunteer-social-box {
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+@media (max-width: 375px) {
+  .aVolunteer-head {
+    font-size: 30px;
+  }
+  .aVolunteer-txt {
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .aVolunteer-social-box h1 {
+    font-size: 30px;
+  }
+}
+
