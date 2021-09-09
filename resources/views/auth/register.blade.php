@@ -58,8 +58,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="password" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" name="confirm_password" id="password" >
+                  <label for="password-confirm" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" name="password_confirmation" id="password-confirm" >
                 </div>
 
                 <div class="form-group submit">
