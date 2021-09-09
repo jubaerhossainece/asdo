@@ -39,9 +39,8 @@ input:focus, textarea:focus{
 }
 
 .btn:active, textarea:active{
-  box-shadow: 0 0 2px 0px #1dbf73 !important;
-  border: 1px solid #1dbf73 !important;
   outline: none !important;
+  box-shadow: none;
 }
 
 .donate-btn{
@@ -64,6 +63,7 @@ input:focus, textarea:focus{
   color: var(--button-text-color);
   padding: 8px 25px;
   font-size: 18px;
+  border: 1px solid #1dbf73 !important;
   transition: all 0.25s ease-in-out;
   -moz-box-shadow: 0 0 14px 1px #1dbf7391;
   -o-box-shadow: 0 0 14px 1px #1dbf7391;

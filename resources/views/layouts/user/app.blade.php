@@ -16,17 +16,23 @@
     
     <!--custom css -->
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
+    <link href="/css/frontend/style.css" rel="stylesheet" />
+    <style type="text/css">
+        .ms-auto{
+            margin-left: auto !important;
+        }
+    </style>
     @stack('css')
     <title>ASDO - Alokito Social Development Organisation</title>
 </head>
 
-<body>
+
+        <!-- navbar part -->
+        @include('layouts.user.partials.header')
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
-        <!-- navbar part -->
-        @include('layouts.user.partials.header')
         
         <!--sidebar part -->
         @include('layouts.user.partials.sidebar')

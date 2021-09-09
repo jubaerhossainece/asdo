@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Rules\Username;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -56,9 +59,57 @@ class LoginController extends Controller
         return $field;
     }
 
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request){
+        //validate the from data
+        $this->Validate($request, [
+            'identifier' => [new Username, 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:6'],
+        ]);
+
+        // return $this->username().'='.$request->identifier.'<br>'.'user_type'.'='. $request->user_type;
+        $user = User::where($this->username(), $request->identifier)
+                        ->where('user_type', $request->user_type)
+                        ->select($this->username())
+                        ->first();
+        if($user){             
+            //attempt to log the user in
+            if($this->guard()->attempt([$this->username() => $request->identifier, 'password' => $request->password], $request->remember)){
+                //if successfull, then redirect to teir intended location
+                return redirect()->intended(route('profile.show'));
+            }else{
+                return redirect()->back()->with('message', 'Your password did not match!')->withInput($request->only('identifier', 'remember'));
+            }
+        }else{
+            return redirect()->back()->with('message', 'You have no account!')->withInput($request->only('identifier', 'remember'));
+        }
+
+        // if unsuccessful, then redirect back to the login with the form data
+        return redirect()->back()->withInput($request->only('identifier', 'remember'));
+    }
+
+
+    /**
+     * Log out user to the correct login form.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function userLogout(){
-        Auth::guard('web')->logout();
-        return redirect()->route('login');
+        if(Auth::user()->user_type === 'volunteer'){
+            Auth::guard('web')->logout();
+            return redirect()->route('volunteer.login');
+        }else{
+            Auth::guard('web')->logout();
+            return redirect()->route('login');
+        }
     }
 
     // social login provider function

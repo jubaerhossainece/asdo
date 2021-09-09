@@ -30,7 +30,7 @@
                       <a class="nav-link" href="/about">About</a>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                       <a
                         class="nav-link dropdown-toggle"
                         href="#"
@@ -47,18 +47,22 @@
                           <a href="awerness.html" class="dropdown-link">Awareness Programs</a>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
+                      <a class="nav-link" href="school">Alokito School</a>
+                    </li>
+
+                    <!-- <li class="nav-item">
                       <a class="nav-link" href="#">Board of Directors</a>
+                    </li> -->
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contact">Contacts</a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contacts</a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="login.html">Login</a>
+                      <a class="nav-link" href="{{route('login')}}">Login</a>
                     </li>
                   </div>
                 </div>
@@ -66,3 +70,4 @@
           </div>
         </div>
       </section>
+    </header>  

@@ -1,4 +1,7 @@
 @extends('layouts.frontend.app')
+@push('css')
+  <link href="css/frontend/about-style.css" rel="stylesheet" />
+@endpush
 @section('content')
       <!--banner Start-->
       <section class="page-banner">
@@ -144,5 +147,8 @@
     
     <!--Contact Page End-->
 <!--Footer Start-->
+@push('script')
+  
+@endpush    
 @endsection
 

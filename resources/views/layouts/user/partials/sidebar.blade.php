@@ -31,6 +31,19 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{route('photo.edit')}}"><i class="fas fa-camera"></i><span>Change Photo</span></a>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('userLogout') }}"
+                                               onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('userLogout') }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
                                 </ul>
                             </li>
 

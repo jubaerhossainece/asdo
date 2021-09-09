@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
     <!-- custom CSS-->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/volunteer.css" rel="stylesheet" />
+    <link href="css/frontend/style.css" rel="stylesheet" />
+    <link href="css/frontend/volunteer.css" rel="stylesheet" />
   </head>
   <body>
     <!--Header Start-->

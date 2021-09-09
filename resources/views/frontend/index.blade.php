@@ -172,7 +172,7 @@
               Join our alokito community and become a real human being and make the world smile !!
             </p>
             <div class="hMember-btn text-center mt-2">
-              <a href="contact.html" role="button" class="common-btn">Registration</a>
+              <a href="register" role="button" class="common-btn">Registration</a>
             </div>
           </div>
 
@@ -183,58 +183,6 @@
         </div>
       </div>
     </section>
-
-    <!--Home About Section-->
-    <!-- <section class="hAbout-wrap">
-      <div class="container">
-        <div class="row">
-          <h1 class="hAbout-title">About us</h1>
-          <div class="col-lg-7">
-            <div class="hAbout-txt row gx-3">
-              <div class="hAbout-txt-box col-md-6">
-                <h4>Who We Are?</h4>
-                <p>
-                  Huminity is the largest Jewish charity in the UK supporting
-                  vulnerable children and their families, children with special
-                  educational needs and people with learning disabilities.
-                </p>
-              </div>
-              <div class="hAbout-txt-box col-md-6">
-                <h4>Who We Are?</h4>
-                <p>
-                  Huminity is the largest Jewish charity in the UK supporting
-                  vulnerable children and their families, children with special
-                  educational needs and people with learning disabilities.
-                </p>
-              </div>
-            </div>
-            <div class="hAbout-author row">
-              <div class="hAbout-author-img col-md-2">
-                <img src="images/author-1.jpg" alt="author img" />
-              </div>
-              <div class="hAbout-author-bio col-md-6">
-                <h4>Jhone Michale</h4>
-                <p>CEO & Founder of CharityPro</p>
-              </div>
-              <div class="hAbout-author-sig col-md-4">
-                <img src="images/signature.png" alt="signature" />
-              </div>
-            </div>
-            <div class="hAbout-button">
-              <a href="" class="common-btn">MORE INFO</a>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <div class="hAbout-video">
-              <iframe
-                src="https://www.youtube.com/embed/2DdDE4i5eJE"
-                frameborder="0"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
     <section class="hActivity-wrap">
       <div class="container recent-activity-container">
@@ -363,7 +311,7 @@
               Join our volunteer team and become real human being and make the world smile !!
             </p>
             <div class="hVolunteer-btn text-center mt-2">
-              <a href="contact.html" role="button" class="volunteer-btn">Registration</a>
+              <a href="/volunteer/register" role="button" class="volunteer-btn">Registration</a>
             </div>
           </div>
 
@@ -400,4 +348,7 @@
       </div>
     </section>
     <!--Content Area end-->
+@push('script')
+  
+@endpush    
 @endsection

@@ -100,6 +100,11 @@ input{
 	color: #6d78f9;
 }
 
+.nav-left-sidebar .navbar-nav .nav-link{
+    font-size: 17px;
+    font-weight: 300;
+}
+
 /*.input-group-text{
 	padding: 10px 12px;
 	font-size: 18px;
@@ -149,8 +154,9 @@ h1, h2, h3, h4, h5, h6{
 	padding-bottom: 0;
 }
 
-.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link{
-	display: flex;
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
+    display: flex;
+    align-items: center;
 }
 
 .footer-link{

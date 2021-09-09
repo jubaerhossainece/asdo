@@ -29,7 +29,7 @@ class PermissionSeeder extends Seeder
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppRole->id,
-        	'name' => 'Access Role',
+        	'name' => 'Access Roles',
         	'slug' => 'app.roles.index'
         ]);
 
@@ -56,7 +56,7 @@ class PermissionSeeder extends Seeder
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppUser->id,
-        	'name' => 'Access User',
+        	'name' => 'Access Users',
         	'slug' => 'app.users.index'
         ]);
 
@@ -82,6 +82,107 @@ class PermissionSeeder extends Seeder
         	'module_id' => $moduleAppUser->id,
         	'name' => 'Delete User',
         	'slug' => 'app.users.destroy'
+        ]);
+
+
+        //Volunteer management permissions
+        $moduleAppVolunteer = Module::updateOrCreate(['name' => 'Volunteer Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppVolunteer->id,
+            'name' => 'Access Volunteers',
+            'slug' => 'app.volunteers.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppVolunteer->id,
+            'name' => 'Create Volunteer',
+            'slug' => 'app.volunteers.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppVolunteer->id,
+            'name' => 'Show Volunteer',
+            'slug' => 'app.volunteers.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppVolunteer->id,
+            'name' => 'Edit Volunteer',
+            'slug' => 'app.volunteers.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppVolunteer->id,
+            'name' => 'Delete Volunteer',
+            'slug' => 'app.volunteers.destroy'
+        ]);
+
+        //Project management permissions
+        $moduleAppProject = Module::updateOrCreate(['name' => 'Project Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppProject->id,
+            'name' => 'Access Projects',
+            'slug' => 'app.projects.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppProject->id,
+            'name' => 'Create Project',
+            'slug' => 'app.projects.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppProject->id,
+            'name' => 'Show Project',
+            'slug' => 'app.projects.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppProject->id,
+            'name' => 'Edit Project',
+            'slug' => 'app.projects.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppProject->id,
+            'name' => 'Delete Project',
+            'slug' => 'app.projects.destroy'
+        ]);
+
+
+        //Campaign management permissions
+        $moduleAppCampaign = Module::updateOrCreate(['name' => 'Campaign Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppCampaign->id,
+            'name' => 'Access Campaigns',
+            'slug' => 'app.campaigns.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppCampaign->id,
+            'name' => 'Create Campaign',
+            'slug' => 'app.campaigns.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppCampaign->id,
+            'name' => 'Show Campaign',
+            'slug' => 'app.campaigns.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppCampaign->id,
+            'name' => 'Edit Campaign',
+            'slug' => 'app.campaigns.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppCampaign->id,
+            'name' => 'Delete Campaign',
+            'slug' => 'app.campaigns.destroy'
         ]);
     }
 }

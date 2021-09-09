@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\VolunteerLoginController;
 use App\Http\Controllers\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Auth\AdminResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -26,7 +27,7 @@ Route::get('/about', function () {
     return view('frontend.about');
 });
 
-Route::get('contact', function () {
+Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
@@ -35,6 +36,18 @@ Route::get('/projects', function () {
 });
 
 Auth::routes();
+
+//volunteer login and registration pages
+Route::get('volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
+Route::get('volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
+// Route::get('/volunteer/login', function(){
+//     return view('auth.volunteer-login');
+// })->name('volunteer.login');
+
+// Route::get('/volunteer/register', function(){
+//     return view('auth.volunteer-register');
+// })->name('volunteer.register');
+
 
 // social login routes
 Route::get('/login/{provider}', [LoginController::class, 'redirectToProvider'])->name('login.provider');

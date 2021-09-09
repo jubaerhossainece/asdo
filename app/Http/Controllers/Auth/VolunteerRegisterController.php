@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Rules\Username;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class VolunteerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -42,17 +41,8 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        $value = request()->input('identifier'); //email or phone number
-        $field = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-        request()->merge([$field => $value]);
-        return $field;
+    public function showRegisterForm(){
+        return view('auth.volunteer-register');
     }
 
     /**
@@ -65,10 +55,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'identifier' => [new Username, 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
     }
 
     /**
@@ -79,20 +68,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::where($this->username(), $request->identifier)
-                        ->where('user_type', $request->user_type)
-                        ->select($this->username())
-                        ->first();
-        $username = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email address' : 'phone number';
-
-        if($user){
-            return redirect()->back()->with('message', 'You already an account with this '.$username);
-        }else{         
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
-        }
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }

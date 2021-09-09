@@ -43,10 +43,9 @@
           <div class="footer-menu col-md-6 col-lg-3">
             <h4 class="footer-heading">QUICK LINK</h4>
             <ul class="f-menu-list">
-              <li><a href="#">About Us</a></li>
+              <li><a href="about">About Us</a></li>
+              <li><a href="contact">About Us</a></li>
               <li><a href="#">Alokito School</a></li>
-              <li><a href="#">Board of Director</a></li>
-              <li><a href="#">Services</a></li>
               <li><a href="#">Awareness Program</a></li>
             </ul>
           </div>
