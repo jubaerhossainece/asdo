@@ -43,8 +43,22 @@ class VolunteerLoginController extends Controller
         $this->middleware('guest')->except(['logout','userLogout']);
     }
 
+    /**
+    * Show the vlunteer's login form.
+    *
+    * @return \Illuminate\View\View
+    */
     public function showLoginForm(){
         return view('auth.volunteer-login');
+    }
+
+    /**
+    * Show the vlunteer's registration form.
+    *
+    * @return \Illuminate\View\View
+    */
+    public function showRegisterForm(){
+        return view('auth.volunteer-register');
     }
 
     
@@ -60,6 +74,7 @@ class VolunteerLoginController extends Controller
         request()->merge([$field => $value]);
         return $field;
     }
+ 
 
     // social login provider function
     public function redirectToProvider($provider){

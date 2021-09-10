@@ -40,13 +40,6 @@ Auth::routes();
 //volunteer login and registration pages
 Route::get('volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
 Route::get('volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
-// Route::get('/volunteer/login', function(){
-//     return view('auth.volunteer-login');
-// })->name('volunteer.login');
-
-// Route::get('/volunteer/register', function(){
-//     return view('auth.volunteer-register');
-// })->name('volunteer.register');
 
 
 // social login routes

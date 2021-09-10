@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
 {
@@ -23,6 +27,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    use \Illuminate\Foundation\Auth\RedirectsUsers;
 
     /**
      * Where to redirect users after registration.
@@ -64,7 +69,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'identifier' => ['required', 'string', 'email', 'max:255', 'unique:users,'.$this->username()],
+            'user_type' => ['required', 'string'],
+            $this->username() => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -77,11 +83,41 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return 'hello';
+        // return 'hello';
         return User::create([
             'name' => $data['name'],
-            $thi->username() => $data['identifier'],
+            $this->username() => $data['identifier'],
+            'user_type' => $data['user_type'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+
+     public function register(Request $request)
+    {
+        $check = User::where($this->username(), $request->identifier)
+                        ->where('user_type', $request->user_type)
+                        ->select($this->username())
+                        ->first();
+                        
+        $username =  filter_var($request->identifier, FILTER_VALIDATE_EMAIL) ? 'email address' : 'phone number';
+                       
+        if($check){
+            return redirect()->back()->with('message', 'You already have an account with this '.$username.'.');
+        }        
+
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
     }
 }

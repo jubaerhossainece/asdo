@@ -16,14 +16,14 @@
             </div>
 
             @if(Session::has('message'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Sorry!</strong> {{Session::get('message')}}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-              @endif
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Sorry!</strong> {{Session::get('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
 
             <div class="card-body">
-              <form action="" method="POST">
+              <form action="register" method="POST">
                 @csrf
                 <input type="hidden" id="user_type" name="user_type" value="member">
 

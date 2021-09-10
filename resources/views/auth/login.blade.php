@@ -22,7 +22,7 @@
             </div>
 
             <div class="card-body">
-              <form action="" method="POST">
+              <form action="login" method="POST">
                 @csrf
 
               <input type="hidden" id="user_type" name="user_type" value="member">

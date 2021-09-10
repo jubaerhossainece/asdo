@@ -75,14 +75,17 @@ class LoginController extends Controller
             'password' => ['required', 'string', 'min:6'],
         ]);
 
+        // return $request->user_type;
+
         // return $this->username().'='.$request->identifier.'<br>'.'user_type'.'='. $request->user_type;
         $user = User::where($this->username(), $request->identifier)
                         ->where('user_type', $request->user_type)
-                        ->select($this->username())
+                        ->select($this->username(), 'user_type')
                         ->first();
+                        // return $user;
         if($user){             
             //attempt to log the user in
-            if($this->guard()->attempt([$this->username() => $request->identifier, 'password' => $request->password], $request->remember)){
+            if($this->guard()->attempt([$this->username() => $request->identifier, 'password' => $request->password, 'user_type' => $request->user_type], $request->remember)){
                 //if successfull, then redirect to teir intended location
                 return redirect()->intended(route('profile.show'));
             }else{

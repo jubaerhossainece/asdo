@@ -14,29 +14,52 @@
               <h2>Sign up</h2>
               <h6>Become a <span class="alokito-volunteer">alokito volunteer</span></h6>
             </div>
+
+            @if(Session::has('message'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sorry!</strong> {{Session::get('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+
             <div class="card-body">
-              <form action="" method="POST">
-              
+              <form action="/register" method="POST">
+              @csrf
                 <input type="hidden" id="user_type" name="user_type" value="volunteer">
 
                 <div class="form-group">
-                  <label for="email" class="form-label">Your name</label>
-                  <input type="text" id="email" name="name" class="form-control" >
+                  <label for="name" class="form-label">Your name</label>
+                  <input type="text" id="name" name="name" class="form-control" >
+                  @error('name')
+                    <div class="text-danger">
+                      <strong>{{$message}}</strong>
+                    </div>
+                  @enderror
                 </div>
 
                 <div class="form-group">
                   <label for="email" class="form-label">Email/Phone</label>
-                  <input type="text" id="email" name="identified" class="form-control" >
+                  <input type="text" id="email" name="identifier" class="form-control" >
+                  @error('identifier')
+                    <div class="text-danger">
+                      <strong>{{$message}}</strong>
+                    </div>
+                  @enderror
                 </div>
 
                 <div class="form-group">
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" name="password" id="password" >
+                  @error('password')
+                    <div class="text-danger">
+                      <strong>{{$message}}</strong>
+                    </div>
+                  @enderror
                 </div>
 
                 <div class="form-group">
                   <label for="password" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" name="confirm_password" id="password" >
+                  <input type="password" class="form-control" name="password_confirmation" id="password" >
                 </div>
 
                 <div class="form-group submit">

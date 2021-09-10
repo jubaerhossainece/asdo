@@ -13,6 +13,14 @@
         <div class="card-header">
           <h2>Sign in as a <span class="alokito-volunteer">alokito volunteer</span></h2>
         </div>
+
+        @if(Session::has('message'))
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Sorry!</strong> {{Session::get('message')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+
         <div class="card-body">
           <form action="{{route('login')}}" method="POST">
           	@csrf
@@ -22,10 +30,20 @@
             <div class="form-group">
               <label for="email" class="form-label">Email/Phone</label>
               <input type="text" id="email" name="identifier" class="form-control" placeholder="Enter email or phone number">
+              @error('identifier')
+                <div class="text-danger">
+                  <strong>{{$message}}</strong>
+                </div>
+              @enderror
             </div>
             <div class="form-group">
               <label for="password" class="form-label">Password</label>
               <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
+              @error('password')
+                <div class="text-danger">
+                  <strong>{{$message}}</strong>
+                </div>
+              @enderror
             </div>
             <div class="form-row forgot-pass">
               <a href="{{route('password.request')}}" class="">Forgot password?</a>
