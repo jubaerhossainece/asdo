@@ -16,7 +16,13 @@
     
     <!--custom css -->
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
-    <link href="/css/frontend/style.css" rel="stylesheet" />
+    <link href="{{url('css/frontend/style.css')}}" rel="stylesheet" />
+    @if(auth()->user()->user_type === 'member')
+        <link rel="stylesheet" href="css/frontend/login.css">
+    @else 
+        <link rel="stylesheet" href="css/frontend/volunteer.css">
+    @endif   
+
     <style type="text/css">
         .ms-auto{
             margin-left: auto !important;

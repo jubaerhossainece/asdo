@@ -75,9 +75,6 @@ class LoginController extends Controller
             'password' => ['required', 'string', 'min:6'],
         ]);
 
-        // return $request->user_type;
-
-        // return $this->username().'='.$request->identifier.'<br>'.'user_type'.'='. $request->user_type;
         $user = User::where($this->username(), $request->identifier)
                         ->where('user_type', $request->user_type)
                         ->select($this->username(), 'user_type')
@@ -89,10 +86,10 @@ class LoginController extends Controller
                 //if successfull, then redirect to teir intended location
                 return redirect()->intended(route('profile.show'));
             }else{
-                return redirect()->back()->with('message', 'Your password did not match!')->withInput($request->only('identifier', 'remember'));
+                return redirect()->back()->with('message', 'Your password is inceorrect!')->withInput($request->only('identifier', 'remember'));
             }
         }else{
-            return redirect()->back()->with('message', 'You have no account!')->withInput($request->only('identifier', 'remember'));
+            return redirect()->back()->with('message', 'You have no account yet!')->withInput($request->only('identifier', 'remember'));
         }
 
         // if unsuccessful, then redirect back to the login with the form data

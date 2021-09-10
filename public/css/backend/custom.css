@@ -1,20 +1,10 @@
-input:focus, .custom-file-input:focus~.custom-file-label{
-	box-shadow: 0 0 5px 0px rgb(167 176 255) !important;
-	outline: none !important;
-    transition: box-shadow 0.3s ease-in-out;
-}
 
 label {
     display: inline-block;
     max-width: 100%;
     margin-bottom: 5px;
-    font-size: 15px;
-    color: #353a69;
-}
-
-input{
-    border-radius: 3px !important;
-    padding: 8px !important;
+    font-size: 16px;
+    color: #24252f;
 }
 
 .dashboard-header .navbar{
@@ -170,16 +160,16 @@ h1, h2, h3, h4, h5, h6{
 
 /*select 2 custom style*/
 .select2-container .select2-selection--single{
-    height: 37px !important;
+    height: 46px !important;
 }
 
 .select2-container--default .select2-selection--single{
-    border-radius: 3px;
+    border-radius: 0.25rem;
     border: 1px solid #d2d2e4 !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered{
-    line-height: 37px !important;
+    line-height: 46px !important;
 }
 
 .no-search .select2-search {
@@ -187,11 +177,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow{
-    height: 37px !important;
+    height: 46px !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__clear{
-    height: 36px !important;
+    height: 46px !important;
 }
 
 span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus{

@@ -1,22 +1,3 @@
-input:focus, .custom-file-input:focus~.custom-file-label{
-	box-shadow: none !important;
-	outline: none !important;
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-size: 15px;
-    color: #353a69;
-}
-
-input{
-    border-radius: 3px !important;
-    padding: 8px !important;
-}
-
 .dashboard-header .navbar{
     padding: 0px 1rem 0rem 3rem;
 }

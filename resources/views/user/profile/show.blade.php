@@ -28,7 +28,6 @@
       <h3><strong> {{$user->name}} </strong></h3>
       @if($user->email)<h5> {{$user->email}}</h5>@endif
       @if($user->phone)<h5><label for="">Phone :</label> <strong> {{$user->phone}}</strong></h5>@endif
-      @if($user->nid)<h5><label for="">NID : </label><span> {{$user->nid}}</span></h5>@endif
       @if($user->present_address)<h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5>@endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
@@ -60,12 +59,24 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Father/Husband</label>
+            <label for="">Father</label>
           </div> 
           <div class="col-sm-8">
-             @if($user->guardian)
-             <span>{{$user->guardian}}</span>
-             @else <span class="text-danger">No husband/father name to show</span>
+             @if($user->father)
+             <span>{{$user->father}}</span>
+             @else <span class="text-danger">No father name to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for="">Husband</label>
+          </div> 
+          <div class="col-sm-8">
+             @if($user->husband)
+             <span>{{$user->husband}}</span>
+             @else <span class="text-danger">No husband name to show</span>
              @endif
           </div>
         </div>
@@ -132,6 +143,18 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
+            <label for=""> Gender : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->gender)
+             <span>{{$user->gender}}</span>
+             @else <span class="text-danger">No gender to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
             <label for=""> Blood Group : </label>
           </div> 
           <div class="col-sm-8">
@@ -177,6 +200,18 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
+            <label for="">Occupation : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->occupation)
+             <span>{{$user->occupation}}</span>
+             @else <span class="text-danger">No occupation to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
             <label for=""> Religion :</label>
           </div> 
           <div class="col-sm-8">
@@ -185,6 +220,18 @@
              <span>{{$religion->name}}</span>
              @endforeach
              @else <span class="text-danger">No religion to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for=""> Religion :</label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->birth_date)
+             <span>{{$user->birth_date}}</span>
+             @else <span class="text-danger">No birth_date to show</span>
              @endif
           </div>
         </div>

@@ -29,7 +29,7 @@
 
             <div class="form-group">
               <label for="email" class="form-label">Email/Phone</label>
-              <input type="text" id="email" name="identifier" class="form-control" placeholder="Enter email or phone number">
+              <input type="text" id="email" name="identifier" class="form-control" placeholder="Enter email or phone number" value="{{old('identifier')}}">
               @error('identifier')
                 <div class="text-danger">
                   <strong>{{$message}}</strong>

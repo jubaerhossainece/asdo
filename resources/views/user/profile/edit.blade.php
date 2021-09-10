@@ -156,7 +156,7 @@
         <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
       </div>
     </div>
-<button type="submit" class="btn btn-primary">Update Account</button>
+<button type="submit" class="btn common-btn">Update Account</button>
   </div>
 </div>  
 </form>
