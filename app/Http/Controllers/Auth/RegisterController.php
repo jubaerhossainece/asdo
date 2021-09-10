@@ -11,6 +11,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\Username;
+use App\Rules\ValidUsername;
 use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
@@ -70,7 +72,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'user_type' => ['required', 'string'],
-            $this->username() => ['required', 'string', 'max:255'],
+            'identifier' => [new Username, new ValidUsername, 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -83,7 +85,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // return 'hello';
         return User::create([
             'name' => $data['name'],
             $this->username() => $data['identifier'],
@@ -95,6 +96,8 @@ class RegisterController extends Controller
 
      public function register(Request $request)
     {
+        $this->validator($request->all())->validate();
+
         $check = User::where($this->username(), $request->identifier)
                         ->where('user_type', $request->user_type)
                         ->select($this->username())
@@ -106,7 +109,6 @@ class RegisterController extends Controller
             return redirect()->back()->with('message', 'You already have an account with this '.$username.'.');
         }        
 
-        $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
 

@@ -86,6 +86,8 @@
         <label for="nationality">Nationality</label>
         <input type="text" name="nationality" class="form-control" id="nationality" value="{{$user->nationality ? $user->nationality : ''}}">
       </div>
+
+    @if(auth()->user()->user_type === 'member')
       <div class="form-group col-md-6">
         <label>Member Type</label>
         <br>
@@ -96,6 +98,7 @@
           @endforeach
         </select>
       </div>
+    @endif  
     </div>
 
     <div class="form-row">

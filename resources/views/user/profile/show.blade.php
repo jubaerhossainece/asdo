@@ -145,8 +145,9 @@
         </div>
       </div>
 
-
       <div class="col-sm-12 deivider">
+
+      @if(auth()->user()->user_type === 'member')
         <div class="row profile-info">
           <div class="col-sm-4">
             <label for="">Member Type : </label>
@@ -160,6 +161,7 @@
              @endif
           </div>
         </div>
+      @endif
 
         <div class="row profile-info">
           <div class="col-sm-4">

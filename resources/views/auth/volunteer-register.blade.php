@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                   <label for="name" class="form-label">Your name</label>
-                  <input type="text" id="name" name="name" class="form-control" >
+                  <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}">
                   @error('name')
                     <div class="text-danger">
                       <strong>{{$message}}</strong>
@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="email" class="form-label">Email/Phone</label>
-                  <input type="text" id="email" name="identifier" class="form-control" >
+                  <label for="identifier" class="form-label">Email/Phone</label>
+                  <input type="text" id="identifier" name="identifier" class="form-control" value="{{old('identifier')}}">
                   @error('identifier')
                     <div class="text-danger">
                       <strong>{{$message}}</strong>
