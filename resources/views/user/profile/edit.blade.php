@@ -44,8 +44,26 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="guardian">Father/Husband</label>
-        <input type="text" name="guardian" class="form-control" id="guardian" value="{{$user->guardian ? $user->guardian : ''}}">
+        <label for="phoneNumber">Phone number</label>
+        <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="gender">Gender</label>
+        <br>
+        <select name="gender" id="gender-select" id="gender" style="width: 100%;">
+          <option value="0"></option>
+            <option value="Male" {{$user->gender == 'Male' ? 'selected' : ''}}>Male</option>
+            <option value="Female" {{$user->gender == 'Female' ? 'selected' : ''}}>Female</option>
+            <option value="Other" {{$user->gender ==  'Other' ? 'selected' : ''}}>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="father">Father</label>
+        <input type="text" name="father" class="form-control" id="father" value="{{$user->father ? $user->father : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label for="mother">Mother</label>
@@ -55,9 +73,10 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="phoneNumber">Phone number</label>
-        <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+        <label for="husband">Husband</label>
+        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
       </div>
+
       <div class="form-group col-md-6">
         <label for="nidNumber">NID number</label>
         <input type="text" name="nid" class="form-control" id="nidNumber" value="{{$user->nid ? $user->nid : ''}}">
@@ -85,20 +104,12 @@
       <div class="form-group col-md-6">
         <label for="nationality">Nationality</label>
         <input type="text" name="nationality" class="form-control" id="nationality" value="{{$user->nationality ? $user->nationality : ''}}">
-      </div>
+      </div> 
 
-    @if(auth()->user()->user_type === 'member')
       <div class="form-group col-md-6">
-        <label>Member Type</label>
-        <br>
-        <select name="member_type" id="member-select" style="width: 100%;">
-          <option value="0"></option>
-          @foreach($member_types as $member)
-          <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
-          @endforeach
-        </select>
+        <label for="birth_date">Date of birth</label>
+        <input type="text" name="birth_date" class="form-control" id="birth_date" value="{{$user->birth_date ? $user->birth_date : ''}}">
       </div>
-    @endif  
     </div>
 
     <div class="form-row">
@@ -117,25 +128,29 @@
         </select>
       </div>
     </div>
+
+    <div class="form-row">
+      @if(auth()->user()->user_type === 'member')
+        <div class="form-group col-md-6">
+          <label>Member Type</label>
+          <br>
+          <select name="member_type" id="member-select" style="width: 100%;">
+            <option value="0"></option>
+            @foreach($member_types as $member)
+            <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
+            @endforeach
+          </select>
+        </div>
+      @endif 
+    </div>
   </div>
 </div>
 
 <div class="card">
   <div class="card-header">
-    <h4>Photo & Others</h4>
+    <h4>Addresses & Others</h4>
   </div>
   <div class="card-body">
-    <!-- <label for="photo">Profile Image</label>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Upload</span>
-      </div>
-      <div class="custom-file">
-        <input type="file" name="photo" class="custom-file-input" id="profile-image">
-        <label class="custom-file-label" for="profile-image" id="profile-image-label">{{$user->photo ? $user->photo : 'Choose file'}}</label>
-      </div>
-    </div> -->
-
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="education">Education</label>
@@ -145,16 +160,19 @@
 
     <div class="form-row">
       <div class="form-group col-md-12">
-        <label for="present_address">Present address</label>
-        <input type="text" name="present_address" class="form-control" id="present_address" value="{{$user->present_address ? $user->present_address : ''}}">
+        <label for="occupation">Occupation</label>
+        <input type="text" name="occupation" class="form-control" id="occupation" value="{{$user->occupation ? $user->occupation : ''}}">
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="permanent_address">Permanent address</label>
-        <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
-      </div>
+    <div class="form-group">
+      <label for="present_address">Present address</label>
+      <textarea rows="4" name="present_address" class="form-control" id="present_address">{{$user->present_address ? $user->present_address : ''}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="permanent_address">Permanent address</label>
+      <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address">{{$user->permanent_address ? $user->permanent_address : ''}}</textarea>
     </div>
 <button type="submit" class="btn common-btn">Update Account</button>
   </div>
@@ -195,7 +213,18 @@
         text: 'Select Member Type'
       }
     });
-});
+  });
+
+  $(document).ready(function() {
+    $('#gender-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Your Gender'
+      }
+    });
+  }); 
 
 document.getElementById("profile-image").onchange = function() {
   document.getElementById("profile-image-label").innerHTML = this.value;

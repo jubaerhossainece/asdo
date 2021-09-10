@@ -44,67 +44,71 @@ class ProfileController extends Controller
         
         $user = Auth::user();
 
-        $user->fill($request->all());
+        $user->fill($request->all());   
 
+        //check if any field is changed
         if(!$user->isDirty()){
             $request->session()->flash('alert-danger', 'No data change has been made!');
+            return redirect()->route('profile.edit');
+        }
+
+        //determine if email is unique
+        if(!empty($request->email)){
+            $uniqueEmail = User::where('email', $request->email)
+                            ->where('user_type', Auth::user()->user_type)
+                            ->where('id', '!=', Auth::id())
+                            ->select('id')
+                            ->first();    
+            
+            if($uniqueEmail){
+                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
+            }                 
+        }
+
+
+        //determine if phone number is unique
+        if(!empty($request->email)){
+            $uniquePhone = User::where('phone', $request->phone)
+                            ->where('user_type', Auth::user()->user_type)
+                            ->where('id', '!=', Auth::id())
+                            ->select('id')
+                            ->first();
+
+            if($uniquePhone){
+                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
+            }             
+        }
+
+        //check if email and phone number both fields are empty
+        if(!isset($request->email) && !isset($request->phone)){
+            $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
             return redirect()->route('profile.edit');
         }
     
     	$request->validate([
             'name' => 'required|string',
-            'email' => ['required',Rule::unique('users')->ignore(Auth::user()->id)],
-            'password' => 'sometimes|min:8|string|confirmed',
-            'photo' => 'nullable|image'
+            'email' => ['nullable', 'email']
         ]);
-   
-        if($request->hasFile('photo')){
-            $path = 'public/asdo/images';
-            $file= $request->file('photo');
-            $image_name = $file->getClientOriginalName();
-            $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'image'.time().'.'.$extension;
-    
-            $request->file('photo')->storeAs($path, $filename_with_ext);   
-            Storage::delete('public/asdo/images/'.$user->photo);
-        }
-
-        // $result = $user->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'guardian' => $request->guardian,
-        //     'mother' => $request->mother,
-        //     'phone' => $request->phone,
-        //     'nid' => $request->nid,
-        //     'birth_id' => $request->birth_id,
-        //     'blood_group' => $request->blood_group,
-        //     'nationality' => $request->nationality,
-        //     'member_type' => $request->member_type,
-        //     'facebook_id' => $request->facebook_id,
-        //     'religion' => $request->religion,
-        //     'education' => $request->education,
-        //     'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
-        //     'present_address' => $request->present_address,
-        //     'permanent_address' => $request->permanent_address
-        // ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->guardian = $request->guardian;
+        $user->phone = $request->phone;
+        $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->phone = $request->phone; 
+        $user->husband = $request->husband; 
+        $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
+        $user->religion = $request->religion;
         $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->occupation = $request->occupation;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;
-        // $user->password = isset($request->password) ? $request->password : $user->password;
+        $user->birth_date = $request->birth_date;
 
         $result = $user->save();
 

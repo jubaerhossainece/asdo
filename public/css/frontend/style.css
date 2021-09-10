@@ -25,8 +25,11 @@ p, h1, h2, h3, h4, h5, h6{
 
 input, textarea {
   font-size: 16px !important;
-  height: 46px !important;
   border-radius: .25rem !important;
+}
+
+input{
+  height: 46px !important;
 }
 
 input:focus, textarea:focus{

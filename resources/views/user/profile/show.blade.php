@@ -276,7 +276,7 @@
             <label for="">Present Address :</label>
           </div> 
           <div class="col-sm-8">
-            @if($user->mother)
+            @if($user->present_address)
              <span>{{$user->present_address}}</span>
              @else <span class="text-danger">No present address to show</span>
              @endif
