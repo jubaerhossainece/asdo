@@ -30,7 +30,13 @@ class UserController extends Controller
         $users = DB::table('users')
                 ->where('user_type', '=', 'member')
                 ->get();
-        return view('admin.users.index', compact('users'));
+
+        $member_types = DB::table('others')
+                                ->where('category', 'member type')
+                                ->select('id', 'name')
+                                ->get();        
+        
+        return view('admin.users.index', compact('users', 'member_types'));
     }
 
     /**
@@ -101,7 +107,7 @@ class UserController extends Controller
         //naming and storing photo 
         
         if($request->hasFile('photo')){
-            $path = 'public/asdo/images';
+            $path = 'public/asdo/users/images';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
@@ -114,7 +120,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : null;
         $user->father = $request->father;
         $user->mother = $request->mother; 
@@ -154,11 +160,20 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
-        $member_types = DB::table('others')->where('id', $user->member_type)->get();
-        $religions = DB::table('others')->where('id', $user->religion)->get();
-        $user = User::findOrFail($id);
-        return view('admin.users.show', compact('user', 'blood_groups', 'member_types', 'religions'));
+        $blood_group = DB::table('others')
+                        ->where('id', $user->blood_group)
+                        ->select('name')
+                        ->get();
+        $religion = DB::table('others')
+                    ->where('id', $user->religion)
+                    ->select('name')
+                    ->get();
+        $member_type = DB::table('others')
+                    ->where('id', $user->member_type)
+                    ->select('name')
+                    ->get();            
+
+        return view('admin.users.show', compact('user', 'blood_group', 'member_type', 'religion'));
     }
 
     /**
@@ -235,14 +250,14 @@ class UserController extends Controller
 
         //naming and storing photo 
         if($request->hasFile('photo')){   
-            $path = 'public/asdo/images';
+            $path = 'public/asdo/images/users';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/'.$user->photo);  
+            Storage::delete('public/asdo/images/public/'.$user->photo);  
         }
 
         $user->name = $request->name;
@@ -257,6 +272,7 @@ class UserController extends Controller
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
         $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;

@@ -18,15 +18,8 @@
         <?php  
          }else{
         ?>
-          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
+          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
           </div>
-          <div class="member-type text-center mt-3">
-              @if($user->member_type)
-               @foreach($member_type as $member)
-               <span class="badge badge-success">{{$member->name}}</span>
-               @endforeach
-              @endif
-            </div>
         <?php 
           }
         ?>
@@ -168,11 +161,11 @@
           </div> 
           <div class="col-sm-8">
             @if($user->blood_group)
-             @foreach($blood_group as $bg)
-             <span>{{$bg->name}}</span>
+             @foreach($blood_groups as $blood_group)
+             <span>{{$blood_group->name}}</span>
              @endforeach
              @else <span class="text-danger">No blood group to show</span>
-            @endif
+             @endif
           </div>
         </div>
       </div>
@@ -209,12 +202,24 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
+            <label for="">Occupation : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->occupation)
+             <span>{{$user->occupation}}</span>
+             @else <span class="text-danger">No occupation to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
             <label for=""> Religion :</label>
           </div> 
           <div class="col-sm-8">
             @if($user->religion)
-             @foreach($religion as $rel)
-             <span>{{$rel->name}}</span>
+             @foreach($religions as $religion)
+             <span>{{$religion->name}}</span>
              @endforeach
              @else <span class="text-danger">No religion to show</span>
              @endif
@@ -228,7 +233,7 @@
           <div class="col-sm-8">
             @if($user->birth_date)
              <span>{{$user->birth_date}}</span>
-             @else <span class="text-danger">No birth_date to show</span>
+             @else <span class="text-danger">No birth date to show</span>
              @endif
           </div>
         </div>
@@ -264,18 +269,6 @@
             @if($user->education)
              <span>{{$user->education}}</span>
              @else <span class="text-danger">No education info to show</span>
-             @endif
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-sm-4">
-            <label for="">Occupation : </label>
-          </div> 
-          <div class="col-sm-8">
-            @if($user->occupation)
-             <span>{{$user->occupation}}</span>
-             @else <span class="text-danger">No occupation to show</span>
              @endif
           </div>
         </div>

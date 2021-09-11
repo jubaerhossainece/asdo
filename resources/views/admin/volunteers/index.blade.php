@@ -5,17 +5,17 @@
 @endpush
 
 <div class="card">
-	<div class="card-header page-header">	
-		<h4 class="page-title">User Management</h4>
+	<div class="card-header">	
+		<h4 class="page-title">Volunteer Management</h4>
 	</div>
 </div>
 
 <div class="card">
-	<div class="card-header">
-		<h5 class="card-title">All Users</h5>
-		<a href="{{route('asdo.users.create')}}" class="btn btn-primary float-right">
+	<div class="card-header header">
+		<h5 class="card-title">All Volunteers</h5>
+		<a href="{{route('asdo.volunteers.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle"></i>
-		New User</a>
+		New Volunteer</a>
 	</div>
 
 	<div class="card-body">
@@ -24,7 +24,6 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Member Type</th>
                 <th>Present Address</th>
                 <th>Permanent Address</th>
                 <th>Joined At</th>
@@ -36,30 +35,22 @@
         	<tr>
                 <td>{{$loop->index+1}}</td>
                 <td>{{$user->name}}</td>
-                <td>
-                    @foreach($member_types as $type)
-                    {{$type->id}}
-                         @if($type->id === $user->member_type)
-                         {{$type->name}}
-                         @endif
-                    @endforeach
-                </td>
                 <td>{{$user->present_address}}</td>
                 <td>{{$user->permanent_address}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>
-                	<a href="{{route('asdo.users.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
+                	<a href="{{route('asdo.volunteers.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
     					<i class="fas fa-edit"></i>
     				</a>
 
-    				<a href="{{route('asdo.users.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
+    				<a href="{{route('asdo.volunteers.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
     					<i class="fas fa-eye"></i>
     				</a>
 
 					<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
 						<i class="fas fa-trash-alt"></i>
 					</button>
-					<form action="{{route('asdo.users.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
+					<form action="{{route('asdo.volunteers.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
 						@csrf
 						@method('DELETE')
 					</form>

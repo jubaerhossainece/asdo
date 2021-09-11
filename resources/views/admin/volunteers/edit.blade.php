@@ -7,14 +7,14 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Edit User Info</h4>
+    <h4 class="float-left">Edit account Info</h4>
     <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
     All Users</a>
   </div>
 </div>
 
 
-<form method="POST" action="{{route('asdo.users.update', $user->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('asdo.volunteers.update', $user->id)}}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
 <div class="card">
@@ -131,16 +131,18 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label>Member Type</label>
-        <br>
-        <select name="member_type" id="member-select" style="width: 100%;">
-          <option value="0"></option>
-          @foreach($member_types as $member)
-          <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
-          @endforeach
-        </select>
-      </div>
+      @if(auth()->user()->user_type === 'member')
+        <div class="form-group col-md-6">
+          <label>Member Type</label>
+          <br>
+          <select name="member_type" id="member-select" style="width: 100%;">
+            <option value="0"></option>
+            @foreach($member_types as $member)
+            <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
+            @endforeach
+          </select>
+        </div>
+      @endif 
     </div>
   </div>
 </div>

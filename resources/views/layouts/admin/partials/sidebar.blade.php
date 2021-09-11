@@ -26,7 +26,11 @@
                                         <a class="nav-link" href="{{route('asdo.roles.index')}}"><i class="fas fa-user-cog mr-2"></i><span>Roles</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Users</span></a>
+                                        <a class="nav-link" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Members</span></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
                                     </li>
 
                                     <li class="nav-item">
