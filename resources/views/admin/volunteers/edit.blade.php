@@ -8,8 +8,8 @@
 <div class="card">
   <div class="card-header">
     <h4 class="float-left">Edit account Info</h4>
-    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
-    All Users</a>
+    <a href="{{route('asdo.volunteers.index')}}" class="btn btn-secondary float-right">
+    All Volunteers</a>
   </div>
 </div>
 
@@ -129,21 +129,6 @@
         </select>
       </div>
     </div>
-
-    <div class="form-row">
-      @if(auth()->user()->user_type === 'member')
-        <div class="form-group col-md-6">
-          <label>Member Type</label>
-          <br>
-          <select name="member_type" id="member-select" style="width: 100%;">
-            <option value="0"></option>
-            @foreach($member_types as $member)
-            <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
-            @endforeach
-          </select>
-        </div>
-      @endif 
-    </div>
   </div>
 </div>
 
@@ -197,7 +182,7 @@
     </div>
     <button type="submit" class="btn common-btn">Update Account</button> 
   </div>
-</div> 
+</div>
 </form>
 
 @push('script')

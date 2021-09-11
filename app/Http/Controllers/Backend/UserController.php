@@ -61,7 +61,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)
@@ -107,7 +106,7 @@ class UserController extends Controller
         //naming and storing photo 
         
         if($request->hasFile('photo')){
-            $path = 'public/asdo/users/images';
+            $path = 'public/asdo/images/users';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
@@ -143,7 +142,7 @@ class UserController extends Controller
         $result = $user->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
+            $request->session()->flash('alert-success', 'Member profile has been created successfully!');
             return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
@@ -257,7 +256,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/public/'.$user->photo);  
+            Storage::delete('public/asdo/images/users/'.$user->photo);  
         }
 
         $user->name = $request->name;
@@ -284,7 +283,7 @@ class UserController extends Controller
         $result = $user->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
+            $request->session()->flash('alert-success', 'Member profile has been updated successfully!');
             return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
@@ -302,7 +301,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if(isset($user->photo)){
-            Storage::delete('public/asdo/images/'.$user->photo);            
+            Storage::delete('public/asdo/images/users/'.$user->photo);            
         }
 
         $user->delete();

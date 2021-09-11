@@ -38,10 +38,9 @@
                 <td>{{$user->name}}</td>
                 <td>
                     @foreach($member_types as $type)
-                    {{$type->id}}
-                         @if($type->id === $user->member_type)
+                        @if($type->id == $user->member_type)
                          {{$type->name}}
-                         @endif
+                        @endif
                     @endforeach
                 </td>
                 <td>{{$user->present_address}}</td>

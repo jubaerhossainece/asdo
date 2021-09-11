@@ -196,7 +196,7 @@
       <label for="permanent_address">Permanent address</label>
       <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address"></textarea>
     </div>
-    <button type="submit" class="btn common-btn">Update Account</button> 
+    <button type="submit" class="btn common-btn">Create Account</button> 
   </div>
 </div> 
 </form>
