@@ -145,8 +145,8 @@ class VolunteerController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        if($user->user_type == 'volunteer'){
-            return redirect()->back();
+        if($user->user_type !== 'volunteer'){
+            return redirect()->route('asdo.volunteers.index');
         }
 
         $blood_groups = DB::table('others')
@@ -285,6 +285,13 @@ return $request;
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(isset($user->photo)){
+            Storage::delete('public/asdo/images/volunteers/'.$user->photo);            
+        }
+
+        $user->delete();
+
+        return redirect()->route('asdo.volunteers.index')->with('alert-success', 'Volunteer information removed from database!');
     }
 }
