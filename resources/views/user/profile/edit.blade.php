@@ -11,7 +11,6 @@
   </div>
 </div>
 
-
 <div class="card">
   <div class="card-header">
     <h4>Personal Information</h4>
@@ -174,7 +173,7 @@
       <label for="permanent_address">Permanent address</label>
       <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address">{{$user->permanent_address ? $user->permanent_address : ''}}</textarea>
     </div>
-<button type="submit" class="btn common-btn">Update Account</button>
+<button type="submit" class="btn @if(auth()->user()->user_type === 'member') common-btn @else volunteer-btn @endif">Update Account</button>
   </div>
 </div>  
 </form>

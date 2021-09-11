@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
     <!-- <link href="{{url('css/frontend/style.css')}}" rel="stylesheet" /> -->
     @if(auth()->user()->user_type === 'member')
-        <link rel="stylesheet" href="css/frontend/login.css">
+        <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
     @else 
-        <link rel="stylesheet" href="css/frontend/volunteer.css">
+        <link rel="stylesheet" href="{{url('css/backend/volunteer.css')}}">
     @endif   
 
     <style type="text/css">

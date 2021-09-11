@@ -67,7 +67,7 @@ class ProfileController extends Controller
 
 
         //determine if phone number is unique
-        if(!empty($request->email)){
+        if(!empty($request->phone)){
             $uniquePhone = User::where('phone', $request->phone)
                             ->where('user_type', Auth::user()->user_type)
                             ->where('id', '!=', Auth::id())

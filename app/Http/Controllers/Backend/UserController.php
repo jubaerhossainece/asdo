@@ -55,14 +55,50 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //determine if email is unique
+        if(!empty($request->email)){
+            $uniqueEmail = User::where('email', $request->email)
+                            ->where('user_type', $request->user_type)
+                            ->select('id')
+                            ->first();    
+            
+            if($uniqueEmail){
+                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
+            }                 
+        }
+
+
+        //determine if phone number is unique
+        if(!empty($request->phone)){
+            $uniquePhone = User::where('phone', $request->phone)
+                            ->where('user_type', $request->user_type)
+                            ->select('id')
+                            ->first();
+
+            if($uniquePhone){
+                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
+            }           
+        }
+
+        //check if email and phone number both fields are empty
+        if(!isset($request->email) && !isset($request->phone)){
+            $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
+            return redirect()->back();
+        }
+    
+        
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email|max:200',
-            'password' => 'required|min:8|string|confirmed',
+            'email' => 'email',
+            'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
-            'photo' => 'nullable|image'
+            'photo' => 'nullable|image',
+            'member_type' => 'required'
         ]);
 
+
+        //naming and storing photo 
+        
         if($request->hasFile('photo')){
             $path = 'public/asdo/images';
             $file= $request->file('photo');
@@ -73,53 +109,35 @@ class UserController extends Controller
             $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
 
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'guardian' => $request->guardian,
-        //     'mother' => $request->mother,
-        //     'phone' => $request->phone,
-        //     'nid' => $request->nid,
-        //     'birth_id' => $request->birth_id,
-        //     'blood_group' => $request->blood_group,
-        //     'nationality' => $request->nationality,
-        //     'member_type' => $request->member_type,
-        //     'facebook_id' => $request->facebook_id,
-        //     'religion' => $request->religion,
-        //     'education' => $request->education,
-        //     'photo' => isset($filename_with_ext) ? $filename_with_ext : '',
-        //     'present_address' => $request->present_address,
-        //     'permanent_address' => $request->permanent_address,
-        //     'password' => Hash::make($request->password)
-        // ]);
-
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->guardian = $request->guardian;
+        $user->phone = $request->phone;
+        $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->phone = $request->phone; 
+        $user->husband = $request->husband; 
+        $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
+        $user->religion = $request->religion;
         $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
-        $user->religion = $request->religion;
         $user->education = $request->education;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
+        $user->occupation = $request->occupation;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;
-        $user->password = Hash::make($request->password);
+        $user->birth_date = $request->birth_date;
 
         $result = $user->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'User was created successfully!');
+            $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.users.create');
+            return redirect()->back();
         }
     }
 
@@ -164,22 +182,55 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->fill($request->all());
+        $user->fill($request->all());   
 
+        //check if any field is changed
         if(!$user->isDirty()){
             $request->session()->flash('alert-danger', 'No data change has been made!');
-            return redirect()->route('asdo.users.edit', $user->id);
+            return redirect()->back();
         }
 
+        //determine if email is unique
+        if(!empty($request->email)){
+            $uniqueEmail = User::where('email', $request->email)
+                            ->where('user_type', $user->user_type)
+                            ->where('id', '!=', $user->id)
+                            ->select('id')
+                            ->first();    
+            
+            if($uniqueEmail){
+                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
+            }                 
+        }
+
+
+        //determine if phone number is unique
+        if(!empty($request->phone)){
+            $uniquePhone = User::where('phone', $request->phone)
+                            ->where('user_type', $user->user_type)
+                            ->where('id', '!=', $user->id)
+                            ->select('id')
+                            ->first();
+
+            if($uniquePhone){
+                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
+            }             
+        }
+
+        //check if email and phone number both fields are empty
+        if(!isset($request->email) && !isset($request->phone)){
+            $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
+            return redirect()->back();
+        }
+    
         $request->validate([
             'name' => 'required|string',
-            'email' => ['required',Rule::unique('users')->ignore($user->id)],
-            'password' => 'sometimes|min:8|string|confirmed',
-            'photo' => 'nullable|image'
+            'email' => ['nullable', 'email']
         ]);
 
-        if($request->hasFile('photo')){
-            
+
+        //naming and storing photo 
+        if($request->hasFile('photo')){   
             $path = 'public/asdo/images';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
@@ -192,30 +243,32 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->guardian = $request->guardian;
+        $user->phone = $request->phone;
+        $user->father = $request->father;
         $user->mother = $request->mother; 
-        // $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
-        $user->phone = $request->phone; 
+        $user->husband = $request->husband; 
+        $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
+        $user->religion = $request->religion;
         $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
-        $user->religion = $request->religion;
         $user->education = $request->education;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->occupation = $request->occupation;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;
+        $user->birth_date = $request->birth_date;
 
         $result = $user->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'User information updated successfully!');
+            $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.users.show', $user->id);
+            return redirect()->back();
         }
     }
 
@@ -228,10 +281,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $user->delete();
         if(isset($user->photo)){
             Storage::delete('public/asdo/images/'.$user->photo);            
         }
+
+        $user->delete();
 
         return redirect()->route('asdo.users.index')->with('alert-success', 'User information removed from database!');
     }

@@ -561,14 +561,15 @@ marquee.news-scroll a {
   }
   
   #subscriber_form input{
-    height: 41px;
+    height: 46px;
   }
   
   #subscriber_form #subs-submit-btn{
+    box-shadow: none !important;
     position: absolute;
     top: 0px;
     right: 0px;
-    height: 41px;
+    height: 46px;
     background-color: var(--button-bg-color);
     border-radius: 0px 5px 5px 0px;
     color: white;
