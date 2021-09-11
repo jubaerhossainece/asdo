@@ -55,12 +55,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)
                             ->where('user_type', $request->user_type)
                             ->select('id')
-                            ->first();    
+                            ->first();
             
             if($uniqueEmail){
                 return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
@@ -113,6 +114,8 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->password = $request->password;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : null;
         $user->father = $request->father;
         $user->mother = $request->mother; 
         $user->husband = $request->husband; 
@@ -123,6 +126,7 @@ class UserController extends Controller
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
         $user->member_type = $request->member_type;
+        $user->user_type = $request->user_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
