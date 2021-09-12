@@ -10,7 +10,7 @@
       <!-- <div class=" profile-img">
         <img class="" src="{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : url('assets/images/avatar-4.png')}}" alt="">
       </div> -->
-      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
+      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/admins/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
         
       </div>
       <div class="role-name">
@@ -26,9 +26,9 @@
       </div>
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
-      <h3><strong> {{$user->name}} </strong></h3>
-      <h4> {{$user->email}}</h5>
-      <h5>Phone : <strong> {{$user->phone}}</strong></h5></h5>
+      <h2><strong> {{$user->name}} </strong></h2>
+      @if($user->email)<h3> {{$user->email}}</h3>@endif
+      @if($user->phone)<h3>Phone : <strong> {{$user->phone}}</strong></h3>@endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
       <a href="{{route('asdo.profile.edit')}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>

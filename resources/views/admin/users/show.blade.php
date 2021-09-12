@@ -34,11 +34,10 @@
     </div>
 
     <div class="col-md-7 col-xl-6 short-detail">
-      <h3><strong> {{$user->name}} </strong></h3>
-      <h5> {{$user->email}}</h5>
-      @if($user->phone) <h5><label for="">Phone :</label> <strong> {{$user->phone}}</strong></h5> @endif
-      @if($user->nid) <h5><label for="">NID : </label><span> {{$user->nid}}</span></h5> @endif
-      @if($user->present_address) <h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5> @endif
+      <h2><strong> {{$user->name}} </strong></h2>
+      <h3> {{$user->email}}</h3>
+      @if($user->phone) <h3><strong> {{$user->phone}}</strong></h3> @endif
+      @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
       <a href="{{route('asdo.users.edit', $user->id)}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>

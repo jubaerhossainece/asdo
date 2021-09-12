@@ -25,10 +25,10 @@
         ?>
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
-      <h3><strong> {{$user->name}} </strong></h3>
-      @if($user->email)<h5> {{$user->email}}</h5>@endif
-      @if($user->phone)<h5><label for="">Phone :</label> <strong> {{$user->phone}}</strong></h5>@endif
-      @if($user->present_address)<h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5>@endif
+      <h2><strong> {{$user->name}} </strong></h2>
+      <h3> {{$user->email}}</h3>
+      @if($user->phone) <h3><strong> {{$user->phone}}</strong></h3> @endif
+      @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
       <a href="{{route('profile.edit')}}" class="btn @if(auth()->user()->user_type === 'member') common-btn @else volunteer-btn @endif"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
