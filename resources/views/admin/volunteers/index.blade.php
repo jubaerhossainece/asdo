@@ -7,13 +7,13 @@
 
 <div class="card">
 	<div class="card-header">	
-		<h4 class="page-title">Volunteer Management</h4>
+		<h2 class="page-title">Volunteer Management</h2>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header header">
-		<h5 class="card-title">All Volunteers</h5>
+		<h3 class="card-title">All Volunteers</h3>
 		<a href="{{route('asdo.volunteers.create')}}" class="btn volunteer-btn float-right">
 		<i class="fas fa-plus-circle"></i>
 		New Volunteer</a>

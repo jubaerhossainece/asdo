@@ -7,7 +7,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Add new user</h4>
+    <h2 class="float-left">Add new user</h2>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4>Personal Information</h4>
+    <h3>Personal Information</h3>
   </div>
   <div class="card-body">
     <div class="form-row">
@@ -64,6 +64,11 @@
       <div class="form-group col-md-6">
         <label for="password">Password</label>
         <input type="password" name="password" class="form-control" id="password"value="{{old('password')}}">
+        @error('password')
+          <div class="text-danger">
+            <strong>{{$message}}</strong>
+          </div>
+        @enderror
       </div>
 
       <div class="form-group col-md-6">
@@ -147,10 +152,11 @@
       </div>
     </div>
 </div>
+</div>
 
 <div class="card">
   <div class="card-header">
-    <h4>Photo & Others</h4>
+    <h3>Photo & Others</h3>
   </div>
   <div class="card-body">
     <label for="photo">Profile Photo</label>

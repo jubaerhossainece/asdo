@@ -3,9 +3,9 @@
 <div class="card">
 	<div class="card-header page-header">
 			<h2 class="page-title">
-				{{isset($slider) ? 'Edit' : 'Add New'}} Slider Image
+				{{isset($project) ? 'Edit' : 'Add New'}} Project Detail
 			</h2>
-			<a href="{{route('asdo.sliders.index')}}" class="btn btn-secondary float-right">
+			<a href="{{route('asdo.projects.index')}}" class="btn btn-secondary float-right">
 				<i class="fas fa-arrow-circle-left"></i>
 				Back to list
 			</a>
@@ -17,12 +17,12 @@
 	<div class="col-md-12">
 		<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">{{isset($slider) ? 'Edit' : 'Upload New'}} Slider Image</h3>
+			<h3 class="card-title">{{isset($project) ? 'Edit' : 'Add New'}} Project Detail</h3>
 		</div>
 		<div class="card-body">
-			<form action="{{isset($slider) ? route('asdo.sliders.update', $slider->id) : route('asdo.sliders.store')}}" method="POST" enctype="multipart/form-data">
+			<form action="{{isset($project) ? route('asdo.projects.update', $project->id) : route('asdo.projects.store')}}" method="POST" enctype="multipart/form-data">
 				@csrf
-				@isset($slider)
+				@isset($project)
 					@method('PUT')
 				@endisset
 
@@ -34,8 +34,8 @@
 		        <span class="input-group-text">Upload</span>
 		      </div>
 		      <div class="custom-file">
-		        <input type="file" name="photo" class="custom-file-input" id="slider-image">
-		        <label class="custom-file-label" for="slider-image" id="slider-image-label">{{ isset($slider->photo) ? $slider->photo : 'Choose Photo'}}</label>
+		        <input type="file" name="photo" class="custom-file-input" id="project-image">
+		        <label class="custom-file-label" for="project-image" id="project-image-label">{{ isset($project->photo) ? $project->photo : 'Choose Photo'}}</label>
 		      </div>
 
 		    </div>
@@ -48,22 +48,22 @@
         </div>
 
         <div class="form-group">
-	        <label for="caption_header">Caption Header</label>
-	        <input type="text" name="caption_header" class="form-control" id="caption_header" value="{{$slider->caption_header ?? old('caption_header') }}">
+	        <label for="header">Project Heading</label>
+	        <input type="text" name="header" class="form-control" id="header" value="{{$project->header ?? old('header') }}">
 	      </div>
 
 	      <div class="form-group">
-	        <label for="caption_text">Caption Text</label>
-	        <textarea name="caption_text" class="form-control" id="caption_text" >{{$slider->caption_text ?? old('caption_text') }}</textarea>
+	        <label for="body">Project Detail</label>
+	        <textarea name="body" class="form-control" rows="5" id="body">{{$project->body ?? old('body') }}</textarea>
 	      </div>
 
 				<button type="submit" class="btn btn-primary" id="submit" name="submit">
-					@isset($slider)
+					@isset($project)
 					 <i class="fas fa-arrow-circle-up mr-1"></i>
 					 Update
 					@else
 					<i class="fas fa-plus-circle mr-1"></i>
-					Upload Image
+						Create Project
 					@endisset
 				</button>
 			</form>
@@ -88,8 +88,8 @@
  		}
  	});
 
- 	document.getElementById("slider-image").onchange = function() {
-  document.getElementById("slider-image-label").innerHTML = this.value;
+ 	document.getElementById("project-image").onchange = function() {
+  document.getElementById("project-image-label").innerHTML = this.value;
 };
  </script>
 @endpush

@@ -7,7 +7,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Add new volunteer account</h4>
+    <h2 class="float-left">Add new volunteer account</h2>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h4>Personal Information</h4>
+      <h3>Personal Information</h3>
     </div>
     <div class="card-body">
       <div class="form-row">
@@ -142,10 +142,11 @@
         </div>
       </div>
   </div>
+</div>  
 
   <div class="card">
     <div class="card-header">
-      <h4>Photo & Others</h4>
+      <h3>Photo & Others</h3>
     </div>
     <div class="card-body">
       <label for="photo">Profile Photo</label>

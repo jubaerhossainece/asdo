@@ -7,7 +7,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Edit User Info</h4>
+    <h2 class="float-left">Edit User Info</h2>
     <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
     All Users</a>
   </div>
@@ -19,7 +19,7 @@
   @method('PUT')
 <div class="card">
   <div class="card-header">
-    <h4>Personal Information</h4>
+    <h3>Personal Information</h3>
   </div>
   <div class="card-body">
     <div class="form-row">
@@ -147,7 +147,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4>Photo & Others</h4>
+    <h3>Photo & Others</h3>
   </div>
   <div class="card-body">
     <label for="photo">Profile Photo</label>

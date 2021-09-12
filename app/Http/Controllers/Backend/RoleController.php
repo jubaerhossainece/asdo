@@ -9,6 +9,7 @@ use App\Models\Permission;
 use App\Models\Module;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -25,6 +26,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('app.roles.index');
         $roles = Role::all();
         return view('admin.roles.index', compact('roles'));
     }
@@ -36,6 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('app.roles.create');
         $modules = Module::all();
         return view('admin.roles.form', compact('modules'));
     }
@@ -48,6 +51,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('app.roles.create');
         $this->validate($request, [
             'name' => 'required|unique:roles|string',
             'permissions' => 'required|array',
@@ -93,6 +97,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('app.roles.edit');
         $role = Role::findOrFail($id);
         $modules = Module::all();
         return view('admin.roles.form', compact('modules', 'role'));
@@ -107,6 +112,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('app.roles.edit');
         $role = Role::findOrFail($id);
         $this->validate($request, [
             'name' => ['required', Rule::unique('roles')->ignore($role->id), 'string'],
@@ -136,6 +142,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('app.roles.destroy');
         $role = Role::findOrFail($id);
         $result = $role->delete();
 

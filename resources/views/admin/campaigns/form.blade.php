@@ -54,7 +54,7 @@
 
 	      <div class="form-group">
 	        <label for="caption_text">Caption Text</label>
-	        <textarea name="caption_text" class="form-control" id="caption_text" >{{$slider->caption_text ?? old('caption_text') }}</textarea>
+	        <input type="text" name="caption_text" class="form-control" id="caption_text" value="{{$slider->caption_text ?? old('caption_text') }}">
 	      </div>
 
 				<button type="submit" class="btn btn-primary" id="submit" name="submit">

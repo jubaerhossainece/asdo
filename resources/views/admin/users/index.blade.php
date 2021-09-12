@@ -7,13 +7,13 @@
 
 <div class="card">
 	<div class="card-header page-header">	
-		<h4 class="page-title">Member Management</h4>
+		<h2 class="page-title">Member Management</h2>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header">
-		<h5 class="card-title">All Members</h5>
+		<h3 class="card-title">All Members</h3>
 		<a href="{{route('asdo.users.create')}}" class="btn common-btn">
 		<i class="fas fa-plus-circle"></i>
 		New Member</a>

@@ -144,14 +144,14 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="present_address">Present address</label>
-        <input type="text" name="present_address" class="form-control" id="present_address" value="{{$user->present_address ? $user->present_address : ''}}">
+        <textarea name="present_address" class="form-control" id="present_address">{{$user->present_address ? $user->present_address : ''}}</textarea>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="permanent_address">Permanent address</label>
-        <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
+        <textarea name="permanent_address" class="form-control" id="permanent_address">{{$user->permanent_address ? $user->permanent_address : ''}}</textarea>
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Update Account</button> 

@@ -7,7 +7,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<h5 class="card-title">Change Password</h5>
+			<h2 class="card-title">Change Password</h2>
 		</div>
 		<div class="card-body">	
 			<form action="{{route('asdo.password.change')}}" method="POST">

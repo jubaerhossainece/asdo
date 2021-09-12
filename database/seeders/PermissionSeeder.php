@@ -25,6 +25,39 @@ class PermissionSeeder extends Seeder
         ]);
 
         //Role management permissions
+        $moduleAppAdmin = Module::updateOrCreate(['name' => 'Admin Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppAdmin->id,
+            'name' => 'Access Admins',
+            'slug' => 'app.admins.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppAdmin->id,
+            'name' => 'Create Admin',
+            'slug' => 'app.admins.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppAdmin->id,
+            'name' => 'Show Admin',
+            'slug' => 'app.admins.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppAdmin->id,
+            'name' => 'Edit Admin',
+            'slug' => 'app.admins.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppAdmin->id,
+            'name' => 'Delete Admin',
+            'slug' => 'app.admins.destroy'
+        ]);
+
+        //Role management permissions
         $moduleAppRole = Module::updateOrCreate(['name' => 'Role Management']);
 
         Permission::updateOrCreate([
@@ -183,6 +216,39 @@ class PermissionSeeder extends Seeder
             'module_id' => $moduleAppCampaign->id,
             'name' => 'Delete Campaign',
             'slug' => 'app.campaigns.destroy'
+        ]);
+
+        //Campaign management permissions
+        $moduleAppSlider = Module::updateOrCreate(['name' => 'Slider image Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Access Sliders',
+            'slug' => 'app.sliders.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Create Slider',
+            'slug' => 'app.sliders.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Show Slider',
+            'slug' => 'app.sliders.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Edit Slider',
+            'slug' => 'app.sliders.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Delete Slider',
+            'slug' => 'app.sliders.destroy'
         ]);
     }
 }

@@ -7,14 +7,14 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Update your profile</h4>
+    <h2 class="float-left">Update your profile</h2>
   </div>
 </div>
 
 
 <div class="card">
   <div class="card-header">
-    <h4>Personal Information</h4>
+    <h3>Personal Information</h3>
   </div>
   <div class="card-body">
   <form method="POST" action="{{route('asdo.profile.update')}}" enctype="multipart/form-data">
@@ -119,7 +119,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4>Photo & Others</h4>
+    <h3>Photo & Others</h3>
   </div>
   <div class="card-body">
     <!-- <label for="photo">Profile Image</label>
@@ -143,14 +143,14 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="present_address">Present address</label>
-        <input type="text" name="present_address" class="form-control" id="present_address" value="{{$user->present_address ? $user->present_address : ''}}">
+        <textarea name="present_address" class="form-control" id="present_address">{{$user->present_address ? $user->present_address : ''}}</textarea>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="permanent_address">Permanent address</label>
-        <input type="text" name="permanent_address" class="form-control" id="permanent_address" value="{{$user->permanent_address ? $user->permanent_address : ''}}">
+        <textarea name="permanent_address" class="form-control" id="permanent_address">{{$user->permanent_address ? $user->permanent_address : ''}}</textarea>
       </div>
     </div>
 <button type="submit" class="btn btn-primary">Update Account</button>

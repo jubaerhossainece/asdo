@@ -27,6 +27,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        Gate::authorize('app.users.index');
+
         $users = DB::table('users')
                 ->where('user_type', '=', 'member')
                 ->get();
@@ -46,6 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        Gate::authorize('app.users.create');
+
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $member_types = DB::table('others')->where('category', 'member type')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
@@ -61,6 +65,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('app.users.create');
+
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)
@@ -158,6 +164,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        Gate::authorize('app.users.show');
+
         $user = User::findOrFail($id);
         $blood_group = DB::table('others')
                         ->where('id', $user->blood_group)
@@ -183,6 +191,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('app.users.edit');
+
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $member_types = DB::table('others')->where('category', 'member type')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
@@ -200,6 +210,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        Gate::authorize('app.users.edit');
+
         $user->fill($request->all());   
 
         //check if any field is changed
@@ -303,6 +315,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('app.users.destroy');
+
         $user = User::findOrFail($id);
         if(isset($user->photo)){
             Storage::delete('public/asdo/images/users/'.$user->photo);            

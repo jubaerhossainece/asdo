@@ -7,10 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class VolunteerController extends Controller
 {
@@ -21,6 +21,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
+        Gate::authorize('app.volunteers.index');
         $users = DB::table('users')
                 ->where('user_type', '=', 'volunteer')
                 ->get();
@@ -34,6 +35,7 @@ class VolunteerController extends Controller
      */
     public function create()
     {
+        Gate::authorize('app.volunteers.create');
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
 
@@ -48,6 +50,8 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('app.volunteers.create');
+
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)
@@ -144,6 +148,8 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
+        Gate::authorize('app.volunteers.show');
+
         $user = User::findOrFail($id);
         if($user->user_type !== 'volunteer'){
             return redirect()->route('asdo.volunteers.index');
@@ -169,6 +175,8 @@ class VolunteerController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('app.volunteers.edit');
+
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
         $user = User::findOrFail($id);
@@ -185,6 +193,8 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('app.volunteers.edit');
+
         $user = User::findOrFail($id);
 
         $user->fill($request->all());   
@@ -287,7 +297,9 @@ return $request;
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
+        Gate::authorize('app.volunteers.destroy');
+
         $user = User::findOrFail($id);
         if(isset($user->photo)){
             Storage::delete('public/asdo/images/volunteers/'.$user->photo);            

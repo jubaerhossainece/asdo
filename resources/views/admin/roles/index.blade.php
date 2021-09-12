@@ -2,16 +2,16 @@
 @section('content')
 <div class="card">
 	<div class="card-header">	
-		<h4 class="page-title">Role Management</h4>
+		<h2 class="page-title">Role Management Panel</h2>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header header">
-		<h5 class="card-title">All Roles</h5>
+		<h3 class="card-title">All Roles</h3>
 		<a href="{{route('asdo.roles.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle"></i>
-		Create Role</a>
+		Create New Role</a>
 	</div>
 	<div class="card-body">
 		<div class="row">

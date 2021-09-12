@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Role;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
@@ -25,6 +26,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        Gate::authorize('app.admins.index');
         $roles = Role::all(); 
         $admins = DB::table('admins')->get();
         return view('admin.admins.index', compact('admins', 'roles'));
@@ -37,6 +39,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+        Gate::authorize('app.admins.create');
         $roles = Role::where('name','!=', 'User')->get();
 
         return view('admin.admins.create', compact('roles'));
@@ -50,6 +53,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('app.admins.create');
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email|max:200',
@@ -94,6 +98,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        Gate::authorize('app.admins.show');
         $user = Admin::findOrFail($id);
 
         $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
@@ -117,6 +122,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        Gate::authorize('app.admins.edit');
         $roles = Role::all(); 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
@@ -134,6 +140,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Gate::authorize('app.admins.edit');
         $user = Admin::findOrFail($id);
         $user->fill($request->all());
 
@@ -196,6 +203,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+        Gate::authorize('app.admins.destroy');
         $user = Admin::findOrFail($id);
         Storage::delete('public/asdo/images/admins/'.$user->photo);  
 

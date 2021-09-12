@@ -4,28 +4,25 @@
 @extends('layouts.admin.app')
 
 @section('content')
-<div class="page-header">
-	<div class="row">	
-		<div class="col-md 6">
-			<h4 class="page-title">
-				{{isset($role) ? 'Edit' : 'Create'}} Role
-			</h4>
-		</div>
-		<div class="col-md-6">
-			<a href="{{route('asdo.roles.index')}}" class="btn btn-secondary float-right">
-				<i class="fas fa-arrow-circle-left"></i>
-				Back to list
-			</a>
-		</div>
+<div class="card">
+	<div class="card-header page-header">
+		<h2 class="page-title">
+			{{isset($role) ? 'Edit' : 'Create'}} Role
+		</h2>
+		<a href="{{route('asdo.roles.index')}}" class="btn btn-secondary float-right">
+			<i class="fas fa-arrow-circle-left"></i>
+			Back to list
+		</a>
 	</div>
 </div>
+
 
 
 <div class="row">
 	<div class="col-md-12">
 		<div class="card">
 		<div class="card-header">
-			<h5 class="card-title">{{isset($role) ? 'Edit' : 'Create New'}} Role</h5>
+			<h2 class="card-title">{{isset($role) ? 'Edit' : 'Create New'}} Role</h2>
 		</div>
 		<div class="card-body">
 			<form action="{{isset($role) ? route('asdo.roles.update', $role->id) : route('asdo.roles.store')}}" method="POST">

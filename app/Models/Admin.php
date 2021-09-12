@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminResetPasswordNotification;
+use App\Models\Role;
 
 class Admin extends Authenticatable
 {
@@ -42,6 +43,14 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasPermission($permission): bool{
+        return $this->role->permissions()->where('slug', $permission)->first() ? true : false;
+    }
 
 
     /**

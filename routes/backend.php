@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\AdminPhotoController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CampaignController;
+use App\Http\Controllers\Backend\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,9 @@ use App\Http\Controllers\Backend\SliderController;
 // Routes for dashboard
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
+// routes for admin management
+Route::resource('/admins', AdminController::class);
+
 // routes for member management
 Route::resource('/users', UserController::Class);
 
@@ -34,9 +39,6 @@ Route::resource('/volunteers', VolunteerController::Class);
 
 // routes for role management
 Route::resource('/roles', RoleController::class);
-
-// routes for admin management
-Route::resource('/admins', AdminController::class);
 
 //admin profile routes
 Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile.show');
@@ -58,3 +60,9 @@ Route::get('/adminLogout', [AdminLoginController::class, 'adminLogout'])->name('
 
 //slider images routes
 Route::resource('sliders', SliderController::class);
+
+//Rotes for campaign
+Route::resource('campaigns', CampaignController::class);
+
+//Rotes for project
+Route::resource('projects', ProjectController::class);

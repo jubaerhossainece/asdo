@@ -34,7 +34,7 @@ h2 {
 
 h3 {
   display: block;
-  font-size: 1.17em;
+  font-size: 1.30em;
 }
 
 h4 {
@@ -161,6 +161,12 @@ label {
 /***** Header Start*****/
 
 /***** Navbar *****/
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active, .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active {
+    color: #fff;
+    background-color: #242849;
+    border-radius: 2px;
+}
 
 .navbar-wrap {
   background-color: var(--header-bg-color);

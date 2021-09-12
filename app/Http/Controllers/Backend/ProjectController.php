@@ -4,18 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Slider;
+use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
-class SliderController extends Controller
+
+class ProjectController extends Controller
 {
-     public function __construct() 
-    { 
-        $this->middleware('preventBackHistory');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +18,9 @@ class SliderController extends Controller
      */
     public function index()
     {
-        Gate::authorize('app.sliders.index');
-        $sliders = Slider::all();
-        return view('admin.sliderImages.index', compact('sliders'));
+        Gate::authorize('app.projects.index');
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -35,8 +30,8 @@ class SliderController extends Controller
      */
     public function create()
     {
-        Gate::authorize('app.sliders.create');
-        return view('admin.sliderImages.form');
+        Gate::authorize('app.projects.create');
+        return view('admin.projects.form');
     }
 
     /**
@@ -47,34 +42,34 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('app.sliders.create');
+        Gate::authorize('app.projects.create');
         $request->validate([
             'photo' => 'required|image'
         ]);
 
         if($request->hasFile('photo')){
-            $path = 'public/asdo/images/sliders';
+            $path = 'public/asdo/images/projects';
             $file= $request->file('photo');
             $photo_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'slider-photo'.time().'.'.$extension;
+            $filename_with_ext = 'project-photo'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
 
-        $slider = new Slider;
-        $slider->photo = $filename_with_ext;
-        $slider->caption_header = $request->caption_header;
-        $slider->caption_text = $request->caption_text;
-        // $slider->category = $request->category; 
-        $result = $slider->save();
+        $projects = new Project;
+        $projects->photo = $filename_with_ext;
+        $projects->header = $request->header;
+        $projects->body = $request->body;
+        // $projects->category = $request->category; 
+        $result = $projects->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Slider image added successfully!');
-            return redirect()->route('asdo.sliders.index');
+            $request->session()->flash('alert-success', 'Project detail posted successfully!');
+            return redirect()->route('asdo.projects.index');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.sliders.create');
+            return redirect()->route('asdo.projects.create');
         }
     }
 
@@ -86,7 +81,9 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        //
+        Gate::authorize('app.projects.show');
+        $project = Project::findOrFail($id);
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -96,10 +93,10 @@ class SliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        Gate::authorize('app.sliders.edit');
-        $slider = Slider::findOrFail($id);
-        return view('admin.sliderImages.form', compact('slider'));
+    {   
+        Gate::authorize('app.projects.edit');
+        $project = Project::findOrFail($id);
+        return view('admin.projects.form', compact('project'));
     }
 
     /**
@@ -111,35 +108,35 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('app.sliders.edit');
-        $slider = Slider::findOrFail($id);
+        Gate::authorize('app.projects.edit');
+        $project = Project::findOrFail($id);
         $request->validate([
             'photo' => 'image'
         ]);
 
         if($request->hasFile('photo')){
-            $path = 'public/asdo/images/sliders';
+            $path = 'public/asdo/images/projects';
             $file= $request->file('photo');
             $photo_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'slider-photo'.time().'.'.$extension;
+            $filename_with_ext = 'project-photo'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);   
-            Storage::delete('public/asdo/images/sliders/'.$slider->photo); 
+            Storage::delete('public/asdo/images/projects/'.$project->photo); 
         }
 
-        $slider->photo = isset($filename_with_ext) ? $filename_with_ext : $slider->photo;
-        $slider->caption_header = $request->caption_header;
-        $slider->caption_text = $request->caption_text;
+        $project->photo = isset($filename_with_ext) ? $filename_with_ext : $project->photo;
+        $project->header = $request->header;
+        $project->body = $request->body;
         // $slider->category = $request->category; 
-        $result = $slider->save();
+        $result = $project->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Slider image updated successfully!');
-            return redirect()->route('asdo.sliders.index');
+            $request->session()->flash('alert-success', 'Project detail updated successfully!');
+            return redirect()->route('asdo.projects.index');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.sliders.edit');
+            return redirect()->route('asdo.projects.edit');
         }
     }
 
@@ -151,13 +148,13 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('app.sliders.destroy');
-        $slider = Slider::findOrFail($id);
-        $slider->delete();
-        if(isset($slider->photo)){
-            Storage::delete('public/asdo/images/sliders/'.$slider->photo);            
+        Gate::authorize('app.projects.destroy');
+        $project = Project::findOrFail($id);
+        $project->delete();
+        if(isset($project->photo)){
+            Storage::delete('public/asdo/images/projects/'.$project->photo);            
         }
 
-        return redirect()->route('asdo.sliders.index')->with('alert-success', 'Slider image removed from database!');
+        return redirect()->route('asdo.projects.index')->with('alert-success', 'Project detail removed from database!');
     }
 }
