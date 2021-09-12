@@ -129,7 +129,7 @@ class SliderController extends Controller
         $result = $slider->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Slider image added successfully!');
+            $request->session()->flash('alert-success', 'Slider image updated successfully!');
             return redirect()->route('asdo.sliders.index');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
@@ -151,6 +151,6 @@ class SliderController extends Controller
             Storage::delete('public/asdo/images/sliders/'.$slider->photo);            
         }
 
-        return redirect()->route('asdo.users.index')->with('alert-success', 'User information removed from database!');
+        return redirect()->route('asdo.sliders.index')->with('alert-success', 'Slider image removed from database!');
     }
 }

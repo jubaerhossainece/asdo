@@ -61,17 +61,7 @@ class AdminController extends Controller
             return redirect()->route('asdo.admins.create');
         }
 
-        // $user = Admin::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone,
-        //     'status' => false,
-        //     'role_id' => $request->role_id,
-        //     'password' => Hash::make($request->password)
-        // ]);
-
         $user = new Admin;
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -107,7 +97,6 @@ class AdminController extends Controller
         $user = Admin::findOrFail($id);
 
         $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
-        $member_types = DB::table('others')->where('id', $user->member_type)->get();
         $religions = DB::table('others')->where('id', $user->religion)->get();
 
         $roles = Role::all();
@@ -117,7 +106,7 @@ class AdminController extends Controller
                 $roleName = $role->name;
             }
         }
-        return view('admin.admins.show', compact('user', 'roleName', 'blood_groups', 'member_types', 'religions'));
+        return view('admin.admins.show', compact('user', 'roleName', 'blood_groups', 'religions'));
     }
 
     /**
@@ -128,12 +117,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
+        $roles = Role::all(); 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
-        $member_types = DB::table('others')->where('category', 'member type')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
         $user = Admin::findOrFail($id);
 
-        return view('admin.admins.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
+        return view('admin.admins.edit', compact('user', 'blood_groups', 'roles', 'religions'));
     }
 
     /**
@@ -162,35 +151,15 @@ class AdminController extends Controller
 
         if($request->hasFile('photo')){
             
-            $path = 'public/asdo/images';
+            $path = 'public/asdo/images/admins';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/'.$user->photo);  
+            Storage::delete('public/asdo/images/admins/'.$user->photo);  
         }
-
-        // $result = $user->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'guardian' => $request->guardian,
-        //     'mother' => $request->mother,
-        //     'phone' => $request->phone,
-        //     'nid' => $request->nid,
-        //     'birth_id' => $request->birth_id,
-        //     'blood_group' => $request->blood_group,
-        //     'nationality' => $request->nationality,
-        //     'member_type' => $request->member_type,
-        //     'facebook_id' => $request->facebook_id,
-        //     'religion' => $request->religion,
-        //     'education' => $request->education,
-        //     'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
-        //     'photo' => isset($filename_with_ext) ? $filename_with_ext : $user->photo,
-        //     'present_address' => $request->present_address,
-        //     'permanent_address' => $request->permanent_address
-        // ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -202,7 +171,6 @@ class AdminController extends Controller
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
-        $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
@@ -229,7 +197,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $user = Admin::findOrFail($id);
-        Storage::delete('public/asdo/images/'.$user->photo);  
+        Storage::delete('public/asdo/images/admins/'.$user->photo);  
 
         $user->delete();
 

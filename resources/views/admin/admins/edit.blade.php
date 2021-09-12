@@ -45,6 +45,23 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
+        <label for="phoneNumber">Phone number</label>
+        <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Role</label>
+        <br>
+        <select name="role_id" id="member-select" style="width: 100%;">
+          <option value="0"></option>
+          @foreach($roles as $role)
+          <option value="{{$role->id}}" {{$user->role_id == $role->id ? 'selected' : ''}}>{{$role->name}}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
         <label for="guardian">Father/Husband</label>
         <input type="text" name="guardian" class="form-control" id="guardian" value="{{$user->guardian ? $user->guardian : ''}}">
       </div>
@@ -56,8 +73,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="phoneNumber">Phone number</label>
-        <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+        <label for="birth_certificate_id">Birth Certificate ID</label>
+        <input type="text" name="birth_id" class="form-control" id="birth_id" value="{{$user->birth_id ? $user->birth_id : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label for="nidNumber">NID number</label>
@@ -67,8 +84,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="birth_certificate_id">Birth Certificate ID</label>
-        <input type="text" name="birth_id" class="form-control" id="birth_id" value="{{$user->birth_id ? $user->birth_id : ''}}">
+        <label for="nationality">Nationality</label>
+        <input type="text" name="nationality" class="form-control" id="nationality" value="{{$user->nationality ? $user->nationality : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label for="bloodGroup">Blood group</label>
@@ -79,24 +96,7 @@
             <option value="{{$bg->id}}" {{$user->blood_group == $bg->id ? 'selected' : ''}}>{{$bg->name}}</option>
           @endforeach
         </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="nationality">Nationality</label>
-        <input type="text" name="nationality" class="form-control" id="nationality" value="{{$user->nationality ? $user->nationality : ''}}">
-      </div>
-      <div class="form-group col-md-6">
-        <label>Member Type</label>
-        <br>
-        <select name="member_type" id="member-select" style="width: 100%;">
-          <option value="0"></option>
-          @foreach($member_types as $member)
-          <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
-          @endforeach
-        </select>
-      </div>
+      </div> 
     </div>
 
     <div class="form-row">

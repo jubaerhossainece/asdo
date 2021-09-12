@@ -1,19 +1,15 @@
 @extends('layouts.admin.app')
 @section('content')
-<div class="page-header">
-	<div class="row">	
-		<div class="col-md 6">
+<div class="card">
+	<div class="card-header page-header">
 			<h4 class="page-title">
 				{{isset($slider) ? 'Edit' : 'Add New'}} Slider Image
 			</h4>
-		</div>
-		<div class="col-md-6">
 			<a href="{{route('asdo.sliders.index')}}" class="btn btn-secondary float-right">
 				<i class="fas fa-arrow-circle-left"></i>
 				Back to list
 			</a>
-		</div>
-	</div>
+	</div>	
 </div>
 
 
@@ -39,7 +35,7 @@
 		      </div>
 		      <div class="custom-file">
 		        <input type="file" name="photo" class="custom-file-input" id="slider-image">
-		        <label class="custom-file-label" for="slider-image" id="slider-image-label">{{$slider->photo ? $slider->photo : 'Choose Photo'}}</label>
+		        <label class="custom-file-label" for="slider-image" id="slider-image-label">{{ isset($slider->photo) ? $slider->photo : 'Choose Photo'}}</label>
 		      </div>
 
 		    </div>

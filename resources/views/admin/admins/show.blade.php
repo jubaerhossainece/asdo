@@ -10,7 +10,7 @@
       <!-- <div class=" profile-img">
         <img class="" src="{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : url('assets/images/avatar-4.png')}}" alt="">
       </div> -->
-      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
+      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/admins/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
         
       </div>
       <div class="role-name">
@@ -146,19 +146,7 @@
 
 
       <div class="col-sm-12 deivider">
-        <div class="row profile-info">
-          <div class="col-sm-4">
-            <label for="">Member Type : </label>
-          </div> 
-          <div class="col-sm-8">
-            @if($user->member_type)
-             @foreach($member_types as $member_type)
-             <span>{{$member_type->name}}</span>
-             @endforeach
-             @else <span class="text-danger">No member type to show</span>
-             @endif
-          </div>
-        </div>
+
 
         <div class="row profile-info">
           <div class="col-sm-4">
