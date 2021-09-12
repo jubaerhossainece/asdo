@@ -208,6 +208,10 @@ class UserController extends Controller
             return redirect()->back();
         }
 
+        //$user->fill() fills up the $user data with $request object data
+        //so we need to query again to obtain the user data from database
+        $user = User::findOrFail($user->id);
+
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)

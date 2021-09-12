@@ -39,7 +39,7 @@
 		      </div>
 		      <div class="custom-file">
 		        <input type="file" name="photo" class="custom-file-input" id="slider-image">
-		        <label class="custom-file-label" for="slider-image" id="slider-image-label">Choose Photo</label>
+		        <label class="custom-file-label" for="slider-image" id="slider-image-label">{{$slider->photo ? $slider->photo : 'Choose Photo'}}</label>
 		      </div>
 
 		    </div>

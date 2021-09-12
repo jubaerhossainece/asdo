@@ -18,8 +18,8 @@
   @csrf
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="name">Name</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name">
+        <label for="name">Name</label> 
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" value="{{old('name')}}">
         @error('name')
           <div class="text-danger">
             <strong>{{$message}}</strong>
@@ -28,7 +28,7 @@
       </div>
       <div class="form-group col-md-6">
         <label for="email">Email address</label>
-        <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror" id="email">
+        <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{old('email')}}">
         @error('email')
           <div class="text-danger">
             <strong>{{$message}}</strong>
@@ -40,7 +40,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="phone">Phone Number</label>
-        <input type="text" name="phonr" class="form-control" id="phone">
+        <input type="text" name="phone" class="form-control" id="phone" value="{{old('phone')}}">
       </div>
       <div class="form-group col-md-6">
         <label>Role</label>
@@ -48,7 +48,7 @@
         <select name="role_id" id="role-select"  style="width: 100%;">
           <option value="0"></option>
           @foreach($roles as $role)
-            <option value="{{$role->id}}">{{$role->name}}</option>
+            <option @if(old('role_id') == $role->id) selected @endif value="{{$role->id}}">{{$role->name}}</option>
            @endforeach
         </select>
         @error('role_id')

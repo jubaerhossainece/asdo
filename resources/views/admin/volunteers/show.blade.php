@@ -2,6 +2,7 @@
 @section('content')
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
+  <link rel="stylesheet" href="{{url('css/backend/volunteer.css')}}">
 @endpush
 
 <div class="card profile-nav">
@@ -33,7 +34,7 @@
       @if($user->present_address) <h5><label for="">Address : </label> <span> {{$user->present_address}}</span></h5> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('asdo.users.edit', $user->id)}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('asdo.volunteers.edit', $user->id)}}" class="btn volunteer-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>

@@ -98,6 +98,12 @@ label {
     margin-bottom: 20px;
 }
 
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .page-header {
     display: flex !important;
     justify-content: space-between;

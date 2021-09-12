@@ -2,20 +2,21 @@
 @section('content')
 @push('css')
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
 @endpush
 
 <div class="card">
 	<div class="card-header page-header">	
-		<h4 class="page-title">User Management</h4>
+		<h4 class="page-title">Member Management</h4>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header">
-		<h5 class="card-title">All Users</h5>
-		<a href="{{route('asdo.users.create')}}" class="btn btn-primary float-right">
+		<h5 class="card-title">All Members</h5>
+		<a href="{{route('asdo.users.create')}}" class="btn common-btn">
 		<i class="fas fa-plus-circle"></i>
-		New User</a>
+		New Member</a>
 	</div>
 
 	<div class="card-body">

@@ -2,6 +2,7 @@
 @section('content')
 @push('css')
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{url('css/backend/volunteer.css')}}">
 @endpush
 
 <div class="card">
@@ -13,7 +14,7 @@
 <div class="card">
 	<div class="card-header header">
 		<h5 class="card-title">All Volunteers</h5>
-		<a href="{{route('asdo.volunteers.create')}}" class="btn btn-primary float-right">
+		<a href="{{route('asdo.volunteers.create')}}" class="btn volunteer-btn float-right">
 		<i class="fas fa-plus-circle"></i>
 		New Volunteer</a>
 	</div>

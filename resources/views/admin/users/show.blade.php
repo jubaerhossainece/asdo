@@ -2,6 +2,7 @@
 @section('content')
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
+  <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
 @endpush
 
 <div class="card profile-nav">

@@ -195,6 +195,10 @@ class VolunteerController extends Controller
             return redirect()->back();
         }
 
+        //$user->fill() fills up the $user data with $request object data
+        //so we need to query again to obtain the user data from database
+        $user = User::findOrFail($id);
+
         //determine if email is unique
         if(!empty($request->email)){
             $uniqueEmail = User::where('email', $request->email)
@@ -244,8 +248,7 @@ class VolunteerController extends Controller
             $request->file('photo')->storeAs($path, $filename_with_ext);  
             Storage::delete('public/asdo/images/volunteers/'.$user->photo);  
         }
-
-
+        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
