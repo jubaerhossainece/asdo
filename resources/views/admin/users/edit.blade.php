@@ -2,6 +2,7 @@
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
   <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
 @endpush
 
@@ -108,8 +109,8 @@
       </div> 
 
       <div class="form-group col-md-6">
-        <label for="birth_date">Date of birth</label>
-        <input type="text" name="birth_date" class="form-control" id="birth_date" value="{{$user->birth_date ? $user->birth_date : ''}}">
+        <label for="birth-date">Date of birth</label>
+        <input type="text" name="birth_date" class="form-control" id="birth-date" value="{{$user->birth_date ? $user->birth_date : ''}}">
       </div>
     </div>
 
@@ -200,8 +201,17 @@
 
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
 <script>
+
   $(document).ready(function() {
+    //datetiem pciker
+    $('#birth-date').datetimepicker({
+       timepicker:false,
+       format:'Y-m-d'
+    });
+
+    //nlood group select options
     $('#blood-group-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,
@@ -210,9 +220,8 @@
         text: 'Select an option'
       }
     });
-});
 
-  $(document).ready(function() {
+    //religion select options
     $('#religion-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,
@@ -221,20 +230,18 @@
         text: 'Select religion'
       }
     });
-});
 
- $(document).ready(function() {
-  $('#member-select').select2({
-    dropdownCssClass : 'no-search',
-    allowClear: true,
-    placeholder: {
-      id: '0', // the value of the option
-      text: 'Select Member Type'
-    }
-  });
-});
+    //member type select options  
+    $('#member-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Member Type'
+      }
+    });
 
-  $(document).ready(function() {
+    //gender select options  
     $('#gender-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,

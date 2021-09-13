@@ -4,11 +4,11 @@
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="{{url('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link href="{{url('assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{url('assets/libs/css/style.css')}}">
-    <link rel="stylesheet" href="{{url('assets/libs/css/style.css')}}">
-    <link rel="stylesheet" href="{{url('css/frontend/custom.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
+    <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
+
+    <!-- <link rel="stylesheet" href="{{url('css/frontend/custom.css')}}"> -->
     <style>
     html,
     body {

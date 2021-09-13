@@ -7,13 +7,13 @@
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Update your profile</h4>
+    <h2 class="float-left">Update your profile</h2>
   </div>
 </div>
 
 <div class="card">
   <div class="card-header">
-    <h4>Personal Information</h4>
+    <h3>Personal Information</h3>
   </div>
   <div class="card-body">
   <form method="POST" action="{{route('profile.update')}}" enctype="multipart/form-data">
@@ -147,7 +147,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h4>Addresses & Others</h4>
+    <h3>Addresses & Others</h3>
   </div>
   <div class="card-body">
     <div class="form-row">

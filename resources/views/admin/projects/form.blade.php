@@ -1,3 +1,6 @@
+@push('css')
+	<link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
+@endpush
 @extends('layouts.admin.app')
 @section('content')
 <div class="card">
@@ -26,26 +29,15 @@
 					@method('PUT')
 				@endisset
 
-				
-				<label for="photo">Select Image</label>
-				<div class="mb-3">
-		    <div class="input-group">
-		      <div class="input-group-prepend">
-		        <span class="input-group-text">Upload</span>
-		      </div>
-		      <div class="custom-file">
-		        <input type="file" name="photo" class="custom-file-input" id="project-image">
-		        <label class="custom-file-label" for="project-image" id="project-image-label">{{ isset($project->photo) ? $project->photo : 'Choose Photo'}}</label>
-		      </div>
-
-		    </div>
-
-		    @error('photo')
-          <div class="text-danger">
-            <strong>{{$message}}</strong>
-          </div>
-        @enderror
-        </div>
+				<div class="form-group">
+					<label for="video-link">Video Link</label>
+	        <input type="text" name="video_link" class="form-control" id="video-link" value="{{$project->video_link ?? old('video_link') }}">
+	        @error('video_link')
+	          <div class="text-danger">
+	            <strong>{{$message}}</strong>
+	          </div>
+	        @enderror
+				</div>
 
         <div class="form-group">
 	        <label for="header">Project Heading</label>
@@ -55,6 +47,16 @@
 	      <div class="form-group">
 	        <label for="body">Project Detail</label>
 	        <textarea name="body" class="form-control" rows="5" id="body">{{$project->body ?? old('body') }}</textarea>
+	      </div>
+
+	      <div class="form-group">
+	        <label for="location">Project Location</label>
+	        <input type="text" name="location" class="form-control" rows="5" id="location" value="{{$project->location ?? old('location') }}">
+	      </div>
+
+	      <div class="form-group">
+	        <label for="date">Project Date</label>
+	        <input type="text" name="date" class="form-control" rows="5" id="date" value="{{$project->date ?? old('date') }}">
 	      </div>
 
 				<button type="submit" class="btn btn-primary" id="submit" name="submit">
@@ -73,7 +75,12 @@
 </div>
 
 @push('script')
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
+
 <script>
+	$(document).ready(function () {
+		$('#date').datetimepicker();
+	})
  	// Listen for click on toggle checkbox
  	$("#select-all-permissions").click(function(event){
  		if(this.checked) {

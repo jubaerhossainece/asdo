@@ -16,7 +16,7 @@
 
 
         <div class="card ">
-            <div class="card-header text-center"><a href="../index.html"><!-- <img class="logo-img" src="../assets/images/logo.png" alt="logo"> -->Admin Login Form</a><span class="splash-description">Please enter your login information.</span>
+            <div class="card-header text-center"><p><!-- <img class="logo-img" src="../assets/images/logo.png" alt="logo"> -->Admin Login Form</p><span class="splash-description">Please enter your login information.</span>
             </div>
             <div class="card-body">
                 <form action="{{route('asdo.submit')}}" method="post">
@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
-            <div class="card-footer bg-white p-0  ">
+            <div class="card-footer bg-white">
                 <div class="row">
                     <div class="col-sm-12">        
                         <div class="card-footer-item card-footer-item-bordered">

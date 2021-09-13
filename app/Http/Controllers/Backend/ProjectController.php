@@ -58,15 +58,17 @@ class ProjectController extends Controller
         }
 
         $projects = new Project;
-        $projects->photo = $filename_with_ext;
+        $projects->video_link = $request->video_link;
         $projects->header = $request->header;
         $projects->body = $request->body;
+        $projects->location = $request->location;
+        $projects->date = $request->date;
         // $projects->category = $request->category; 
         $result = $projects->save();
 
         if($result){
             $request->session()->flash('alert-success', 'Project detail posted successfully!');
-            return redirect()->route('asdo.projects.index');
+            return redirect()->route('asdo.projects.show');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->route('asdo.projects.create');
@@ -111,7 +113,7 @@ class ProjectController extends Controller
         Gate::authorize('app.projects.edit');
         $project = Project::findOrFail($id);
         $request->validate([
-            'photo' => 'image'
+            'header' => 'required|string',
         ]);
 
         if($request->hasFile('photo')){
@@ -126,14 +128,16 @@ class ProjectController extends Controller
         }
 
         $project->photo = isset($filename_with_ext) ? $filename_with_ext : $project->photo;
+        $project->video_link = $request->video_link;
         $project->header = $request->header;
         $project->body = $request->body;
-        // $slider->category = $request->category; 
+        $project->location = $request->location;
+        $project->date = $request->date;
         $result = $project->save();
 
         if($result){
             $request->session()->flash('alert-success', 'Project detail updated successfully!');
-            return redirect()->route('asdo.projects.index');
+            return redirect()->route('asdo.projects.show');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->route('asdo.projects.edit');

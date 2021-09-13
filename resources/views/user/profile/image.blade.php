@@ -26,7 +26,7 @@
 
 <div class="card">
 	<div class="card-header">
-		<h3>Update profile image</h3>
+		<h2>Update profile image</h2>
 	</div>
 	<div class="card-body">
 		<form action="{{route('photo.update')}}" method="POST" enctype="multipart/form-data">
