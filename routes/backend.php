@@ -73,7 +73,7 @@ Route::resource('projects', ProjectController::class);
 Route::get('/image/projects/{id}', [ProjectFileController::class, 'show'])->name('image.projects.show');
 Route::post('/image/projects', [ProjectFileController::class, 'store'])->name('image.projects.store');
 Route::get('/image/projects/{id}/edit', [ProjectFileController::class, 'edit'])->name('image.projects.edit');
-// Route::get('/image/projects/{id}/edit', [ProjectFileController::class, 'edit'])->name('image.projects.edit');
+Route::get('/image/projects/{id}/fetch', [ProjectFileController::class, 'fetch'])->name('image.projects.fetch');
 Route::put('/image/projects/{id}', [ProjectFileController::class, 'update'])->name('image.projects.update');
 Route::delete('/image/projects/{id}', [ProjectFileController::class, 'destroy'])->name('image.projects.destroy');
 

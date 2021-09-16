@@ -17,7 +17,7 @@
   <div class="card-body">  
     <form action="{{route('asdo.image.projects.store')}}" method="POST" enctype="multipart/form-data" class="dropzone" id="projectDropzone">
       @csrf
-      <input type="hidden" name="project_id" value="{{$project->id}}">
+      <input type="hidden" name="project_id" id="project-id" value="{{$project->id}}">
     </form>
     <button type="submit" id="upload-project-image" class="btn btn-primary"><i class="fas fa-upload mr-2"></i>Upload</button>
   </div>
@@ -27,7 +27,9 @@
     <h3>Uploaded images</h3>
   </div>
   <div class="card-body">
-    
+    <div class="row" id="uploaded-image-section">
+      
+    </div>
   </div>
 </div>
   
@@ -56,16 +58,36 @@
         },
 
         success: function(file, response){
-            //Here you can get your response.
-            console.log(response);
+          show_images();
         }
       }
 
-      function fetch_image(){
+      function show_images(){
+        id = document.getElementById('project-id').value;
+        console.log(id);
         $.ajax({
-          
+          url:"/asdo/image/projects/"+id+"/fetch",
+          success:function(response){
+            console.log(response);
+            alert(response);
+            innerHtml(response);
+          }
+        });
+      }
+
+      function innerHtml(response){
+        showSection = document.getElementById('uploaded-image-section');
+        showSection.innerHTML = "";
+        response.forEach((data) =>{
+          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><button>remove</button></div>";
         })
       }
+
+
+      //function execution after document is ready
+      $(document).ready(function() {
+          show_images();
+      });
     </script>
 @endpush
 @endsection
