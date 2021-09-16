@@ -2,11 +2,13 @@
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
+  <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
 @endpush
 
 <div class="card">
   <div class="card-header">
-    <h4 class="float-left">Edit User Info</h4>
+    <h4 class="float-left">Edit Admin Info</h4>
     <a href="{{route('asdo.admins.index')}}" class="btn btn-secondary float-right">
     <i class="fas fa-arrow-left"></i>
     All Admins</a>
@@ -51,7 +53,7 @@
       <div class="form-group col-md-6">
         <label>Role</label>
         <br>
-        <select name="role_id" id="member-select" style="width: 100%;">
+        <select name="role_id" id="role-select" style="width: 100%;">
           <option value="0"></option>
           @foreach($roles as $role)
           <option value="{{$role->id}}" {{$user->role_id == $role->id ? 'selected' : ''}}>{{$role->name}}</option>
@@ -62,12 +64,29 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="guardian">Father/Husband</label>
-        <input type="text" name="guardian" class="form-control" id="guardian" value="{{$user->guardian ? $user->guardian : ''}}">
+        <label for="father">Father</label>
+        <input type="text" name="father" class="form-control" id="father" value="{{$user->father ? $user->father : ''}}">
       </div>
       <div class="form-group col-md-6">
         <label for="mother">Mother</label>
         <input type="text" name="mother" class="form-control" id="mother" value="{{$user->mother ? $user->mother : ''}}">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="gender">Gender</label>
+        <br>
+        <select name="gender" id="gender-select" id="gender" style="width: 100%;">
+          <option value="0"></option>
+            <option value="Male" {{$user->gender == 'Male' ? 'selected' : ''}}>Male</option>
+            <option value="Female" {{$user->gender == 'Female' ? 'selected' : ''}}>Female</option>
+            <option value="Other" {{$user->gender ==  'Other' ? 'selected' : ''}}>Other</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="husband">Husband</label>
+        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
       </div>
     </div>
 
@@ -79,6 +98,24 @@
       <div class="form-group col-md-6">
         <label for="nidNumber">NID number</label>
         <input type="text" name="nid" class="form-control" id="nidNumber" value="{{$user->nid ? $user->nid : ''}}">
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="birth-date">Date of birth</label>
+        <input type="text" name="birth_date" class="form-control" id="birth-date" value="{{$user->birth_date ? $user->birth_date : ''}}">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Religion</label>
+        <br>
+        <select name="religion" id="religion-select"  style="width: 100%;">
+          <option value="0"></option>
+          @foreach($religions as $religion)
+            <option value="{{$religion->id}}" {{$user->religion == $religion->id ? 'selected' : ''}}>{{$religion->name}}</option>
+           @endforeach
+        </select>
       </div>
     </div>
 
@@ -103,16 +140,6 @@
       <div class="form-group col-md-6">
         <label for="facebookId">Facebook ID</label>
         <input type="url" name="facebook_id" class="form-control" id="facebookId" value="{{$user->facebook_id ? $user->facebook_id : ''}}">
-      </div>
-      <div class="form-group col-md-6">
-        <label>Religion</label>
-        <br>
-        <select name="religion" id="religion-select"  style="width: 100%;">
-          <option value="0"></option>
-          @foreach($religions as $religion)
-            <option value="{{$religion->id}}" {{$user->religion == $religion->id ? 'selected' : ''}}>{{$religion->name}}</option>
-           @endforeach
-        </select>
       </div>
     </div>
   </div>
@@ -161,8 +188,27 @@
 
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
 <script>
+
   $(document).ready(function() {
+    //datetiem pciker
+    $('#birth-date').datetimepicker({
+       timepicker:false,
+       format:'Y-m-d'
+    });
+
+    //role dropdown select options
+    $('#role-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Role'
+      }
+    });
+
+    //nlood group select options
     $('#blood-group-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,
@@ -171,9 +217,8 @@
         text: 'Select an option'
       }
     });
-});
 
-  $(document).ready(function() {
+    //religion select options
     $('#religion-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,
@@ -182,24 +227,21 @@
         text: 'Select religion'
       }
     });
-});
 
- $(document).ready(function() {
-  $('#member-select').select2({
-    dropdownCssClass : 'no-search',
-    allowClear: true,
-    placeholder: {
-      id: '0', // the value of the option
-      text: 'Select Member Type'
-    }
-  });
-});
+    //gender select options  
+    $('#gender-select').select2({
+      dropdownCssClass : 'no-search',
+      allowClear: true,
+      placeholder: {
+        id: '0', // the value of the option
+        text: 'Select Your Gender'
+      }
+    });
+  }); 
 
 document.getElementById("profile-image").onchange = function() {
   document.getElementById("profile-image-label").innerHTML = this.value;
 };
-
-
 </script>
 @endpush
 @endsection

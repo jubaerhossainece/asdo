@@ -27,8 +27,8 @@
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
       <h3><strong> {{$user->name}} </strong></h3>
-      <h4> {{$user->email}}</h5>
-      <h5>Phone : <strong> {{$user->phone}}</strong></h5></h5>
+      @if($user->email)<h4> {{$user->email}}</h4>@endif
+      @if($user->phone)<h4>Phone : <strong> {{$user->phone}}</strong></h4>@endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
       <a href="{{route('asdo.admins.edit', $user->id)}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
@@ -59,12 +59,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Father/Husband</label>
+            <label for="">Father</label>
           </div> 
           <div class="col-sm-8">
-             @if($user->guardian)
-             <span>{{$user->guardian}}</span>
-             @else <span class="text-danger">No husband/father name to show</span>
+             @if($user->father)
+             <span>{{$user->father}}</span>
+             @else <span class="text-danger">No father name to show</span>
              @endif
           </div>
         </div>
@@ -77,6 +77,18 @@
             @if($user->mother)
              <span>{{$user->mother}}</span>
              @else <span class="text-danger">No mother name to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for="">Husband : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->husband)
+             <span>{{$user->husband}}</span>
+             @else <span class="text-danger">No husband name to show</span>
              @endif
           </div>
         </div>
@@ -131,6 +143,18 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
+            <label for=""> Gender : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->gender)
+             <span>{{$user->gender}}</span>
+             @else <span class="text-danger">No gender to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
             <label for=""> Blood Group : </label>
           </div> 
           <div class="col-sm-8">
@@ -146,8 +170,6 @@
 
 
       <div class="col-sm-12 deivider">
-
-
         <div class="row profile-info">
           <div class="col-sm-4">
             <label for="">Nationality : </label>
@@ -156,6 +178,18 @@
             @if($user->nationality)
              <span>{{$user->nationality}}</span>
              @else <span class="text-danger">No nationality to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for=""> Date of birth :</label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->birth_date)
+             <span>{{$user->birth_date}}</span>
+             @else <span class="text-danger">No birth_date to show</span>
              @endif
           </div>
         </div>

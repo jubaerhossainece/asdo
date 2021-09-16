@@ -42,6 +42,11 @@
         <div class="form-group">
 	        <label for="header">Project Heading</label>
 	        <input type="text" name="header" class="form-control" id="header" value="{{$project->header ?? old('header') }}">
+	        @error('header')
+	        	<div class="text-danger">
+	            <strong>{{$message}}</strong>
+	          </div>
+	        @enderror
 	      </div>
 
 	      <div class="form-group">
@@ -94,10 +99,6 @@
  			});
  		}
  	});
-
- 	document.getElementById("project-image").onchange = function() {
-  document.getElementById("project-image-label").innerHTML = this.value;
-};
  </script>
 @endpush
 @endsection

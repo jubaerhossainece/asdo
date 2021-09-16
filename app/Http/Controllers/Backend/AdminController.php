@@ -170,11 +170,13 @@ class AdminController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->guardian = $request->guardian;
+        $user->father = $request->father;
         $user->mother = $request->mother; 
+        $user->husband = $request->husband; 
         $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
         $user->phone = $request->phone; 
         $user->nid = $request->nid;
+        $user->gender = $request->gender; 
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
@@ -183,6 +185,7 @@ class AdminController extends Controller
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;
+        $user->birth_date = $request->birth_date;
         // $user->password = isset($request->password) ? $request->password : $user->password;
         $result = $user->save();
         

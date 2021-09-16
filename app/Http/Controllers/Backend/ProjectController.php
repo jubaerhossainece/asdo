@@ -44,7 +44,7 @@ class ProjectController extends Controller
     {
         Gate::authorize('app.projects.create');
         $request->validate([
-            'photo' => 'required|image'
+            'header' => 'required',
         ]);
 
         if($request->hasFile('photo')){
@@ -57,18 +57,18 @@ class ProjectController extends Controller
             $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
 
-        $projects = new Project;
-        $projects->video_link = $request->video_link;
-        $projects->header = $request->header;
-        $projects->body = $request->body;
-        $projects->location = $request->location;
-        $projects->date = $request->date;
-        // $projects->category = $request->category; 
-        $result = $projects->save();
+        $project = new Project;
+        $project->video_link = $request->video_link;
+        $project->header = $request->header;
+        $project->body = $request->body;
+        $project->location = $request->location;
+        $project->date = $request->date;
+        // $project->category = $request->category; 
+        $result = $project->save();
 
         if($result){
             $request->session()->flash('alert-success', 'Project detail posted successfully!');
-            return redirect()->route('asdo.projects.show');
+            return redirect()->route('asdo.image.projects.show', $project->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->route('asdo.projects.create');
@@ -161,4 +161,5 @@ class ProjectController extends Controller
 
         return redirect()->route('asdo.projects.index')->with('alert-success', 'Project detail removed from database!');
     }
+
 }

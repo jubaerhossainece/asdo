@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CampaignController;
 use App\Http\Controllers\Backend\ProjectController;
+use App\Http\Controllers\Backend\ProjectFileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,17 @@ Route::resource('campaigns', CampaignController::class);
 
 //Rotes for project
 Route::resource('projects', ProjectController::class);
+
+//routes for project images
+Route::get('/image/projects/{id}', [ProjectFileController::class, 'show'])->name('image.projects.show');
+Route::post('/image/projects', [ProjectFileController::class, 'post'])->name('image.projects.store');
+Route::get('/image/projects/{id}/edit', [ProjectFileController::class, 'edit'])->name('image.projects.edit');
+Route::put('/image/projects/{id}', [ProjectFileController::class, 'update'])->name('image.projects.update');
+Route::delete('/image/projects/{id}', [ProjectFileController::class, 'destroy'])->name('image.projects.destroy');
+
+//routes for campaign images
+Route::get('/image/campaigns/{id}', [ProjectFileController::class, 'show'])->name('image.campaigns.show');
+Route::post('/image/campaigns', [ProjectFileController::class, 'post'])->name('image.campaigns.store');
+Route::get('/image/campaigns/{id}/edit', [ProjectFileController::class, 'edit'])->name('image.campaigns.edit');
+Route::put('/image/campaigns/{id}', [ProjectFileController::class, 'update'])->name('image.campaigns.update');
+Route::delete('/image/campaigns/{id}', [ProjectFileController::class, 'destroy'])->name('image.campaigns.destroy');

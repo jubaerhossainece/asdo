@@ -18,11 +18,12 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->foreignId('role_id');
-            $table->string('member_type')->nullable();
             $table->string('phone')->nullable();
-            $table->string('guardian')->nullable();
-            $table->string('nationality')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('father')->nullable();
             $table->string('mother')->nullable();
+            $table->string('husband')->nullable();
+            $table->string('nationality')->nullable();
             $table->string('occupation')->nullable();
             $table->string('religion')->nullable();
             $table->string('education')->nullable();
@@ -34,9 +35,9 @@ class CreateAdminsTable extends Migration
             $table->string('blood_group')->nullable();
             $table->string('photo')->nullable();
             $table->boolean('status')->default(true);
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('birth_date')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
