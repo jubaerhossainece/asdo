@@ -31,21 +31,21 @@
 @endpush
 <div class="card">
   <div class="card-header page-header">
-    <h2 class="float-left">Add photos for this project</h2>
-    <a href="{{route('asdo.projects.index')}}" class="btn btn-secondary">All projects</a>
+    <h2 class="float-left">Add photos for this campaign</h2>
+    <a href="{{route('asdo.campaigns.index')}}" class="btn btn-secondary">All campaigns</a>
   </div>
 </div>
 
 <div class="card">
   <div class="card-header">
-    <h3 class="float-left">{{$project->header}}</h3>
+    <h3 class="float-left">{{$campaign->header}}</h3>
   </div>
   <div class="card-body">  
-    <form action="{{route('asdo.image.projects.store')}}" method="POST" enctype="multipart/form-data" class="dropzone" id="projectDropzone">
+    <form action="{{route('asdo.image.campaigns.store')}}" method="POST" enctype="multipart/form-data" class="dropzone" id="campaignDropzone">
       @csrf
-      <input type="hidden" name="project_id" id="project-id" value="{{$project->id}}">
+      <input type="hidden" name="campaign_id" id="campaign-id" value="{{$campaign->id}}">
     </form>
-    <button type="submit" id="upload-project-image" class="btn btn-primary"><i class="fas fa-upload mr-2"></i>Upload</button>
+    <button type="submit" id="upload-campaign-image" class="btn btn-primary"><i class="fas fa-upload mr-2"></i>Upload</button>
   </div>
 </div>
 <div class="card">
@@ -63,7 +63,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
     <script>
-      Dropzone.options.projectDropzone = {
+      Dropzone.options.campaignDropzone = {
         autoProcessQueue : false,
         acceptedFiles : ".jpg, .jpeg, .gif, .png, .bmp",
         addRemoveLinks: true,
@@ -71,7 +71,7 @@
         parallelUploads: 10,
 
         init:function(){
-          let submitButton = document.querySelector("#upload-project-image");
+          let submitButton = document.querySelector("#upload-campaign-image");
           myDropzone = this;
 
           submitButton.addEventListener('click', function(){
@@ -87,15 +87,16 @@
         },
 
         success: function(file, response){
+        	// console.log(response);
           show_images();
         }
       }
 
       function show_images(){
-        id = document.getElementById('project-id').value;
+        id = document.getElementById('campaign-id').value;
         console.log(id);
         $.ajax({
-          url:"/asdo/image/projects/"+id+"/fetch",
+          url:"/asdo/image/campaigns/"+id+"/fetch",
           success:function(response){
             innerHtml(response);
           }
@@ -106,14 +107,14 @@
         showSection = document.getElementById('uploaded-image-section');
         showSection.innerHTML = "";
         response.forEach((data) =>{
-          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><div><button type='submit' class='btn btn-remove' onclick='remove_image("+data.id+")' id='"+data.id+"'>remove</button></div></div>";
+          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/campaigns/"+data.file_name+"' class='img-fluid'><div><button type='submit' class='btn btn-remove' onclick='remove_image("+data.id+")' id='"+data.id+"'>remove</button></div></div>";
         })
       }
 
       function remove_image(id){
         $.ajax({
           type:'GET',
-          url:"/asdo/image/projects/"+id+"/delete",
+          url:"/asdo/image/campaigns/"+id+"/delete",
           success:function(response){
             // alert(response);
             show_images();

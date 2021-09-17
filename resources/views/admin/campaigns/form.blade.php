@@ -1,11 +1,14 @@
+@push('css')
+	<link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
+@endpush
 @extends('layouts.admin.app')
 @section('content')
 <div class="card">
 	<div class="card-header page-header">
 			<h2 class="page-title">
-				{{isset($slider) ? 'Edit' : 'Add New'}} Slider Image
+				{{isset($campaign) ? 'Edit' : 'Add New'}} Campaign Detail
 			</h2>
-			<a href="{{route('asdo.sliders.index')}}" class="btn btn-secondary float-right">
+			<a href="{{route('asdo.campaigns.index')}}" class="btn btn-secondary float-right">
 				<i class="fas fa-arrow-circle-left"></i>
 				Back to list
 			</a>
@@ -17,53 +20,58 @@
 	<div class="col-md-12">
 		<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">{{isset($slider) ? 'Edit' : 'Upload New'}} Slider Image</h3>
+			<h3 class="card-title">{{isset($campaign) ? 'Edit' : 'Add New'}} Campaign Detail</h3>
+			@if(isset($campaign)) <a href="{{route('asdo.image.campaigns.show', $campaign->id)}}" class="btn btn-primary">Gallery</a>@endif
 		</div>
 		<div class="card-body">
-			<form action="{{isset($slider) ? route('asdo.sliders.update', $slider->id) : route('asdo.sliders.store')}}" method="POST" enctype="multipart/form-data">
+			<form action="{{isset($campaign) ? route('asdo.campaigns.update', $campaign->id) : route('asdo.campaigns.store')}}" method="POST" enctype="multipart/form-data">
 				@csrf
-				@isset($slider)
+				@isset($campaign)
 					@method('PUT')
 				@endisset
 
-				
-				<label for="photo">Select Image</label>
-				<div class="mb-3">
-		    <div class="input-group">
-		      <div class="input-group-prepend">
-		        <span class="input-group-text">Upload</span>
-		      </div>
-		      <div class="custom-file">
-		        <input type="file" name="photo" class="custom-file-input" id="slider-image">
-		        <label class="custom-file-label" for="slider-image" id="slider-image-label">{{ isset($slider->photo) ? $slider->photo : 'Choose Photo'}}</label>
-		      </div>
-
-		    </div>
-
-		    @error('photo')
-          <div class="text-danger">
-            <strong>{{$message}}</strong>
-          </div>
-        @enderror
-        </div>
+				<div class="form-group">
+					<label for="video-link">Video Link</label>
+	        <input type="text" name="video_link" class="form-control" id="video-link" value="{{$campaign->video_link ?? old('video_link') }}">
+	        @error('video_link')
+	          <div class="text-danger">
+	            <strong>{{$message}}</strong>
+	          </div>
+	        @enderror
+				</div>
 
         <div class="form-group">
-	        <label for="caption_header">Caption Header</label>
-	        <input type="text" name="caption_header" class="form-control" id="caption_header" value="{{$slider->caption_header ?? old('caption_header') }}">
+	        <label for="header">Project Heading</label>
+	        <input type="text" name="header" class="form-control" id="header" value="{{$campaign->header ?? old('header') }}">
+	        @error('header')
+	        	<div class="text-danger">
+	            <strong>{{$message}}</strong>
+	          </div>
+	        @enderror
 	      </div>
 
 	      <div class="form-group">
-	        <label for="caption_text">Caption Text</label>
-	        <input type="text" name="caption_text" class="form-control" id="caption_text" value="{{$slider->caption_text ?? old('caption_text') }}">
+	        <label for="body">Project Detail</label>
+	        <textarea name="body" class="form-control" rows="5" id="body">{{$campaign->body ?? old('body') }}</textarea>
+	      </div>
+
+	      <div class="form-group">
+	        <label for="location">Project Location</label>
+	        <input type="text" name="location" class="form-control" rows="5" id="location" value="{{$campaign->location ?? old('location') }}">
+	      </div>
+
+	      <div class="form-group">
+	        <label for="date">Project Date</label>
+	        <input type="text" name="date" class="form-control" rows="5" id="date" value="{{$campaign->date ?? old('date') }}">
 	      </div>
 
 				<button type="submit" class="btn btn-primary" id="submit" name="submit">
-					@isset($slider)
+					@isset($campaign)
 					 <i class="fas fa-arrow-circle-up mr-1"></i>
 					 Update
 					@else
 					<i class="fas fa-plus-circle mr-1"></i>
-					Upload Image
+						Create Project
 					@endisset
 				</button>
 			</form>
@@ -73,24 +81,12 @@
 </div>
 
 @push('script')
-<script>
- 	// Listen for click on toggle checkbox
- 	$("#select-all-permissions").click(function(event){
- 		if(this.checked) {
- 			// Iterate eache checkbox
- 			$(':checkbox').each(function() {
- 				this.checked = true;
- 			});
- 		}else{
- 			$(':checked').each(function() {
- 				this.checked = false;
- 			});
- 		}
- 	});
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
 
- 	document.getElementById("slider-image").onchange = function() {
-  document.getElementById("slider-image-label").innerHTML = this.value;
-};
+<script>
+	$(document).ready(function () {
+		$('#date').datetimepicker();
+	})
  </script>
 @endpush
 @endsection

@@ -87,19 +87,6 @@
 	$(document).ready(function () {
 		$('#date').datetimepicker();
 	})
- 	// Listen for click on toggle checkbox
- 	$("#select-all-permissions").click(function(event){
- 		if(this.checked) {
- 			// Iterate eache checkbox
- 			$(':checkbox').each(function() {
- 				this.checked = true;
- 			});
- 		}else{
- 			$(':checked').each(function() {
- 				this.checked = false;
- 			});
- 		}
- 	});
  </script>
 @endpush
 @endsection

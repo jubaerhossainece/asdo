@@ -2,8 +2,8 @@
 @section('content')
 <div class="card">
 	<div class="card-header header">
-		<h2 class="card-title">Slider images Panel</h2>
-		<a href="{{route('asdo.sliders.create')}}" class="btn btn-primary float-right">
+		<h2 class="card-title">Campaign management panel</h2>
+		<a href="{{route('asdo.campaigns.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle pr-1"></i>
 		Add New</a>
 	</div>
@@ -14,40 +14,36 @@
 					<table id="rolesTable" class="table table-hover align-middle mb-0">
 						<thead>
 							<tr>
-							<th class="text-center">#</th>
-							<th class="text-center">Image</th>
-							<th class="text-center">category</th>
-							<th class="text-center">Caption Header</th>
+								<th class="text-center">#</th>
+								<th class="text-center">Caption Header</th>
+								<th class="text-center">Location</th>
 
-							<th class="text-center">Action</th>
+								<th class="text-center">Action</th>
 
-						</tr>
+							</tr>
 						</thead>
 						<tbody>
-							@foreach($sliders as $key => $slider)
+							@foreach($campaigns as $campaign)
 								<tr>
 									<td class="text-center">{{$loop->index+1}}</td>
-									<td class="text-center"><img src="{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}" alt="" style="height: 100px; width: auto;"></td>
+									<td class="text-center">{{$campaign->header}}</td>
 									<td class="text-center">
-										{{$slider->category}}
+										{{$campaign->location}}
 									</td>
-									<th class="text-center">{{$slider->caption_header}}</th>
-
-
 									<td class="text-center">
 
-										<a href="{{route('asdo.sliders.edit', $slider->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit slider image">
+										<a href="{{route('asdo.campaigns.edit', $campaign->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit campaign post">
 											<i class="fas fa-edit"></i>
 										</a>
 
-				    				<a href="{{route('asdo.sliders.show', $slider->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show slider image information" >
+				    				<a href="{{route('asdo.campaigns.show', $campaign->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show campaign information" >
 				    					<i class="fas fa-eye"></i>
 				    				</a>
 
-										<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$slider->id}}" data-placement="bottom" title="Delete slider image" onclick="deleteData({{$slider->id}})" class="btn btn-danger btn-sm">
+										<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$campaign->id}}" data-placement="bottom" title="Delete campaign information" onclick="deleteData({{$campaign->id}})" class="btn btn-danger btn-sm">
 											<i class="fas fa-trash-alt"></i>
 										</button>
-										<form action="{{route('asdo.sliders.destroy', $slider->id)}}" method="POST" style="display: none;" id="submit-delete-{{$slider->id}}">
+										<form action="{{route('asdo.campaigns.destroy', $campaign->id)}}" method="POST" style="display: none;" id="submit-delete-{{$campaign->id}}">
 											@csrf
 											@method('DELETE')
 										</form>

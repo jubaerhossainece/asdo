@@ -115,10 +115,10 @@ class ProjectController extends Controller
 
         if($result){
             $request->session()->flash('alert-success', 'Project detail updated successfully!');
-            return redirect()->route('asdo.projects.show');
+            return redirect()->back();
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.projects.edit');
+            return redirect()->back();
         }
     }
 

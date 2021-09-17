@@ -72,14 +72,11 @@ Route::resource('projects', ProjectController::class);
 //routes for project images
 Route::get('/image/projects/{id}', [ProjectFileController::class, 'show'])->name('image.projects.show');
 Route::post('/image/projects', [ProjectFileController::class, 'store'])->name('image.projects.store');
-Route::get('/image/projects/{id}/edit', [ProjectFileController::class, 'edit'])->name('image.projects.edit');
 Route::get('/image/projects/{id}/fetch', [ProjectFileController::class, 'fetch'])->name('image.projects.fetch');
-Route::put('/image/projects/{id}', [ProjectFileController::class, 'update'])->name('image.projects.update');
 Route::get('/image/projects/{id}/delete', [ProjectFileController::class, 'destroy'])->name('image.projects.destroy');
 
 //routes for campaign images
 Route::get('/image/campaigns/{id}', [CampaignFileController::class, 'show'])->name('image.campaigns.show');
 Route::post('/image/campaigns', [CampaignFileController::class, 'store'])->name('image.campaigns.store');
-Route::get('/image/campaigns/{id}/edit', [CampaignFileController::class, 'edit'])->name('image.campaigns.edit');
-Route::put('/image/campaigns/{id}', [CampaignFileController::class, 'update'])->name('image.campaigns.update');
-Route::delete('/image/campaigns/{id}', [CampaignFileController::class, 'destroy'])->name('image.campaigns.destroy');
+Route::get('/image/campaigns/{id}/fetch', [CampaignFileController::class, 'fetch'])->name('image.campaigns.fetch');
+Route::get('/image/campaigns/{id}/delete', [CampaignFileController::class, 'destroy'])->name('image.campaigns.destroy');
