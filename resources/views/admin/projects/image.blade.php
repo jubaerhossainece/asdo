@@ -102,7 +102,18 @@
         showSection = document.getElementById('uploaded-image-section');
         showSection.innerHTML = "";
         response.forEach((data) =>{
-          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><div><button type='submit' class='btn btn-remove'>remove</button></div></div>";
+          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><div><button type='submit' class='btn btn-remove' onclick='remove_image("+data.id+")' id='"+data.id+"'>remove</button></div></div>";
+        })
+      }
+
+      function remove_image(id){
+        $.ajax({
+          type:'GET',
+          url:"/asdo/image/projects/"+id+"/delete",
+          success:function(response){
+            // alert(response);
+            show_images();
+          }
         })
       }
 

@@ -72,4 +72,21 @@ class ProjectFileController extends Controller
                 ->get();
         return response()->json($images);
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $image = ProjectFile::findOrFail($id);
+
+        $path = 'public/asdo/images/projects/';
+        Storage::delete($path.$image->file_name);
+        $image->delete();
+        return response()->json('deleted');
+    }
 }
