@@ -131,7 +131,9 @@
             <div class="mission-box">
               <i class="fas fa-utensils"></i>
               <h2>Food</h2>
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing sit amet consectetur adipisicing.</span>
+              <span>
+                আলোকিত সামাজিক উন্নয়ন সংস্থা aims at evacuationg hunger and malnutrition from the the locality and tirelessly work for it. The majority of the people of Sripur are very poor and some are so poor that they cannot even provide two meals a day. Continuous monetary support is given to them alongside the food reliefs that are distributed among the needy people on a regular basis. Even livestock, poultry and other sources of earning a livelihood are also provided.
+              </span>
             </div>
           </div>
 
@@ -139,7 +141,9 @@
             <div class="mission-box">
               <i class="fas fa-medkit"></i>
               <h2>Treatment</h2>
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing sit amet consectetur adipisicing.</span>
+              <span>
+                আলোকিত সামাজিক উন্নয়ন সংস্থা has been working for providing treatment facilities to the people of Sripur more than any other government and non-governmnet organization. They take people from all walks of life into consideration and utterly believe that no one should die without treatment. They take modern medical science in account, provide monetary support and medicine support and arrange countless awareness activities.
+              </span>
             </div>
           </div>
 
@@ -147,7 +151,9 @@
             <div class="mission-box">
               <i class="fas fa-home"></i>
               <h2>Shelter</h2>
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing sit amet consectetur adipisicing.</span>
+              <span>
+                The sufferings of shelterless, homeless people are none like any other. আলোকিত সামাজিক উন্নয়ন সংস্থা has been trying to eradicate such helplessness and do whatever it takes to ensure everyone a shelter to live in the region of Sripur for years. They have done a lot for the homeless people and also got a lot ahead in this venture, but they haven’t paused their activities, on the contrary, their activities are in aviation. 
+              </span>
             </div>
           </div>
 
@@ -155,7 +161,9 @@
             <div class="mission-box">
               <i class="fas fa-book-reader"></i>
               <h2>Education</h2>
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing sit amet consectetur adipisicing.</span>
+              <span>
+                আলোকিত সামাজিক উন্নয়ন সংস্থা is very well know for the widespreding of education in Sripur. To ensure education to the lay people of Sripur আলোকিত সামাজিক উন্নয়ন সংস্থা continioiusly anranges and hasts different events. Provides stipends to the needy, provides free books,provides free stationary equipment for education, launches different educational programs. Alokito School is the most prominent school in Sripur, which is well known throughout Magura for its exceptional way of educating. Also Alokito Parul Smriti Pathagar is the largest library in Sripur, which is another empowering step by আলোকিত সামাজিক উন্নয়ন সংস্থা.
+              </span>
             </div>
           </div>
         </div>
