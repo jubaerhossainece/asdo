@@ -3,6 +3,31 @@
 @push('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css">
   <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
+  <style type="text/css">
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid lightgray;
+        border-radius: 5px;
+        height: 150px;
+    }
+
+    .col-md-3.col-sm-2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .btn.btn-remove{
+      margin-top: 10px;
+      padding: 4px 15px;
+      color: #5969ff;
+    }
+
+    .btn.btn-remove:hover{
+      text-decoration: underline;
+      color: rgb(37 52 158);
+    }
+  </style>
 @endpush
 <div class="card">
   <div class="card-header page-header">
@@ -68,8 +93,6 @@
         $.ajax({
           url:"/asdo/image/projects/"+id+"/fetch",
           success:function(response){
-            console.log(response);
-            alert(response);
             innerHtml(response);
           }
         });
@@ -79,7 +102,7 @@
         showSection = document.getElementById('uploaded-image-section');
         showSection.innerHTML = "";
         response.forEach((data) =>{
-          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><button>remove</button></div>";
+          showSection.innerHTML += "<div class='col-md-3 col-sm-2'><img src='/storage/asdo/images/projects/"+data.file_name+"' class='img-fluid'><div><button type='submit' class='btn btn-remove'>remove</button></div></div>";
         })
       }
 

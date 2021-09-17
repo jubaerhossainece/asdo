@@ -54,7 +54,7 @@ class ProjectController extends Controller
             $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'project-photo'.time().'.'.$extension;
-            $request->file('photo')->storeAs($path, $filename_with_ext);    
+            $request->file('photo')->storeAs($path, $filename_with_ext);
         }
 
         $project = new Project;
@@ -67,11 +67,9 @@ class ProjectController extends Controller
         $result = $project->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Project detail posted successfully!');
-            return redirect()->route('asdo.image.projects.show', $project->id);
+            return redirect()->route('asdo.image.projects.show', $project->id)->with('alert-success', 'Project detail posted successfully!');
         }else{
-            $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('asdo.projects.create');
+            return redirect()->route('asdo.projects.create')->with('alert-danger', 'Something went wrong!');
         }
     }
 

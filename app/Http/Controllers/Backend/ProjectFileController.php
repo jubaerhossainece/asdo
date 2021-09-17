@@ -67,7 +67,7 @@ class ProjectFileController extends Controller
     public function fetch($id)
     {
         $images = DB::table('project_files')
-                ->where('id', $id)
+                ->where('project_id', $id)
                 ->select('id', 'file_name')
                 ->get();
         return response()->json($images);
