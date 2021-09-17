@@ -21,6 +21,7 @@
 		<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">{{isset($project) ? 'Edit' : 'Add New'}} Project Detail</h3>
+			@if(isset($project)) <a href="{{route('asdo.image.projects.show', $project->id)}}" class="btn btn-primary">Gallery</a>@endif
 		</div>
 		<div class="card-body">
 			<form action="{{isset($project) ? route('asdo.projects.update', $project->id) : route('asdo.projects.store')}}" method="POST" enctype="multipart/form-data">

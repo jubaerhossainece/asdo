@@ -32,6 +32,7 @@
 <div class="card">
   <div class="card-header page-header">
     <h2 class="float-left">Add photos</h2>
+    <a href="{{route('asdo.projects.index')}}" class="btn btn-secondary">All projects</a>
   </div>
 </div>
 
@@ -65,6 +66,9 @@
       Dropzone.options.projectDropzone = {
         autoProcessQueue : false,
         acceptedFiles : ".jpg, .jpeg, .gif, .png, .bmp",
+        addRemoveLinks: true,
+        uploadMultiple: true,
+        parallelUploads: 10,
 
         init:function(){
           let submitButton = document.querySelector("#upload-project-image");

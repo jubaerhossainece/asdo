@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\ProjectFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
@@ -46,16 +47,6 @@ class ProjectController extends Controller
         $request->validate([
             'header' => 'required',
         ]);
-
-        if($request->hasFile('photo')){
-            $path = 'public/asdo/images/projects';
-            $file= $request->file('photo');
-            $photo_name = $file->getClientOriginalName();
-            $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'project-photo'.time().'.'.$extension;
-            $request->file('photo')->storeAs($path, $filename_with_ext);
-        }
 
         $project = new Project;
         $project->video_link = $request->video_link;
@@ -110,22 +101,11 @@ class ProjectController extends Controller
     {
         Gate::authorize('app.projects.edit');
         $project = Project::findOrFail($id);
+
         $request->validate([
             'header' => 'required|string',
         ]);
 
-        if($request->hasFile('photo')){
-            $path = 'public/asdo/images/projects';
-            $file= $request->file('photo');
-            $photo_name = $file->getClientOriginalName();
-            $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'project-photo'.time().'.'.$extension;
-            $request->file('photo')->storeAs($path, $filename_with_ext);   
-            Storage::delete('public/asdo/images/projects/'.$project->photo); 
-        }
-
-        $project->photo = isset($filename_with_ext) ? $filename_with_ext : $project->photo;
         $project->video_link = $request->video_link;
         $project->header = $request->header;
         $project->body = $request->body;
@@ -152,10 +132,17 @@ class ProjectController extends Controller
     {
         Gate::authorize('app.projects.destroy');
         $project = Project::findOrFail($id);
-        $project->delete();
-        if(isset($project->photo)){
-            Storage::delete('public/asdo/images/projects/'.$project->photo);            
+        $images = ProjectFile::where('project_id', $project->id)
+                                ->get();
+         
+        if(count($images) > 0){
+            for($i = 0; $i < count($images); $i++){
+                $images[$i]->file_name;
+                Storage::delete('public/asdo/images/projects/'.$images[$i]->file_name);
+                $images[$i]->delete();
+            }
         }
+        $project->delete();
 
         return redirect()->route('asdo.projects.index')->with('alert-success', 'Project detail removed from database!');
     }

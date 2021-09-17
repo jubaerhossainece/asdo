@@ -34,21 +34,28 @@ class ProjectFileController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function store(Request $request)
-    { 
-        if($request->hasFile('file')){
-            $path = 'public/asdo/images/projects';
-            $file= $request->file('file');
-            $photo_name = $file->getClientOriginalName();
-            $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = time().'.'.$extension;
-            $request->file('file')->storeAs($path, $filename_with_ext);    
-        }
+    {
+        $photos = $request->file('file');
+            //      $photo_name = $photo->getClientOriginalName();
 
-        $file = new ProjectFile;
-        $file->project_id = $request->project_id;
-        $file->file_name = $filename_with_ext;
-        $result = $file->save();
+            // return response()->json($photo_name);
+
+        if($request->hasFile('file')){
+            for($i = 0; $i < count($photos); $i++ ){
+                $path = 'public/asdo/images/projects';
+                $file= $photos[$i];
+                $photo_name = $file->getClientOriginalName();
+                $filename_without_ext = pathinfo($photo_name, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename_with_ext = time().$i.'.'.$extension;
+                $photos[$i]->storeAs($path, $filename_with_ext);    
+
+                $image = new ProjectFile;
+                $image->project_id = $request->project_id;
+                $image->file_name = $filename_with_ext;
+                $result = $image->save();
+            }
+        }
 
         if($result){
             return response()->json(true);
