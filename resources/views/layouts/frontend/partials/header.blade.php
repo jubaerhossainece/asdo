@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" href="/about">About</a>
+                      <a class="nav-link" href="{{route('home.about')}}">About</a>
                     </li>
 
                     <!-- <li class="nav-item dropdown">
@@ -50,7 +50,7 @@
                     </li> -->
 
                     <li class="nav-item">
-                      <a class="nav-link" href="school">Alokito School</a>
+                      <a class="nav-link" href="{{route('home.school')}}">Alokito School</a>
                     </li>
 
                     <!-- <li class="nav-item">
@@ -58,7 +58,7 @@
                     </li> -->
 
                     <li class="nav-item">
-                      <a class="nav-link" href="/contact">Contacts</a>
+                      <a class="nav-link" href="{{route('home.contact')}}">Contacts</a>
                     </li>
 
                     <li class="nav-item">

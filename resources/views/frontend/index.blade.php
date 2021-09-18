@@ -36,20 +36,17 @@
             <li data-bs-target="#mainCarousel" data-bs-slide-to="2"></li>
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item active">
+            @foreach($sliders as $slider)
+            <div class="carousel-item @if($loop->index == 1) active @endif">
               <div
                 class="slide-image"
-                style="background-image: url('{{asset('assets/images/frontend/sliders/slider-1.jpg')}}')"
+                style="background-image: url('{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}')"
               ></div>
               <div class="container c-item-box">
                 <div class="col-md-7 col-sm-8 slider-title">
-                  <h1>Lorem ipsum dolor, sit amet consectetur.</h1>
+                  <h1>{{$slider->caption_header}}</h1>
                   <h6>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione odio magnam reprehenderit 
-                    vitae totam quidem doloremque id reiciendis commodi tempore, repudiandae voluptatem 
-                    quibusdam esse laudantium quia tenetur fuga culpa aliquam harum inventore non eius animi 
-                    placeat. Magni voluptatem dolore eaque eius, voluptate sed architecto, omnis blanditiis 
-                    excepturi enim nostrum officia?
+                    {{$slider->caption_text}}
                   </h6>
                   <p>
                     <a href="" class="btn btn-large donate-btn">Donate</a>
@@ -57,49 +54,7 @@
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div
-                class="slide-image"
-                style="background-image: url('{{asset('assets/images/frontend/sliders/slider-2.jpg')}}')"
-              ></div>
-              <div class="container c-item-box">
-                <div class="col-md-7 col-sm-8 slider-title">
-                  <h1>Lorem ipsum dolor, sit amet con elit.</h1>
-                  <h6>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione odio magnam reprehenderit 
-                    vitae totam quidem doloremque id reiciendis commodi tempore, repudiandae voluptatem 
-                    quibusdam esse laudantium quia tenetur fuga culpa aliquam harum inventore non eius animi 
-                    placeat. Magni voluptatem dolore eaque eius, voluptate sed architecto, omnis blanditiis 
-                    excepturi enim nostrum officia?
-                  </h6>
-                  <p>
-                    <a href="" class="btn btn-large donate-btn">Donate</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div
-                class="slide-image"
-                style="background-image: url('{{asset('assets/images/frontend/sliders/slider-3.jpg')}}')"
-              ></div>
-              <div class="container c-item-box">
-                <div class="col-md-7 col-sm-8 slider-title">
-                  <h1>Lorem ipsum dolor, snsectetur adipisicing elit.</h1>
-                  <h6>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, 
-                    nemo veniam! Eum dolor officiis natus qui voluptatem deserunt 
-                    ipsum aspernatur! Tenetur labore, praesentium nobis iure repudiandae facere! Odit corrupti 
-                    quam deserunt omnis! In saepe nihil mollitia rerum aperiam ea sint officia rem dolore! 
-                    Temporibus reiciendis quasi ipsum ducimus facere repellat libero iste exercitationem! 
-                    Nobis eos consequatur, aut accusantium perferendis at voluptates sed maiores odit in! Unde 
-                  </h6>
-                  <p>
-                    <a href="" class="btn btn-large donate-btn">Donate</a>
-                  </p>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
           <a href="#mainCarousel" class="carousel-control-prev" type="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -342,12 +297,15 @@
               regularly
             </p>
             
-            <form method="POST" action="" id="subscriber_form" novalidate="novalidate">
+            <form method="POST" action="{{route('subscribers.store')}}" id="subscriber_form" novalidate="novalidate" onsubmit="subscribe(event)">
               <div>
               <input class="form-control" type="email" name="email" required="" placeholder="Email address" aria-required="true">
               <button type="submit" class="btn theme-btn" id="subs-submit-btn">Subscribe</button>
               </div>
             </form>
+            <div id="message">
+              
+            </div>
           </div>
           <div class="hNewslwtter-btn col-md-6">
             
@@ -357,6 +315,39 @@
     </section>
     <!--Content Area end-->
 @push('script')
-  
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    //function to add subscribers email to subscribers table
+     function subscribe(event){
+      event.preventDefault();
+        let form = document.getElementById('subscriber_form');
+        let formData = $(form).serialize();
+        
+        $.ajax({
+          url: $(form).attr('action'),
+          type: $(form).attr('method'),
+          data: formData,
+          processData: false,
+          success: function (data) {
+              console.log(data);
+              let message = document.getElementById("message");
+              message.innerHTML = "";
+              message.innerHTML += "<div class='text-success'><strong>" + data[1] + "</strong></div>";
+          },
+          error: function(error){
+              console.log(error.responseJSON.errors.email);
+              let message = document.getElementById("message");
+              message.innerHTML = "";
+              message.innerHTML += "<div class='text-danger'><strong>" + error.responseJSON.errors.email + "</strong></div>";
+          }
+        });
+     }
+  </script>
 @endpush    
 @endsection

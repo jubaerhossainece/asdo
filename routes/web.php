@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\VolunteerLoginController;
 use App\Http\Controllers\Auth\AdminForgotPasswordController;
 use App\Http\Controllers\Auth\AdminResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\SubscriberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +21,13 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 //rouytes for frontend pages
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/about', [HomeController::class, 'about'])->name('home.about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('alokito-school', [HomeController::class, 'school'])->name('home.school');
 
-Route::get('/about', function () {
-    return view('frontend.about');
-});
-
-Route::get('/contact', function () {
-    return view('frontend.contact');
-});
-
-Route::get('/projects', function () {
-    return view('frontend.about');
-});
+//routes for subscribers
+Route::post('subscribers', [SubscriberController::class, 'store'])->name('subscribers.store');
 
 Auth::routes();
 
