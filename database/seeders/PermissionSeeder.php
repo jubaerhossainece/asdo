@@ -85,36 +85,36 @@ class PermissionSeeder extends Seeder
         ]);
 
         //User management permissions
-        $moduleAppUser = Module::updateOrCreate(['name' => 'User Management']);
+        $moduleAppUser = Module::updateOrCreate(['name' => 'Member Management']);
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppUser->id,
-        	'name' => 'Access Users',
-        	'slug' => 'app.users.index'
+        	'name' => 'Access Members',
+        	'slug' => 'app.members.index'
         ]);
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppUser->id,
-        	'name' => 'Create User',
-        	'slug' => 'app.users.create'
+        	'name' => 'Create Member',
+        	'slug' => 'app.members.create'
         ]);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppUser->id,
-            'name' => 'Show User',
-            'slug' => 'app.users.show'
+            'name' => 'Show Member',
+            'slug' => 'app.members.show'
         ]);
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppUser->id,
-        	'name' => 'Edit User',
-        	'slug' => 'app.users.edit'
+        	'name' => 'Edit Member',
+        	'slug' => 'app.members.edit'
         ]);
 
         Permission::updateOrCreate([
         	'module_id' => $moduleAppUser->id,
-        	'name' => 'Delete User',
-        	'slug' => 'app.users.destroy'
+        	'name' => 'Delete Member',
+        	'slug' => 'app.members.destroy'
         ]);
 
 

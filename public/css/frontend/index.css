@@ -316,6 +316,7 @@ marquee.news-scroll a {
   }
   .hActivity-inner-img img {
     width: 100%;
+    height: 240px;
   }
   .hActivity-inner-txt {
     background-color: #ffffff;

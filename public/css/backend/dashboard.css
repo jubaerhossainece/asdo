@@ -1,0 +1,39 @@
+.card-widget{
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+.card-widget {
+    padding: 1.5rem;
+    border-radius: 50rem;
+    background: #fff;
+    -webkit-box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    justify-content: space-between;
+}
+
+.card-widget-body h3 {
+    color: black;
+    font-weight: 600;
+}
+
+.card-widget-icon i {
+    font-size: 35px;
+}
+
+.indigo {
+    color: #6610f2 !important;
+}
+
+.green {
+    color: #35b653 !important;
+}
+
+.blue {
+    color: #0d6efd !important;
+}
+
+.orange {
+    color: #fe696a !important;
+}

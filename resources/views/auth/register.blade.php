@@ -48,7 +48,10 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="password" class="form-label">Password</label>
+                  <label for="password" class="form-label"><span>Password</span>
+                  </br>
+                    <small id="phoneHelp" class="form-text text-muted">(Minimum 6 characters)</small>
+                  </label>
                   <input type="password" class="form-control" name="password" id="password" >
                   @error('password')
                     <div class="text-danger">

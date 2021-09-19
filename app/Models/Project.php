@@ -11,11 +11,11 @@ class Project extends Model
     use HasFactory;
 
     public function projectFiles(){
-        return $this->hasMany(ProjectFile::class, 'project_id', 'id');
+        return $this->hasMany(ProjectFile::class);
     }
 
     //to retrieve the latest instance of ProjectFile model
     public function latestFile(){
-        return $this->hasOne(ProjectFile::class)->latestOfMany();
+        return $this->hasOne(ProjectFile::class)->latest('id');
     }
 }

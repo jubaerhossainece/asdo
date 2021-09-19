@@ -61,7 +61,10 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="password">Password</label>
+        <label for="password">
+          Password
+          </br>
+          <small id="phoneHelp" class="form-text text-muted">(Minimum 8 characters)</small></label>
         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password">
         @error('password')
           <div class="text-danger">

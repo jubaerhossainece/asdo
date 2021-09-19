@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Project;
-use App\Models\ProjectFile;
-use App\Models\Admin;
 
 class HomeController extends Controller
 {
@@ -21,8 +19,6 @@ class HomeController extends Controller
     {
 
         $sliders = Slider::all();
-        $project = Project::find(7);
-        return $project->latestFile;
         $projects = Project::orderBy('date', 'desc')->limit(6)->get();
 
         return view('frontend.index', compact('sliders', 'projects'));

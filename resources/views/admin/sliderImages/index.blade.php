@@ -3,9 +3,11 @@
 <div class="card">
 	<div class="card-header header">
 		<h2 class="card-title">Slider images Panel</h2>
+		@can(app.sliders.index)
 		<a href="{{route('asdo.sliders.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle pr-1"></i>
 		Add New</a>
+		@endcan
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -18,8 +20,9 @@
 							<th class="text-center">Image</th>
 							<th class="text-center">category</th>
 							<th class="text-center">Caption Header</th>
-
+							@canany(['app.sliders.show', 'app.sliders.edit',  'app.sliders.destroy'])
 							<th class="text-center">Action</th>
+							@endcanany
 
 						</tr>
 						</thead>
@@ -35,15 +38,19 @@
 
 
 									<td class="text-center">
-
+										@can(app.sliders.edit)
 										<a href="{{route('asdo.sliders.edit', $slider->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit slider image">
 											<i class="fas fa-edit"></i>
 										</a>
+										@endcan
 
+										@can(app.sliders.show)
 				    				<a href="{{route('asdo.sliders.show', $slider->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show slider image information" >
 				    					<i class="fas fa-eye"></i>
 				    				</a>
+				    				@endcan
 
+				    				@can(app.sliders.destroy)
 										<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$slider->id}}" data-placement="bottom" title="Delete slider image" onclick="deleteData({{$slider->id}})" class="btn btn-danger btn-sm">
 											<i class="fas fa-trash-alt"></i>
 										</button>
@@ -51,6 +58,7 @@
 											@csrf
 											@method('DELETE')
 										</form>
+										@endcan
 
 									</td>
 

@@ -4,9 +4,11 @@
 <div class="card">
 	<div class="card-header header">
 		<h5 class="card-title">Admin Panel</h5>
+		@can('app.admins.create')
 		<a href="{{route('asdo.admins.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle pr-1"></i>
 		Create New</a>
+		@endcan
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -20,8 +22,9 @@
 							<th class="text-center">Role</th>
 							<th class="text-center">Status</th>
 							<th class="text-center">Last Updated</th>
-
+							@canany(['app.admins.show', 'app.admins.edit',  'app.admins.destroy'])
 							<th class="text-center">Action</th>
+							@endcanany
 
 						</tr>
 						</thead>
@@ -52,27 +55,30 @@
 									</td>
 									
 									<td class="text-center">{{\Carbon\Carbon::parse($admin->updated_at)->diffForHumans()}}</td>
+									<td class="text-center">
+										@can('app.admins.edit')
+										<a href="{{route('asdo.admins.edit', $admin->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit information">
+											<i class="fas fa-edit"></i>
+										</a>
+										@endcan
 
+										@can('app.admins.show')
+				    				<a href="{{route('asdo.admins.show', $admin->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
+				    					<i class="fas fa-eye"></i>
+				    				</a>
+				    				@endcan
 
-										<td class="text-center">
+				    				@can('app.admins.destroy')
+										<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$admin->id}}" data-placement="bottom" title="Delete from admin panel" onclick="deleteData({{$admin->id}})" class="btn btn-danger btn-sm">
+											<i class="fas fa-trash-alt"></i>
+										</button>
+										<form action="{{route('asdo.admins.destroy', $admin->id)}}" method="POST" style="display: none;" id="submit-delete-{{$admin->id}}">
+											@csrf
+											@method('DELETE')
+										</form>
+										@endcan
 
-											<a href="{{route('asdo.admins.edit', $admin->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit information">
-												<i class="fas fa-edit"></i>
-											</a>
-
-					    				<a href="{{route('asdo.admins.show', $admin->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
-					    					<i class="fas fa-eye"></i>
-					    				</a>
-
-											<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$admin->id}}" data-placement="bottom" title="Delete from admin panel" onclick="deleteData({{$admin->id}})" class="btn btn-danger btn-sm">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-											<form action="{{route('asdo.admins.destroy', $admin->id)}}" method="POST" style="display: none;" id="submit-delete-{{$admin->id}}">
-												@csrf
-												@method('DELETE')
-											</form>
-
-										</td>
+									</td>
 
 								</tr>
 							@endforeach

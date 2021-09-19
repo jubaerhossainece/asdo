@@ -14,9 +14,11 @@
 <div class="card">
 	<div class="card-header header">
 		<h3 class="card-title">All Volunteers</h3>
+		@can(app.volunteers.index)
 		<a href="{{route('asdo.volunteers.create')}}" class="btn volunteer-btn float-right">
 		<i class="fas fa-plus-circle"></i>
 		New Volunteer</a>
+		@endcan
 	</div>
 
 	<div class="card-body">
@@ -28,7 +30,9 @@
                 <th>Present Address</th>
                 <th>Permanent Address</th>
                 <th>Joined At</th>
+                @canany(['app.volunteers.show', 'app.volunteers.edit',  'app.volunteers.destroy'])
                 <th>Action</th>
+                @endcanany
             </tr>
         </thead>
         <tbody>
@@ -40,14 +44,19 @@
                 <td>{{$user->permanent_address}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>
+                	@can(app.volunteers.edit)
                 	<a href="{{route('asdo.volunteers.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
     					<i class="fas fa-edit"></i>
     				</a>
+    				@endcan
 
+    				@can(app.volunteers.show)
     				<a href="{{route('asdo.volunteers.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
     					<i class="fas fa-eye"></i>
     				</a>
+    				@endcan
 
+    				@can(app.volunteers.destroy)
 					<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
 						<i class="fas fa-trash-alt"></i>
 					</button>
@@ -55,6 +64,7 @@
 						@csrf
 						@method('DELETE')
 					</form>
+					@endcan
                 </td>
             </tr>
             @endforeach

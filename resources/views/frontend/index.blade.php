@@ -165,11 +165,11 @@
               <div class="hActivity-inner-box">
                 <div>
                   <div class="hActivity-inner-img">
-                    <a href="#"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->photo)}}" alt="" /></a>
+                    <a href="#"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->file_name)}}" alt="" /></a>
                   </div>
                   <div class="hActivity-inner-txt">
                     <a href="" class="hActivity-inner-txt-header">{{$project->header}}</a>
-                    <p>{{substr($project->body, 0, 200)}}
+                    <p>{{substr($project->body, 0, 140)}}
                       <a href="#" class="hActivity-inner-txt-btn">Read More</a>
                     </p>
                     <a href="#" class="common-btn donate-btn">Donate Now</a>
@@ -177,92 +177,7 @@
                 </div>
               </div>
             </div>
-          @endforeach
-
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure Education Every Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure For Every Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure Education For Every Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure Education For Every Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure Education For Every Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
-                </div>
-              </div>
-            </div>
-          </div>          
+          @endforeach        
         </div>
       </div>
     </section>

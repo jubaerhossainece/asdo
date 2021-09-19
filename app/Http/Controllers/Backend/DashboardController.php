@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -24,7 +25,9 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         Gate::authorize('app.dashboard');
-        
-        return view('admin.index');
+        $admins = DB::table('admins')->count();
+        $members = DB::table('users')->where('user_type', 'member')->count();
+        $vols = DB::table('users')->where('user_type', 'volunteer')->count();
+        return view('admin.index', compact('members', 'vols', 'admins'));
     }
 }

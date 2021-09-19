@@ -9,9 +9,11 @@
 <div class="card">
 	<div class="card-header header">
 		<h3 class="card-title">All Roles</h3>
+		@can(app.roles.index)
 		<a href="{{route('asdo.roles.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle"></i>
 		Create New Role</a>
+		@endcan
 	</div>
 	<div class="card-body">
 		<div class="row">
@@ -24,9 +26,9 @@
 							<th class="text-center">Name</th>
 							<th class="text-center">Permissions</th>
 							<th class="text-center">Last Updated</th>
-
+							@canany(['app.roles.show', 'app.roles.edit',  'app.roles.destroy'])
 							<th class="text-center">Action</th>
-
+							@endcanany
 						</tr>
 						</thead>
 						<tbody>
@@ -43,28 +45,27 @@
 									</td>
 									<td class="text-center">{{\Carbon\Carbon::parse($role->updated_at)->diffForHumans()}}</td>
 
+									<td class="text-center">
+										@can(app.roles.edit)
+											<a href="{{route('asdo.roles.edit', $role->id)}}" class="btn btn-primary btn-sm">
+												<i class="fas fa-edit"></i>
+												Edit
+											</a>
+										@endcan	
 
-										<td class="text-center">
-
-												<a href="{{route('asdo.roles.edit', $role->id)}}" class="btn btn-primary btn-sm">
-													<i class="fas fa-edit"></i>
-													Edit
-												</a>
-
+										@can(app.roles.destroy)
 											@if($role->deletable)
-
-													<button onclick="deleteData({{$role->id}})" class="btn btn-danger btn-sm">
-														<i class="fas fa-trash-alt"></i>
-														Delete
-													</button>
-													<form action="{{route('asdo.roles.destroy', $role->id)}}" method="POST" style="display: none;" id="submit-delete-{{$role->id}}">
-														@csrf
-														@method('DELETE')
-													</form>
-
+												<button onclick="deleteData({{$role->id}})" class="btn btn-danger btn-sm">
+													<i class="fas fa-trash-alt"></i>
+													Delete
+												</button>
+												<form action="{{route('asdo.roles.destroy', $role->id)}}" method="POST" style="display: none;" id="submit-delete-{{$role->id}}">
+													@csrf
+													@method('DELETE')
+												</form>
 											@endif
-										</td>
-
+										@endcan
+									</td>
 								</tr>
 							@endforeach
 						</tbody>

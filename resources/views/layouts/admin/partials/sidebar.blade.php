@@ -22,20 +22,29 @@
                             </li>
                             <li class="nav-item">
                                 <ul class="nav flex-column">
+                                    @can('app.roles.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.roles.*') ? 'active' : ''}}" href="{{route('asdo.roles.index')}}"><i class="fas fa-user-cog mr-2"></i><span>Roles</span></a>
                                     </li>
+                                    @endcan
+
+                                    @can('app.users.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.users.*') ? 'active' : ''}}" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Members</span></a>
                                     </li>
+                                    @endcan
 
+                                    @can('app.volunteers.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
                                     </li>
+                                    @endcan
 
+                                    @can('app.admins.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.admins.*') ? 'active' : ''}}" href="{{route('asdo.admins.index')}}"><i class="fas fa-users mr-2"></i><span>Admin Panel</span></a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
 
@@ -44,16 +53,23 @@
                             </li>
                             <li class="nav-item">
                                 <ul class="nav flex-column">
+                                    @can('app.sliders.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.sliders.*') ? 'active' : ''}}" href="{{route('asdo.sliders.index')}}"><i class="fas fa-images"></i><span>Slider Images</span></a>
                                     </li>
+                                    @endcan
+
+                                    @can('app.projects.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.projects.*') ? 'active' : ''}}" href="{{route('asdo.projects.index')}}"><i class="fas fa-tasks"></i><span>Projects</span></a>
                                     </li>
+                                    @endcan
 
+                                    @can('app.campaigns.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.campaigns.*') ? 'active' : ''}}" href="{{route('asdo.campaigns.index')}}"><i class="fas fa-award"></i><span>Campaigns</span></a>
                                     </li>
+                                    @endcan
                                 </ul>
                             </li>
 
