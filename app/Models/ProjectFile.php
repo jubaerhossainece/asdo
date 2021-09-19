@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
 
 class ProjectFile extends Model
 {
@@ -14,8 +15,9 @@ class ProjectFile extends Model
      *
      * @var array
      */
-    // protected $guarded = [
-    //     'id', 'project_id'
-    // ];
+    
+    public function project(){
+        return $this->belongsTo(Project::class);
+    }
 
 }

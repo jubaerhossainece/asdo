@@ -521,19 +521,14 @@ section.page-banner .hero-text h4 span {
   list-style: none;
   margin-bottom: 0;
 }
-.f-menu-list li {
-  padding-bottom: 5px;
-}
 .f-menu-list a {
   color: var(--top-footer-text-head-color);
   text-decoration: none;
-  border-bottom: 1px solid #ffffff;
-  padding-bottom: 0.5rem;
+  padding-bottom: 5px;
   display: block;
 }
 .f-menu-list a:hover {
   color: var(--button-bg-color);
-  border-bottom: 1px solid var(--button-bg-color);
 }
 
 /***** Footer Address *****/
@@ -571,11 +566,13 @@ section.page-banner .hero-text h4 span {
 .copyright-txt p {
   color: #ffffff;
   margin-bottom: 0px;
+  font-size: 13px;
 }
 .develope-txt p {
   text-align: right;
   color: #ffffff;
   margin-bottom: 0px;
+  font-size: 13px;
 }
 .develope-txt a {
   text-decoration: none;

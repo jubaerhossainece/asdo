@@ -78,8 +78,9 @@
       <div class="container">
         <div class="header row">
           <h1>Our Mission</h1>
-          <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi alias quasi reprehenderit 
-            natus sequi laboriosam incidunt commodi voluptas aut magnam!</span>
+          <span>
+            The mission of আলোকিত সামাজিক উন্নয়ন সংস্থা is to connect all the people of the locality for bringing about prosperity. From 2012 till now it is working on getting everyone together in addressing all the issues that are persistent in the locality.
+          </span>
         </div>
         <div class="content row">
           <div class="col-md-3">
@@ -87,7 +88,7 @@
               <i class="fas fa-utensils"></i>
               <h2>Food</h2>
               <span>
-                আলোকিত সামাজিক উন্নয়ন সংস্থা aims at evacuationg hunger and malnutrition from the the locality and tirelessly work for it. The majority of the people of Sripur are very poor and some are so poor that they cannot even provide two meals a day. Continuous monetary support is given to them alongside the food reliefs that are distributed among the needy people on a regular basis. Even livestock, poultry and other sources of earning a livelihood are also provided.
+                To evacuate hunger and malnutrition from the locality. We do arrange continuous monetary support to the poor and distributing food reliefs among the needy people.
               </span>
             </div>
           </div>
@@ -97,7 +98,7 @@
               <i class="fas fa-medkit"></i>
               <h2>Treatment</h2>
               <span>
-                আলোকিত সামাজিক উন্নয়ন সংস্থা has been working for providing treatment facilities to the people of Sripur more than any other government and non-governmnet organization. They take people from all walks of life into consideration and utterly believe that no one should die without treatment. They take modern medical science in account, provide monetary support and medicine support and arrange countless awareness activities.
+                Benefiting from healthcare shouldn’t be a matter of luck. We take people from all walks of life into consideration and utterly believe that no one should die without treatment.
               </span>
             </div>
           </div>
@@ -107,7 +108,7 @@
               <i class="fas fa-home"></i>
               <h2>Shelter</h2>
               <span>
-                The sufferings of shelterless, homeless people are none like any other. আলোকিত সামাজিক উন্নয়ন সংস্থা has been trying to eradicate such helplessness and do whatever it takes to ensure everyone a shelter to live in the region of Sripur for years. They have done a lot for the homeless people and also got a lot ahead in this venture, but they haven’t paused their activities, on the contrary, their activities are in aviation. 
+                 A blessing is a roof over head, and a nice warm bed. We are working for years to eradicate the sufferings of shelterless and to ensure everyone a shelter to live in. 
               </span>
             </div>
           </div>
@@ -117,7 +118,7 @@
               <i class="fas fa-book-reader"></i>
               <h2>Education</h2>
               <span>
-                আলোকিত সামাজিক উন্নয়ন সংস্থা is very well know for the widespreding of education in Sripur. To ensure education to the lay people of Sripur আলোকিত সামাজিক উন্নয়ন সংস্থা continioiusly anranges and hasts different events. Provides stipends to the needy, provides free books,provides free stationary equipment for education, launches different educational programs. Alokito School is the most prominent school in Sripur, which is well known throughout Magura for its exceptional way of educating. Also Alokito Parul Smriti Pathagar is the largest library in Sripur, which is another empowering step by আলোকিত সামাজিক উন্নয়ন সংস্থা.
+                Education promotes equality and lifts people out of poverty. Education is not just for a privileged few, but for all. To expand education, we are working to make access to education very easy.
               </span>
             </div>
           </div>
@@ -152,29 +153,31 @@
         <div class="row hActivity-title-box align-items-center">
           <div class="hActivity-title-txt col-md-6">
             <h1>Recent Programs</h1>
-            <p>Your little support can bring smile to the homeless people</p>
+            <p>Your little support can bring smile to the needy and destitute people</p>
           </div>
           <div class="hActivity-title-btn col-md-6">
             <a href="awerness.html" class=""><span> More Programs</span> <i class="ml-2 fas fa-angle-right"></i></a>
           </div>
         </div>
         <div class="row hActivity-main-box" id="hActivity-main-box">
-          <div class="Hactivity-box">
-            <div class="hActivity-inner-box">
-              <div>
-                <div class="hActivity-inner-img">
-                  <a href="#"><img src="images/activity-1.jpg" alt="" /></a>
-                </div>
-                <div class="hActivity-inner-txt">
-                  <a href="" class="hActivity-inner-txt-header">Insure Education For Children</a>
-                  <p>first charity is help homeless people around the city…
-                    <a href="#" class="hActivity-inner-txt-btn">Read More</a>
-                  </p>
-                  <a href="#" class="common-btn donate-btn">Donate Now</a>
+          @foreach($projects as $project)
+            <div class="Hactivity-box">
+              <div class="hActivity-inner-box">
+                <div>
+                  <div class="hActivity-inner-img">
+                    <a href="#"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->photo)}}" alt="" /></a>
+                  </div>
+                  <div class="hActivity-inner-txt">
+                    <a href="" class="hActivity-inner-txt-header">{{$project->header}}</a>
+                    <p>{{substr($project->body, 0, 200)}}
+                      <a href="#" class="hActivity-inner-txt-btn">Read More</a>
+                    </p>
+                    <a href="#" class="common-btn donate-btn">Donate Now</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          @endforeach
 
           <div class="Hactivity-box">
             <div class="hActivity-inner-box">

@@ -3,13 +3,12 @@
       <div class="container">
         <div class="row">
           <!--Footer Brand start-->
-          <div class="footer-brand col-md-6 col-lg-3">
+          <div class="footer-brand col-md-6 col-lg-6">
             <h4 class="footer-heading">
               <a href="#">আলোকিত সামাজিক উন্নয়ন সংস্থা</a>
             </h4>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo
-              molestias sunt eius autem dolor provident nihil hic odio.
+              The only regional non-profit social enterprise in Sreepur, Magura. Being widely celebrated in the area, it has brought about a drastic change in the humanitarian and volunteer services. Our motto is to diminish poverty and hunger from the area through reaching out to the poor and marginal people and donating in accordance to their needs.
             </p>
             <div class="ft-social">
               <a href="#" class="fb-link"><i class="fab fa-facebook-f"></i></a>
@@ -19,7 +18,7 @@
           </div>
           <!--Footer Brand end-->
           <!--Footer News Start-->
-          <div class="footer-news col-md-6 col-lg-3">
+          <!-- <div class="footer-news col-md-6 col-lg-3">
             <h4 class="footer-heading">LATEST NEWS</h4>
             <div class="f-news d-flex">
               <img src="images/f-news.jpg" alt="f-news" />
@@ -37,15 +36,15 @@
                 </a>
               </p>
             </div>
-          </div>
+          </div> -->
           <!--Footer News End-->
           <!--Footer Menu Start-->
           <div class="footer-menu col-md-6 col-lg-3">
             <h4 class="footer-heading">QUICK LINK</h4>
             <ul class="f-menu-list">
               <li><a href="about">About Us</a></li>
-              <li><a href="contact">About Us</a></li>
-              <li><a href="#">Alokito School</a></li>
+              <li><a href="contact">Contact Us</a></li>
+              <li><a href="{{route('login')}}">Login</a></li>
               <li><a href="#">Awareness Program</a></li>
             </ul>
           </div>
