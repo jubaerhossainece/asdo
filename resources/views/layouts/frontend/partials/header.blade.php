@@ -9,7 +9,7 @@
             <nav class="navbar navbar-expand-md ">
                 <div class="nav-logo ">
                   <a href="/">
-                    <img src="{{asset('assets/images/frontend/logo.jpg')}}" alt="logo-img" />
+                    <img src="{{asset('assets/images/logo/logo.jpg')}}" alt="logo-img" />
                   </a>
                 </div>
                 <button
@@ -30,32 +30,13 @@
                       <a class="nav-link" href="{{route('home.about')}}">About</a>
                     </li>
 
-                    <!-- <li class="nav-item dropdown">
-                      <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                      >
-                        Programs
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li class="dropown-item">
-                          <a href="alokito-school.html" class="dropdown-link">Alokito School</a>
-                        </li>
-                        <li class="dropown-item">
-                          <a href="awerness.html" class="dropdown-link">Awareness Programs</a>
-                        </li>
-                      </ul>
-                    </li> -->
-
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('home.school')}}">Alokito School</a>
                     </li>
 
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="#">Board of Directors</a>
-                    </li> -->
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('campaigns.index')}}">Campaigns</a>
+                    </li>
 
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('home.contact')}}">Contacts</a>

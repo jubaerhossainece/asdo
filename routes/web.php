@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\AdminResetPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SubscriberController;
+use App\Http\Controllers\Frontend\CampaignController;
+use App\Http\Controllers\Frontend\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,13 @@ Auth::routes();
 Route::get('volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
 Route::get('volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
 
+//Routes for campaign pages
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+Route::get('/campaigns/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
+
+//Routes for projects pages
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 
 // social login routes
 Route::get('/login/{provider}', [LoginController::class, 'redirectToProvider'])->name('login.provider');

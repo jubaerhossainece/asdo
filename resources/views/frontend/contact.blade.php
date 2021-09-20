@@ -6,13 +6,15 @@
 
     <!--banner Start-->
     <section class="page-banner">
-      <div class="page-banner-img" style="background: url('images/about_thumb.jpg') center center/cover no-repeat local;">
+      <div class="page-banner-img" style="background: url('{{asset('assets/images/frontend/home/volunteer.jpg')}}') center center/cover no-repeat local;">
       </div>
       <div class="container">
         <div class="hero-text" >
           <h1>Contact</h1>
           <h4><a href="index.html">Home</a><span>/Contact</span></h4>
-          <a href="" class="mt-3 btn btn-large donate-btn">Donate Now</a>
+          <button type="button" class="mt-3 btn btn-large donate-btn" data-toggle="modal" data-target="#donateModal">
+            Donate Now
+          </button>
         </div>
       </div>
     </section>

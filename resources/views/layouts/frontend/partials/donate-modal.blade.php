@@ -1,5 +1,3 @@
-<!-- Button trigger modal -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -8,7 +6,6 @@
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLongTitle">Donate any amount</h3>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-          <!-- <i class="fas fa-times"></i> -->
         </button>
       </div>
       <div class="modal-body modal-donate container-fluid">

@@ -118,6 +118,11 @@ input:focus, textarea:focus{
   } 
 }
 
+.modal-content {
+    border: white;
+    overflow: hidden;
+}
+
 
 .modal-body.modal-donate{
   padding: 0;
@@ -133,12 +138,6 @@ input:focus, textarea:focus{
     flex-direction: column;
     justify-content: space-around;
     padding: 0 3rem;
-}
-
-.modal-account.col-md-6 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .modal-header {

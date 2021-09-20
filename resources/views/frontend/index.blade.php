@@ -167,12 +167,12 @@
               <div class="hActivity-inner-box">
                 <div>
                   <div class="hActivity-inner-img">
-                    <a href="#"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->file_name)}}" alt="" /></a>
+                    <a href="{{route('projects.show', $project->id)}}"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->file_name)}}" alt="" /></a>
                   </div>
                   <div class="hActivity-inner-txt">
                     <a href="" class="hActivity-inner-txt-header">{{$project->header}}</a>
                     <p>{{substr($project->body, 0, 140)}}
-                      <a href="#" class="hActivity-inner-txt-btn">Read More</a>
+                      <a href="{{route('projects.show', $project->id)}}" class="hActivity-inner-txt-btn">Read More</a>
                     </p>
                     <button type="button" class="common-btn donate-btn" data-toggle="modal" data-target="#donateModal">
                       Donate
