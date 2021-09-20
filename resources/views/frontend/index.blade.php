@@ -49,7 +49,9 @@
                     {{$slider->caption_text}}
                   </h6>
                   <p>
-                    <a href="" class="btn btn-large donate-btn">Donate</a>
+                    <button type="button" class="btn btn-large donate-btn" data-toggle="modal" data-target="#donateModal">
+                      Donate
+                    </button>
                   </p>
                 </div>
               </div>
@@ -126,7 +128,7 @@
       </div>
     </section>
 
-    <!--Volunteer Section-->
+    <!--Member registration Section-->
     <section class="hMember-wrap">
       <div class="container-fluid">
         <div class="hMember-box row">
@@ -172,7 +174,9 @@
                     <p>{{substr($project->body, 0, 140)}}
                       <a href="#" class="hActivity-inner-txt-btn">Read More</a>
                     </p>
-                    <a href="#" class="common-btn donate-btn">Donate Now</a>
+                    <button type="button" class="common-btn donate-btn" data-toggle="modal" data-target="#donateModal">
+                      Donate
+                    </button>
                   </div>
                 </div>
               </div>

@@ -111,6 +111,58 @@ input:focus, textarea:focus{
   outline: none !important;
 }
 
+/*Donate modal css*/
+@media (min-width: 768px){
+  .modal-dialog {
+    max-width: 70%;
+  } 
+}
+
+
+.modal-body.modal-donate{
+  padding: 0;
+}
+
+.modal-body.modal-donate .row{
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.modal-account.col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 3rem;
+}
+
+.modal-account.col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal-header {
+    background-color: #1dbf73db;
+}
+
+.modal-header h3{
+  color: white;
+}
+
+.modal-body .modal-account div {
+    display: flex;
+    align-items: center;
+}
+
+.modal-body .modal-account img {
+    height: 60px;
+    margin-right: 10px;
+}
+
+.btn-close:focus {
+    box-shadow: none;
+}
+
 /***************/
 /*form css*/
 /************/

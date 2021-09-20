@@ -22,7 +22,7 @@
     <section class="about-wrap">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="about-img-box">
               <img
                 class="about-img img-fluid"
@@ -31,7 +31,7 @@
               />
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-7">
             <div class="about-box">
               <h2 class="about-header">Who We Are</h2>
               <p>
@@ -51,7 +51,9 @@
     </section>
 
     <!-- mission section -->
-    <section id="mission-section" class="container">
+    <section id="mission-section">
+      <div class="container">
+        
       <div id="accordion" class="row">
         <div class="col-lg-8">        
           <div class="card">
@@ -120,30 +122,31 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
     
-    <!--Volunteer Section Start-->
-    <section class="aVolunteer-wrap">
-      <div class="container">
-        <div class="row aVolunteer-row shadow">
-          <div class="col-md-5">
-            <img src="images/activity-2.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-md-7">
-            <div class="aVolunteer-box">
-              <h1 class="aVolunteer-head text-center">Become a <span class="alokito-member">alokito member</span></h1>
-              <p class="aVolunteer-txt text-center">
-                Join with us and become real human being and make the world smile !!
-              </p>
-              <div class="aVolunteer-btn text-center mt-2">
-                <a href="contact.html" class="common-btn" role="button">Registration</a>
-              </div>
+    <!--Member Section Start-->
+   <section class="hMember-wrap">
+      <div class="container-fluid">
+        <div class="hMember-box row">
+          <div class="col-md-6 text">
+            <h1 class="hMember-head text-center">Become a <span class="alokito-member">alokito member</span></h1>
+            <p class="hMember-txt text-center">
+              Join our alokito community and become a real human being and make the world smile !!
+            </p>
+            <div class="hMember-btn text-center mt-2">
+              <a href="register" role="button" class="common-btn">Registration</a>
             </div>
+          </div>
+
+          <div class="col-md-6 image" style="background: url('assets/images/frontend/signin/donor.jpg') center center / cover no-repeat; height: 400px;">
+            <h1>Join Our Community</h1>
+            <div class="join-member-overlay"></div>
           </div>
         </div>
       </div>
     </section>
-    <!--Volunteer Section end-->
+    <!--Member Section end-->
     
     <!--Contact Page End-->
 <!--Footer Start-->

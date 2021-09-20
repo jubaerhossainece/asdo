@@ -22,8 +22,12 @@
 
     <!-- custom CSS-->
     <link href="/css/frontend/style.css" rel="stylesheet" />
+
     @stack('css')
   </head>
+ <!-- modal for donate now button -->
+    @include('layouts.frontend.partials.donate-modal')
+    
     @include('layouts.frontend.partials.header')
     <!--==========
      navbar end

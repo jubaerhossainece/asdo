@@ -197,8 +197,6 @@
 document.getElementById("profile-image").onchange = function() {
   document.getElementById("profile-image-label").innerHTML = this.value;
 };
-
-
 </script>
 @endpush
 @endsection
