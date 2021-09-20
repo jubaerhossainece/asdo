@@ -362,18 +362,17 @@ label {
 }
 
 .footer{
-    position: relative;
-    bottom: 0;
-    margin-top: 20px;
+    position: absolute;
+    bottom: -35px;
 }
 
 .dashboard-wrapper{
-    min-height: auto !important;
+    position: relative;
+    min-height: 550px !important;
 }
 
 .dashboard-content{
-    position: absolute;
-    padding-bottom: 0;
+    padding-bottom: 20px;
 }
 
 /*active and focus style for input button*/

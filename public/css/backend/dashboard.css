@@ -13,6 +13,10 @@
     justify-content: space-between;
 }
 
+.card-widget-body {
+    text-align: center;
+}
+
 .card-widget-body h3 {
     color: black;
     font-weight: 600;

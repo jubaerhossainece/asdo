@@ -9,7 +9,7 @@
 <div class="card">
 	<div class="card-header header">
 		<h3 class="card-title">All Roles</h3>
-		@can(app.roles.index)
+		@can('app.roles.index')
 		<a href="{{route('asdo.roles.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle"></i>
 		Create New Role</a>
@@ -26,7 +26,7 @@
 							<th class="text-center">Name</th>
 							<th class="text-center">Permissions</th>
 							<th class="text-center">Last Updated</th>
-							@canany(['app.roles.show', 'app.roles.edit',  'app.roles.destroy'])
+							@canany(['app.roles.show', 'app.roles.edit', 'app.roles.destroy'])
 							<th class="text-center">Action</th>
 							@endcanany
 						</tr>
@@ -46,14 +46,14 @@
 									<td class="text-center">{{\Carbon\Carbon::parse($role->updated_at)->diffForHumans()}}</td>
 
 									<td class="text-center">
-										@can(app.roles.edit)
+										@can('app.roles.edit')
 											<a href="{{route('asdo.roles.edit', $role->id)}}" class="btn btn-primary btn-sm">
 												<i class="fas fa-edit"></i>
 												Edit
 											</a>
 										@endcan	
 
-										@can(app.roles.destroy)
+										@can('app.roles.destroy')
 											@if($role->deletable)
 												<button onclick="deleteData({{$role->id}})" class="btn btn-danger btn-sm">
 													<i class="fas fa-trash-alt"></i>

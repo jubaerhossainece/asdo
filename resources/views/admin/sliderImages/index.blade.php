@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-header header">
 		<h2 class="card-title">Slider images Panel</h2>
-		@can(app.sliders.index)
+		@can('app.sliders.index')
 		<a href="{{route('asdo.sliders.create')}}" class="btn btn-primary float-right">
 		<i class="fas fa-plus-circle pr-1"></i>
 		Add New</a>
@@ -38,19 +38,19 @@
 
 
 									<td class="text-center">
-										@can(app.sliders.edit)
+										@can('app.sliders.edit')
 										<a href="{{route('asdo.sliders.edit', $slider->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit slider image">
 											<i class="fas fa-edit"></i>
 										</a>
 										@endcan
 
-										@can(app.sliders.show)
+										@can('app.sliders.show')
 				    				<a href="{{route('asdo.sliders.show', $slider->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show slider image information" >
 				    					<i class="fas fa-eye"></i>
 				    				</a>
 				    				@endcan
 
-				    				@can(app.sliders.destroy)
+				    				@can('app.sliders.destroy')
 										<button data-toggle="modal" data-tooltip="tooltip" data-target="#alertModal" data-id = "{{$slider->id}}" data-placement="bottom" title="Delete slider image" onclick="deleteData({{$slider->id}})" class="btn btn-danger btn-sm">
 											<i class="fas fa-trash-alt"></i>
 										</button>
