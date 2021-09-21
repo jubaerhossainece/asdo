@@ -42,8 +42,8 @@ Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.
 Route::get('/campaigns/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
 
 //Routes for projects pages
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+Route::get('/programs', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/programs/{id}', [ProjectController::class, 'show'])->name('projects.show');
 
 // social login routes
 Route::get('/login/{provider}', [LoginController::class, 'redirectToProvider'])->name('login.provider');

@@ -74,6 +74,9 @@
     }
 
     /*gallery css starts*/
+    .empty-box{
+      padding:  10rem 0;
+    }
     .gallery-header {
         padding: 10px 0;
     }
@@ -97,6 +100,7 @@
 
     #lightgallery a.col-md-3.col-sm-4.col-xs-6 img {
         width: 100%;
+        height: 12rem;
         transition: 0.3s ease-in-out;
     }
 
@@ -133,7 +137,13 @@
       </div>
 </section>
 
-
+@if($campaign == null)
+    <div class="container empty-box">
+      <div class="text-center">
+        <h3>No data found!</h3>
+      </div>
+    </div>
+@else
   <div id="campaign" class="container">
     <div class="row">
       <div class="col-md-4">
@@ -156,7 +166,7 @@
 
   <div class="gallery container">
     <div class="gallery-header">
-      <h3>Campaign <span  class="text-green">Photos</span></h3>
+      <h3><span  class="text-green">Campaign</span> Photos</h3>
     </div>
     <div id="lightgallery" class="row">
       @foreach($campaign->campaignFiles as $file)
@@ -166,6 +176,7 @@
       @endforeach
     </div>
   </div>
+  @endif
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.2.1/lightgallery.umd.min.js"></script>
 <script>

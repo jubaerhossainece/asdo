@@ -45,7 +45,8 @@
               <li><a href="about">About Us</a></li>
               <li><a href="contact">Contact Us</a></li>
               <li><a href="{{route('login')}}">Login</a></li>
-              <li><a href="#">Awareness Program</a></li>
+              <li><a href="{{route('campaigns.index')}}">Campaigns</a></li>
+              <li><a href="{{route('projects.index')}}">Programs</a></li>
             </ul>
           </div>
           <!--Footer Menu End-->

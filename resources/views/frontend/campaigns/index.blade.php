@@ -2,9 +2,13 @@
 @push('css')
   <link href="css/frontend/index.css" rel="stylesheet" />
   <style>
+  .campaign-header{
+    margin-top: 6rem;
+    padding: 1rem 0;
+  }
+
     .campaigns{
-      margin-top: 68px;
-      padding: 2rem 1rem;
+      padding: 1rem;
     }
 
     .campaigns .container .card .text {
@@ -19,6 +23,9 @@
   </style>
 @endpush
 @section('content')
+<div class="campaign-header container">
+  <h2><span  class="text-green">Campaign</span> arranged by asdo</h2>
+</div>
 <section class=" campaigns">
   <div class="container">
     <div class="row">
@@ -33,7 +40,7 @@
               </div>
               <div class="text">
                 <a href="{{route('campaigns.show', $campaign->id)}}" class="hActivity-inner-txt-header">{{$campaign->header}}</a>
-                <p>{{substr($campaign->body, 0, 140)}}
+                <p>{{substr($campaign->body, 0, 140)}}...
                   <a href="{{route('campaigns.show', $campaign->id)}}" class="hActivity-inner-txt-btn">Read More</a>
                 </p>
               </div>

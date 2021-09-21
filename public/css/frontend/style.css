@@ -38,6 +38,10 @@ input:focus, textarea:focus{
   outline: none !important;
 }
 
+.text-green{
+  color: var(--button-bg-color);
+}
+
 .btn:active, textarea:active{
   outline: none !important;
   box-shadow: none;

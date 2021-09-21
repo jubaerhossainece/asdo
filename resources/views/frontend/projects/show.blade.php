@@ -103,6 +103,7 @@
 
     #lightgallery a.col-md-3.col-sm-4.col-xs-6 img {
         width: 100%;
+        height: 12rem;
         transition: 0.3s ease-in-out;
     }
 
@@ -168,7 +169,7 @@
 
   <div class="gallery container">
     <div class="gallery-header">
-      <h3> <span  class="text-green">Program</span> Photos</h3>
+      <h3><span  class="text-green">Program</span> Photos</h3>
     </div>
     <div id="lightgallery" class="row">
       @foreach($project->projectFiles as $file)

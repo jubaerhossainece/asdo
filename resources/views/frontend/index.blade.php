@@ -171,7 +171,7 @@
                   </div>
                   <div class="hActivity-inner-txt">
                     <a href="" class="hActivity-inner-txt-header">{{$project->header}}</a>
-                    <p>{{substr($project->body, 0, 140)}}
+                    <p>{{substr($project->body, 0, 140)}}...
                       <a href="{{route('projects.show', $project->id)}}" class="hActivity-inner-txt-btn">Read More</a>
                     </p>
                     <button type="button" class="common-btn donate-btn" data-toggle="modal" data-target="#donateModal">
