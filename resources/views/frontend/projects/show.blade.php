@@ -4,22 +4,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.2.1/css/lightgallery-bundle.min.css">
   <link href="css/frontend/index.css" rel="stylesheet" />
   <style>
-    .campaign-donate{
+
+    .project-donate{
       padding: 2rem;
       margin-top: 5rem;
     }
 
-    .campaign-donate .container {
+    .project-donate .container {
         border-radius: 10px;
         box-shadow: 0px 0px 17px 0px rgb(0 0 0 / 20%);
         overflow: hidden;
     }
 
-    .campaign-donate .container .row{
+    .project-donate .container .row{
       padding: 0;
     }
 
-    .campaign-donate .card-donate-image.col-md-7 {
+    .project-donate .card-donate-image.col-md-7 {
         padding: 0;
     }
 
@@ -44,31 +45,36 @@
       color: white;
     }
 
-    .campaign-donate .card-donate-account div {
+    .project-donate .card-donate-account div {
         display: flex;
         align-items: center;
     }
 
-    .campaign-donate .card-donate-account img {
+    .project-donate .card-donate-account img {
         height: 60px;
         margin-right: 10px;
     }
 
-    div#campaign {
+    /*single project show css*/
+    .empty-box{
+      padding:  10rem 0;
+    }
+
+    div#project {
 
     }
 
-    div#campaign .row {
+    div#project .row {
         padding: 3rem 0;
     }
 
-    div#campaign .col-md-4 div {
+    div#project .col-md-4 div {
         font-size: 2rem;
         padding: 13px 0;
         border-bottom: 1px solid grey;
     }
 
-    div#campaign .col-md-4 div i{
+    div#project .col-md-4 div i{
      color: #1dbf73db; 
      margin-right: 20px;
     }
@@ -107,7 +113,7 @@
 @endpush
 @section('content')
     
-<section class="campaign-donate">
+<section class="project-donate">
       <div class="container">
         <div class="row">
           
@@ -133,39 +139,46 @@
       </div>
 </section>
 
-
-  <div id="campaign" class="container">
+  @if($project == null)
+    <div class="container empty-box">
+      <div class="text-center">
+        <h3>No data found!</h3>
+      </div>
+    </div>
+  @else
+  <div id="project" class="container">
     <div class="row">
       <div class="col-md-4">
         <div class="heading">
-          <h4><i class="fas fa-book-reader mr-4"></i><span class=" ml-4">{{$campaign->header}}</span></h4>
+          <h4><i class="fas fa-book-reader mr-4"></i><span class=" ml-4">{{$project->header}}</span></h4>
         </div>
         <div class="location">
-          <h4><i class="fas fa-map-marker-alt mr-4"></i><span>{{$campaign->location}}</span></h4>
+          <h4><i class="fas fa-map-marker-alt mr-4"></i><span>{{$project->location}}</span></h4>
         </div>
         <div class="date">
-          <h5><i class="fas fa-calendar-alt"></i><span>{{ date('M j, Y h:ia', strtotime($campaign->date)) }}</span></h5>
+          <h5><i class="fas fa-calendar-alt"></i><span>{{ date('M j, Y h:ia', strtotime($project->date)) }}</span></h5>
         </div>
       </div>
       <div class="col-md-8">
-        <h2>{{$campaign->header}}</h2>
-        <p>{{$campaign->body}}</p>
+        <h2>{{$project->header}}</h2>
+        <p>{{$project->body}}</p>
       </div>
     </div>
   </div>
 
   <div class="gallery container">
     <div class="gallery-header">
-      <h3>Campaign <span  class="text-green">Photos</span></h3>
+      <h3> <span  class="text-green">Program</span> Photos</h3>
     </div>
     <div id="lightgallery" class="row">
-      @foreach($campaign->campaignFiles as $file)
-            <a class="col-md-3 col-sm-4 col-xs-6" href="{{asset('/storage/asdo/images/campaigns/'.$file->file_name)}}" data-lg-size="1600-2400">
-                <img src="{{asset('/storage/asdo/images/campaigns/'.$file->file_name)}}" />
+      @foreach($project->projectFiles as $file)
+            <a class="col-md-3 col-sm-4 col-xs-6" href="{{asset('/storage/asdo/images/projects/'.$file->file_name)}}" data-lg-size="1600-2400">
+                @if($project->projectFiles->isEmpty()) @else<img src="{{asset('/storage/asdo/images/projects/'.$file->file_name)}}" />@endif
             </a>
       @endforeach
     </div>
   </div>
+  @endif
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.2.1/lightgallery.umd.min.js"></script>
 <script>
