@@ -61,7 +61,7 @@
 
                                     @can('app.projects.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.projects.*') ? 'active' : ''}}" href="{{route('asdo.projects.index')}}"><i class="fas fa-tasks"></i><span>Projects</span></a>
+                                        <a class="nav-link {{Route::is('asdo.projects.*') ? 'active' : ''}}" href="{{route('asdo.projects.index')}}"><i class="fas fa-tasks"></i><span>Programs</span></a>
                                     </li>
                                     @endcan
 
