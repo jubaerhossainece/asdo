@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
     <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
-
-    <!-- <link rel="stylesheet" href="{{url('css/frontend/custom.css')}}"> -->
     <style>
     html,
     body {
