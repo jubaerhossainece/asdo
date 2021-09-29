@@ -218,7 +218,34 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.campaigns.destroy'
         ]);
 
-        //Campaign management permissions
+        //Contact message management permissions
+        $moduleAppContact = Module::updateOrCreate(['name' => 'Contact Message Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppContact->id,
+            'name' => 'Access Contact Messages',
+            'slug' => 'app.contacts.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppContact->id,
+            'name' => 'Reply contact message',
+            'slug' => 'app.contacts.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppContact->id,
+            'name' => 'Read contact message',
+            'slug' => 'app.contacts.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppContact->id,
+            'name' => 'Delete Contact message',
+            'slug' => 'app.contacts.destroy'
+        ]);
+
+        //slider image management permissions
         $moduleAppSlider = Module::updateOrCreate(['name' => 'Slider image Management']);
 
         Permission::updateOrCreate([

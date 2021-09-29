@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\CampaignController;
 use App\Http\Controllers\Backend\CampaignFileController;
 use App\Http\Controllers\Backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectFileController;
+use App\Http\Controllers\Backend\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,10 @@ use App\Http\Controllers\Backend\ProjectFileController;
 
 // Routes for dashboard
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+
+// Routes for contacts
+Route::resource('contacts', ContactController::class);
 
 // routes for admin management
 Route::resource('/admins', AdminController::class);
