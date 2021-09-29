@@ -158,7 +158,7 @@
             <p>Your little support can bring smile to the needy and destitute people</p>
           </div>
           <div class="hActivity-title-btn col-md-6">
-            <a href="awerness.html" class=""><span> More Programs</span> <i class="ml-2 fas fa-angle-right"></i></a>
+            <a href="{{route('projects.index')}}" class=""><span> More Programs</span> <i class="ml-2 fas fa-angle-right"></i></a>
           </div>
         </div>
         <div class="row hActivity-main-box" id="hActivity-main-box">
