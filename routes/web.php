@@ -31,6 +31,9 @@ Route::get('alokito-school', [HomeController::class, 'school'])->name('home.scho
 //routes for subscribers
 Route::post('subscribers', [SubscriberController::class, 'store'])->name('subscribers.store');
 
+//routes for contact message
+Route::post('contacts', [HomeController::class, 'send_message'])->name('contacts.message');
+
 Auth::routes();
 
 //volunteer login and registration pages

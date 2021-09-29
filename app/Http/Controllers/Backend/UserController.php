@@ -101,7 +101,7 @@ class UserController extends Controller
         
         $request->validate([
             'name' => 'required|string',
-            'email' => 'email',
+            'email' => 'email|email:rfc,dns',
             'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
             'photo' => 'nullable|image',

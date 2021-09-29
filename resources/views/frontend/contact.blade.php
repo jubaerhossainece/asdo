@@ -28,30 +28,46 @@
           <div class="col-md-6">
             <div class="form-wrap">
               <h3 class="form-header">Contact Us</h3>
-              <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+              <div class="col-md-12" id="send-message">
+                
+              </div>
+              <form method="POST" id="contactForm" action="{{route('contacts.message')}}" class="contactForm" onsubmit="send_message(event)">
+                @csrf
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="label" for="name">Full Name</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="Name"/>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Name"/>            
+                      <div id="error-name">
+                        
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="label" for="email">Email Address</label>
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Email"/>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email"/>            
+                      <div id="error-email">
+                        
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="label" for="subject">Subject</label>
-                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/>
+                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"/>            
+                      <div id="error-subject">
+                        
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="label" for="#">Message</label>
-                      <textarea name="message" class="form-control" id="message" rows="4" placeholder="Message"></textarea>
+                      <textarea name="message" class="form-control" id="message" rows="4" placeholder="Message"></textarea>            
+                      <div id="error-message">
+                        
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -128,6 +144,53 @@
     <!--Contact Page End-->
 <!--Footer Start-->
 @push('script')
-  
+  <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    //function to add subscribers email to subscribers table
+     function send_message(event){
+      event.preventDefault();
+        let form = document.getElementById('contactForm');
+        let formData = $(form).serialize();
+
+        //clear warning message
+        let inputkey = ['name', 'email', 'subject', 'message'];
+        for(let key in inputkey){
+          let msg = document.getElementById("error-"+inputkey[key]);
+          msg.innerHTML = "";
+        }        
+        let result = document.getElementById("send-message");
+        result.innerHTML = "";
+
+        $.ajax({
+          url: $(form).attr('action'),
+          type: $(form).attr('method'),
+          data: formData,
+          processData: false,
+          success: function (data) {
+              console.log(data);
+              let result = document.getElementById("send-message");
+              result.innerHTML = "";
+              result.innerHTML += "<div class='alert alert-"+data[0]+"'><strong>" + data[1] + "</strong></div>";
+          },
+          error: function(error){
+              let errors = error.responseJSON.errors;
+
+              for(let key in errors){
+                if(errors.hasOwnProperty(key)){
+                  let msg = document.getElementById("error-"+key);
+                  msg.innerHTML = "";
+                  msg.innerHTML += "<div class='text-danger'><strong>" + errors[key] + "</strong></div>";
+                }
+              }
+
+          }
+        });
+     }
+  </script>
 @endpush    
 @endsection

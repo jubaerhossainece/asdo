@@ -361,9 +361,9 @@ label {
     font-size: 1.2rem
 }
 
-.footer{
-    position: absolute;
-    bottom: -35px;
+#footer {
+    padding: 20px;
+    margin-bottom: 0;
 }
 
 .dashboard-wrapper{
