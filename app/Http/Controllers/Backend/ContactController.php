@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Gate;
 
 class ContactController extends Controller
 {
+    public function __construct() 
+    { 
+        $this->middleware('preventBackHistory');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -51,6 +55,10 @@ class ContactController extends Controller
     public function show($id)
     {
         Gate::authorize('app.contacts.show');
+        $message = Contact::find($id);
+        $message->is_seen = true;
+        $message->save();
+        return view('admin.contacts.show', compact('message'));
     }
 
     /**

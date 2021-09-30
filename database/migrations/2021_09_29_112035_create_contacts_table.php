@@ -19,6 +19,9 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->text('subject')->nullable();
             $table->text('message');
+            $table->boolean('is_seen')->default(false);
+            $table->boolean('is_important')->default(false);
+            $table->boolean('is_trash')->default(false);
             $table->timestamps();
         });
     }

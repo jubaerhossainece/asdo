@@ -173,6 +173,12 @@
           processData: false,
           success: function (data) {
               console.log(data);
+              //clearing input/teatearea field
+              for(let key in inputkey){
+                let field = document.getElementById(inputkey[key]);
+                field.value = "";
+              }
+              //showing success or error message
               let result = document.getElementById("send-message");
               result.innerHTML = "";
               result.innerHTML += "<div class='alert alert-"+data[0]+"'><strong>" + data[1] + "</strong></div>";
