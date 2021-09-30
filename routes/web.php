@@ -26,19 +26,19 @@ use App\Http\Controllers\Frontend\ProjectController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/about', [HomeController::class, 'about'])->name('home.about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
-Route::get('alokito-school', [HomeController::class, 'school'])->name('home.school');
+Route::get('/alokito-school', [HomeController::class, 'school'])->name('home.school');
 
 //routes for subscribers
 Route::post('subscribers', [SubscriberController::class, 'store'])->name('subscribers.store');
 
 //routes for contact message
-Route::post('contacts', [HomeController::class, 'send_message'])->name('contacts.message');
+Route::post('/contacts', [HomeController::class, 'send_message'])->name('contacts.message');
 
 Auth::routes();
 
 //volunteer login and registration pages
-Route::get('volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
-Route::get('volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
+Route::get('/volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
+Route::get('/volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
 
 //Routes for campaign pages
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');

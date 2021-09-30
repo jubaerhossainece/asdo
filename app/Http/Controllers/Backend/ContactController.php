@@ -21,7 +21,7 @@ class ContactController extends Controller
     public function index()
     {
         Gate::authorize('app.contacts.index');
-        $messages = Contact::all();
+        $messages = Contact::latest()->paginate(10);
         return view('admin.contacts.index', compact('messages'));
     }
 
@@ -69,7 +69,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        
+        return $id;
     }
 
     /**
@@ -90,8 +90,13 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         Gate::authorize('app.contacts.destroy');
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::whereIn('id', $ids)->delete();
+
+        return redirect()->back();
     }
 }

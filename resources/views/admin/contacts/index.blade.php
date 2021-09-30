@@ -19,8 +19,8 @@
                           <input type="checkbox" class="custom-control-input" id="select-all" />
                           <label class="custom-control-label" for="select-all">&nbsp;</label>
                       </div>
-                      <button type="button" class="btn btn-light">
-                        <span class="fa fa-trash-o"></span>
+                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()">
+                        <i class="fas fa-trash"></i>
                       </button>
                       <div class="btn-group">
                         <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
@@ -28,22 +28,21 @@
                           <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">add label <span class="badge badge-danger"> Home</span></a>
-                          <a class="dropdown-item" href="#">add label <span class="badge badge-info"> Job</span></a>
-                          <a class="dropdown-item" href="#">add label <span class="badge badge-success"> Clients</span></a>
-                          <a class="dropdown-item" href="#">add label <span class="badge badge-warning"> News</span></a>
+                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_read()">Mark as read</a>
+                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_unread()">Mark as unread</a>
+                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_important()">Mark as important</a>
                         </div>
                       </div>
                     </div>
                     <div class="icons">
                       <a href="#" class="icon">
-                        <i class="fas fa-trash"></i>
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="email-body">
+                @if(!$messages->isEmpty())
                 <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
                     <tbody>
                         <!-- row -->
@@ -73,6 +72,17 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="container-fluid pt-4" id="pagination">
+                  <?php $users = $messages;
+                    $offset = 3; 
+                  ?>
+                  @include('layouts.admin.partials.pagination')                  
+                </div>
+                @else
+                <div class="p-5 text-center">
+                  <h2>No message in your inbox!</h2>
+                </div>
+                @endif
               </div>
             </div>
           </div>
@@ -82,12 +92,19 @@
     </div>
   </div>
 </div>
+
+<!-- form for message read, unread, important -->
+<form method="POST" id="action-form" class="d-none">
+  @csrf
+    <input type="hidden" name="mail_array[]" id="mail-array"></input>
+    <input type="hidden" name="_method" id="mail-method"></input>
+</form>
 @push('script')
+<script src="{{url('js/email.js')}}"></script>
 <script>
     $('#select-all').click(function(){
         $('.mail-checkbox input[type="checkbox"]').prop('checked', this.checked);
     })
-    
- </script>
+</script>
 @endpush
 @endsection

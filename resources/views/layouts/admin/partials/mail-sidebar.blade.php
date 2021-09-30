@@ -6,7 +6,7 @@
                     	<a href="{{route('asdo.contacts.index')}}">
                     		<span class="icon"><i class="fas fa-inbox"></i></span>
                     		inbox
-                    		<span class="badge badge-success">2</span>
+                    		<span class="badge badge-success">{{$inbox}}</span>
                     	</a>
                   	</li>
                     <li>
@@ -18,14 +18,14 @@
                     <li>
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-suitcase"></i></span>Important
-                    		<span class="badge badge-success">2</span>
+                    		<span class="badge badge-success"></span>
                     	</a>
                     </li>
                     
                     <li>
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-trash-alt"></i></span>Trash
-                    		<span class="badge badge-success">2</span>
+                    		<span class="badge badge-success">{{$trashed}}</span>
                     	</a>
                     </li>
                   </ul>

@@ -6,7 +6,7 @@
 <div class="card">
 	<div class="card-header page-header">
 			<h2 class="page-title">
-				{{isset($project) ? 'Edit' : 'Add New'}} Project Detail
+				{{isset($project) ? 'Edit' : 'Add New'}} Program Detail
 			</h2>
 			<a href="{{route('asdo.projects.index')}}" class="btn btn-secondary float-right">
 				<i class="fas fa-arrow-circle-left"></i>
@@ -20,7 +20,7 @@
 	<div class="col-md-12">
 		<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">{{isset($project) ? 'Edit' : 'Add New'}} Project Detail</h3>
+			<h3 class="card-title">{{isset($project) ? 'Edit' : 'Add New'}} Program Detail</h3>
 			@if(isset($project)) <a href="{{route('asdo.image.projects.show', $project->id)}}" class="btn btn-primary">Gallery</a>@endif
 		</div>
 		<div class="card-body">
@@ -41,7 +41,7 @@
 				</div>
 
         <div class="form-group">
-	        <label for="header">Project Heading</label>
+	        <label for="header">Program Heading</label>
 	        <input type="text" name="header" class="form-control" id="header" value="{{$project->header ?? old('header') }}">
 	        @error('header')
 	        	<div class="text-danger">
@@ -51,17 +51,17 @@
 	      </div>
 
 	      <div class="form-group">
-	        <label for="body">Project Detail</label>
+	        <label for="body">Program Detail</label>
 	        <textarea name="body" class="form-control" rows="5" id="body">{{$project->body ?? old('body') }}</textarea>
 	      </div>
 
 	      <div class="form-group">
-	        <label for="location">Project Location</label>
+	        <label for="location">Program Location</label>
 	        <input type="text" name="location" class="form-control" rows="5" id="location" value="{{$project->location ?? old('location') }}">
 	      </div>
 
 	      <div class="form-group">
-	        <label for="date">Project Date</label>
+	        <label for="date">Program Date</label>
 	        <input type="text" name="date" class="form-control" rows="5" id="date" value="{{$project->date ?? old('date') }}">
 	      </div>
 
@@ -71,7 +71,7 @@
 					 Update
 					@else
 					<i class="fas fa-plus-circle mr-1"></i>
-						Create Project
+						Create Program
 					@endisset
 				</button>
 			</form>

@@ -38,6 +38,5 @@ window.setTimeout(function(){
 	  $('[data-tooltip="tooltip"]').tooltip()
 	})
 
+// admin mail box manipulation
 
-	// sweet alert 2 initialisation
-	

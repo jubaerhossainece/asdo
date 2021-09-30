@@ -22,6 +22,7 @@ class CreateContactsTable extends Migration
             $table->boolean('is_seen')->default(false);
             $table->boolean('is_important')->default(false);
             $table->boolean('is_trash')->default(false);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

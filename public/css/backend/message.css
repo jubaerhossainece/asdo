@@ -709,6 +709,14 @@ body{
     font-size: 14px;
 }
 
+.dropdown-menu {
+    background: #fff;
+    font-size: 14px;
+    color: #3d405c;
+    border: none;
+    box-shadow: 0 5px 16px 0 #c9c7e8;
+}
+
 tr.mail-table-row {
     border-bottom: 1px solid lightgray;
 }
@@ -721,7 +729,15 @@ tr.mail-table-row.unread {
     background-color: #4b5aeb1a;
 }
 
+.btn-light:not(:disabled):not(.disabled).active:focus, .btn-light:not(:disabled):not(.disabled):active:focus, .show>.btn-light.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
 .aside-nav .nav li a .icon {
     margin-right: 15px;
     font-size: 20px;
+}
+
+#pagination .row .col-md-6 ul{
+    margin-bottom: 0px;
 }

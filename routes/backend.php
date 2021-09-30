@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\CampaignFileController;
 use App\Http\Controllers\Backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectFileController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\InboxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 // Routes for contacts
 Route::resource('contacts', ContactController::class);
+
+//email manipulation
+Route::post('/inbox/read', [InboxController::class, 'read'])->name('inbox.read');
+Route::post('inbox/unread', [InboxController::class, 'unread'])->name('inbox.unread');
+Route::post('inbox/important', [InboxController::class, 'important'])->name('inbox.important');
 
 // routes for admin management
 Route::resource('/admins', AdminController::class);

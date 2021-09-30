@@ -31,8 +31,8 @@
 @endpush
 <div class="card">
   <div class="card-header page-header">
-    <h2 class="float-left">Add photos for this project</h2>
-    <a href="{{route('asdo.projects.index')}}" class="btn btn-secondary">All projects</a>
+    <h2 class="float-left">Add photos for this program</h2>
+    <a href="{{route('asdo.projects.index')}}" class="btn btn-secondary">All programs</a>
   </div>
 </div>
 

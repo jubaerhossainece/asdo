@@ -177,6 +177,16 @@ label {
     margin-bottom: 0;
 }
 
+.page-link {
+    margin-right: 0px; 
+    border-radius: 0px;
+ }
+
+ .page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: none;
+}
 
 /***** Header Start*****/
 
