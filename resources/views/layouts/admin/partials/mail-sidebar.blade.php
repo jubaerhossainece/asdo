@@ -25,7 +25,7 @@
                     <li>
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-trash-alt"></i></span>Trash
-                    		<span class="badge badge-success">{{$trashed}}</span>
+                    		<span class="badge badge-danger">{{$trashed}}</span>
                     	</a>
                     </li>
                   </ul>

@@ -167,7 +167,11 @@
               <div class="hActivity-inner-box">
                 <div>
                   <div class="hActivity-inner-img">
+                    @if($project->projectFiles->isEmpty())
+
+                    @else
                     <a href="{{route('projects.show', $project->id)}}"><img src="{{asset('/storage/asdo/images/projects/'.$project->latestFile->file_name)}}" alt="" /></a>
+                    @endif
                   </div>
                   <div class="hActivity-inner-txt">
                     <a href="" class="hActivity-inner-txt-header">{{$project->header}}</a>
