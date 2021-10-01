@@ -23,10 +23,10 @@
                         <i class="fas fa-trash"></i>
                       </button>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                        <!-- <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
                           <span class="fa fa-tags"></span>
                           <span class="caret"></span>
-                        </button>
+                        </button> -->
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_read()">Mark as read</a>
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_unread()">Mark as unread</a>

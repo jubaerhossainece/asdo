@@ -9,7 +9,7 @@
                     		<span class="badge badge-success">{{$inbox}}</span>
                     	</a>
                   	</li>
-                    <li>
+                    <!-- <li>
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-envelope"></i></span>Sent Mail
                     		<span class="badge badge-success">2</span>
@@ -27,7 +27,7 @@
                     		<span class="icon"><i class="fas fa-trash-alt"></i></span>Trash
                     		<span class="badge badge-danger">{{$trashed}}</span>
                     	</a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>

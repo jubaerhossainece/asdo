@@ -30,13 +30,18 @@
                       <a class="nav-link" href="{{route('home.about')}}">About</a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a class="nav-link" href="{{route('home.school')}}">Alokito School</a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('campaigns.index')}}">Campaigns</a>
                     </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('projects.index')}}">Programs</a>
+                    </li>
+
 
                     <li class="nav-item">
                       <a class="nav-link" href="{{route('home.contact')}}">Contacts</a>
