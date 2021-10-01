@@ -2,32 +2,32 @@
               <div class="aside-content">
                 <div class="aside-nav collapse">
                   <ul class="nav">
-                    <li class="active">
+                    <li class="{{Route::is('asdo.contacts.*') ? 'active' : ''}}">
                     	<a href="{{route('asdo.contacts.index')}}">
                     		<span class="icon"><i class="fas fa-inbox"></i></span>
                     		inbox
-                    		<span class="badge badge-success">{{$inbox}}</span>
+                    		@if($inbox === 0) @else<span class="badge badge-success">{{$inbox}}</span>@endif
                     	</a>
                   	</li>
-                    <!-- <li>
+                    <li class="">
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-envelope"></i></span>Sent Mail
                     		<span class="badge badge-success">2</span>
                     	</a>
                     </li>
-                    <li>
-                    	<a href="#">
+                    <li class="{{Route::is('asdo.important.*') ? 'active' : ''}}">
+                    	<a href="{{route('asdo.important.index')}}">
                     		<span class="icon"><i class="fas fa-suitcase"></i></span>Important
-                    		<span class="badge badge-success"></span>
+                    		@if($important === 0) @else<span class="badge badge-warning">{{$important}}</span>@endif
                     	</a>
                     </li>
                     
-                    <li>
-                    	<a href="#">
+                    <li class="{{Route::is('asdo.trashed.*') ? 'active' : ''}}">
+                    	<a href="{{route('asdo.trashed.index')}}">
                     		<span class="icon"><i class="fas fa-trash-alt"></i></span>Trash
-                    		<span class="badge badge-danger">{{$trashed}}</span>
+                    		@if($trashed === 0) @else<span class="badge badge-danger">{{$trashed}}</span>@endif
                     	</a>
-                    </li> -->
+                    </li>
                   </ul>
                 </div>
               </div>

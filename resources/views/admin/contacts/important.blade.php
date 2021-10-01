@@ -62,7 +62,7 @@
                             </td>
                             <!-- Message -->
                             <td class="mail-link">
-                                <a class="link" href="{{route('asdo.contacts.show', $message->id)}}">
+                                <a class="link" href="{{route('asdo.important.show', $message->id)}}">
                                     <span class="text-dark">{{substr($message->message, 0, 40)}}...</span>
                                 </a>
                             </td>
@@ -80,7 +80,7 @@
                 </div>
                 @else
                 <div class="p-5 text-center">
-                  <h2>No message in your inbox!</h2>
+                  <h2>No message in your important box!</h2>
                 </div>
                 @endif
               </div>

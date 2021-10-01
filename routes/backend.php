@@ -34,12 +34,16 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 
 // Routes for contacts
-Route::resource('contacts', ContactController::class);
+Route::resource('/contacts', ContactController::class);
 
 //email manipulation
-Route::post('/inbox/read', [InboxController::class, 'read'])->name('inbox.read');
-Route::post('inbox/unread', [InboxController::class, 'unread'])->name('inbox.unread');
-Route::post('inbox/important', [InboxController::class, 'important'])->name('inbox.important');
+Route::post('/mark/read', [InboxController::class, 'read'])->name('mark.read');
+Route::post('/mark/unread', [InboxController::class, 'unread'])->name('mark.unread');
+Route::post('/mark/important', [InboxController::class, 'important'])->name('mark.important');
+Route::get('/important', [InboxController::class, 'important_message'])->name('important.index');
+Route::get('/important/show/{id}', [InboxController::class, 'important_message_show'])->name('important.show');
+Route::get('/trashed', [InboxController::class, 'trashed_message'])->name('trashed.index');
+Route::get('/trashed/show/{id}', [InboxController::class, 'trashed_message_show'])->name('trashed.show');
 
 // routes for admin management
 Route::resource('/admins', AdminController::class);

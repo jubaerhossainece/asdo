@@ -16,7 +16,7 @@ function mark_read(){
     if(values == ''){
         return false;
     }else{
-        $("#action-form").attr("action", "/asdo/inbox/read");
+        $("#action-form").attr("action", "/asdo/mark/read");
         $('#action-form').submit();
     }
 }
@@ -36,7 +36,7 @@ function mark_unread(){
     if(values == ''){
         return false;
     }else{
-        $("#action-form").attr("action", "/asdo/inbox/unread");
+        $("#action-form").attr("action", "/asdo/mark/unread");
         $('#action-form').submit();
     }
 }
@@ -56,7 +56,7 @@ function mark_star(){
     if(values == ''){
         return false;
     }else{
-        $("#action-form").attr("action", "/asdo/inbox/important");
+        $("#action-form").attr("action", "/asdo/mark/important");
         $('#action-form').submit();
     }
 }
@@ -76,7 +76,7 @@ function mark_important(){
     if(values == ''){
         return false;
     }else{
-        $("#action-form").attr("action", "/asdo/inbox/important");
+        $("#action-form").attr("action", "/asdo/mark/important");
         $('#action-form').submit();
     }
 }
