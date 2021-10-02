@@ -415,7 +415,7 @@ section.page-banner .hero-text h4 span {
 /* ********** */
 /* banner/carousel css */
 /* ********** */
-.page-banner .hero-text .btn, .c-item-box .btn {
+.banner-btn {
   background-color:transparent;
   color: var(--button-bg-color);
   padding: 7px 38px;
@@ -426,15 +426,16 @@ section.page-banner .hero-text h4 span {
   border-radius: 25px;
   outline: none !important;
 }
-.page-banner .hero-text .btn:hover, .c-item-box .btn:hover {
+
+.banner-btn:hover {
   background-color: var(--button-bg-color);
   color: var(--header-bg-color);
 }
-.page-banner .hero-text .btn:active, .c-item-box .btn:active {
+.banner-btn:active {
   outline: none !important;
   box-shadow: none !important;
 }
-.page-banner .hero-text .btn:focus, .c-item-box .btn:focus {
+.banner-btn:focus {
   outline: none !important;
   box-shadow: none !important;
 }

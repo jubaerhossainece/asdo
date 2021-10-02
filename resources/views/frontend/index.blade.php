@@ -39,6 +39,9 @@
               <div class="col-md-8">
                 <h2>{{$slider->caption_header}}</h2>
                 <p>{{$slider->caption_text}}</p>
+                <button type="button" class="mt-3 btn btn-large banner-btn" data-toggle="modal" data-target="#donateModal">
+                  Donate Now
+                </button>
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@
         <div class="hero-text" >
           <h1>Contact</h1>
           <h4><a href="index.html">Home</a><span>/Contact</span></h4>
-          <button type="button" class="mt-3 btn btn-large donate-btn" data-toggle="modal" data-target="#donateModal">
+          <button type="button" class="mt-3 btn btn-large banner-btn" data-toggle="modal" data-target="#donateModal">
             Donate Now
           </button>
         </div>
