@@ -9,12 +9,12 @@
                     		@if($inbox === 0) @else<span class="badge badge-success">{{$inbox}}</span>@endif
                     	</a>
                   	</li>
-                    <li class="">
+                    <!-- <li class="">
                     	<a href="#">
                     		<span class="icon"><i class="fas fa-envelope"></i></span>Sent Mail
                     		<span class="badge badge-success">2</span>
                     	</a>
-                    </li>
+                    </li> -->
                     <li class="{{Route::is('asdo.important.*') ? 'active' : ''}}">
                     	<a href="{{route('asdo.important.index')}}">
                     		<span class="icon"><i class="fas fa-suitcase"></i></span>Important

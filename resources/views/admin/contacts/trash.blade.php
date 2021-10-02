@@ -8,7 +8,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header text-center border-bottom-0">
-          <h3 class="text-danger" style="width: 100%;">This messages will be deleted after 30 days!</h3>
+          <h3 class="text-danger" style="width: 100%;"> Messages that have been in trash more than 30 days will automatically be deleted!</h3>
         </div>
       </div>
       <div class="card">
@@ -24,8 +24,12 @@
                           <input type="checkbox" class="custom-control-input" id="select-all" />
                           <label class="custom-control-label" for="select-all">&nbsp;</label>
                       </div>
-                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()">
-                        <i class="fas fa-trash"></i>
+                      <button type="button" class="btn btn-light mr-2" onclick="permanent_delete()" data-toggle="tooltip" data-placement="bottom" title="Delete message permanently">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+
+                      <button type="button" class="btn btn-light mr-2" onclick="restore_trash()"  data-toggle="tooltip" data-placement="bottom" title="Restore message from trashbox">
+                        <i class="far fa-window-restore"></i>
                       </button>
                       <div class="btn-group">
                         <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
@@ -35,7 +39,6 @@
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_read()">Mark as read</a>
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_unread()">Mark as unread</a>
-                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_important()">Mark as important</a>
                         </div>
                       </div>
                     </div>
@@ -61,7 +64,7 @@
                                 </div>
                             </td>
                             <!-- star -->
-                            <td><i class="fa fa-star text-warning"></i></td>
+                            <!-- <td><i class="fa fa-star text-warning"></i></td> -->
                             <td>
                                 <span class="mb-0 text-muted">{{$message->name}}</span>
                             </td>

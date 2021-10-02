@@ -88,7 +88,14 @@
     <!-- <script src="{{url('assets/libs/js/main-js.js')}}"></script> -->
     <script src="{{url('js/script.js')}}"></script>
     @stack('script')
+
     <script>
+    // tooltip initialisation
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    //hide preloader when dom is ready
       $(window).on("load", function(){
         $('#preloader').fadeOut();
       })

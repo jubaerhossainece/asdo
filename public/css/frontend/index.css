@@ -87,17 +87,18 @@ marquee.news-scroll a {
     right: 0;
     color: #fff;
     text-align: center;
-    line-height: 1;
 }
 
   .carousel-caption h2 {
     color: white;
     font-size: 42px;
+    line-height: 1.1;
   }
 
   .carousel-caption p {
     color: white;
     font-size: 21px;
+    line-height: 1.2;
   }
 
   .carousel-item .overlay {

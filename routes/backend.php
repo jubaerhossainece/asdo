@@ -40,10 +40,13 @@ Route::resource('/contacts', ContactController::class);
 Route::post('/mark/read', [InboxController::class, 'read'])->name('mark.read');
 Route::post('/mark/unread', [InboxController::class, 'unread'])->name('mark.unread');
 Route::post('/mark/important', [InboxController::class, 'important'])->name('mark.important');
+Route::post('/mark/unimportant', [InboxController::class, 'unImportant'])->name('mark.unimportant');
 Route::get('/important', [InboxController::class, 'important_message'])->name('important.index');
 Route::get('/important/show/{id}', [InboxController::class, 'important_message_show'])->name('important.show');
 Route::get('/trashed', [InboxController::class, 'trashed_message'])->name('trashed.index');
 Route::get('/trashed/show/{id}', [InboxController::class, 'trashed_message_show'])->name('trashed.show');
+Route::post('/delete/permanent', [InboxController::class, 'permanent_delete'])->name('delete.permanent');
+Route::post('/trash/restore/', [InboxController::class, 'restore_trash'])->name('trash.restore');
 
 // routes for admin management
 Route::resource('/admins', AdminController::class);

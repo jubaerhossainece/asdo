@@ -12,19 +12,36 @@ class InboxController extends Controller
 {
     //mark message as read
     public function read(Request $request){
-        return $request;
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::withTrashed()->whereIn('id', $ids)->update(['is_seen' => true]);
+        return redirect()->back();
     }
 
 
     //mark message as unread
     public function unread(Request $request){
-        return $request;
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::withTrashed()->whereIn('id', $ids)->update(['is_seen' => false]);
+        return redirect()->back();
     }
 
 
     //mark message as important
     public function important(Request $request){
-        return $request;
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::whereIn('id', $ids)->update(['is_important' => true]);
+        return redirect()->back();
+    }
+
+    //mark message as unimportant
+    public function unImportant(Request $request){
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::whereIn('id', $ids)->update(['is_important' => false]);
+        return redirect()->back();
     }
 
     //mark message as trashed
@@ -65,13 +82,33 @@ class InboxController extends Controller
         return view('admin.contacts.trash', compact('messages'));
     }
 
-
+    //show trashed messages
     public function trashed_message_show($id){
         Gate::authorize('app.contacts.show');
         $message = Contact::withTrashed()->find($id);
         $message->is_seen = true;
         $message->save();
         return view('admin.contacts.show', compact('message'));
+    }
+
+    //forcedelete to delete resource permanently
+    public function permanent_delete(Request $request){
+        Gate::authorize('app.contacts.destroy');
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::whereIn('id', $ids)->forceDelete();
+
+        return redirect()->back();
+    }
+
+    
+    public function restore_trash(Request $request){
+        Gate::authorize('app.contacts.destroy');
+        $ids = $request->mail_array[0];
+        $ids = explode(",", $ids);
+        Contact::withTrashed()->whereIn('id', $ids)->restore();
+
+        return redirect()->back();
     }
 
 }

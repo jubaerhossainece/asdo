@@ -19,7 +19,7 @@
                           <input type="checkbox" class="custom-control-input" id="select-all" />
                           <label class="custom-control-label" for="select-all">&nbsp;</label>
                       </div>
-                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()">
+                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()" data-toggle="tooltip" data-placement="bottom" title="Move message to trashbox">
                         <i class="fas fa-trash"></i>
                       </button>
                       <div class="btn-group">
@@ -30,7 +30,7 @@
                         <div class="dropdown-menu">
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_read()">Mark as read</a>
                           <a class="dropdown-item" href="javascript: void(0);" onclick="mark_unread()">Mark as unread</a>
-                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_important()">Mark as important</a>
+                          <a class="dropdown-item" href="javascript: void(0);" onclick="mark_unimportant()">Mark as unimportant</a>
                         </div>
                       </div>
                     </div>

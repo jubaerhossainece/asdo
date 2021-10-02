@@ -19,7 +19,7 @@
                           <input type="checkbox" class="custom-control-input" id="select-all" />
                           <label class="custom-control-label" for="select-all">&nbsp;</label>
                       </div>
-                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()">
+                      <button type="button" class="btn btn-light mr-2" onclick="make_trash()" data-toggle="tooltip" data-placement="bottom" title="Move message to trashbox">
                         <i class="fas fa-trash"></i>
                       </button>
                       <div class="btn-group">
@@ -56,7 +56,8 @@
                                 </div>
                             </td>
                             <!-- star -->
-                            <td><i class="fa fa-star text-warning"></i></td>
+
+                            <td><i class=" @if($message->is_important == true) fa fa-star text-warning @else far fa-star @endif"></i></td>
                             <td>
                                 <span class="mb-0 text-muted">{{$message->name}}</span>
                             </td>
