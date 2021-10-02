@@ -16,6 +16,7 @@
     
     <!--custom css -->
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
+    <link rel="stylesheet" href="{{url('css/preloader.css')}}">
     <!-- <link href="{{url('css/frontend/style.css')}}" rel="stylesheet" /> -->
     @if(auth()->user()->user_type === 'member')
         <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
@@ -32,6 +33,9 @@
     <title>ASDO - Alokito Social Development Organisation</title>
 </head>
 
+    <div class="loadingio-spinner" id="preloader">
+      <img src="{{url('/assets/images/preloader.gif')}}">
+    </div>
 
         <!-- navbar part -->
         @include('layouts.user.partials.header')
@@ -98,6 +102,11 @@
     <!-- <script src="{{url('assets/libs/js/main-js.js')}}"></script> -->
     <script src="{{url('js/script.js')}}"></script>
     @stack('script')
+     <script>
+      $(window).on("load", function(){
+        $('#preloader').fadeOut();
+      })
+    </script>
 </body>
  
 </html>

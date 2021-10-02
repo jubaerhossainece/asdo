@@ -22,6 +22,7 @@
 
     <!-- custom CSS-->
     <link href="/css/frontend/style.css" rel="stylesheet" />
+    <link href="/css/preloader.css" rel="stylesheet" />
 
     @stack('css')
   </head>
@@ -53,5 +54,10 @@
     <!-- custom js -->
     <script src="js/frontend/main.js"></script>
     @stack('script')
+    <script>
+      $(window).on("load", function(){
+        $('#preloader').fadeOut();
+      })
+    </script>
   </body>
 </html>

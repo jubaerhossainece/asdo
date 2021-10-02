@@ -1,5 +1,10 @@
 
   <body>
+    <!-- preloader -->
+
+    <div class="loadingio-spinner" id="preloader">
+      <img src="{{url('/assets/images/preloader.gif')}}">
+    </div>
     <!--Header Start-->
     <header>
       <!--Navbar Start-->

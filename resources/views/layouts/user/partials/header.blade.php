@@ -8,7 +8,7 @@
             <nav class="navbar navbar-expand-md " style="width: 100%;">
                 <div class="nav-logo ">
                   <a href="/">
-                    <img src="{{asset('assets/images/frontend/logo.jpg')}}" alt="logo-img" />
+                    <img src="{{asset('assets/images/logo/logo.jpg')}}" alt="logo-img" />
                   </a>
                 </div>
                 <button
