@@ -197,7 +197,7 @@ h1, h2, h3, h4, h5, h6{
 .carousel{
    /* margin-top: 55px;*/
 }
-.carousel-inner{
+/*.carousel-inner{
     height: 80vh;
 }
 .carousel-item{
@@ -228,7 +228,7 @@ a.carousel-control-next i {
 
 a.carousel-control-prev i {
     font-size: 3.2rem;
-}
+}*/
 
 /*end carousel style*/
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link{

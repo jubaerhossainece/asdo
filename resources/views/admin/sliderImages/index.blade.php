@@ -18,7 +18,6 @@
 							<tr>
 							<th class="text-center">#</th>
 							<th class="text-center">Image</th>
-							<th class="text-center">category</th>
 							<th class="text-center">Caption Header</th>
 							@canany(['app.sliders.show', 'app.sliders.edit',  'app.sliders.destroy'])
 							<th class="text-center">Action</th>
@@ -31,9 +30,6 @@
 								<tr>
 									<td class="text-center">{{$loop->index+1}}</td>
 									<td class="text-center"><img src="{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}" alt="" style="height: 100px; width: auto;"></td>
-									<td class="text-center">
-										{{$slider->category}}
-									</td>
 									<th class="text-center">{{$slider->caption_header}}</th>
 
 

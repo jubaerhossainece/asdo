@@ -436,18 +436,9 @@ label {
     font-weight: 300;
 }
 
-/*.input-group-text{
-	padding: 10px 12px;
-	font-size: 18px;
-}*/
-
 h1, h2, h3, h4, h5, h6{
 	margin: 0;
 }
-
-/*.h5, h5{
-	font-size: inherit !important;
-}*/
 
 .card-header.header {
     display: flex;

@@ -42,17 +42,19 @@ marquee.news-scroll a {
 }
 
 @media (max-width: 479.98px){
-  /*#news {
-    margin-top: 58px;
-  }*/
   .news span {
     font-size: 15px;
   }
 }
 
 /***** Slider Carousel *****/
-.slider-wrap {
+.carousel {
     margin-top: 67px;
+}
+@media (max-width : 479.98px){
+  .carousel {
+    margin-top: 57px;
+  }
 }
 .carousel-control-next, .carousel-control-prev{
     width: 40px;
@@ -69,28 +71,43 @@ marquee.news-scroll a {
   }
   
   .carousel-item {
-    height: 100vh;
+    height: 90vh;
     position: relative;
   }
-  .slide-image {
-    position: absolute;
-    background-size: cover;
-    background-position: center;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-  
-  .slide-image:before {
-    content: "";
-    background-color: rgba(0,0,0, 0.8);
-    width: 100%;
+
+  .carousel-item img {
     height: 100%;
+    width: 100%;
+`}
+
+  .carousel-caption {
     position: absolute;
-    left: 0;
-    top: 0;
+    top: 20%;
+    left: 6%;
+    right: 0;
+    color: #fff;
+    text-align: center;
+    line-height: 1;
+}
+
+  .carousel-caption h2 {
+    color: white;
+    font-size: 42px;
   }
+
+  .carousel-caption p {
+    color: white;
+    font-size: 21px;
+  }
+
+  .carousel-item .overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #0000009e;
+}
+/*carousel end*/
+
   .c-item-box {
     text-align: left;
     margin-bottom: 1rem;

@@ -23,49 +23,35 @@
       </div>
     </section>
     <!--Slider Start-->
-    <section>
-      <div class="slider-wrap">
-        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-          <ol class="carousel-indicators">
-            <li
-              data-bs-target="#mainCarousel"
-              data-bs-slide-to="0"
-              class="active"
-            ></li>
-            <li data-bs-target="#mainCarousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#mainCarousel" data-bs-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            @foreach($sliders as $slider)
-            <div class="carousel-item @if($loop->index == 1) active @endif">
-              <div
-                class="slide-image"
-                style="background-image: url('{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}')"
-              ></div>
-              <div class="container c-item-box">
-                <div class="col-md-7 col-sm-8 slider-title">
-                  <h1>{{$slider->caption_header}}</h1>
-                  <h6>
-                    {{$slider->caption_text}}
-                  </h6>
-                  <p>
-                    <button type="button" class="btn btn-large donate-btn" data-toggle="modal" data-target="#donateModal">
-                      Donate
-                    </button>
-                  </p>
-                </div>
+    <section id="carousel">
+      <div id="carouselfade" class="carousel carousel-fade slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          @foreach($sliders as $key => $slider)
+            <button type="button" data-bs-target="#carouselfade" data-bs-slide-to="{{$key}}" @if($key === 0) class="active" aria-current="true" @endif aria-label="Slide {{$key+1}}"></button>
+          @endforeach
+        </div>
+        <div class="carousel-inner">
+          @foreach($sliders as $key => $slider)
+          <div class="carousel-item @if($key === 0) active @endif">
+            <div class="overlay"></div>
+            <img src="{{asset('/storage/asdo/images/sliders/'.$slider->photo)}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block row">
+              <div class="col-md-8">
+                <h2>{{$slider->caption_header}}</h2>
+                <p>{{$slider->caption_text}}</p>
               </div>
             </div>
-            @endforeach
           </div>
-          <a href="#mainCarousel" class="carousel-control-prev" type="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          </a>
-          <a
-            href="#mainCarousel" class="carousel-control-next" type="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          </a>
+          @endforeach
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselfade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselfade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
       </section>
       <!--Slider End-->
@@ -243,6 +229,11 @@
 @push('script')
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <script>
+    var myCarousel = document.querySelector('#carouselfade')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 5000,
+      wrap: false
+    })
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
