@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
     {
         Admin::updateOrCreate([
         	'role_id' => Role::where('slug', 'superAdmin')->first()->id,
-        	'name' => 'Md. Jubaer Hossain',
+        	'name' => 'Mohammad Jahidul Islam Jewel',
         	'email' => 'superadmin@example.com',
         	'password' => Hash::make('12345678')
         ]);
