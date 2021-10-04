@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        Dashboard management permissions
+        // Dashboard management permissions
         $moduleAppDashboard = Module::updateOrCreate(['name' => 'Admin Dashboard']);
 
         Permission::updateOrCreate([
