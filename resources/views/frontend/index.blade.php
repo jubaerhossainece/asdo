@@ -214,7 +214,7 @@
             
             <form method="POST" action="{{route('subscribers.store')}}" id="subscriber_form" novalidate="novalidate" onsubmit="subscribe(event)">
               <div>
-              <input class="form-control" type="email" name="email" required="" placeholder="Email address" aria-required="true">
+              <input class="form-control" type="email" name="email" required="" placeholder="Email address" aria-required="true" id="email">
               <button type="submit" class="btn theme-btn" id="subs-submit-btn">Subscribe</button>
               </div>
             </form>
@@ -255,7 +255,9 @@
           data: formData,
           processData: false,
           success: function (data) {
-              console.log(data);
+              
+              let field = document.getElementById('email');
+                field.value = "";
               let message = document.getElementById("message");
               message.innerHTML = "";
               message.innerHTML += "<div class='text-success'><strong>" + data[1] + "</strong></div>";
