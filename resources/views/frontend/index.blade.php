@@ -70,7 +70,7 @@
         <div class="header row">
           <h1>Our Mission</h1>
           <span>
-            The mission of আলোকিত সামাজিক উন্নয়ন সংস্থা is to connect all the people of the locality for bringing about prosperity. From 2012 till now it is working on getting everyone together in addressing all the issues that are persistent in the locality.
+            The mission of Alokito Social Development Organization (ASDO) is to connect all the people of the locality for bringing about prosperity. From 2012 till now it is working on getting everyone together in addressing all the issues that are persistent in the locality.
           </span>
         </div>
         <div class="content row">

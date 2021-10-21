@@ -24,29 +24,90 @@
     <section class="about-wrap">
       <div class="container">
         <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="about-header">
+              <h2>Who We Are</h2>              
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-5">
             <div class="about-img-box">
               <img
                 class="about-img img-fluid"
-                src="images/about_thumb.jpg"
+                src="{{url('assets/images/food.jpg')}}"
                 alt="about-us"
               />
             </div>
           </div>
           <div class="col-md-7">
             <div class="about-box">
-              <h2 class="about-header">Who We Are</h2>
               <p>
-                Alokito social development organization(ASDO) is a non-profit social organization based in Sreepur union of Magura district. We have been working for about a decade in trying to change the situation of the poor and marginal people of Sripur. Alokito social development organization(ASDO) have been working throughout the time as a sole social enterprise on that region in addressing the social and economic crisis of that area, standing by the people in need, providing education for those who couldn’t access it, bearing healthcare costs for who can’t bear it, distributing food and foodgrains to marginal people, also people who have nothing to support themselves or nothing to earn from; ASDO organizes a program to provide them a earning source. We are the first organization to start blood donation in the region and also a blood bank. Tree plantation is also a very frequent activity of ASDO. Alongside, Fundraising is also a constant activity. The Alokito school is a venture of ASDO, which was established with the initiative to make education easy for students and lift the burden of a big syllabus and loads of academic books. Students who can’t pay for their education study free here, and needy students can also pay half of the tuition fees. Distributing free books and free stationary products is one of the noteworthy works by us.
-
+                Alokito Social Development Organization (ASDO) is a non-profit social organization founded in Tupipara village of Sreekol union located at Sreepur thana in the Magura district. We have been working for about a decade in trying to change the situation of the poor and marginal people of Tupipara village in Sreepur thana. Alokito social development organization (ASDO) have been working throughout the time as a sole social enterprise on that region in addressing the social and economic crisis of that area, standing by the people in need, providing education for those who couldn’t access it, bearing healthcare costs for who can’t bear it, distributing food and foodgrains to marginal people, also people who have nothing to support themselves or nothing to earn from; ASDO organizes a program to provide them a earning source. We are the first organization to start blood donation in the region and also a blood bank. Tree plantation is also a very frequent activity of ASDO. Alongside, Fundraising is also a constant activity.
+                The Alokito school is a venture of ASDO, which was established with the initiative to make education easy for students and lift the burden of a big syllabus and loads of academic books. Students who can’t pay for their education study free here, and needy students can also pay half of the tuition fees. Distributing free books and free stationary products is one of the noteworthy works by us.
               </p>
-              <ul class="about-box-list">
-                <li>Mohammad Jahidul Islam Jewel is the Chairman and founder of আলোকিত সামাজিক উন্নয়ন সংস্থা</li>
-                <li>There are 7 members in the governing body, including the chairman, which is the board of directors.</li>
-                <li>There is a board of 21 members in the co-operative society, including the 7 directors. This board is the general council of আলোকিত সামাজিক উন্নয়ন সংস্থা</li>
-                <li>Apart from this আলোকিত সামাজিক উন্নয়ন সংস্থা consists of 4000 members from all walks of life.</li>
-              </ul>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            
+              <ul class="about-box-list">
+                <li>Mohammad Jahidul Islam Jewel is the Chairman and founder of Alokito social development organization (ASDO).</li>
+                <li>There are 7 members in the governing body, including the chairman, which is the board of directors.</li>
+                <li>There is a board of 21 members in the co-operative society, including the 7 directors. This board is the general council of Alokito social development organization (ASDO).</li>
+                <li>Apart from this Alokito social development organization (ASDO) consists of 4000 members from all walks of life.</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="founder-header">
+              <h2>Chairman and Founder</h2>            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img class="img-fluid" src="{{url('assets/images/jewel.jpg')}}" alt="">
+          </div>
+          <div class="col-md-8">
+            <p>
+              The Chairman and the founder of Alokito social development organization (ASDO) Mohammad Jahidul Islam Jewel is a person who could have a very promising career and could have lived a luxurious life, but instead, he came back to Sreepur for the sole humanitarian cause of improving the socio-economic dynamics of the people of his area. He had formed several such organizations and led several groups  in this purpose since his early teenhood, from 1992.
+              Since 1990 he was deeply moved by the miseries of people around him. To attend High school he moved to Dhaka in 1992. He perceived a lot from the community and lifestyle of Dhaka and got a motivation of creating his 1st organization. In 1994 he organised a new body similar to the previous one. From 1994 onwards all his work was at Tupipara village based in Sreekol union situated at Sreepur thana of the district Magura.
+              Asking about what inspired you in dedicating your life in such a humanitarian cause, he answered his ancestors. His grandfather was the head of Akbar Bahini, one of the four prominent battalions in the Liberation War of 1971. His father being the head of Bangladesh 
+              </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- about us section -->
+    <section class="founder">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="founder-header">
+              <h2>Chairman and Founder</h2>            
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <img class="img-fluid" src="{{url('assets/images/jewel.jpg')}}" alt="">
+          </div>
+          <div class="col-md-8">
+            <p>
+              The Chairman and the founder of Alokito social development organization (ASDO) Mohammad Jahidul Islam Jewel is a person who could have a very promising career and could have lived a luxurious life, but instead, he came back to Sreepur for the sole humanitarian cause of improving the socio-economic dynamics of the people of his area. He had formed several such organizations and led several groups  in this purpose since his early teenhood, from 1992.
+              Since 1990 he was deeply moved by the miseries of people around him. To attend High school he moved to Dhaka in 1992. He perceived a lot from the community and lifestyle of Dhaka and got a motivation of creating his 1st organization. In 1994 he organised a new body similar to the previous one. From 1994 onwards all his work was at Tupipara village based in Sreekol union situated at Sreepur thana of the district Magura.
+              Asking about what inspired you in dedicating your life in such a humanitarian cause, he answered his ancestors. His grandfather was the head of Akbar Bahini, one of the four prominent battalions in the Liberation War of 1971. His father being the head of Bangladesh 
+              </p>
           </div>
         </div>
       </div>
@@ -71,9 +132,10 @@
                   <i class="fas fa-history"></i>
                 </div>
                 <div class="text">
-                  আলোকিত সামাজিক উন্নয়ন সংস্থা started it’s journey in 2012 as a Co-operative society. In 2013 the owner started a coaching center in which he would provide the students with a student friendly syllabus. When he saw how the students were burdened by lengthy syllabuses and tons of books, he was determined to establish a school. The school was named as Alokito School from the name of আলোকিত সামাজিক উন্নয়ন সংস্থা. Alokito School began administering and commenced its course of education in 2015. 
-                  Digitalization started in 2013. It was the first step of the outreach of আলোকিত সামাজিক উন্নয়ন সংস্থা. And documentation of every work was also a necessary step too, which started from 2015.
-                  আলোকিত সামাজিক উন্নয়ন সংস্থা and Alokito School combinely got registrated as a non-profit social enterprise at 2020.
+                  Alokito social development organization (ASDO) started its journey in 2012 as a Co-operative society. In 2013 the owner started a coaching center in which he would provide the students with a student friendly syllabus. When he saw how the students were burdened by lengthy syllabuses and tons of books, he was determined to establish a school. The school was named as Alokito School from the name of Alokito social development organization (ASDO). Alokito School began administering and commenced its course of education in 2015. 
+                  Aiming to accelerate the expansion of social activities, Alokito social development organization (ASDO) had privately seeked permission from the Social Welfare directorate of the government.
+                  Shortly after receiving permission ASDO commenced their welfare programs and added a new degree in the social, economical and political growth of Tupipara village.
+                  Digitalization started in 2013. It was the first step of the outreach of Alokito social development organization (ASDO). And documentation of every work was also a necessary step too, which started from 2015. Eventually, Alokito social development organization (ASDO) and Alokito School combinedly got registered as a non-profit social enterprise in 2020.
                   The founder Mohammad Jahidul Islam Jewel had this idea of creating such agency came into his mind at 2001. As he had records of forming and leading such organizations, it was quite natural. In 2009 he wheeled his thoughts into reality. But there was some trial and error, and the road was not smooth at the time. But he kept his eyes on the price and continued in his venture.
                 </div>
               </div>
@@ -93,8 +155,11 @@
                   <i class="fas fa-low-vision"></i>
                 </div>
                 <div class="text">
-                  The mission of আলোকিত সামাজিক উন্নয়ন সংস্থা is to connect all the people of the locality for the bringing about  prosperity to the region. From 2012 till now it is working on getting everyone together in addressing all the issues that are persistent in the locality.  আলোকিত সামাজিক উন্নয়ন সংস্থা makes no profit out of these activities. আলোকিত সামাজিক উন্নয়ন সংস্থা is selflessly carrying on all its activities and the only profit they make is the goodwill and trust of the people of the locality. And that's why all kinds of people reach out to them and entrust them to ease their difficulty. 
-                  The founder of আলোকিত সামাজিক উন্নয়ন সংস্থা had seen people of his region living a life full of poverty, hunger, unemployment, chronic diseases, epidemics and continuous social oppression. Their miserable state was unbearable to him, which drove him to start up the social enterprise আলোকিত সামাজিক উন্নয়ন সংস্থা. Now it has been a decade আলোকিত সামাজিক উন্নয়ন সংস্থা has been working tirelessly to facilitate all the people of the region in every discomfort.
+                  The mission of Alokito social development organization (ASDO) is to connect all the people of the locality to bring about  prosperity to the region. From 2012 till now it is working on getting everyone together in addressing all the issues that are persistent in the locality.  Alokito social development organization (ASDO) makes no profit out of these activities.
+                  Alokito social development organization (ASDO)  is selflessly carrying on all its activities and the only profit they make is the goodwill and trust of the people of the locality. And that's why all kinds of people reach out to them and entrust them to ease their difficulty. 
+                  The founder of Alokito social development organization (ASDO) had seen people of his region living a life full of poverty, hunger, unemployment, chronic diseases, epidemics and continuous social oppression. Their miserable state was unbearable to him, which drove him to start up the social enterprise Alokito social development organization (ASDO). 
+                  ASDO has been working tirelessly since its birth, for the wellbeing of the people and making a socially and economically well off community, sustainable environment and greater measures are taken to ensure the security of life. Now it has been a decade ASDO has been working tirelessly to facilitate all the people of the region in every discomfort. Their activities in the time of the pandemic COVID-19 have claimed countless pragmatic  appraisals.
+
 
                 </div>
               </div>
@@ -113,10 +178,11 @@
                   <i class="fas fa-users"></i>
                 </div>
                 <div class="text">
-                  Apart from the 21 members of the general council and 7 directors, আলোকিত সামাজিক উন্নয়ন সংস্থা consists of total 4000 members. This huge number of people participate soulfully and spontaneously in the activities of আলোকিত সামাজিক উন্নয়ন সংস্থা. Among this 4000 there are a huge number of volunteers who compassionately engage in these humanitarian works conducted by আলোকিত সামাজিক উন্নয়ন সংস্থা. 
-                  The আলোকিত সামাজিক উন্নয়ন সংস্থা community actively arrange and participate in donations, charities, campaigns, giveaways and when in need they rush to the places where people are in malaise. 
-                  The local government actively participate in the workshops and events of আলোকিত সামাজিক উন্নয়ন সংস্থা. They completely support its work and they try their best to do their part, so that humanitarian benefits come soon. The local government even refers the আলোকিত সামাজিক উন্নয়ন সংস্থা to people who come with some soreness to them.
-                  আলোকিত সামাজিক উন্নয়ন সংস্থা has a community outside Magura in Bangladesh and also outside Bangladesh. These communities mainly participate in fundraising and the community that is outside Bangladesh offer আলোকিত সামাজিক উন্নয়ন সংস্থা with funds for different purposes. One of these communities is an American community that provides funds for cancer treatment.
+                  Apart from the 21 members of the general council and 7 directors, Alokito social development organization (ASDO) consists of a total 4000 members. This huge number of people participate soulfully and spontaneously in the activities of Alokito social development organization (ASDO). Among this 4000 there are a huge number of volunteers who compassionately engage in these humanitarian works conducted by Alokito social development organization (ASDO). 
+                  The Alokito social development organization (ASDO) community actively arranges and participates in donations, charities, campaigns, giveaways and when in need they rush to the places where people are in malaise. 
+                  The local government actively participates in the workshops and events of Alokito social development organization (ASDO). They completely support its work and they try their best to do their part, so that humanitarian benefits come soon. The local government even refers the ASDO to people who come with some soreness to them.
+                  Alokito social development organization (ASDO) has a community outside Magura in Bangladesh and also outside Bangladesh. These communities mainly participate in fundraising and the community that is outside Bangladesh offer ASDO with funds for different purposes. One of these communities is an American community that provides funds for cancer treatment. 
+
                
                 </div>
               </div>

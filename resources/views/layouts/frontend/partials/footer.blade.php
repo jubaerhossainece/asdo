@@ -5,7 +5,7 @@
           <!--Footer Brand start-->
           <div class="footer-brand col-md-6 col-lg-6">
             <h4 class="footer-heading">
-              <a href="#">আলোকিত সামাজিক উন্নয়ন সংস্থা</a>
+              <a href="/">আলোকিত সামাজিক উন্নয়ন সংস্থা</a>
             </h4>
             <p>
               The only regional non-profit social enterprise in Sreepur, Magura. Being widely celebrated in the area, it has brought about a drastic change in the humanitarian and volunteer services. Our motto is to diminish poverty and hunger from the area through reaching out to the poor and marginal people and donating in accordance to their needs.
@@ -56,7 +56,13 @@
             <ul class="f-address-link">
               <li>
                 <i class="fas fa-map-marker-alt"></i>
-                <span> Sreepur, Magura, Bangladesh </span>
+                <span> Village: Tupipara </br>
+Post Office: Khamarpara</br>
+Union: Sreekol</br>
+Thana/ Upazilla: Sreepur</br>
+District: Magura</br>
+Country: Bangladesh
+ </span>
               </li>
               <li>
                 <i class="fas fa-envelope"></i>
@@ -64,7 +70,8 @@
               </li>
               <li>
                 <i class="fas fa-phone"></i>
-                <span>+8801XXXXXXXXX</span>
+                <span>+8801712748985</br>
+                +8801999027981</span>
               </li>
             </ul>
           </div>
@@ -79,7 +86,7 @@
         <div class="row">
           <div class="copyright-txt col-md-6">
             <p>
-              Copyright © <a href="#">আলোকিত সামাজিক উন্নয়ন সংস্থা</a> All
+              Copyright © <a href="/">আলোকিত সামাজিক উন্নয়ন সংস্থা</a> All
               Rights Reserved
             </p>
           </div>

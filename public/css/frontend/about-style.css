@@ -9,7 +9,12 @@
 .about-box {
   color: #ffffff;
 }
-.about-box .about-header {
+
+.about-wrap .about-header{
+  padding: 2rem 0;
+}
+
+.about-wrap .about-header h2{
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -42,6 +47,19 @@
   color: #ffffff;
 }
 
+/*founder section*/
+.founder{
+  background-color: var(--section-bg-color);
+  padding: 2rem 0;
+}
+.founder .founder-header{
+  padding: 0 0 2rem 0;
+}
+
+.founder .founder-header h2{
+  font-size: 2.5rem;
+  font-weight: 700;
+}
 /***************/
 /*hero image*/
 /***************/
