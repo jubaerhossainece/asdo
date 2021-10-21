@@ -60,6 +60,18 @@
   font-size: 2.5rem;
   font-weight: 700;
 }
+
+.activities{
+  padding: 2rem 0;
+}
+.activities .activities-header{
+  padding: 0 0 2rem 0;
+}
+
+.activities .activities-header h2{
+  font-size: 2.5rem;
+  font-weight: 700;
+}
 /***************/
 /*hero image*/
 /***************/

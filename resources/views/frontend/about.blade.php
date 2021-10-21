@@ -89,24 +89,56 @@
 
 
     <!-- about us section -->
-    <section class="founder">
+    <section class="activities">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <div class="founder-header">
-              <h2>Chairman and Founder</h2>            
+            <div class="activities-header">
+              <h2>Brief history and activities</h2>            
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4">
-            <img class="img-fluid" src="{{url('assets/images/jewel.jpg')}}" alt="">
-          </div>
-          <div class="col-md-8">
+          <div class="col-md-12">
             <p>
-              The Chairman and the founder of Alokito social development organization (ASDO) Mohammad Jahidul Islam Jewel is a person who could have a very promising career and could have lived a luxurious life, but instead, he came back to Sreepur for the sole humanitarian cause of improving the socio-economic dynamics of the people of his area. He had formed several such organizations and led several groups  in this purpose since his early teenhood, from 1992.
-              Since 1990 he was deeply moved by the miseries of people around him. To attend High school he moved to Dhaka in 1992. He perceived a lot from the community and lifestyle of Dhaka and got a motivation of creating his 1st organization. In 1994 he organised a new body similar to the previous one. From 1994 onwards all his work was at Tupipara village based in Sreekol union situated at Sreepur thana of the district Magura.
-              Asking about what inspired you in dedicating your life in such a humanitarian cause, he answered his ancestors. His grandfather was the head of Akbar Bahini, one of the four prominent battalions in the Liberation War of 1971. His father being the head of Bangladesh 
+              Alokito social development organization (ASDO) is the only regional non-profit social enterprise at Tupipara village in Sreepur thana, Magura. Being widely celebrated in the area, it has brought about a drastic change in the humanitarian and volunteer services. Our motto is to diminish poverty and hunger from the area through reaching out to the poor and marginal people and donating in accordance to their needs. 
+              It started the first blood donation campaign at Sreepur thana in 2009 and eventually opened a blood bank. The Alokito School is one of the best schools in the area, aiding the students with an easy syllabus and withdrawing loads of books from them. And recently, their measures in addressing the COVID-19 situation have been a huge success. The social services that Alokito social development organization (ASDO) provide are as follows:
+              <ul>
+                <li>
+                  Ensuring easy adaptive education to all the students of the area, having no regards about the ability to pay.
+                </li>
+                <li>
+                  Giving access to free books and free stationary products to children for promoting education.
+                </li>
+                <li>
+                  Terminating child marriage and creating social awarness against it.
+                </li>
+                <li>
+                  Ensuring easy healthcare access to the common people of the area, and aiding the needy to afford it, so that no one may die untreated.
+                </li>
+                <li>
+                  Creating mass awareness among people and taking every possible step in controlling all infectious diseases which can turn into epidemics, especially now the COVID-19 and the social rules that follow it.
+                </li>
+                <li>
+                  Creating a blood bank and an oxygen storage to face any kind of emergencies.
+                </li>
+                <li>
+                  Ensuring food security of the local marginal people.
+                </li>
+                <li>
+                  Ensuring the ability to earn and creating job opportunities.
+                </li>
+                <li>
+                  Ensuring sustainability of the environment and creating mass awareness in eradicating environmental pollution.
+                </li>
+                <li>
+                  Raising funds to face disasters and help people in unavoidable situations.
+                </li>
+                <li>
+                  Ensuring safe roads by campaigning to reduce road accidents.
+                </li>
+              </ul>
+
               </p>
           </div>
         </div>
