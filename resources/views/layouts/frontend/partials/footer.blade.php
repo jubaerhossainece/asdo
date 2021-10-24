@@ -86,7 +86,7 @@ Country: Bangladesh
         <div class="row">
           <div class="copyright-txt col-md-6">
             <p>
-              Copyright © <a href="/">আলোকিত সামাজিক উন্নয়ন সংস্থা</a> All
+               © Copyright <?php echo date('Y') ?>. All
               Rights Reserved
             </p>
           </div>
