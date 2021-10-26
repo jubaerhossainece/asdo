@@ -16,9 +16,12 @@
                             <li class="nav-item">
                                 <a class="nav-link {{Route::is('asdo.dashboard') ? 'active' : ''}}" href="{{route('asdo.dashboard')}}"><i class="fas fa-fw fa-user-circle"></i><span>Dashboard</span></a>
                             </li>
+
+                            @can('app.contacts.index')
                             <li class="nav-item">
                                 <a class="nav-link {{Route::is('asdo.contacts.*') ? 'active' : ''}}" href="{{route('asdo.contacts.index')}}"><i class="fas fa-envelope"></i><span>Messages</span></a>
                             </li>
+                            @endcan
 
                             @can('app.members.index')
                             <li class="nav-item">
