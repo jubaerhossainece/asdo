@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        Gate::authorize('app.users.index');
+        Gate::authorize('app.members.index');
 
         $users = DB::table('users')
                 ->where('user_type', '=', 'member')
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        Gate::authorize('app.users.create');
+        Gate::authorize('app.members.create');
 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $member_types = DB::table('others')->where('category', 'member type')->get();
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('app.users.create');
+        Gate::authorize('app.members.create');
 
         //determine if email is unique
         if(!empty($request->email)){
@@ -164,7 +164,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        Gate::authorize('app.users.show');
+        Gate::authorize('app.members.show');
 
         $user = User::findOrFail($id);
         $blood_group = DB::table('others')
@@ -191,7 +191,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('app.users.edit');
+        Gate::authorize('app.members.edit');
 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $member_types = DB::table('others')->where('category', 'member type')->get();
@@ -210,7 +210,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        Gate::authorize('app.users.edit');
+        Gate::authorize('app.members.edit');
 
         $user->fill($request->all());   
 
@@ -315,7 +315,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        Gate::authorize('app.users.destroy');
+        Gate::authorize('app.members.destroy');
 
         $user = User::findOrFail($id);
         if(isset($user->photo)){

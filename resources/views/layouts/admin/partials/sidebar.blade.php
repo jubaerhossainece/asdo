@@ -19,6 +19,18 @@
                             <li class="nav-item">
                                 <a class="nav-link {{Route::is('asdo.contacts.*') ? 'active' : ''}}" href="{{route('asdo.contacts.index')}}"><i class="fas fa-envelope"></i><span>Messages</span></a>
                             </li>
+
+                            @can('app.members.index')
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::is('asdo.users.*') ? 'active' : ''}}" href="{{route('asdo.users.index')}}"><i class="fas fa-hands-helping"></i><span>Members</span></a>
+                            </li>
+                            @endcan
+
+                            @can('app.volunteers.index')
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
+                            </li>
+                            @endcan
                         
                             <li class="nav-divider">
                                 Access Control
@@ -34,12 +46,6 @@
                                     @can('app.users.index')
                                     <li class="nav-item">
                                         <a class="nav-link {{Route::is('asdo.users.*') ? 'active' : ''}}" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Members</span></a>
-                                    </li>
-                                    @endcan
-
-                                    @can('app.volunteers.index')
-                                    <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
                                     </li>
                                     @endcan
 
