@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\VolunteerController;
+use App\Http\Controllers\Backend\BloodDonorController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AdminPasswordController;
@@ -56,6 +57,9 @@ Route::resource('/users', UserController::Class);
 
 // routes for volunteer management
 Route::resource('/volunteers', VolunteerController::Class);
+
+// routes for rblood donor management
+Route::resource('/bloodDonors', BloodDonorController::class);
 
 // routes for role management
 Route::resource('/roles', RoleController::class);

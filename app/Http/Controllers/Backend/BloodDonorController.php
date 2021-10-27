@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\BloodDonor;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
-class VolunteerController extends Controller
+class BloodDonorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,11 +18,11 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        Gate::authorize('app.volunteers.index');
-        $users = DB::table('users')
-                ->where('user_type', '=', 'volunteer')
-                ->get();
-        return view('admin.volunteers.index', compact('users'));
+        Gate::authorize('app.bloodDonors.index');
+
+        $users = DB::table('blood_donors')->get();     
+        
+        return view('admin.bloodDonors.index', compact('users'));
     }
 
     /**
@@ -35,11 +32,12 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        Gate::authorize('app.volunteers.create');
+        Gate::authorize('app.bloodDonors.create');
+
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
 
-        return view('admin.volunteers.create', compact('blood_groups', 'religions'));
+        return view('admin.bloodDonors.create', compact('blood_groups', 'religions'));
     }
 
     /**
@@ -50,32 +48,7 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('app.volunteers.create');
-
-        //determine if email is unique
-        if(!empty($request->email)){
-            $uniqueEmail = User::where('email', $request->email)
-                            ->where('user_type', $request->user_type)
-                            ->select('id')
-                            ->first();
-            
-            if($uniqueEmail){
-                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
-            }                 
-        }
-
-
-        //determine if phone number is unique
-        if(!empty($request->phone)){
-            $uniquePhone = User::where('phone', $request->phone)
-                            ->where('user_type', $request->user_type)
-                            ->select('id')
-                            ->first();
-
-            if($uniquePhone){
-                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
-            }           
-        }
+        Gate::authorize('app.bloodDonors.create');
 
         //check if email and phone number both fields are empty
         if(!isset($request->email) && !isset($request->phone)){
@@ -86,7 +59,8 @@ class VolunteerController extends Controller
         
         $request->validate([
             'name' => 'required|string',
-            'email' => 'email|email:rfc,dns',
+            'email' => 'email',
+            // 'email' => 'email|email:rfc,dns',
             'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
             'photo' => 'nullable|image',
@@ -94,23 +68,22 @@ class VolunteerController extends Controller
 
 
         //naming and storing photo 
-        
         if($request->hasFile('photo')){
-            $path = 'public/asdo/images/volunteers';
+            $path = 'public/asdo/images/bloodDonors';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'image'.time().'.'.$extension;
+            $filename_with_ext = 'bDonor'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
 
-        $user = new User;
+        $user = new BloodDonor;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : null;
         $user->father = $request->father;
         $user->mother = $request->mother; 
         $user->husband = $request->husband; 
@@ -120,7 +93,6 @@ class VolunteerController extends Controller
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->user_type = $request->user_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -131,13 +103,12 @@ class VolunteerController extends Controller
         $result = $user->save();
 
         if($result){
-            $request->session()->flash('alert-success', 'Volunteer profile has been created successfully!');
-            return redirect()->route('asdo.volunteers.show', $user->id);
+            $request->session()->flash('alert-success', 'Blood donor profile has been created successfully!');
+            return redirect()->route('asdo.bloodDonors.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->back();
         }
-
     }
 
     /**
@@ -148,23 +119,19 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        Gate::authorize('app.volunteers.show');
+        Gate::authorize('app.bloodDonors.show');
 
-        $user = User::findOrFail($id);
-        if($user->user_type !== 'volunteer'){
-            return redirect()->route('asdo.volunteers.index');
-        }
-
-        $blood_groups = DB::table('others')
+        $user = BloodDonor::findOrFail($id);
+        $blood_group = DB::table('others')
                         ->where('id', $user->blood_group)
                         ->select('name')
                         ->get();
-        $religions = DB::table('others')
+        $religion = DB::table('others')
                     ->where('id', $user->religion)
                     ->select('name')
-                    ->get();
+                    ->get(); 
 
-        return view('admin.volunteers.show', compact('user', 'blood_groups', 'religions'));
+        return view('admin.bloodDonors.show', compact('user', 'blood_group', 'religion'));
     }
 
     /**
@@ -175,13 +142,13 @@ class VolunteerController extends Controller
      */
     public function edit($id)
     {
-        Gate::authorize('app.volunteers.edit');
+        Gate::authorize('app.bloodDonors.edit');
 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
-        $user = User::findOrFail($id);
+        $user = BloodDonor::findOrFail($id);
 
-        return view('admin.volunteers.edit' , compact('user', 'blood_groups', 'religions'));
+        return view('admin.bloodDonors.edit' , compact('user', 'blood_groups', 'religions'));
     }
 
     /**
@@ -193,9 +160,7 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('app.volunteers.edit');
-
-        $user = User::findOrFail($id);
+        Gate::authorize('app.members.edit');
 
         $user->fill($request->all());   
 
@@ -205,60 +170,27 @@ class VolunteerController extends Controller
             return redirect()->back();
         }
 
-        //$user->fill() fills up the $user data with $request object data
         //so we need to query again to obtain the user data from database
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($user->id);
 
-        //determine if email is unique
-        if(!empty($request->email)){
-            $uniqueEmail = User::where('email', $request->email)
-                            ->where('user_type', $user->user_type)
-                            ->where('id', '!=', $user->id)
-                            ->select('id')
-                            ->first();    
-            
-            if($uniqueEmail){
-                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
-            }                 
-        }
-
-
-        //determine if phone number is unique
-        if(!empty($request->phone)){
-            $uniquePhone = User::where('phone', $request->phone)
-                            ->where('user_type', $user->user_type)
-                            ->where('id', '!=', $user->id)
-                            ->select('id')
-                            ->first();
-
-            if($uniquePhone){
-                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
-            }             
-        }
-
-        //check if email and phone number both fields are empty
-        if(!isset($request->email) && !isset($request->phone)){
-            $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
-            return redirect()->back();
-        }
-    
         $request->validate([
             'name' => 'required|string',
             'email' => ['nullable', 'email']
         ]);
 
+
         //naming and storing photo 
         if($request->hasFile('photo')){   
-            $path = 'public/asdo/images/volunteers';
+            $path = 'public/asdo/images/users';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/volunteers/'.$user->photo);  
+            Storage::delete('public/asdo/images/bloodDonors/'.$user->photo);  
         }
-        
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -271,7 +203,7 @@ class VolunteerController extends Controller
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -280,10 +212,10 @@ class VolunteerController extends Controller
         $user->birth_date = $request->birth_date;
 
         $result = $user->save();
+
         if($result){
-            $request->session()->flash('alert-success', 'Volunteer profile has been updated successfully!');
-            return redirect()->route('asdo.volunteers.show', $user->id);
-return $request;
+            $request->session()->flash('alert-success', 'Member profile has been updated successfully!');
+            return redirect()->route('asdo.users.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->back();
@@ -297,16 +229,7 @@ return $request;
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    { 
-        Gate::authorize('app.volunteers.destroy');
-
-        $user = User::findOrFail($id);
-        if(isset($user->photo)){
-            Storage::delete('public/asdo/images/volunteers/'.$user->photo);            
-        }
-
-        $user->delete();
-
-        return redirect()->route('asdo.volunteers.index')->with('alert-success', 'Volunteer information removed from database!');
+    {
+        //
     }
 }

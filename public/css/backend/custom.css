@@ -481,6 +481,12 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
 }
 
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link img {
+    height: 20px;
+    width: auto;
+    margin-right: 6px;
+}
+
 .footer-link{
 	color: #186cea;
 }

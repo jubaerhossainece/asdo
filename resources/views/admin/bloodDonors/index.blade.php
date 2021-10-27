@@ -7,17 +7,17 @@
 
 <div class="card">
 	<div class="card-header page-header">	
-		<h2 class="page-title">Member Management</h2>
+		<h2 class="page-title">Blood Donor Management</h2>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">All Members</h3>
+		<h3 class="card-title">All Blood Donors</h3>
         @can('app.members.index')
-		<a href="{{route('asdo.users.create')}}" class="btn common-btn">
+		<a href="{{route('asdo.bloodDonors.create')}}" class="btn common-btn">
 		<i class="fas fa-plus-circle"></i>
-		New Member</a>
+		New Blood Donor</a>
         @endcan
 	</div>
 
@@ -27,7 +27,6 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Member Type</th>
                 <th>Present Address</th>
                 <th>Permanent Address</th>
                 <th>Joined At</th>
@@ -41,34 +40,27 @@
         	<tr>
                 <td>{{$loop->index+1}}</td>
                 <td>{{$user->name}}</td>
-                <td>
-                    @foreach($member_types as $type)
-                        @if($type->id == $user->member_type)
-                         {{$type->name}}
-                        @endif
-                    @endforeach
-                </td>
                 <td>{{$user->present_address}}</td>
                 <td>{{$user->permanent_address}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>
-                    @can('app.members.edit')
-                	<a href="{{route('asdo.users.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
+                    @can('app.bloodDonors.edit')
+                	<a href="{{route('asdo.bloodDonors.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
     					<i class="fas fa-edit"></i>
     				</a>
                     @endcan
 
-                    @can('app.members.show')
-    				<a href="{{route('asdo.users.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
+                    @can('app.bloodDonors.show')
+    				<a href="{{route('asdo.bloodDonors.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
     					<i class="fas fa-eye"></i>
     				</a>
                     @endcan
 
-                    @can('app.members.destroy')
+                    @can('app.bloodDonors.destroy')
 					<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
 						<i class="fas fa-trash-alt"></i>
 					</button>
-					<form action="{{route('asdo.users.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
+					<form action="{{route('asdo.bloodDonors.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
 						@csrf
 						@method('DELETE')
 					</form>

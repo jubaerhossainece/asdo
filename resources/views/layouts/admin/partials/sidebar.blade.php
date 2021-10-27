@@ -34,6 +34,10 @@
                                 <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
                             </li>
                             @endcan
+
+                            <li class="nav-item">
+                                <a class="nav-link {{Route::is('asdo.bloodDonors.*') ? 'active' : ''}}" href="{{route('asdo.bloodDonors.index')}}"><img src="{{asset('assets/images/icons/blood-donation .png')}}" alt=""><span>Blood Donors</span></a>
+                            </li>
                         
                             <li class="nav-divider">
                                 Access Control

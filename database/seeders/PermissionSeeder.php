@@ -151,6 +151,39 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.volunteers.destroy'
         ]);
 
+        //Blood donor management permissions
+        $moduleAppBlooDonor = Module::updateOrCreate(['name' => 'Member Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBlooDonor->id,
+            'name' => 'Access Blood Donors list',
+            'slug' => 'app.bloodDonors.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBlooDonor->id,
+            'name' => 'Save Blood Donors Information',
+            'slug' => 'app.bloodDonors.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBlooDonor->id,
+            'name' => 'Show Blood Donors information',
+            'slug' => 'app.bloodDonors.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBlooDonor->id,
+            'name' => 'Edit Blood Donors information',
+            'slug' => 'app.bloodDonors.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppBlooDonor->id,
+            'name' => 'Delete Blood Donors information',
+            'slug' => 'app.bloodDonors.destroy'
+        ]);
+
         //Project management permissions
         $moduleAppProject = Module::updateOrCreate(['name' => 'Project Management']);
 

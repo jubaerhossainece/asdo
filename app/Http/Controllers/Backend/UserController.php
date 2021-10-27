@@ -105,7 +105,6 @@ class UserController extends Controller
             'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
             'photo' => 'nullable|image',
-            'member_type' => 'required'
         ]);
 
 
@@ -287,7 +286,7 @@ class UserController extends Controller
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
         $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
