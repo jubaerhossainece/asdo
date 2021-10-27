@@ -15,7 +15,7 @@
 	<div class="card-header">
 		<h3 class="card-title">All Members</h3>
         @can('app.members.index')
-		<a href="{{route('asdo.users.create')}}" class="btn common-btn">
+		<a href="{{route('asdo.members.create')}}" class="btn common-btn">
 		<i class="fas fa-plus-circle"></i>
 		New Member</a>
         @endcan
@@ -53,13 +53,13 @@
                 <td>{{$user->created_at}}</td>
                 <td>
                     @can('app.members.edit')
-                	<a href="{{route('asdo.users.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
+                	<a href="{{route('asdo.members.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >
     					<i class="fas fa-edit"></i>
     				</a>
                     @endcan
 
                     @can('app.members.show')
-    				<a href="{{route('asdo.users.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
+    				<a href="{{route('asdo.members.show', $user->id)}}" class="btn btn-secondary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="show user information" >
     					<i class="fas fa-eye"></i>
     				</a>
                     @endcan
@@ -68,7 +68,7 @@
 					<button onclick="deleteData({{$user->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
 						<i class="fas fa-trash-alt"></i>
 					</button>
-					<form action="{{route('asdo.users.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
+					<form action="{{route('asdo.members.destroy', $user->id)}}" method="POST" style="display: none;" id="submit-delete-{{$user->id}}">
 						@csrf
 						@method('DELETE')
 					</form>

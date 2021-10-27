@@ -19,7 +19,7 @@
         <?php  
          }else{
         ?>
-          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
+          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/members/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
           </div>
           <div class="member-type text-center mt-3">
               @if($user->member_type)
@@ -40,7 +40,7 @@
       @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('asdo.users.edit', $user->id)}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('asdo.members.edit', $user->id)}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>
@@ -80,12 +80,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Husband</label>
+            <label for="">@if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif : </label>
           </div> 
           <div class="col-sm-8">
-             @if($user->husband)
-             <span>{{$user->husband}}</span>
-             @else <span class="text-danger">No husband name to show</span>
+            @if($user->spouse)
+             <span>{{$user->spouse}}</span>
+             @else <span class="text-danger">No @if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>
@@ -228,7 +228,7 @@
           <div class="col-sm-8">
             @if($user->birth_date)
              <span>{{$user->birth_date}}</span>
-             @else <span class="text-danger">No birth_date to show</span>
+             @else <span class="text-danger">No birth date to show</span>
              @endif
           </div>
         </div>

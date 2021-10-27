@@ -73,12 +73,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Husband</label>
+            <label for="">@if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif : </label>
           </div> 
           <div class="col-sm-8">
-             @if($user->husband)
-             <span>{{$user->husband}}</span>
-             @else <span class="text-danger">No husband name to show</span>
+            @if($user->spouse)
+             <span>{{$user->spouse}}</span>
+             @else <span class="text-danger">No @if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>

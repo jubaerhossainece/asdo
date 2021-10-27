@@ -47,6 +47,11 @@
         <div class="form-group col-md-6">
           <label for="phoneNumber">Phone number</label>
           <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{old('phone')}}">
+          @error('phone')
+            <div class="text-danger">
+              <strong>{{$message}}</strong>
+            </div>
+          @enderror
         </div>
 
         <div class="form-group col-md-6">
@@ -96,8 +101,8 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="husband">Husband</label>
-          <input type="text" name="husband" class="form-control" id="husband" value="{{old('husband')}}">
+          <label for="spouse">Husband/Wife</label>
+          <input type="text" name="spouse" class="form-control" id="spouse" value="{{old('spouse')}}">
         </div>
 
         <div class="form-group col-md-6">

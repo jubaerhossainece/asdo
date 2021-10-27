@@ -33,8 +33,7 @@
 			@csrf
 			@method('PUT')
 			<div class="col-md-5 col-xl-4 profile-image-change">
-			  <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
-			    
+			  <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/admins/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
 			  </div>
 			  
 		    @error('photo')

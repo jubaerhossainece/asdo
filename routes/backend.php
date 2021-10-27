@@ -53,7 +53,7 @@ Route::post('/trash/restore/', [InboxController::class, 'restore_trash'])->name(
 Route::resource('/admins', AdminController::class);
 
 // routes for member management
-Route::resource('/users', UserController::Class);
+Route::resource('/members', UserController::Class);
 
 // routes for volunteer management
 Route::resource('/volunteers', VolunteerController::Class);

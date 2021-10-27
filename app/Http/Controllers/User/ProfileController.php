@@ -60,7 +60,8 @@ class ProfileController extends Controller
     
     	$request->validate([
             'name' => 'required|string',
-            'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::user()->id)]
+            'email' => ['nullable', 'email', Rule::unique('users')->ignore(Auth::user()->id)],
+            'phone' => ['nullable', Rule::unique('users')->ignore(Auth::user()->id)]
         ]);
 
         $user->name = $request->name;

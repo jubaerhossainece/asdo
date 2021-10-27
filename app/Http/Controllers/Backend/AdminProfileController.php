@@ -66,7 +66,7 @@ class AdminProfileController extends Controller
         ]);
    
         if($request->hasFile('photo')){
-            $path = 'public/asdo/images/admins/';
+            $path = 'public/asdo/images/admins';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
@@ -81,9 +81,7 @@ class AdminProfileController extends Controller
         $user->email = $request->email;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->occupation = $request->occupation; 
         $user->spouse = $request->spouse; 
-        // $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
         $user->phone = $request->phone; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
@@ -91,6 +89,7 @@ class AdminProfileController extends Controller
         $user->nationality = $request->nationality;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
+        $user->occupation = $request->occupation; 
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;

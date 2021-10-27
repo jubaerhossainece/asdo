@@ -2,6 +2,7 @@
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
 @endpush
 
 
@@ -45,6 +46,11 @@
       <div class="form-group col-md-6">
         <label for="phoneNumber">Phone number</label>
         <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+        @error('phone')
+          <div class="text-danger">
+            <strong>{{$message}}</strong>
+          </div>
+        @enderror
       </div>
 
       <div class="form-group col-md-6">
@@ -72,8 +78,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="husband">Husband</label>
-        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
+        <label for="spouse">Husband/Wife</label>
+        <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
 
       <div class="form-group col-md-6">
@@ -107,7 +113,7 @@
 
       <div class="form-group col-md-6">
         <label for="birth_date">Date of birth</label>
-        <input type="text" name="birth_date" class="form-control" id="birth_date" value="{{$user->birth_date ? $user->birth_date : ''}}">
+        <input type="text" name="birth_date" class="form-control" id="birth-date" value="{{$user->birth_date ? $user->birth_date : ''}}">
       </div>
     </div>
 
@@ -180,8 +186,15 @@
 
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
 <script>
   $(document).ready(function() {
+    //datetiem pciker
+    $('#birth-date').datetimepicker({
+       timepicker:false,
+       format:'Y-m-d'
+    });
+
     $('#blood-group-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,

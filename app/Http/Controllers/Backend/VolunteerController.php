@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Volunteer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,8 +22,7 @@ class VolunteerController extends Controller
     public function index()
     {
         Gate::authorize('app.volunteers.index');
-        $users = DB::table('users')
-                ->where('user_type', '=', 'volunteer')
+        $users = DB::table('volunteers')
                 ->get();
         return view('admin.volunteers.index', compact('users'));
     }
@@ -52,31 +51,6 @@ class VolunteerController extends Controller
     {
         Gate::authorize('app.volunteers.create');
 
-        //determine if email is unique
-        if(!empty($request->email)){
-            $uniqueEmail = User::where('email', $request->email)
-                            ->where('user_type', $request->user_type)
-                            ->select('id')
-                            ->first();
-            
-            if($uniqueEmail){
-                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
-            }                 
-        }
-
-
-        //determine if phone number is unique
-        if(!empty($request->phone)){
-            $uniquePhone = User::where('phone', $request->phone)
-                            ->where('user_type', $request->user_type)
-                            ->select('id')
-                            ->first();
-
-            if($uniquePhone){
-                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
-            }           
-        }
-
         //check if email and phone number both fields are empty
         if(!isset($request->email) && !isset($request->phone)){
             $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
@@ -86,7 +60,8 @@ class VolunteerController extends Controller
         
         $request->validate([
             'name' => 'required|string',
-            'email' => 'email|email:rfc,dns',
+            'email' => 'nullable|email|email:rfc,dns|unique:volunteers,email|max:200',
+            'phone' => 'nullable|unique:volunteers,phone|max:20',
             'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
             'photo' => 'nullable|image',
@@ -105,7 +80,7 @@ class VolunteerController extends Controller
             $request->file('photo')->storeAs($path, $filename_with_ext);    
         }
 
-        $user = new User;
+        $user = new Volunteer;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
@@ -113,14 +88,13 @@ class VolunteerController extends Controller
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->user_type = $request->user_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -150,10 +124,7 @@ class VolunteerController extends Controller
     {
         Gate::authorize('app.volunteers.show');
 
-        $user = User::findOrFail($id);
-        if($user->user_type !== 'volunteer'){
-            return redirect()->route('asdo.volunteers.index');
-        }
+        $user = Volunteer::findOrFail($id);
 
         $blood_groups = DB::table('others')
                         ->where('id', $user->blood_group)
@@ -179,7 +150,7 @@ class VolunteerController extends Controller
 
         $blood_groups = DB::table('others')->where('category', 'blood group')->get();
         $religions = DB::table('others')->where('category', 'religion')->get();
-        $user = User::findOrFail($id);
+        $user = Volunteer::findOrFail($id);
 
         return view('admin.volunteers.edit' , compact('user', 'blood_groups', 'religions'));
     }
@@ -195,7 +166,11 @@ class VolunteerController extends Controller
     {
         Gate::authorize('app.volunteers.edit');
 
-        $user = User::findOrFail($id);
+        $user = Volunteer::findOrFail($id);
+
+        //$user->fill() fills up the $user data with $request object data
+        //so we need to query again to obtain the user data from database
+        $photo = $user->photo;
 
         $user->fill($request->all());   
 
@@ -203,37 +178,6 @@ class VolunteerController extends Controller
         if(!$user->isDirty()){
             $request->session()->flash('alert-danger', 'No data change has been made!');
             return redirect()->back();
-        }
-
-        //$user->fill() fills up the $user data with $request object data
-        //so we need to query again to obtain the user data from database
-        $user = User::findOrFail($id);
-
-        //determine if email is unique
-        if(!empty($request->email)){
-            $uniqueEmail = User::where('email', $request->email)
-                            ->where('user_type', $user->user_type)
-                            ->where('id', '!=', $user->id)
-                            ->select('id')
-                            ->first();    
-            
-            if($uniqueEmail){
-                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
-            }                 
-        }
-
-
-        //determine if phone number is unique
-        if(!empty($request->phone)){
-            $uniquePhone = User::where('phone', $request->phone)
-                            ->where('user_type', $user->user_type)
-                            ->where('id', '!=', $user->id)
-                            ->select('id')
-                            ->first();
-
-            if($uniquePhone){
-                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
-            }             
         }
 
         //check if email and phone number both fields are empty
@@ -244,7 +188,8 @@ class VolunteerController extends Controller
     
         $request->validate([
             'name' => 'required|string',
-            'email' => ['nullable', 'email']
+            'email' => ['nullable','email','email:rfc,dns',Rule::unique('volunteers')->ignore($user->id)],
+            'phone' => ['nullable',Rule::unique('volunteers')->ignore($user->id)]
         ]);
 
         //naming and storing photo 
@@ -254,9 +199,9 @@ class VolunteerController extends Controller
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'image'.time().'.'.$extension;
+            $filename_with_ext = 'volunteer'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/volunteers/'.$user->photo);  
+            Storage::delete('public/asdo/images/volunteers/'.$photo);  
         }
         
         $user->name = $request->name;
@@ -264,14 +209,14 @@ class VolunteerController extends Controller
         $user->phone = $request->phone;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $photo;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -283,7 +228,6 @@ class VolunteerController extends Controller
         if($result){
             $request->session()->flash('alert-success', 'Volunteer profile has been updated successfully!');
             return redirect()->route('asdo.volunteers.show', $user->id);
-return $request;
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->back();
@@ -300,7 +244,7 @@ return $request;
     { 
         Gate::authorize('app.volunteers.destroy');
 
-        $user = User::findOrFail($id);
+        $user = Volunteer::findOrFail($id);
         if(isset($user->photo)){
             Storage::delete('public/asdo/images/volunteers/'.$user->photo);            
         }

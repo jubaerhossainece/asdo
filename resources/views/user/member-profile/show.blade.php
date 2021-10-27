@@ -18,7 +18,7 @@
         <?php  
          }else{
         ?>
-          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
+          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/members/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
           </div>
         <?php 
           }
@@ -71,12 +71,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Husband</label>
+            <label for="">@if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif : </label>
           </div> 
           <div class="col-sm-8">
-             @if($user->husband)
-             <span>{{$user->husband}}</span>
-             @else <span class="text-danger">No husband name to show</span>
+            @if($user->spouse)
+             <span>{{$user->spouse}}</span>
+             @else <span class="text-danger">No @if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>

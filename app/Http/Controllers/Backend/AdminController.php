@@ -142,6 +142,7 @@ class AdminController extends Controller
     {
         Gate::authorize('app.admins.edit');
         $user = Admin::findOrFail($id);
+        $photo = $user->photo;
         $user->fill($request->all());
 
         if(!$user->isDirty()){
@@ -151,21 +152,20 @@ class AdminController extends Controller
 
         $request->validate([
             'name' => 'required|string',
-            'email' => ['required',Rule::unique('users')->ignore($user->id)],
+            'email' => ['required',Rule::unique('admins')->ignore($user->id)],
             'password' => 'sometimes|min:8|string|confirmed',
             'photo' => 'nullable|image'
         ]);
 
         if($request->hasFile('photo')){
-            
             $path = 'public/asdo/images/admins';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename_with_ext = 'image'.time().'.'.$extension;
-            $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/admins/'.$user->photo);  
+            $filename_with_ext = 'admin'.time().'.'.$extension;
+            $request->file('photo')->storeAs($path, $filename_with_ext);
+            Storage::delete('public/asdo/images/admins/'.$photo);  
         }
 
         $user->name = $request->name;
@@ -182,7 +182,8 @@ class AdminController extends Controller
         $user->nationality = $request->nationality;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
+        $user->occupation = $request->occupation; 
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $photo;
         $user->present_address = $request->present_address;
         $user->permanent_address = $request->permanent_address;
         $user->birth_date = $request->birth_date;

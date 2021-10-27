@@ -64,7 +64,7 @@
           <div class="col-sm-8">
             @if($user->spouse)
              <span>{{$user->spouse}}</span>
-             @else <span class="text-danger">No @if($user->gender == 'male') Wife @elseif($user->gender == 'female') Husband @else Husband/Wife @endif name to show</span>
+             @else <span class="text-danger">No @if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>
@@ -146,20 +146,6 @@
 
 
       <div class="col-sm-12 deivider">
-        <div class="row profile-info">
-          <div class="col-sm-4">
-            <label for="">Member Type : </label>
-          </div> 
-          <div class="col-sm-8">
-            @if($user->member_type)
-             @foreach($member_types as $member_type)
-             <span>{{$member_type->name}}</span>
-             @endforeach
-             @else <span class="text-danger">No member type to show</span>
-             @endif
-          </div>
-        </div>
-
         <div class="row profile-info">
           <div class="col-sm-4">
             <label for="">Nationality : </label>

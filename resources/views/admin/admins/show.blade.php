@@ -88,7 +88,7 @@
           <div class="col-sm-8">
             @if($user->spouse)
              <span>{{$user->spouse}}</span>
-             @else <span class="text-danger">No @if($user->gender == 'male') Wife @elseif($user->gender == 'female') Husband @else Husband/Wife @endif name to show</span>
+             @else <span class="text-danger">No @if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>

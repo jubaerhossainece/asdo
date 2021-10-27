@@ -37,7 +37,7 @@ class PhotoController extends Controller
         $image_name = $file->getClientOriginalName();
         $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
-        $filename_with_ext = 'image'.time().'.'.$extension;
+        $filename_with_ext = 'member'.time().'.'.$extension;
         $request->file('photo')->storeAs($path, $filename_with_ext);  
         Storage::delete('public/asdo/images/members/'.$user->photo);  
     }

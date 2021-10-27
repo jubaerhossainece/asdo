@@ -48,6 +48,11 @@
       <div class="form-group col-md-6">
         <label for="phoneNumber">Phone number</label>
         <input type="text" name="phone" class="form-control" id="phoneNumber" value="{{$user->phone ? $user->phone : ''}}">
+        @error('phone')
+          <div class="text-danger">
+            <strong>{{$message}}</strong>
+          </div>
+        @enderror
       </div>
 
       <div class="form-group col-md-6">
@@ -75,8 +80,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="husband">Husband</label>
-        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
+        <label for="spouse">@if($user->gender=='Female') Husband @elseif($user->gender == 'Male') Wife @else Husband/Wife @endif</label>
+        <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
 
       <div class="form-group col-md-6">
@@ -181,7 +186,7 @@
       <label for="permanent_address">Permanent address</label>
       <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address">{{$user->permanent_address ? $user->permanent_address : ''}}</textarea>
     </div>
-    <button type="submit" class="btn common-btn">Update Account</button> 
+    <button type="submit" class="btn volunteer-btn">Update Account</button> 
   </div>
 </div>
 </form>

@@ -29,7 +29,7 @@
 		<h2>Update profile image</h2>
 	</div>
 	<div class="card-body">
-		<form action="{{route('photo.update')}}" method="POST" enctype="multipart/form-data">
+		<form action="{{route('member.photo.update')}}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 			<div class="col-md-5 col-xl-4 profile-image-change">
@@ -44,7 +44,7 @@
         <?php  
          }else{
         ?>
-          <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
+          <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/members/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
           </div>
         <?php 
           }

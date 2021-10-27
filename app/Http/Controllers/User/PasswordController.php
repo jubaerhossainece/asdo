@@ -16,7 +16,7 @@ class PasswordController extends Controller
 
 
     public function edit(){
-    	return view('user.password.edit');
+    	return view('user.member-password.edit');
     }
 
 
@@ -41,7 +41,7 @@ class PasswordController extends Controller
 				
                 $user->password = Hash::make($request->password);
                 $user->save();
-				return redirect()->route('userLogout')->with('alert-success', 'Password updated successfully! You are logged out now. Please login with new password!'); 				
+				return redirect()->route('member.profile.show')->with('alert-success', 'Password updated successfully!'); 				
     		}
     	}
     	

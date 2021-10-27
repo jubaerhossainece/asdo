@@ -25,7 +25,7 @@
 
                             @can('app.members.index')
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.users.*') ? 'active' : ''}}" href="{{route('asdo.users.index')}}"><i class="fas fa-hands-helping"></i><span>Members</span></a>
+                                <a class="nav-link {{Route::is('asdo.members.*') ? 'active' : ''}}" href="{{route('asdo.members.index')}}"><i class="fas fa-hands-helping"></i><span>Members</span></a>
                             </li>
                             @endcan
 
