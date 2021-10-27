@@ -25,8 +25,6 @@
             <div class="card-body">
               <form action="register" method="POST">
                 @csrf
-                <input type="hidden" id="user_type" name="user_type" value="member">
-
                 <div class="form-group">
                   <label for="name" class="form-label">Your name</label>
                   <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}">

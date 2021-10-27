@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="{{url('css/backend/custom.css')}}">
     <link rel="stylesheet" href="{{url('css/preloader.css')}}">
     <!-- <link href="{{url('css/frontend/style.css')}}" rel="stylesheet" /> -->
-    
-    <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
+    <link rel="stylesheet" href="{{url('css/backend/volunteer.css')}}">
 
     <style type="text/css">
         .ms-auto{
@@ -42,7 +41,7 @@
     <div class="dashboard-main-wrapper">
         
         <!--sidebar part -->
-        @include('layouts.user.partials.sidebar')
+        @include('layouts.user.partials.voluntr-sidebar')
         
         <!-- ============================================================== -->
         <!-- wrapper  -->

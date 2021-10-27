@@ -79,15 +79,16 @@ class AdminProfileController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->guardian = $request->guardian;
+        $user->father = $request->father;
         $user->mother = $request->mother; 
+        $user->occupation = $request->occupation; 
+        $user->spouse = $request->spouse; 
         // $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
         $user->phone = $request->phone; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
-        $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;

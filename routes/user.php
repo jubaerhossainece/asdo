@@ -18,19 +18,34 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
-//routes password change
-Route::get('/password/edit', [PasswordController::class, 'edit'])->name('password.edit');
-Route::put('/password/change', [PasswordController::class, 'changePassword'])->name('password.change');
+//routes for member password change
+Route::get('/member/password/edit', [PasswordController::class, 'edit'])->name('member.password.edit');
+Route::put('/member/password/change', [PasswordController::class, 'changePassword'])->name('member.password.change');
  
 
-//routes for user photo update
-Route::get('/photo/edit', [PhotoController::class, 'editPhoto'])->name('photo.edit');
-Route::put('/photo/update', [PhotoController::class, 'updatePhoto'])->name('photo.update');
+//routes for member photo update
+Route::get('/member/photo/edit', [PhotoController::class, 'editPhoto'])->name('member.photo.edit');
+Route::put('/member/photo/update', [PhotoController::class, 'updatePhoto'])->name('member.photo.update');
 
-//routes for user's profile management
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+//routes for member's profile management
+Route::get('/member/profile', [ProfileController::class, 'show'])->name('member.profile.show');
+Route::get('/member/profile/edit', [ProfileController::class, 'edit'])->name('member.profile.edit');
+Route::put('/member/profile/update', [ProfileController::class, 'update'])->name('member.profile.update');
+
+//routes for volunteer password change
+Route::get('/volunteer/password/edit', [PasswordController::class, 'edit'])->name('volunteer.password.edit');
+Route::put('/volunteer/password/change', [PasswordController::class, 'changePassword'])->name('volunteer.password.change');
+ 
+
+//routes for volunteer photo update
+Route::get('/volunteer/photo/edit', [PhotoController::class, 'editPhoto'])->name('volunteer.photo.edit');
+Route::put('/volunteer/photo/update', [PhotoController::class, 'updatePhoto'])->name('volunteer.photo.update');
+
+//routes for volunteer's profile management
+Route::get('/volunteer/profile', [ProfileController::class, 'show'])->name('volunteer.profile.show');
+Route::get('/volunteer/profile/edit', [ProfileController::class, 'edit'])->name('volunteer.profile.edit');
+Route::put('/volunteer/profile/update', [ProfileController::class, 'update'])->name('volunteer.profile.update');
+
 
 // logout routes for user
 Route::get('/userLogout', [LoginController::class, 'userLogout'])->name('userLogout'); 

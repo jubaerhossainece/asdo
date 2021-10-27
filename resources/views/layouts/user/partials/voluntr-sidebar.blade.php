@@ -18,18 +18,18 @@
                             <li class="nav-item">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('member.profile.show') ? 'active' : ''}}" href="{{route('member.profile.show')}}"><i class="fas fa-user mr-2"></i><span>My Profile</span></a>
+                                        <a class="nav-link {{Route::is('volunteer.profile.show') ? 'active' : ''}}" href="{{route('volunteer.profile.show')}}"><i class="fas fa-user mr-2"></i><span>My Profile</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('member.profile.edit') ? 'active' : ''}}" href="{{route('member.profile.edit')}}"><i class="fas fa-cog mr-2"></i><span>Update Profile</span></a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link {{Route::is('member.password.edit') ? 'active' : ''}}" href="{{route('member.password.edit')}}"><i class="fas fa-lock mr-2"></i><span>Change Password</span></a>
+                                        <a class="nav-link {{Route::is('volunteer.profile.edit') ? 'active' : ''}}" href="{{route('volunteer.profile.edit')}}"><i class="fas fa-cog mr-2"></i><span>Update Profile</span></a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('member.photo.edit') ? 'active' : ''}}" href="{{route('member.photo.edit')}}"><i class="fas fa-camera"></i><span>Change Photo</span></a>
+                                        <a class="nav-link {{Route::is('volunteer.password.edit') ? 'active' : ''}}" href="{{route('volunteer.password.edit')}}"><i class="fas fa-lock mr-2"></i><span>Change Password</span></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link {{Route::is('volunteer.photo.edit') ? 'active' : ''}}" href="{{route('volunteer.photo.edit')}}"><i class="fas fa-camera"></i><span>Change Photo</span></a>
                                     </li>
 
                                     <li class="nav-item">

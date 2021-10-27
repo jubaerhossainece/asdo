@@ -71,7 +71,6 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'user_type' => ['required', 'string'],
             'identifier' => [new Username, new ValidUsername, 'string', 'max:255'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -88,7 +87,6 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             $this->username() => $data['identifier'],
-            'user_type' => $data['user_type'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -99,7 +97,6 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $check = User::where($this->username(), $request->identifier)
-                        ->where('user_type', $request->user_type)
                         ->select($this->username())
                         ->first();
                         

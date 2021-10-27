@@ -19,7 +19,7 @@ class PhotoController extends Controller
 	public function editPhoto(){
 		$user = Auth::user();
 		
-		return view('user.profile.image', compact('user'));
+		return view('user.member-profile.image', compact('user'));
 	}
 
 
@@ -32,14 +32,14 @@ class PhotoController extends Controller
     ]);
 
   	if($request->hasFile('photo')){
-        $path = 'public/asdo/images/users';
+        $path = 'public/asdo/images/members';
         $file= $request->file('photo');
         $image_name = $file->getClientOriginalName();
         $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
         $filename_with_ext = 'image'.time().'.'.$extension;
         $request->file('photo')->storeAs($path, $filename_with_ext);  
-        Storage::delete('public/asdo/images/users/'.$user->photo);  
+        Storage::delete('public/asdo/images/members/'.$user->photo);  
     }
 
     $user->photo = isset($filename_with_ext) ? $filename_with_ext : $user->photo;
@@ -47,10 +47,10 @@ class PhotoController extends Controller
 
     if($result){
         $request->session()->flash('alert-success', 'Your profile photo updated successfully!');
-        return redirect()->route('profile.show', compact('user'));
+        return redirect()->route('member.profile.show', compact('user'));
     }else{
         $request->session()->flash('alert-danger', 'Something went wrong!');
-        return redirect()->route('photo.edit');
+        return redirect()->route('member.photo.edit');
     }
   }
 }

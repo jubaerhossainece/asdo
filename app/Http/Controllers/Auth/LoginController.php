@@ -76,15 +76,14 @@ class LoginController extends Controller
         ]);
 
         $user = User::where($this->username(), $request->identifier)
-                        ->where('user_type', $request->user_type)
-                        ->select($this->username(), 'user_type')
+                        ->select($this->username())
                         ->first();
                         // return $user;
         if($user){             
             //attempt to log the user in
-            if($this->guard()->attempt([$this->username() => $request->identifier, 'password' => $request->password, 'user_type' => $request->user_type], $request->remember)){
+            if($this->guard()->attempt([$this->username() => $request->identifier, 'password' => $request->password], $request->remember)){
                 //if successfull, then redirect to teir intended location
-                return redirect()->intended(route('profile.show'));
+                return redirect()->intended(route('member.profile.show'));
             }else{
                 return redirect()->back()->with('message', 'Your password is inceorrect!')->withInput($request->only('identifier', 'remember'));
             }

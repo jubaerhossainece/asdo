@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Username;
+use App\Rules\ValidUsername;
 
 class VolunteerRegisterController extends Controller
 {
@@ -55,7 +57,7 @@ class VolunteerRegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'identifier' => [new Username, new ValidUsername, 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -70,7 +72,7 @@ class VolunteerRegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            $this->username() => $data['identifier'],
             'password' => Hash::make($data['password']),
         ]);
     }

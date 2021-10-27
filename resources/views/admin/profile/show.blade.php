@@ -59,12 +59,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Father/Husband</label>
+            <label for="">@if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif : </label>
           </div> 
           <div class="col-sm-8">
-             @if($user->guardian)
-             <span>{{$user->guardian}}</span>
-             @else <span class="text-danger">No husband/father name to show</span>
+            @if($user->spouse)
+             <span>{{$user->spouse}}</span>
+             @else <span class="text-danger">No @if($user->gender == 'male') Wife @elseif($user->gender == 'female') Husband @else Husband/Wife @endif name to show</span>
              @endif
           </div>
         </div>
@@ -217,6 +217,18 @@
             @if($user->education)
              <span>{{$user->education}}</span>
              @else <span class="text-danger">No education info to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for="">Occupation : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->occupation)
+             <span>{{$user->occupation}}</span>
+             @else <span class="text-danger">No occupation to show</span>
              @endif
           </div>
         </div>

@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.user.voluntr-app')
 @section('content')
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
@@ -7,31 +7,31 @@
 <div class="card profile-nav">
   <div class="row">
     <div class="col-md-5 col-xl-3 profile-image">
-      <!-- <div class=" profile-img">
-        <img class="" src="{{$user->photo ? asset('/storage/asdo/images/'.$user->photo) : url('assets/images/avatar-4.png')}}" alt="">
-      </div> -->
-      <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/admins/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">
-        
-      </div>
-      <div class="role-name">
-        <span class="mt-2 badge 
-          @if($roleName == 'Admin')
-            badge-primary
-          @elseif($roleName == 'Moderator')
-            badge-warning
-          @else
-            badge-success
-          @endif"
-          >{{$roleName}}</span>
-      </div>
+      <?php 
+       $reg_url = '/(((http|https|ftp|ftps)\:\/\/)|(www\.))[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\:[0-9]+)?(\/\S*)?/';
+
+       if(preg_match($reg_url, $user->photo, $url)){
+        $url = $url[0];
+        ?>
+          <div class="circle-cropper" style="background-image: url({{$url}})">        
+          </div>
+        <?php  
+         }else{
+        ?>
+          <div class="circle-cropper" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
+          </div>
+        <?php 
+          }
+        ?>
     </div>
     <div class="col-md-7 col-xl-6 short-detail">
-      <h3><strong> {{$user->name}} </strong></h3>
-      @if($user->email)<h4> {{$user->email}}</h4>@endif
-      @if($user->phone)<h4>Phone : <strong> {{$user->phone}}</strong></h4>@endif
+      <h2><strong> {{$user->name}} </strong></h2>
+      <h3> {{$user->email}}</h3>
+      @if($user->phone) <h3><strong> {{$user->phone}}</strong></h3> @endif
+      @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('asdo.admins.edit', $user->id)}}" class="btn edit-profile"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('profile.edit')}}" class="btn @if(auth()->user()->user_type === 'member') common-btn @else volunteer-btn @endif"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>
@@ -71,24 +71,24 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Mother : </label>
+            <label for="">Husband</label>
           </div> 
           <div class="col-sm-8">
-            @if($user->mother)
-             <span>{{$user->mother}}</span>
-             @else <span class="text-danger">No mother name to show</span>
+             @if($user->husband)
+             <span>{{$user->husband}}</span>
+             @else <span class="text-danger">No husband name to show</span>
              @endif
           </div>
         </div>
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">@if($user->gender == 'Male') Wife @elseif($user->gender == 'Female') Husband @else Husband/Wife @endif : </label>
+            <label for="">Mother : </label>
           </div> 
           <div class="col-sm-8">
-            @if($user->spouse)
-             <span>{{$user->spouse}}</span>
-             @else <span class="text-danger">No @if($user->gender == 'male') Wife @elseif($user->gender == 'female') Husband @else Husband/Wife @endif name to show</span>
+            @if($user->mother)
+             <span>{{$user->mother}}</span>
+             @else <span class="text-danger">No mother name to show</span>
              @endif
           </div>
         </div>
@@ -168,8 +168,24 @@
         </div>
       </div>
 
-
       <div class="col-sm-12 deivider">
+
+      @if(auth()->user()->user_type === 'member')
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for="">Member Type : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->member_type)
+             @foreach($member_types as $member_type)
+             <span>{{$member_type->name}}</span>
+             @endforeach
+             @else <span class="text-danger">No member type to show</span>
+             @endif
+          </div>
+        </div>
+      @endif
+
         <div class="row profile-info">
           <div class="col-sm-4">
             <label for="">Nationality : </label>
@@ -184,12 +200,12 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for=""> Date of birth :</label>
+            <label for="">Occupation : </label>
           </div> 
           <div class="col-sm-8">
-            @if($user->birth_date)
-             <span>{{$user->birth_date}}</span>
-             @else <span class="text-danger">No birth_date to show</span>
+            @if($user->occupation)
+             <span>{{$user->occupation}}</span>
+             @else <span class="text-danger">No occupation to show</span>
              @endif
           </div>
         </div>
@@ -204,6 +220,18 @@
              <span>{{$religion->name}}</span>
              @endforeach
              @else <span class="text-danger">No religion to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for=""> Religion :</label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->birth_date)
+             <span>{{$user->birth_date}}</span>
+             @else <span class="text-danger">No birth_date to show</span>
              @endif
           </div>
         </div>
@@ -245,22 +273,10 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Occupation : </label>
-          </div> 
-          <div class="col-sm-8">
-            @if($user->occupation)
-             <span>{{$user->occupation}}</span>
-             @else <span class="text-danger">No occupation to show</span>
-             @endif
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-sm-4">
             <label for="">Present Address :</label>
           </div> 
           <div class="col-sm-8">
-            @if($user->mother)
+            @if($user->present_address)
              <span>{{$user->present_address}}</span>
              @else <span class="text-danger">No present address to show</span>
              @endif
@@ -282,7 +298,4 @@
     </div>
   </div>
 </div>
-@push('script')
-
-@endpush
 @endsection

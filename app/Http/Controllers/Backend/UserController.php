@@ -29,14 +29,11 @@ class UserController extends Controller
     {
         Gate::authorize('app.members.index');
 
-        $users = DB::table('users')
-                ->where('user_type', '=', 'member')
-                ->get();
-
         $member_types = DB::table('others')
                                 ->where('category', 'member type')
                                 ->select('id', 'name')
-                                ->get();        
+                                ->get();      
+        $users = DB::table('users')->get();  
         
         return view('admin.users.index', compact('users', 'member_types'));
     }

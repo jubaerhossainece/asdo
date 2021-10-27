@@ -26,8 +26,8 @@ class DashboardController extends Controller
     {
         Gate::authorize('app.dashboard');
         $admins = DB::table('admins')->count();
-        $members = DB::table('users')->where('user_type', 'member')->count();
-        $vols = DB::table('users')->where('user_type', 'volunteer')->count();
+        $members = DB::table('users')->count();
+        $vols = DB::table('users')->count();
         return view('admin.index', compact('members', 'vols', 'admins'));
     }
 }

@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $blood_groups = DB::table('others')->where('id', $user->blood_group)->get();
         $member_types = DB::table('others')->where('id', $user->member_type)->get();
         $religions = DB::table('others')->where('id', $user->religion)->get();
-        return view('user.profile.show', compact('user', 'blood_groups', 'member_types', 'religions'));
+        return view('user.member-profile.show', compact('user', 'blood_groups', 'member_types', 'religions'));
 	}
 
 
@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
     	$user = Auth::user();
 
-    	return view('user.profile.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
+    	return view('user.member-profile.edit', compact('user', 'blood_groups', 'member_types', 'religions'));
     }
 
 
@@ -49,45 +49,18 @@ class ProfileController extends Controller
         //check if any field is changed
         if(!$user->isDirty()){
             $request->session()->flash('alert-danger', 'No data change has been made!');
-            return redirect()->route('profile.edit');
-        }
-
-        //determine if email is unique
-        if(!empty($request->email)){
-            $uniqueEmail = User::where('email', $request->email)
-                            ->where('user_type', Auth::user()->user_type)
-                            ->where('id', '!=', Auth::id())
-                            ->select('id')
-                            ->first();    
-            
-            if($uniqueEmail){
-                return redirect()->back()->with('alert-danger', 'Email address has already been taken by another account!');
-            }                 
-        }
-
-
-        //determine if phone number is unique
-        if(!empty($request->phone)){
-            $uniquePhone = User::where('phone', $request->phone)
-                            ->where('user_type', Auth::user()->user_type)
-                            ->where('id', '!=', Auth::id())
-                            ->select('id')
-                            ->first();
-
-            if($uniquePhone){
-                return redirect()->back()->with('alert-danger', 'Phone number has already been taken by another account!');
-            }             
+            return redirect()->route('member.profile.edit');
         }
 
         //check if email and phone number both fields are empty
         if(!isset($request->email) && !isset($request->phone)){
             $request->session()->flash('alert-danger', 'Both email and phone number fields are empty. Please fill at least one!');
-            return redirect()->route('profile.edit');
+            return redirect()->route('member.profile.edit');
         }
     
     	$request->validate([
             'name' => 'required|string',
-            'email' => ['nullable', 'email']
+            'email' => ['required', 'email', Rule::unique('users')->ignore(Auth::user()->id)]
         ]);
 
         $user->name = $request->name;
@@ -95,14 +68,13 @@ class ProfileController extends Controller
         $user->phone = $request->phone;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->member_type = $request->member_type;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -114,10 +86,10 @@ class ProfileController extends Controller
 
         if($result){
             $request->session()->flash('alert-success', 'Your profile has been updated successfully!');
-            return redirect()->route('profile.show');
+            return redirect()->route('member.profile.show');
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
-            return redirect()->route('profile.edit');
+            return redirect()->route('member.profile.edit');
         }
     }
 }

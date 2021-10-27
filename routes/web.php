@@ -39,6 +39,7 @@ Auth::routes();
 //volunteer login and registration pages
 Route::get('/volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
 Route::get('/volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
+Route::post('/volunteer/register', [VolunteerLoginController::class, 'register'])->name('volunteer.register');
 
 //Routes for campaign pages
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');

@@ -172,7 +172,7 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->role_id = isset($request->role_id) ? $request->role_id : $user->role_id; 
         $user->phone = $request->phone; 
         $user->nid = $request->nid;

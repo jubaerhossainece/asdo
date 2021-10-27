@@ -18,11 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('user_type')->default('donor');
-            $table->string('member_type')->nullable();
+            $table->string('member_type')->default('donor');
             $table->string('gender')->nullable();
             $table->string('father')->nullable();
-            $table->string('husband')->nullable();
+            $table->string('spouse')->nullable();
             $table->string('mother')->nullable();
             $table->string('nationality')->nullable();
             $table->string('occupation')->nullable();

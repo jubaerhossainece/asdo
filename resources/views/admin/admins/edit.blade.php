@@ -85,8 +85,8 @@
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="husband">Husband</label>
-        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
+        <label for="spouse">Husband/Wife</label>
+        <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
     </div>
 
@@ -165,6 +165,13 @@
       <div class="form-group col-md-12">
         <label for="education">Education</label>
         <input type="text" name="education" class="form-control" id="education" value="{{$user->education ? $user->education : ''}}">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="occupation">Occupation</label>
+        <input type="text" name="occupation" class="form-control" id="occupation" value="{{$user->occupation ? $user->occupation : ''}}">
       </div>
     </div>
 

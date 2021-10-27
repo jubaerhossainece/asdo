@@ -31,7 +31,7 @@
       @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('profile.edit')}}" class="btn @if(auth()->user()->user_type === 'member') common-btn @else volunteer-btn @endif"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('member.profile.edit')}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>
