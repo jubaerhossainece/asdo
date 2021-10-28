@@ -44,7 +44,7 @@
         <?php  
          }else{
         ?>
-          <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/users/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
+          <div id="circle-cropper" class="circle-cropper mb-3" style="background-image: url('{{$user->photo ? asset('/storage/asdo/images/volunteers/'.$user->photo) : asset('assets/images/avatar-4.png')}}')">        
           </div>
         <?php 
           }
@@ -62,7 +62,7 @@
 				  </div>
 				</div>
 
-			<button type="submit" class="btn btn-primary">Update Photo</button>
+			<button type="submit" class="btn volunteer-btn">Update Photo</button>
 			</div>
 		</form>
 	</div>

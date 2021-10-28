@@ -23,7 +23,7 @@
             @endif
 
             <div class="card-body">
-              <form action="/volunteerRegister" method="POST">
+              <form action="/volunteer/register" method="POST">
               @csrf
                 <div class="form-group">
                   <label for="name" class="form-label">Your name</label>
@@ -75,7 +75,7 @@
 
             <div class="card-footer">
               <span class="text-muted">Already have an account?</span> 
-              <a href="/volunteerLogin" class="">Sign in</a>.
+              <a href="/volunteer/login" class="">Sign in</a>.
             </div>
           </div>
         </div>

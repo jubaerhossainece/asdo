@@ -189,7 +189,7 @@
               Join our volunteer team and become real human being and make the world smile !!
             </p>
             <div class="hVolunteer-btn text-center mt-2">
-              <a href="/volunteerRegister" role="button" class="volunteer-btn">Registration</a>
+              <a href="/volunteer/register" role="button" class="volunteer-btn">Registration</a>
             </div>
           </div>
 

@@ -46,7 +46,7 @@
 					@enderror
 				</div>
 
-				<button type="submit" class="btn btn-primary" id="submit" name="submit">
+				<button type="submit" class="btn volunteer-btn" id="submit" name="submit">
 					 <i class="fas fa-arrow-circle-up"></i>
 					 Update Password
 				</button>

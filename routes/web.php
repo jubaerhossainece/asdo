@@ -37,10 +37,10 @@ Route::post('/contacts', [HomeController::class, 'send_message'])->name('contact
 Auth::routes();
 
 //volunteer login and registration pages
-Route::get('/volunteerLogin', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteerLogin');
-Route::post('/volunteerLogin', [VolunteerLoginController::class, 'login'])->name('volunteerLogin');
-Route::get('/volunteerRegister', [VolunteerRegisterController::class, 'showRegisterForm'])->name('volunteerRegister');
-Route::post('/volunteerRegister', [VolunteerRegisterController::class, 'register'])->name('volunteerRegister');
+Route::get('/volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
+Route::post('/volunteer/login', [VolunteerLoginController::class, 'login']);
+Route::get('/volunteer/register', [VolunteerRegisterController::class, 'showRegisterForm'])->name('volunteer.register');
+Route::post('/volunteer/register', [VolunteerRegisterController::class, 'register']);
 
 //Routes for campaign pages
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');

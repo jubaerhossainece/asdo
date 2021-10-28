@@ -111,7 +111,7 @@ class VolunteerLoginController extends Controller
      */
     public function logout(){
         Auth::guard('volunteer')->logout();
-        return redirect()->route('volunteerLogin');
+        return redirect()->route('volunteer.login');
     }
  
 

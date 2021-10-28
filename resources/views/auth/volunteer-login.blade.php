@@ -22,7 +22,7 @@
         @endif
 
         <div class="card-body">
-          <form action="{{route('volunteerLogin')}}" method="POST">
+          <form action="/volunteer/login" method="POST">
           	@csrf
             <div class="form-group">
               <label for="email" class="form-label">Email/Phone</label>
@@ -56,7 +56,7 @@
 
         <div class="card-footer">
           <span class="text-muted">Don't have an account yet</span> 
-          <a href="{{route('volunteerRegister')}}">Sign up</a>.
+          <a href="/volunteer/register">Sign up</a>.
         </div>
       </div>
     </div>
