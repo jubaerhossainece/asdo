@@ -9,8 +9,8 @@
 <div class="card">
   <div class="card-header">
     <h2 class="float-left">Edit Blood Donor Info</h2>
-    <a href="{{route('asdo.users.index')}}" class="btn btn-secondary float-right">
-    All Users</a>
+    <a href="{{route('asdo.bloodDonors.index')}}" class="btn btn-secondary float-right">
+    All Blood Donors</a>
   </div>
 </div>
 
@@ -75,8 +75,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="husband">Husband</label>
-        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
+        <label for="spouse">@if($user->gender=='Female') Husband @elseif($user->gender == 'Male') Wife @else Husband/Wife @endif</label>
+        <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
 
       <div class="form-group col-md-6">

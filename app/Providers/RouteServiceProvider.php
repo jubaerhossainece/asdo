@@ -47,15 +47,26 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
 
+            //all routes for admin written in backend.php file  
             Route::middleware('web', 'auth:admin')
                 ->prefix('asdo')
                 ->name('asdo.')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/backend.php'));
 
+            //all routes for member written in user.php file
             Route::middleware('web', 'auth')
+                ->prefix('member')
+                ->name('member.')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/user.php'));
+                
+            //all routes for volunteer written in volunteer.php file        
+            Route::middleware('web', 'auth:volunteer')
+                ->prefix('volunteer')
+                ->name('volunteer.')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/volunteer.php'));    
         });
     }
 

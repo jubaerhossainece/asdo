@@ -96,9 +96,9 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="husband">Husband</label>
-          <input type="text" name="husband" class="form-control" id="husband" value="{{old('husband')}}">
-        </div>
+        <label for="spouse">Husband/Wife</label>
+        <input type="text" name="spouse" class="form-control" id="spouse"value="{{old('spouse')}}">
+      </div>
 
         <div class="form-group col-md-6">
           <label for="nidNumber">NID number</label>
@@ -193,7 +193,7 @@
         <label for="permanent_address">Permanent address</label>
         <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address">{{old('permanent_address')}}</textarea>
       </div>
-      <button type="submit" class="btn volunteer-btn">Save Info</button> 
+      <button type="submit" class="btn common-btn">Save Info</button> 
     </div>
   </div>
 </form>

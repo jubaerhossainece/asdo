@@ -47,6 +47,17 @@ return [
             'hash' => false,
         ],
 
+        'volunteer' => [
+            'driver' => 'session',
+            'provider' => 'volunteers',
+        ],
+
+        'volunteer-api' => [
+            'driver' => 'token',
+            'provider' => 'volunteers',
+            'hash' => false,
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -82,6 +93,11 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'volunteers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Volunteer::class,
+        ],
+
          'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
@@ -114,6 +130,13 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'volunteers' => [
+            'provider' => 'volunteers',
+            'table' => 'password_resets',
+            'expire' => 30,
+            'throttle' => 30,
         ],
 
         'admins' => [

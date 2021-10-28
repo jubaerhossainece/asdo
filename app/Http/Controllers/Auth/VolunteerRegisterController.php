@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\Volunteer;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Rules\Username;
 use App\Rules\ValidUsername;
 
@@ -31,7 +34,7 @@ class VolunteerRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/volunteer/profile';
 
     /**
      * Create a new controller instance.
@@ -40,11 +43,25 @@ class VolunteerRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('preventBackHistory');
+        $this->middleware('guest:volunteer');
     }
 
     public function showRegisterForm(){
         return view('auth.volunteer-register');
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        $value = request()->input('identifier'); //email or phone number
+        $field = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        request()->merge([$field => $value]);
+        return $field;
     }
 
     /**
@@ -58,7 +75,7 @@ class VolunteerRegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'identifier' => [new Username, new ValidUsername, 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -70,10 +87,42 @@ class VolunteerRegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Volunteer::create([
             'name' => $data['name'],
             $this->username() => $data['identifier'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * @param  Request
+     * @return [type]
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $check = Volunteer::where($this->username(), $request->identifier)
+                        ->select($this->username())
+                        ->first();
+                        
+        $username =  filter_var($request->identifier, FILTER_VALIDATE_EMAIL) ? 'email address' : 'phone number';
+                       
+        if($check){
+            return redirect()->back()->with('message', 'You already have an account with this '.$username.'.');
+        }        
+
+
+        event(new Registered($user = $this->create($request->all())));
+
+        Auth::guard('volunteer')->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new JsonResponse([], 201)
+                    : redirect($this->redirectPath());
     }
 }

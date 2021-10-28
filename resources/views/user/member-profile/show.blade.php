@@ -200,18 +200,6 @@
 
         <div class="row profile-info">
           <div class="col-sm-4">
-            <label for="">Occupation : </label>
-          </div> 
-          <div class="col-sm-8">
-            @if($user->occupation)
-             <span>{{$user->occupation}}</span>
-             @else <span class="text-danger">No occupation to show</span>
-             @endif
-          </div>
-        </div>
-
-        <div class="row profile-info">
-          <div class="col-sm-4">
             <label for=""> Religion :</label>
           </div> 
           <div class="col-sm-8">
@@ -267,6 +255,18 @@
             @if($user->education)
              <span>{{$user->education}}</span>
              @else <span class="text-danger">No education info to show</span>
+             @endif
+          </div>
+        </div>
+
+        <div class="row profile-info">
+          <div class="col-sm-4">
+            <label for="">Occupation : </label>
+          </div> 
+          <div class="col-sm-8">
+            @if($user->occupation)
+             <span>{{$user->occupation}}</span>
+             @else <span class="text-danger">No occupation to show</span>
              @endif
           </div>
         </div>

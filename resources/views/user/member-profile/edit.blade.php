@@ -78,7 +78,7 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="spouse">Husband/Wife</label>
+        <label for="spouse">@if($user->gender=='Female') Husband @elseif($user->gender == 'Male') Wife @else Husband/Wife @endif</label>
         <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
 

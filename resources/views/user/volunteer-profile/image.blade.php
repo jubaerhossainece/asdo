@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.user.voluntr-app')
 @section('content')
 @push('css')
 <style>
@@ -29,7 +29,7 @@
 		<h2>Update profile image</h2>
 	</div>
 	<div class="card-body">
-		<form action="{{route('photo.update')}}" method="POST" enctype="multipart/form-data">
+		<form action="{{route('volunteer.photo.update')}}" method="POST" enctype="multipart/form-data">
 			@csrf
 			@method('PUT')
 			<div class="col-md-5 col-xl-4 profile-image-change">

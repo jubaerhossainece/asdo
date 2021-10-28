@@ -28,10 +28,16 @@ class RedirectIfAuthenticated
                         return redirect()->route('asdo.dashboard');
                     }
                     break;
+
+                case 'volunteer':
+                    if (Auth::guard($guard)->check()) {
+                        return redirect()->route('volunteer.profile.show');
+                    }
+                    break;    
                 
                 default:
                     if (Auth::guard($guard)->check()) {
-                        return redirect()->route('profile.show');
+                        return redirect()->route('member.profile.show');
                     }
                     break;
             }

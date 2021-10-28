@@ -10,7 +10,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\Frontend\CampaignController;
 use App\Http\Controllers\Frontend\ProjectController;
-
+use App\Http\Controllers\Auth\VolunteerRegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +37,10 @@ Route::post('/contacts', [HomeController::class, 'send_message'])->name('contact
 Auth::routes();
 
 //volunteer login and registration pages
-Route::get('/volunteer/login', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteer.login');
-Route::get('/volunteer/register', [VolunteerLoginController::class, 'showRegisterForm'])->name('volunteer.register');
-Route::post('/volunteer/register', [VolunteerLoginController::class, 'register'])->name('volunteer.register');
+Route::get('/volunteerLogin', [VolunteerLoginController::class, 'showLoginForm'])->name('volunteerLogin');
+Route::post('/volunteerLogin', [VolunteerLoginController::class, 'login'])->name('volunteerLogin');
+Route::get('/volunteerRegister', [VolunteerRegisterController::class, 'showRegisterForm'])->name('volunteerRegister');
+Route::post('/volunteerRegister', [VolunteerRegisterController::class, 'register'])->name('volunteerRegister');
 
 //Routes for campaign pages
 Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');

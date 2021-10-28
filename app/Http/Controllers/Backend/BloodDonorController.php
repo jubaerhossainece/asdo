@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\BloodDonor;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
 class BloodDonorController extends Controller
@@ -59,8 +60,7 @@ class BloodDonorController extends Controller
         
         $request->validate([
             'name' => 'required|string',
-            'email' => 'email',
-            // 'email' => 'email|email:rfc,dns',
+            'email' => 'email|email:rfc,dns',
             'password' => 'required|min:6|string',
             'facebook_id' => 'nullable',
             'photo' => 'nullable|image',
@@ -86,7 +86,7 @@ class BloodDonorController extends Controller
         $user->photo = isset($filename_with_ext) ? $filename_with_ext : null;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
@@ -160,7 +160,10 @@ class BloodDonorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Gate::authorize('app.members.edit');
+        Gate::authorize('app.bloodDonors.edit');
+        $user = BloodDonor::findOrFail($id);
+        //before $user->fill make sure you stored required $user data
+        $photo = $user->photo;
 
         $user->fill($request->all());   
 
@@ -170,9 +173,6 @@ class BloodDonorController extends Controller
             return redirect()->back();
         }
 
-        //so we need to query again to obtain the user data from database
-        $user = User::findOrFail($user->id);
-
         $request->validate([
             'name' => 'required|string',
             'email' => ['nullable', 'email']
@@ -181,14 +181,14 @@ class BloodDonorController extends Controller
 
         //naming and storing photo 
         if($request->hasFile('photo')){   
-            $path = 'public/asdo/images/users';
+            $path = 'public/asdo/images/bloodDonors';
             $file= $request->file('photo');
             $image_name = $file->getClientOriginalName();
             $filename_without_ext = pathinfo($image_name, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'image'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);  
-            Storage::delete('public/asdo/images/bloodDonors/'.$user->photo);  
+            Storage::delete('public/asdo/images/bloodDonors/'.$photo);  
         }
 
         $user->name = $request->name;
@@ -196,14 +196,14 @@ class BloodDonorController extends Controller
         $user->phone = $request->phone;
         $user->father = $request->father;
         $user->mother = $request->mother; 
-        $user->husband = $request->husband; 
+        $user->spouse = $request->spouse; 
         $user->gender = $request->gender; 
         $user->nid = $request->nid;
         $user->birth_id = $request->birth_id;
         $user->blood_group = $request->blood_group;
         $user->nationality = $request->nationality;
         $user->religion = $request->religion;
-        $user->photo = isset($filename_with_ext) ? $filename_with_ext : '';
+        $user->photo = isset($filename_with_ext) ? $filename_with_ext : $photo;
         $user->facebook_id = $request->facebook_id;
         $user->education = $request->education;
         $user->occupation = $request->occupation;
@@ -215,7 +215,7 @@ class BloodDonorController extends Controller
 
         if($result){
             $request->session()->flash('alert-success', 'Member profile has been updated successfully!');
-            return redirect()->route('asdo.users.show', $user->id);
+            return redirect()->route('asdo.bloodDonors.show', $user->id);
         }else{
             $request->session()->flash('alert-danger', 'Something went wrong!');
             return redirect()->back();
@@ -230,6 +230,15 @@ class BloodDonorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gate::authorize('app.bloodDonors.destroy');
+
+        $user = BloodDonor::findOrFail($id);
+        if(isset($user->photo)){
+            Storage::delete('public/asdo/images/bloodDonors/'.$user->photo);            
+        }
+
+        $user->delete();
+
+        return redirect()->route('asdo.bloodDonors.index')->with('alert-success', 'User information removed from database!');
     }
 }

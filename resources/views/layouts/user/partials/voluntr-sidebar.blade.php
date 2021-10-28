@@ -33,14 +33,14 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('userLogout') }}"
+                                        <a class="nav-link" href=""
                                                onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                             document.getElementById('volunteer-logout').submit();">
                                         <i class="fas fa-sign-out-alt mr-2"></i>
                                             <span>Logout</span>
                                         </a>
                                     </li>
-                                    <form id="logout-form" action="{{ route('userLogout') }}" method="GET" class="d-none">
+                                    <form id="volunteer-logout" action="{{ route('volunteer.logout') }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
 

@@ -22,11 +22,8 @@
         @endif
 
         <div class="card-body">
-          <form action="{{route('login')}}" method="POST">
+          <form action="{{route('volunteerLogin')}}" method="POST">
           	@csrf
-
-              <input type="hidden" id="user_type" name="user_type" value="volunteer">
-
             <div class="form-group">
               <label for="email" class="form-label">Email/Phone</label>
               <input type="text" id="email" name="identifier" class="form-control" placeholder="Enter email or phone number" value="{{old('identifier')}}">
@@ -59,7 +56,7 @@
 
         <div class="card-footer">
           <span class="text-muted">Don't have an account yet</span> 
-          <a href="{{route('volunteer.register')}}">Sign up</a>.
+          <a href="{{route('volunteerRegister')}}">Sign up</a>.
         </div>
       </div>
     </div>

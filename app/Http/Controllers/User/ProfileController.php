@@ -14,7 +14,7 @@ class ProfileController extends Controller
 {
     public function __construct(){ 
         $this->middleware('preventBackHistory');
-        $this->middleware('auth'); 
+        $this->middleware('auth');
     }
 
     

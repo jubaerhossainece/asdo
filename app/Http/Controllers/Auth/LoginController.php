@@ -102,13 +102,8 @@ class LoginController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function userLogout(){
-        if(Auth::user()->user_type === 'volunteer'){
-            Auth::guard('web')->logout();
-            return redirect()->route('volunteer.login');
-        }else{
-            Auth::guard('web')->logout();
-            return redirect()->route('login');
-        }
+        Auth::guard('web')->logout();
+        return redirect()->route('login');
     }
 
     // social login provider function

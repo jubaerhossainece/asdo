@@ -1,7 +1,8 @@
-@extends('layouts.user.app')
+@extends('layouts.user.voluntr-app')
 @section('content')
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
 @endpush
 
 
@@ -16,7 +17,7 @@
     <h3>Personal Information</h3>
   </div>
   <div class="card-body">
-  <form method="POST" action="{{route('profile.update')}}" enctype="multipart/form-data">
+  <form method="POST" action="{{route('volunteer.profile.update')}}" enctype="multipart/form-data">
   @csrf
   @method('PUT')
     <div class="form-row">
@@ -72,8 +73,8 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="husband">Husband</label>
-        <input type="text" name="husband" class="form-control" id="husband" value="{{$user->husband ? $user->husband : ''}}">
+        <label for="spouse">@if($user->gender=='Female') Husband @elseif($user->gender == 'Male') Wife @else Husband/Wife @endif</label>
+        <input type="text" name="spouse" class="form-control" id="spouse" value="{{$user->spouse ? $user->spouse : ''}}">
       </div>
 
       <div class="form-group col-md-6">
@@ -107,7 +108,7 @@
 
       <div class="form-group col-md-6">
         <label for="birth_date">Date of birth</label>
-        <input type="text" name="birth_date" class="form-control" id="birth_date" value="{{$user->birth_date ? $user->birth_date : ''}}">
+        <input type="text" name="birth_date" class="form-control" id="birth-date" value="{{$user->birth_date ? $user->birth_date : ''}}">
       </div>
     </div>
 
@@ -126,21 +127,6 @@
            @endforeach
         </select>
       </div>
-    </div>
-
-    <div class="form-row">
-      @if(auth()->user()->user_type === 'member')
-        <div class="form-group col-md-6">
-          <label>Member Type</label>
-          <br>
-          <select name="member_type" id="member-select" style="width: 100%;">
-            <option value="0"></option>
-            @foreach($member_types as $member)
-            <option value="{{$member->id}}" {{$user->member_type == $member->id ? 'selected' : ''}}>{{$member->name}}</option>
-            @endforeach
-          </select>
-        </div>
-      @endif 
     </div>
   </div>
 </div>
@@ -180,8 +166,15 @@
 
 @push('script')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.full.min.js')}}"></script>
 <script>
   $(document).ready(function() {
+    //datetiem pciker
+    $('#birth-date').datetimepicker({
+       timepicker:false,
+       format:'Y-m-d'
+    });
+
     $('#blood-group-select').select2({
       dropdownCssClass : 'no-search',
       allowClear: true,

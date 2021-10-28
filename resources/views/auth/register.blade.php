@@ -23,7 +23,7 @@
             @endif
 
             <div class="card-body">
-              <form action="register" method="POST">
+              <form action="{{route('register')}}" method="POST">
                 @csrf
                 <div class="form-group">
                   <label for="name" class="form-label">Your name</label>

@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Volunteer;
 use Laravel\Socialite\Facades\Socialite;
+use App\Rules\Username;
 
 class VolunteerLoginController extends Controller
 {
@@ -30,7 +31,7 @@ class VolunteerLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/volunteer/profile';
 
     /**
      * Create a new controller instance.
@@ -40,7 +41,7 @@ class VolunteerLoginController extends Controller
     public function __construct()
     {
         $this->middleware('preventBackHistory');
-        $this->middleware('guest')->except(['logout','userLogout']);
+        $this->middleware('guest:volunteer')->except(['logout']);
     }
 
     /**
@@ -50,15 +51,6 @@ class VolunteerLoginController extends Controller
     */
     public function showLoginForm(){
         return view('auth.volunteer-login');
-    }
-
-    /**
-    * Show the vlunteer's registration form.
-    *
-    * @return \Illuminate\View\View
-    */
-    public function showRegisterForm(){
-        return view('auth.volunteer-register');
     }
 
     
@@ -73,6 +65,53 @@ class VolunteerLoginController extends Controller
         $field = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
         request()->merge([$field => $value]);
         return $field;
+    }
+
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request){
+        //validate the from data
+        $this->Validate($request, [
+            'identifier' => [new Username, 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:6'],
+        ]);
+
+        $user = Volunteer::where($this->username(), $request->identifier)
+                        ->select($this->username())
+                        ->first();
+                        // return $user;
+        if($user){             
+            //attempt to log the user in
+            if(Auth::guard('volunteer')->attempt([$this->username() => $request->identifier, 'password' => $request->password], $request->remember)){
+                //if successfull, then redirect to teir intended location
+                return redirect()->intended(route('volunteer.profile.show'));
+            }else{
+                return redirect()->back()->with('message', 'Your password is inceorrect!')->withInput($request->only('identifier', 'remember'));
+            }
+        }else{
+            return redirect()->back()->with('message', 'You have no account yet!')->withInput($request->only('identifier', 'remember'));
+        }
+
+        // if unsuccessful, then redirect back to the login with the form data
+        return redirect()->back()->withInput($request->only('identifier', 'remember'));
+    }
+
+
+    /**
+     * Log out user to the correct login form.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function logout(){
+        Auth::guard('volunteer')->logout();
+        return redirect()->route('volunteerLogin');
     }
  
 

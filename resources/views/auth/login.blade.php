@@ -22,11 +22,8 @@
             </div>
 
             <div class="card-body">
-              <form action="login" method="POST">
+              <form action="{{route('login')}}" method="POST">
                 @csrf
-
-              <input type="hidden" id="user_type" name="user_type" value="member">
-
                 <div class="form-group">
                   <label for="email" class="form-label">Email/Phone</label>
                   <input type="text" id="email" name="identifier" class="form-control" placeholder="Enter email or phone number" value="{{old('identifier')}}">

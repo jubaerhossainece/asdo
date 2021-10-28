@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.user.voluntr-app')
 @section('content')
 @push('css')
 
@@ -10,7 +10,7 @@
 			<h2 class="card-title">Change Password</h2>
 		</div>
 		<div class="card-body">	
-			<form action="{{route('password.change')}}" method="POST">
+			<form action="{{route('volunteer.password.change')}}" method="POST">
 				@csrf
 				@method('PUT')
 					<div class="form-group">					

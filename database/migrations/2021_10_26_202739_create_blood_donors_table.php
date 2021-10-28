@@ -21,7 +21,7 @@ class CreateBloodDonorsTable extends Migration
             $table->string('member_type')->nullable();
             $table->string('gender')->nullable();
             $table->string('father')->nullable();
-            $table->string('husband')->nullable();
+            $table->string('spouse')->nullable();
             $table->string('mother')->nullable();
             $table->string('nationality')->nullable();
             $table->string('occupation')->nullable();
