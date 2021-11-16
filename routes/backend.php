@@ -61,12 +61,15 @@ Route::resource('/volunteers', VolunteerController::Class);
 
 // routes for blood donor management
 Route::resource('/bloodDonors', BloodDonorController::class);
+
 //routes for blood donotions
 Route::get('/blood-donor/{id}/events', [BloodDonationController::class, 'index'])->name('blood-donor.events.index');
 Route::post('/blood-donor/{id}/events', [BloodDonationController::class, 'store'])->name('blood-donor.events.store');
-// Route::get('/blood-donor/{id}/events', [BloodDonationController::class, 'show'])->name('blood-donor.events.show');
+Route::get('/blood-donor/{id}/events/create', [BloodDonationController::class, 'create'])->name('blood-donor.events.create');
+Route::get('/blood-donor/{id}/events/{d_id}/edit', [BloodDonationController::class, 'edit'])->name('blood-donor.events.edit');
 Route::put('/blood-donor/events/{id}', [BloodDonationController::class, 'update'])->name('blood-donor.events.update');
-Route::get('/blood-donor/events/{id}', [BloodDonationController::class, 'destroy'])->name('blood-donor.events.delete');
+Route::delete('/blood-donor/events/{id}', [BloodDonationController::class, 'destroy'])->name('blood-donor.events.destroy');
+
 
 // routes for role management
 Route::resource('/roles', RoleController::class);

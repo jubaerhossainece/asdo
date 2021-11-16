@@ -16,7 +16,7 @@ class CreateBloodDonationsTable extends Migration
         Schema::create('blood_donations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('blood_donor_id')->constraind('blood_donors')->onDelete('cascade');
-            $table->timestampTz('date');
+            $table->date('date');
             $table->string('address')->nullable();
             $table->timestamps();
         });

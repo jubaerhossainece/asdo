@@ -3,7 +3,6 @@
 @push('css')
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="{{url('assets/vendors/datetimepicker/jquery.datetimepicker.min.css')}}"/>
-  <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
 @endpush
 
 <div class="card">
@@ -193,7 +192,7 @@
         <label for="permanent_address">Permanent address</label>
         <textarea rows="4" name="permanent_address" class="form-control" id="permanent_address">{{old('permanent_address')}}</textarea>
       </div>
-      <button type="submit" class="btn common-btn">Save Info</button> 
+      <button type="submit" class="btn btn-primary">Save Info</button> 
     </div>
   </div>
 </form>

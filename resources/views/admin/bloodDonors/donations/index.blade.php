@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
 @push('css')
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
   <style>
 	  h2.page-title span {
@@ -32,13 +31,14 @@
 <div class="card">
 	<div class="card-header page-header">	
 		<h2 class="page-title">Blood Donor - <span>{{$user->name}}</span> </h2>
+		<a href="{{route('asdo.bloodDonors.show', $user->id)}}" class="btn btn-primary">Profile</a>
 	</div>
 </div>
 
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">All Blood Donations</h3>
-		<a href="" class="btn common-btn">
+		<a href="{{route('asdo.blood-donor.events.create', $user->id)}}" class="btn btn-primary">
 		<i class="fas fa-plus-circle"></i>
 		New Blood Donotion</a>
 	</div>
@@ -47,21 +47,25 @@
 		@if(sizeof($events) > 0)
 		@foreach($events as $event)
 		<div class="row donation-info border-bottom pl-3">
-			<div class="col-sm-12 col-md-6">
+			<div class="col-sm-12 col-md-6 text-center">
 				<img src="{{asset('assets/images/icons/schedule.png')}}" class="icon" alt="">
 				<span>{{\Carbon\Carbon::parse($event->date)->diffForHumans()}}</span>
 			</div>
-			<div class="col-sm-12 col-md-6">
+			<div class="col-sm-12 col-md-6 text-center">
 				<img src="{{asset('assets/images/icons/location.png')}}" class="icon" alt="">
 				<span>{{$event->address}}</span>
 			</div>
 			<div class="col-sm-12 text-center action">
-				<a href="" class="btn btn-success btn-sm">
+				<a href="{{route('asdo.blood-donor.events.edit', ['id' => $user->id, 'd_id'=>$event->id])}}" class="btn btn-success btn-sm">
 					<i class="fas fa-edit"></i>
 				</a>
-				<a href="" class="btn btn-danger btn-sm">
-					<i class="fas fa-trash"></i>
-				</a>
+				<button onclick="deleteData({{$event->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
+					<i class="fas fa-trash-alt"></i>
+				</button>
+				<form action="{{route('asdo.blood-donor.events.destroy', $event->id)}}" method="POST" style="display: none;" id="submit-delete-{{$event->id}}">
+					@csrf
+					@method('DELETE')
+				</form>
 			</div>
 		</div>
 		@endforeach
@@ -80,14 +84,6 @@
 </div>
 
 @push('script')
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-<script>
-    //datatables initialisation
-	$(document).ready(function() { 
-		$('#usersTable').DataTable(); 
-	});
-</script>
 @endpush
 
 @endsection

@@ -22,15 +22,17 @@
 	</div>
 
 	<div class="card-body">
-        <form method="post" action="{{route('asdo.blood-donor.events.store', $user->id)}}">
+        <form method="post" action="{{route('asdo.blood-donor.events.update', $event->id)}}">
             @csrf
+            @method('put')
             <div class="mb-3">
                 <label for="address" class="form-label">Donation address</label>
-                <textarea class="form-control" name="address" id="address" aria-describedby="address"></textarea>
+                <textarea class="form-control" name="address" id="address" aria-describedby="address">{{$event->address}}
+                </textarea>
             </div>
             <div class="mb-3">
                 <label for="date" class="form-label">Donation date</label>
-                <input type="text" name="date" class="form-control" id="date">
+                <input type="text" name="date" class="form-control" id="date" value="{{$event->date}}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
