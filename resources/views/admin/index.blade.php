@@ -44,8 +44,8 @@
 					<i class="indigo"></i>
 				</div>
 				<div class="card-widget-body">
-					<h3>Members</h3>
-					<span>123</span>
+					<h3>Blood Donors</h3>
+					<span>{{$blood_donors}}</span>
 				</div>
 			</div>
 		</div>

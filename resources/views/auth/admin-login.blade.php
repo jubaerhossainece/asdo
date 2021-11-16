@@ -16,7 +16,7 @@
 
 
         <div class="card ">
-            <div class="card-header text-center"><p><!-- <img class="logo-img" src="../assets/images/logo.png" alt="logo"> -->Admin Login Form</p><span class="splash-description">Please enter your login information.</span>
+            <div class="card-header text-center"><p>Login to admin panel</p>
             </div>
             <div class="card-body">
                 <form action="{{route('asdo.submit')}}" method="post">

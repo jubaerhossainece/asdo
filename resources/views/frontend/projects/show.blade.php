@@ -55,6 +55,12 @@
         margin-right: 10px;
     }
 
+    .icon{
+		  height: 30px;
+		  width: auto; 
+		  margin-right: 10px;
+	  }
+
     /*single project show css*/
     .empty-box{
       padding:  10rem 0;
@@ -154,10 +160,10 @@
           <h4><i class="fas fa-book-reader mr-4"></i><span class=" ml-4">{{$project->header}}</span></h4>
         </div>
         <div class="location">
-          <h4><i class="fas fa-map-marker-alt mr-4"></i><span>{{$project->location}}</span></h4>
+          <h4><img src="{{asset('assets/images/icons/location.png')}}" class="icon" alt=""><span>{{$project->location}}</span></h4>
         </div>
         <div class="date">
-          <h5><i class="fas fa-calendar-alt"></i><span>{{ date('M j, Y h:ia', strtotime($project->date)) }}</span></h5>
+          <h5><img src="{{asset('assets/images/icons/schedule.png')}}" class="icon" alt=""><span>{{ date('M j, Y h:ia', strtotime($project->date)) }}</span></h5>
         </div>
       </div>
       <div class="col-md-8">

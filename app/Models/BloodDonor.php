@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BloodDonation;
 
 class BloodDonor extends Model
 {
@@ -17,4 +18,8 @@ class BloodDonor extends Model
     protected $guarded = [
         'id', 'role_id', 'password'
     ];
+
+    public function blood_donations(){
+        return $this->hasMany(BloodDonation::class);
+    }
 }

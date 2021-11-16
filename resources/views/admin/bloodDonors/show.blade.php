@@ -3,6 +3,19 @@
 @push('css')
   <link rel="stylesheet" href="{{url('css/profile.css')}}">
   <link rel="stylesheet" href="{{url('css/backend/member.css')}}">
+  <style>
+    .noti-link{
+      padding: .5rem 1rem;
+      background-color: #e7e8ff;
+      font-size: 14px;
+      color: #3959fb;
+      border-radius: 5px;
+    }
+
+    .noti-link:hover{
+      background-color: #c5c7ff;
+    }
+  </style>
 @endpush
 
 <div class="card profile-nav">
@@ -44,7 +57,27 @@
     </div>
   </div>
 </div>
-      
+
+<div class="card" id="blood-donation">
+  <div class="card-header">
+    <h3>Blood donation information</h3>
+  </div>
+  <div class="card-body">
+    <div class="row profile-info">
+      <div class="col-sm-8">
+        <label>Last blood donation</label>
+      </div>
+      <div class="col-sm-4">
+        <span>123 days ago</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="{{route('asdo.blood-donor.events.index', $user->id)}}" class="noti-link active">Show all blood donation events</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="card" id="personal-details">
   <div class="card-header">

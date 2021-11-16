@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectFileController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\InboxController;
+use App\Http\Controllers\Backend\BloodDonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +59,14 @@ Route::resource('/members', UserController::Class);
 // routes for volunteer management
 Route::resource('/volunteers', VolunteerController::Class);
 
-// routes for rblood donor management
+// routes for blood donor management
 Route::resource('/bloodDonors', BloodDonorController::class);
+//routes for blood donotions
+Route::get('/blood-donor/{id}/events', [BloodDonationController::class, 'index'])->name('blood-donor.events.index');
+Route::post('/blood-donor/{id}/events', [BloodDonationController::class, 'store'])->name('blood-donor.events.store');
+// Route::get('/blood-donor/{id}/events', [BloodDonationController::class, 'show'])->name('blood-donor.events.show');
+Route::put('/blood-donor/events/{id}', [BloodDonationController::class, 'update'])->name('blood-donor.events.update');
+Route::get('/blood-donor/events/{id}', [BloodDonationController::class, 'destroy'])->name('blood-donor.events.delete');
 
 // routes for role management
 Route::resource('/roles', RoleController::class);
@@ -102,3 +109,4 @@ Route::get('/image/campaigns/{id}', [CampaignFileController::class, 'show'])->na
 Route::post('/image/campaigns', [CampaignFileController::class, 'store'])->name('image.campaigns.store');
 Route::get('/image/campaigns/{id}/fetch', [CampaignFileController::class, 'fetch'])->name('image.campaigns.fetch');
 Route::get('/image/campaigns/{id}/delete', [CampaignFileController::class, 'destroy'])->name('image.campaigns.destroy');
+

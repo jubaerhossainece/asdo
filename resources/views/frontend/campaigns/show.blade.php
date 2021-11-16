@@ -54,10 +54,6 @@
         margin-right: 10px;
     }
 
-    div#campaign {
-
-    }
-
     div#campaign .row {
         padding: 3rem 0;
     }
@@ -72,6 +68,12 @@
      color: #1dbf73db; 
      margin-right: 20px;
     }
+
+    .icon{
+		  height: 30px;
+		  width: auto; 
+		  margin-right: 10px;
+	  }
 
     /*gallery css starts*/
     .empty-box{
@@ -151,10 +153,10 @@
           <h4><i class="fas fa-book-reader mr-4"></i><span class=" ml-4">{{$campaign->header}}</span></h4>
         </div>
         <div class="location">
-          <h4><i class="fas fa-map-marker-alt mr-4"></i><span>{{$campaign->location}}</span></h4>
+          <h4><img src="{{asset('assets/images/icons/location.png')}}" class="icon" alt=""><span>{{$campaign->location}}</span></h4>
         </div>
         <div class="date">
-          <h5><i class="fas fa-calendar-alt"></i><span>{{ date('M j, Y h:ia', strtotime($campaign->date)) }}</span></h5>
+          <h5><img src="{{asset('assets/images/icons/schedule.png')}}" class="icon" alt=""><span>{{ date('M j, Y h:ia', strtotime($campaign->date)) }}</span></h5>
         </div>
       </div>
       <div class="col-md-8">
