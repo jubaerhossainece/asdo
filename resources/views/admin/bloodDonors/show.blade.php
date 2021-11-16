@@ -15,6 +15,14 @@
     .noti-link:hover{
       background-color: #c5c7ff;
     }
+
+    .donation-info label, .donation-info span{
+      font-size: 18px;
+    }
+
+    .donation-info span{
+      color : green;
+    }
   </style>
 @endpush
 
@@ -53,7 +61,7 @@
       @if($user->present_address) <h4><span> {{$user->present_address}}</span></h4> @endif
     </div>
     <div class="col-md-12 col-xl-3 edit-button">
-      <a href="{{route('asdo.bloodDonors.edit', $user->id)}}" class="btn common-btn"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
+      <a href="{{route('asdo.bloodDonors.edit', $user->id)}}" class="btn btn-primary"><i class="fas fa-edit pr-2"></i>Edit Profile</a>
     </div>
   </div>
 </div>
@@ -61,21 +69,25 @@
 <div class="card" id="blood-donation">
   <div class="card-header">
     <h3>Blood donation information</h3>
+    <a href="{{route('asdo.blood-donor.events.create', $user->id)}}" class="btn btn-success"><i class="fas fa-plus-circle"></i><sapn class="pl-2">New blood donation</span></a>
   </div>
   <div class="card-body">
-    <div class="row profile-info">
-      <div class="col-sm-8">
-        <label>Last blood donation</label>
-      </div>
-      <div class="col-sm-4">
-        <span>123 days ago</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12 text-center">
+  @if($donation_event)
+		<div class="row donation-info pl-3">
+			<div class="col-sm-12 col-md-12 text-center">
+				<label>Last donated : </label>
+				<span>{{\Carbon\Carbon::parse($donation_event->date)->diffForHumans()}}</span>
+			</div>
+
+      <div class="col-12 pt-3 text-center">
         <a href="{{route('asdo.blood-donor.events.index', $user->id)}}" class="noti-link active">Show all blood donation events</a>
       </div>
-    </div>
+		</div>
+		@else
+		<div class="text-center p-3">
+			<h3 class="text-danger">Never donated blood!</h3>
+		</div>	
+		@endif
   </div>
 </div>
 

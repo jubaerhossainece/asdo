@@ -27,9 +27,9 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Present Address</th>
-                <th>Permanent Address</th>
-                <th>Joined At</th>
+                <th>Address</th>
+                <th>Blood group</th>
+                <th>Last Donated</th>
                 @canany(['app.members.show', 'app.members.edit',  'app.members.destroy'])
                 <th>Action</th>
                 @endcanany
@@ -41,8 +41,8 @@
                 <td>{{$loop->index+1}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->present_address}}</td>
-                <td>{{$user->permanent_address}}</td>
-                <td>{{$user->created_at}}</td>
+                <td class="text-success">{{\App\Library\Helper::bloodGroup($user->blood_group)[0]->name}}</td>
+                <td>{{\App\Library\Helper::bloodDonation($user->id) ? \Carbon\Carbon::parse(\App\Library\Helper::bloodDonation($user->id)->date)->diffForHumans() : ''}}</td>
                 <td>
                     @can('app.bloodDonors.edit')
                 	<a href="{{route('asdo.bloodDonors.edit', $user->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit user information" >

@@ -11,7 +11,7 @@ class BloodDonationController extends Controller
 {
     public function index($id){
         $events = BloodDonation::where('blood_donor_id', $id)
-                    ->orderBy('date')
+                    ->orderBy('date', 'DESC')
                     ->get();
         $user = DB::table('blood_donors')->where('id', $id)
                 ->select('id', 'name')

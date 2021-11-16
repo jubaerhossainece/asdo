@@ -122,6 +122,10 @@ class BloodDonorController extends Controller
         Gate::authorize('app.bloodDonors.show');
 
         $user = BloodDonor::findOrFail($id);
+        $donation_event = DB::table('blood_donations')
+                                ->where('blood_donor_id', $id)
+                                ->orderBy('date', 'DESC')
+                                ->first();
         $blood_group = DB::table('others')
                         ->where('id', $user->blood_group)
                         ->select('name')
@@ -131,7 +135,7 @@ class BloodDonorController extends Controller
                     ->select('name')
                     ->get(); 
 
-        return view('admin.bloodDonors.show', compact('user', 'blood_group', 'religion'));
+        return view('admin.bloodDonors.show', compact('user', 'blood_group', 'religion', 'donation_event'));
     }
 
     /**
