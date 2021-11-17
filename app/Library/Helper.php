@@ -1,6 +1,8 @@
 <?php 
     namespace App\Library;
     use Illuminate\Support\Facades\DB;
+    use DateTime;
+    use DateInterval;
 
     class Helper{
         public static function bloodGroup($id){
@@ -16,6 +18,17 @@
                             ->orderBy('date', 'DESC')
                             ->select('date')
                             ->first();
+        }
+
+        public static function dayDiff($date1, $lifetime){
+            $now = new DateTime("now");
+            $date1 = new DateTime($date1);
+            $date1 = $date1->add(new DateInterval("P".abs($lifetime)."D"));
+            if($date1 > $now){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
  ?>

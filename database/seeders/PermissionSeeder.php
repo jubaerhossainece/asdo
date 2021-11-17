@@ -310,5 +310,38 @@ class PermissionSeeder extends Seeder
             'name' => 'Delete Slider',
             'slug' => 'app.sliders.destroy'
         ]);
+
+        //Latest news management permissions
+        $moduleAppNews = Module::updateOrCreate(['name' => 'Latest News Management']);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppNews->id,
+            'name' => 'Access News',
+            'slug' => 'app.news.index'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSlider->id,
+            'name' => 'Create News',
+            'slug' => 'app.news.create'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppNews->id,
+            'name' => 'Show News',
+            'slug' => 'app.news.show'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppNews->id,
+            'name' => 'Edit News',
+            'slug' => 'app.news.edit'
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppNews->id,
+            'name' => 'Delete News',
+            'slug' => 'app.news.destroy'
+        ]);
     }
 }

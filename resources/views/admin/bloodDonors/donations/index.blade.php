@@ -56,10 +56,10 @@
 				<span>{{$event->address}}</span>
 			</div>
 			<div class="col-sm-12 text-center action">
-				<a href="{{route('asdo.blood-donor.events.edit', ['id' => $user->id, 'd_id'=>$event->id])}}" class="btn btn-success btn-sm">
+				<a href="{{route('asdo.blood-donor.events.edit', ['id' => $user->id, 'd_id'=>$event->id])}}" class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Edit blood donation detail">
 					<i class="fas fa-edit"></i>
 				</a>
-				<button onclick="deleteData({{$event->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Delete user information" >
+				<button onclick="deleteData({{$event->id}})" class="btn btn-danger btn-sm" data-tooltip="tooltip" data-placement="top" title="Delete this information" >
 					<i class="fas fa-trash-alt"></i>
 				</button>
 				<form action="{{route('asdo.blood-donor.events.destroy', $event->id)}}" method="POST" style="display: none;" id="submit-delete-{{$event->id}}">
@@ -70,11 +70,11 @@
 		</div>
 		@endforeach
 			
-		<div class="row p-3">
+		<!-- <div class="row p-3">
 			<div class="col-12 text-center">
 				<a href="" class="noti-link active">Show all blood donation events</a>
 			</div>
-		</div>
+		</div> -->
 		@else
 		<div class="text-center p-3">
 			<h3>Never donated blood yet!</h3>

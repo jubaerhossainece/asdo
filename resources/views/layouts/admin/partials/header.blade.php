@@ -95,13 +95,13 @@
                                     <h5 class="mb-0 text-white nav-user-name">{{auth()->user()->name}} </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="{{route('asdo.profile.show')}}"><i class="fas fa-user mr-2"></i>My Profile</a>
-                                <a class="dropdown-item" href="{{route('asdo.profile.edit')}}"><i class="fas fa-cog mr-2"></i>Update Profile</a>
-                                <a class="dropdown-item" href="{{route('asdo.password.edit')}}"><i class="fas fa-lock mr-2"></i>Change Password</a>
+                                <a class="dropdown-item" href="{{route('asdo.profile.show')}}"><img src="{{asset('assets/images/icons/user.png')}}" style="height:20px; margin-right:10px">My Profile</a>
+                                <a class="dropdown-item" href="{{route('asdo.profile.edit')}}"><img src="{{asset('assets/images/icons/system-update.png')}}" style="height:20px; margin-right:10px">Update Profile</a>
+                                <a class="dropdown-item" href="{{route('asdo.password.edit')}}"><img src="{{asset('assets/images/icons/padlock(1).png')}}" style="height:20px; margin-right:10px">Change Password</a>
                                 <a class="dropdown-item" href="{{ route('asdo.adminLogout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt mr-2"></i>
+                                <img src="{{asset('assets/images/icons/logout.png')}}" style="height:20px; margin-right:10px">
                                     Logout
                                 </a>
 

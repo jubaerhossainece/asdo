@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\ProjectFileController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\InboxController;
 use App\Http\Controllers\Backend\BloodDonationController;
+use App\Http\Controllers\Backend\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,3 +114,5 @@ Route::post('/image/campaigns', [CampaignFileController::class, 'store'])->name(
 Route::get('/image/campaigns/{id}/fetch', [CampaignFileController::class, 'fetch'])->name('image.campaigns.fetch');
 Route::get('/image/campaigns/{id}/delete', [CampaignFileController::class, 'destroy'])->name('image.campaigns.destroy');
 
+//routes for latest news
+Route::resource('/news', NewsController::class);

@@ -14,30 +14,32 @@
                                 Menu
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.dashboard') ? 'active' : ''}}" href="{{route('asdo.dashboard')}}"><i class="fas fa-fw fa-user-circle"></i><span>Dashboard</span></a>
+                                <a class="nav-link {{Route::is('asdo.dashboard') ? 'active' : ''}}" href="{{route('asdo.dashboard')}}"><img src="{{asset('assets/images/icons/dashboard.png')}}" style="height:17px"><span>Dashboard</span></a>
                             </li>
 
                             @can('app.contacts.index')
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.contacts.*') ? 'active' : ''}}" href="{{route('asdo.contacts.index')}}"><i class="fas fa-envelope"></i><span>Messages</span></a>
+                                <a class="nav-link {{Route::is('asdo.contacts.*') ? 'active' : ''}}" href="{{route('asdo.contacts.index')}}"><img src="{{asset('assets/images/icons/new-message.png')}}"><span><span>Messages</span></a>
                             </li>
                             @endcan
 
                             @can('app.members.index')
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.members.*') ? 'active' : ''}}" href="{{route('asdo.members.index')}}"><i class="fas fa-hands-helping"></i><span>Members</span></a>
+                                <a class="nav-link {{Route::is('asdo.members.*') ? 'active' : ''}}" href="{{route('asdo.members.index')}}"><img src="{{asset('assets/images/icons/volunteer.png')}}" style="height:25px"><span>Members</span></a>
                             </li>
                             @endcan
 
                             @can('app.volunteers.index')
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><i class="fas fa-hands-helping"></i><span>Volunteers</span></a>
+                                <a class="nav-link {{Route::is('asdo.volunteers.*') ? 'active' : ''}}" href="{{route('asdo.volunteers.index')}}"><img src="{{asset('assets/images/icons/love.png')}}"><span>Volunteers</span></a>
                             </li>
                             @endcan
 
+                            @can('app.bloodDonors.index')
                             <li class="nav-item">
-                                <a class="nav-link {{Route::is('asdo.bloodDonors.*') ? 'active' : ''}}" href="{{route('asdo.bloodDonors.index')}}"><img src="{{asset('assets/images/icons/blood-donation .png')}}" alt=""><span>Blood Donors</span></a>
+                                <a class="nav-link {{Route::is('asdo.bloodDonors.*') ? 'active' : ''}}" href="{{route('asdo.bloodDonors.index')}}"><img src="{{asset('assets/images/icons/blood-donation.png')}}"><span>Blood Donors</span></a>
                             </li>
+                            @endcan
                         
                             <li class="nav-divider">
                                 Access Control
@@ -46,19 +48,13 @@
                                 <ul class="nav flex-column">
                                     @can('app.roles.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.roles.*') ? 'active' : ''}}" href="{{route('asdo.roles.index')}}"><i class="fas fa-user-cog mr-2"></i><span>Roles</span></a>
-                                    </li>
-                                    @endcan
-
-                                    @can('app.users.index')
-                                    <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.users.*') ? 'active' : ''}}" href="{{route('asdo.users.index')}}"><i class="fas fa-users mr-2"></i><span>Members</span></a>
+                                        <a class="nav-link {{Route::is('asdo.roles.*') ? 'active' : ''}}" href="{{route('asdo.roles.index')}}"><img src="{{asset('assets/images/icons/gear.png')}}"><span>Roles</span></a>
                                     </li>
                                     @endcan
 
                                     @can('app.admins.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.admins.*') ? 'active' : ''}}" href="{{route('asdo.admins.index')}}"><i class="fas fa-users mr-2"></i><span>Admin Panel</span></a>
+                                        <a class="nav-link {{Route::is('asdo.admins.*') ? 'active' : ''}}" href="{{route('asdo.admins.index')}}"><img src="{{asset('assets/images/icons/admin.png')}}"><span>Admin Panel</span></a>
                                     </li>
                                     @endcan
                                 </ul>
@@ -71,19 +67,24 @@
                                 <ul class="nav flex-column">
                                     @can('app.sliders.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.sliders.*') ? 'active' : ''}}" href="{{route('asdo.sliders.index')}}"><i class="fas fa-images"></i><span>Slider Images</span></a>
+                                        <a class="nav-link {{Route::is('asdo.sliders.*') ? 'active' : ''}}" href="{{route('asdo.sliders.index')}}"><img src="{{asset('assets/images/icons/photos.png')}}"><span>Slider Images</span></a>
                                     </li>
                                     @endcan
 
                                     @can('app.projects.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.projects.*') ? 'active' : ''}}" href="{{route('asdo.projects.index')}}"><i class="fas fa-tasks"></i><span>Programs</span></a>
+                                        <a class="nav-link {{Route::is('asdo.projects.*') ? 'active' : ''}}" href="{{route('asdo.projects.index')}}"><img src="{{asset('assets/images/icons/code.png')}}"><span>Programs</span></a>
                                     </li>
                                     @endcan
 
                                     @can('app.campaigns.index')
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.campaigns.*') ? 'active' : ''}}" href="{{route('asdo.campaigns.index')}}"><i class="fas fa-award"></i><span>Campaigns</span></a>
+                                        <a class="nav-link {{Route::is('asdo.campaigns.*') ? 'active' : ''}}" href="{{route('asdo.campaigns.index')}}"><img src="{{asset('assets/images/icons/campaign.png')}}"><span>Campaigns</span></a>
+                                    </li>
+                                    @endcan
+                                    @can('app.news.index')
+                                    <li class="nav-item">
+                                        <a class="nav-link {{Route::is('asdo.news.*') ? 'active' : ''}}" href="{{route('asdo.news.index')}}"> <img src="{{asset('assets/images/icons/news-report.png')}}"> <span>Latest News</span></a>
                                     </li>
                                     @endcan
                                 </ul>
@@ -95,18 +96,18 @@
                             <li class="nav-item">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.profile.show') ? 'active' : ''}}" href="{{route('asdo.profile.show')}}"><i class="fas fa-user mr-2"></i><span>My Profile</span></a>
+                                        <a class="nav-link {{Route::is('asdo.profile.show') ? 'active' : ''}}" href="{{route('asdo.profile.show')}}"><img src="{{asset('assets/images/icons/user.png')}}"><span><span>My Profile</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.profile.edit') ? 'active' : ''}}" href="{{route('asdo.profile.edit')}}"><i class="fas fa-cog mr-2"></i><span>Update Profile</span></a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.password.edit') ? 'active' : ''}}" href="{{route('asdo.password.edit')}}"><i class="fas fa-lock mr-2"></i><span>Change Password</span></a>
+                                        <a class="nav-link {{Route::is('asdo.profile.edit') ? 'active' : ''}}" href="{{route('asdo.profile.edit')}}"><img src="{{asset('assets/images/icons/system-update.png')}}"><span><span>Update Profile</span></a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link {{Route::is('asdo.photo.*') ? 'active' : ''}}" href="{{route('asdo.photo.edit')}}"><i class="fas fa-camera"></i><span>Change Photo</span></a>
+                                        <a class="nav-link {{Route::is('asdo.password.edit') ? 'active' : ''}}" href="{{route('asdo.password.edit')}}"><img src="{{asset('assets/images/icons/padlock(1).png')}}"><span>Change Password</span></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link {{Route::is('asdo.photo.*') ? 'active' : ''}}" href="{{route('asdo.photo.edit')}}"><img src="{{asset('assets/images/icons/photo-camera.png')}}"><span>Change Photo</span></a>
                                     </li>
                                 </ul>
                             </li>
