@@ -16,10 +16,11 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('heading');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->timestampTz('date')->nullable();
-            $table->integer('lifetime')->nullable();
+            $table->timestampTz('publishing_date')->nullable();
+            $table->timestampTz('ending_date')->nullable();
             $table->boolean('is_live')->default(false);
             $table->timestamps();
         });

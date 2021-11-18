@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Project;
 use App\Models\Contact;
+use App\Models\News;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,11 +20,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $sliders = Slider::all();
         $projects = Project::orderBy('date', 'desc')->limit(6)->get();
+        $live_news = DB::table('news')
+                                ->where(function($query){
+                                    date_default_timezone_set("Asia/Dhaka");
+                                    $now = date('Y-m-d H:i:s');
+                                    $query->where('publishing_date', '<', $now)
+                                    ->where('ending_date', '>', $now);
+                                })
+                                ->orWhere('is_live', true)
+                                ->select('id', 'heading','slug')
+                                ->orderBy('publishing_date', 'desc')
+                                ->get();
 
-        return view('frontend.index', compact('sliders', 'projects'));
+        return view('frontend.index', compact('sliders', 'projects', 'live_news'));
     }
 
 

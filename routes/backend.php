@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\InboxController;
 use App\Http\Controllers\Backend\BloodDonationController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\NewsManipulationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +117,6 @@ Route::get('/image/campaigns/{id}/delete', [CampaignFileController::class, 'dest
 
 //routes for latest news
 Route::resource('/news', NewsController::class);
+
+//routes news manipuation
+Route::get('/news/changeState/{id}', [NewsManipulationController::class, 'changeState'])->name('news.changeState');

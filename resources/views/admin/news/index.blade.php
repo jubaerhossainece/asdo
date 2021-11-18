@@ -21,6 +21,7 @@
 							<th class="text-center">#</th>
 							<th class="text-center">News Heading</th>
 							<th class="text-center">Live</th>
+							<th class="text-center">Published at</th>
 							@canany(['app.news.show', 'app.news.edit',  'app.news.destroy'])
 							<th class="text-center">Action</th>
 							@endcanany
@@ -33,20 +34,20 @@
 									<td class="text-center">{{$loop->index+1}}</td>
 									<td class="text-center">{{$news->heading}}</td>
 									<td class="text-center">
-                                        @if($news->isLive)
-                                        <span class="badge badge-success">
-                                            Live
-                                        </span>
-                                        @elseif(\App\Library\Helper::dayDiff($news->date, $news->lifetime))
-                                        <span class="badge badge-success">
-                                            Live
-                                        </span>
+                                        @if(\App\Library\Helper::isPublished($news->publishing_date))	 	<span class="badge badge-primary">
+												Not Published
+											</span>
+                                        @elseif($news->is_live || \App\Library\Helper::newsState($news->publishing_date, $news->ending_date))
+											<button onclick="changeState({{$news->id}})" id="news-state-{{$news->id}}" class="btn-sm btn badge badge-success text-white">
+												Live
+											</button>
 										@else
-										<input type="submit" class="badge badge-warning text-white" value="Archived">
-                                            
+											<button onclick="changeState({{$news->id}})" id="news-state-{{$news->id}}" class="btn-sm btn badge badge-warning text-white">
+												Archived
+											</button>
                                         @endif
                                     </td>
-
+									<td class="text-center">{{\Carbon\Carbon::parse($news->publishing_date)->diffForHumans()}}</td>
 									<td class="text-center">
 										@can('app.news.edit')
 										<a href="{{route('asdo.news.edit', $news->id)}}" class="btn btn-primary btn-sm" data-tooltip="tooltip" data-placement="bottom" title="Edit news detail">
@@ -84,7 +85,25 @@
 </div>
 @push('script')
 <script>
-	
+	function changeState(id){
+		event.preventDefault();
+		$.ajax({
+			type:"get",
+			url:"/asdo/news/changeState/"+id,
+			cache:false,
+			success: function(data){
+				console.log(data);
+				if(data){
+					$('#news-state-'+id).html('Live');
+					$('#news-state-'+id).removeClass("badge-warning").addClass("badge-success"); 
+				}else{
+					$('#news-state-'+id).html('Archived');
+					$('#news-state-'+id).removeClass("badge-success").addClass("badge-warning");
+
+				}
+			}
+		})
+	}
 </script>
 @endpush
 @endsection

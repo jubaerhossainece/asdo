@@ -11,12 +11,12 @@
                   <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center news-title py-2 text-white px-1 news">
                     <span class="d-flex align-items-center">&nbsp;Latest news</span>
                   </div>
-                  <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"> 
-                    <a href="#">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </a> 
-                    <span class="dot"></span> 
-                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </a> 
-                    <span class="dot"></span> 
-                    <a href="#">Duis aute irure dolor in reprehenderit in voluptate velit esse </a> 
+                  <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                  @foreach($live_news as $news)
+                    <a href="{{route('news.show', ['heading'=>$news->slug,'id' => $news->id])}}">
+                      {{$news->heading}}</a>
+                    <span class="dot"></span>
+                  @endforeach  
                   </marquee>
               </div>
           </div>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\Frontend\CampaignController;
 use App\Http\Controllers\Frontend\ProjectController;
+use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Auth\VolunteerRegisterController;
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,6 @@ Route::get('/asdo/password/reset', [AdminForgotPasswordController::class, 'showL
 Route::post('/asdo/password/email', [AdminForgotPasswordController::class, 'sendResetLinkEmail'])->name('asdo.password.email');
 Route::get('/asdo/password/reset/{token}', [AdminResetPasswordController::class, 'showResetForm'])->name('asdo.password.reset');
 Route::post('/asdo/password/reset', [AdminResetPasswordController::class, 'reset'])->name('asdo.password.update');
+
+//routes for news
+Route::get('/news/{heading}/{id}', [NewsController::class, 'show'])->name('news.show');

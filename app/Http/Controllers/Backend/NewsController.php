@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -23,7 +24,7 @@ class NewsController extends Controller
     public function index()
     {
         Gate::authorize('app.news.index');
-        $allnews = News::all();
+        $allnews = News::orderBy('publishing_date', 'DESC')->get();
         return view('admin.news.index', compact('allnews'));
     }
 
@@ -50,7 +51,7 @@ class NewsController extends Controller
         $request->validate([
             'heading' => 'required|string',
             'publishing_date' => 'required',
-            'lifetime' => 'required|integer|min:0',
+            'ending_date' => 'required',
             'image' => 'nullable|image'
         ]);
 
@@ -66,10 +67,11 @@ class NewsController extends Controller
 
         $news = new News;
         $news->heading = $request->heading;
+        $news->slug = Str::slug($request->heading);
         $news->description = $request->description;
         $news->image = $request->image;
-        $news->date = $request->publishing_date;
-        $news->lifetime = $request->lifetime;
+        $news->publishing_date = $request->publishing_date;
+        $news->ending_date = $request->ending_date;
         $news->image = $filename_with_ext ?? '';
         $result = $news->save();
         
@@ -120,7 +122,7 @@ class NewsController extends Controller
         $request->validate([
             'heading' => 'required|string',
             'publishing_date' => 'required',
-            'lifetime' => 'required|integer|min:0',
+            'ending_date' => 'required',
             'image' => 'nullable|image'
         ]);
         $news = News::find($id);
@@ -138,10 +140,11 @@ class NewsController extends Controller
         }
 
         $news->heading = $request->heading;
+        $news->slug = Str::slug($request->heading);
         $news->description = $request->description;
         $news->image = $request->image;
-        $news->date = $request->publishing_date;
-        $news->lifetime = $request->lifetime;
+        $news->publishing_date = $request->publishing_date;
+        $news->ending_date = $request->ending_date;
         $news->image = $filename_with_ext ?? '';
         $result = $news->save();
         

@@ -56,7 +56,7 @@
 
             <div class="mb-3">
                 <label for="publishing-date" class="form-label">Publishing Date</label>
-                <input type="text" name="publishing_date" class="form-control" id="publishing-date" value="{{old('publishing_date') ?? $news->date}}">
+                <input type="text" name="publishing_date" class="form-control" id="publishing-date" value="{{old('publishing_date') ?? $news->publishing_date}}">
                 @error('publishing_date')
                     <div class="text-danger">
                     <strong>{{$message}}</strong>
@@ -64,20 +64,20 @@
                 @enderror
             </div>
 
-            <div class="mb-2">
-                <label for="lifetime" class="form-label">Life Time (In days)</label>
-                <input type="number" name="lifetime" class="form-control" id="lifetime" value="{{old('lifetime') ?? $news->lifetime}}">
-                @error('lifetime')
+            <div class="mb-3">
+                <label for="ending-date" class="form-label">Publishing Date</label>
+                <input type="text" name="ending_date" class="form-control" id="ending-date" value="{{old('ending_date') ?? $news->ending_date}}">
+                @error('ending_date')
                     <div class="text-danger">
                     <strong>{{$message}}</strong>
                     </div>
                 @enderror
             </div>
             
-            <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-3">
+            <!-- <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-3">
                 <input type="checkbox" class="custom-control-input" id="islive">
                 <label class="custom-control-label" for="islive">Keep this news live</label>
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 	</div>
@@ -89,6 +89,7 @@
 <script>
 	$(document).ready(function () {
 		$('#publishing-date').datetimepicker();
+		$('#ending-date').datetimepicker();
 	});
 
     document.getElementById("image").onchange = function() {

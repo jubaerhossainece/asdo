@@ -20,14 +20,23 @@
                             ->first();
         }
 
-        public static function dayDiff($date1, $lifetime){
+        public static function newsState($date1, $date2){
             $now = new DateTime("now");
             $date1 = new DateTime($date1);
-            $date1 = $date1->add(new DateInterval("P".abs($lifetime)."D"));
-            if($date1 > $now){
+            $date2 = new DateTime($date2);
+            
+            if($date1 < $now && $date2 > $now){
                 return true;
             }else{
                 return false;
+            }
+        }
+
+        public static function isPublished($date){
+            $now = new DateTime();
+            $date = new DateTime($date);
+            if($date > $now){
+                return true;
             }
         }
     }
