@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
         Admin::updateOrCreate([
         	'role_id' => Role::where('slug', 'superAdmin')->first()->id,
         	'name' => 'Mohammad Jahidul Islam Jewel',
-        	'email' => 'superadmin@example.com',
+        	'email' => 'superadmin@mailnator.com',
         	'password' => Hash::make('12345678')
         ]);
     }

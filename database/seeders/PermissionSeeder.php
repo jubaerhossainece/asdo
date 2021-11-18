@@ -24,7 +24,7 @@ class PermissionSeeder extends Seeder
         	'slug' => 'app.dashboard' 
         ]);
 
-        //Role management permissions
+        //Admin panel management permissions
         $moduleAppAdmin = Module::updateOrCreate(['name' => 'Admin Management']);
 
         Permission::updateOrCreate([
@@ -84,7 +84,7 @@ class PermissionSeeder extends Seeder
         	'slug' => 'app.roles.destroy'
         ]);
 
-        //User management permissions
+        //Member management permissions
         $moduleAppUser = Module::updateOrCreate(['name' => 'Member Management']);
 
         Permission::updateOrCreate([
@@ -152,68 +152,68 @@ class PermissionSeeder extends Seeder
         ]);
 
         //Blood donor management permissions
-        $moduleAppBlooDonor = Module::updateOrCreate(['name' => 'Member Management']);
+        $moduleAppBloodDonor = Module::updateOrCreate(['name' => 'Blood Donor Management']);
 
         Permission::updateOrCreate([
-            'module_id' => $moduleAppBlooDonor->id,
+            'module_id' => $moduleAppBloodDonor->id,
             'name' => 'Access Blood Donors list',
             'slug' => 'app.bloodDonors.index'
         ]);
 
         Permission::updateOrCreate([
-            'module_id' => $moduleAppBlooDonor->id,
+            'module_id' => $moduleAppBloodDonor->id,
             'name' => 'Save Blood Donors Information',
             'slug' => 'app.bloodDonors.create'
         ]);
 
         Permission::updateOrCreate([
-            'module_id' => $moduleAppBlooDonor->id,
+            'module_id' => $moduleAppBloodDonor->id,
             'name' => 'Show Blood Donors information',
             'slug' => 'app.bloodDonors.show'
         ]);
 
         Permission::updateOrCreate([
-            'module_id' => $moduleAppBlooDonor->id,
+            'module_id' => $moduleAppBloodDonor->id,
             'name' => 'Edit Blood Donors information',
             'slug' => 'app.bloodDonors.edit'
         ]);
 
         Permission::updateOrCreate([
-            'module_id' => $moduleAppBlooDonor->id,
+            'module_id' => $moduleAppBloodDonor->id,
             'name' => 'Delete Blood Donors information',
             'slug' => 'app.bloodDonors.destroy'
         ]);
 
-        //Project management permissions
-        $moduleAppProject = Module::updateOrCreate(['name' => 'Project Management']);
+        //Program management permissions
+        $moduleAppProject = Module::updateOrCreate(['name' => 'Program Management']);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppProject->id,
-            'name' => 'Access Projects',
+            'name' => 'Access Programs',
             'slug' => 'app.projects.index'
         ]);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppProject->id,
-            'name' => 'Create Project',
+            'name' => 'Create Program',
             'slug' => 'app.projects.create'
         ]);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppProject->id,
-            'name' => 'Show Project',
+            'name' => 'Show Program',
             'slug' => 'app.projects.show'
         ]);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppProject->id,
-            'name' => 'Edit Project',
+            'name' => 'Edit Program',
             'slug' => 'app.projects.edit'
         ]);
 
         Permission::updateOrCreate([
             'module_id' => $moduleAppProject->id,
-            'name' => 'Delete Project',
+            'name' => 'Delete Program',
             'slug' => 'app.projects.destroy'
         ]);
 
