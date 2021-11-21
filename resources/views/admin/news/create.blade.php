@@ -64,7 +64,7 @@
             </div>
 
             <div class="mb-2">
-                <label for="ending-date" class="form-label">Publishing Date</label>
+                <label for="ending-date" class="form-label">Ending Date</label>
                 <input type="text" name="ending_date" class="form-control" id="ending-date" value="{{old('ending_date')}}">
                 @error('ending_date')
                     <div class="text-danger">

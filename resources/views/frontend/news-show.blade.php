@@ -6,7 +6,9 @@
           margin-top: 100px;
           margin-bottom: 20px;
       }
-      #news-body{
+      #news-body h6{
+          font-weight: 400;
+          line-height: 1.6;
       }
       @media screen and (min-width: 768px) {
           #news-body{
