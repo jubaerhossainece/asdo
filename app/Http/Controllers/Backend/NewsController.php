@@ -165,6 +165,11 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::find($id);
+        if($news->image){
+            Storage::delete('public/asdo/images/news/'.$news->image);
+        }
+        $result = $news->delete();
+        return redirect()->route('asdo.news.index')->with('alert-success', 'News has been deleted!');
     }
 }
