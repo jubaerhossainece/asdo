@@ -5,6 +5,8 @@
     .carousel-indicators [data-bs-target]{
       width: 10px;
       height: 10px;
+      margin-right: 6px;
+      margin-left: 6px;
     }
   </style>
 @endpush
