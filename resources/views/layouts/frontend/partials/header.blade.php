@@ -14,7 +14,7 @@
             <nav class="navbar navbar-expand-md ">
                 <div class="nav-logo ">
                   <a href="/">
-                    <img src="{{asset('assets/images/logo/asdo-logo.jpg')}}" alt="logo-img" />
+                    <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo-img" />
                   </a>
                 </div>
                 <button
