@@ -1,6 +1,12 @@
 @extends('layouts.frontend.app')
 @push('css')
   <link href="css/frontend/index.css" rel="stylesheet" />
+  <style>
+    .carousel-indicators [data-bs-target]{
+      width: 10px;
+      height: 10px;
+    }
+  </style>
 @endpush
 @section('content')
     <!-- news ticker section -->
