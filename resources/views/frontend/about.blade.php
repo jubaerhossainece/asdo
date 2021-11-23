@@ -74,7 +74,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-            <img class="img-fluid" src="{{url('assets/images/jewel.jpg')}}" alt="">
+            <img class="img-fluid" src="{{url('assets/images/prothom-alo-award.jpg')}}" alt="">
           </div>
           <div class="col-md-8">
             <p>
