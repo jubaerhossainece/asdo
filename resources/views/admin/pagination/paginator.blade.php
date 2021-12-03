@@ -25,7 +25,7 @@
     <div class="col-md-6"> Showing from {{$given_array->toArray()['from']}} to {{$given_array->toArray()['to']}} of {{$given_array->toArray()['total']}} </div>
     <div class="col-md-6 paginator">
         <nav aria-label="...">
-          <ul class="pagination">
+          <ul class="pagination float-right">
             <li class="page-item @if($cur_page == 1) disabled @endif">
               <a class="page-link" @if($cur_page <= 1) aria-hidden="true" @endif href="{{$given_array->toArray()['first_page_url']}}">First</a>
             </li>

@@ -59,6 +59,15 @@
 					</table>
 				</div>
 			</dib>
+
+			<div class="col-12 mt-4">
+				
+					<?php 
+						$given_array = $projects;
+						$offset = 5;
+					 ?>
+					@include('admin.pagination.paginator')
+			</div>
 		</div>
 	</div>
 </div>

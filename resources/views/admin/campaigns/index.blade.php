@@ -11,7 +11,7 @@
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<dib class="col-md-12">
+			<div class="col-md-12">
 				<div class="table-responsive">
 					<table id="rolesTable" class="table table-hover align-middle mb-0">
 						<thead>
@@ -61,13 +61,16 @@
 						</tbody>
 					</table>
 				</div>
+
+			</div>
+			<div class="col-12 mt-4">
 				
 					<?php 
 						$given_array = $campaigns;
 						$offset = 5;
 					 ?>
 					@include('admin.pagination.paginator')
-			</dib>
+			</div>
 		</div>
 	</div>
 </div>

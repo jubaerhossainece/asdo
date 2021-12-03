@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         Gate::authorize('app.projects.index');
-        $projects = Project::all();
+        $projects = Project::select('id', 'header', 'location')->paginate(10);
         return view('admin.projects.index', compact('projects'));
     }
 
