@@ -165,7 +165,7 @@ class AdminController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename_with_ext = 'admin'.time().'.'.$extension;
             $request->file('photo')->storeAs($path, $filename_with_ext);
-            Storage::delete('public/asdo/images/admins/'.$photo);  
+            Storage::delete('public/asdo/images/admins/'.$photo);
         }
 
         $user->name = $request->name;
