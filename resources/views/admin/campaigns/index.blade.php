@@ -61,6 +61,12 @@
 						</tbody>
 					</table>
 				</div>
+				
+					<?php 
+						$given_array = $campaigns;
+						$offset = 5;
+					 ?>
+					@include('admin.pagination.paginator')
 			</dib>
 		</div>
 	</div>

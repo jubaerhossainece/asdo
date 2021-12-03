@@ -20,7 +20,7 @@ class CampaignController extends Controller
     public function index()
     {
         Gate::authorize('app.campaigns.index');
-        $campaigns = Campaign::all();
+        $campaigns = Campaign::select('id','header', 'location')->paginate(10);
         return view('admin.campaigns.index', compact('campaigns'));
     }
 
